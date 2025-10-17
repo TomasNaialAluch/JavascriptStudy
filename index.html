@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Junior Developer - Guía Completa</title>
+    <title>JavaScript Junior Developer - Academia de Programación</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header con navegación -->
@@ -13,14 +14,14 @@
         <nav class="navbar">
             <div class="nav-brand">
                 <i class="fab fa-js-square"></i>
-                <span>JS Junior Dev</span>
+                <span>JS Academy</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="#inicio" class="nav-link">Inicio</a></li>
-                <li><a href="#conocimientos" class="nav-link">Conocimientos</a></li>
-                <li><a href="#herramientas" class="nav-link">Herramientas</a></li>
+                <li><a href="#modulos" class="nav-link">Módulos</a></li>
                 <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
-                <li><a href="#oportunidades" class="nav-link">Oportunidades</a></li>
+                <li><a href="#recursos" class="nav-link">Recursos</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -36,7 +37,7 @@
             <li class="breadcrumb-item">
                 <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
             </li>
-            <li class="breadcrumb-item active" id="current-page">JavaScript Junior Developer</li>
+            <li class="breadcrumb-item active" id="current-page">Academia JavaScript</li>
         </ol>
     </nav>
 
@@ -45,285 +46,425 @@
         <!-- Sección Hero -->
         <section id="inicio" class="hero">
             <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Academia de Programación</span>
+                </div>
                 <h1 class="hero-title">JavaScript Junior Developer</h1>
-                <p class="hero-subtitle">Tu guía completa para convertirte en un desarrollador JavaScript profesional</p>
+                <p class="hero-subtitle">Aprende JavaScript desde cero con nuestra metodología práctica. Teoría, ejemplos interactivos y proyectos reales para convertirte en un desarrollador profesional.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Módulos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Ejemplos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Proyectos</span>
+                    </div>
+                </div>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="scrollToSection('conocimientos')">
-                        <i class="fas fa-rocket"></i> Comenzar Aprendizaje
+                    <button class="btn btn-primary" onclick="scrollToSection('modulos')">
+                        <i class="fas fa-play"></i> Comenzar Curso
                     </button>
-                    <button class="btn btn-secondary" onclick="scrollToSection('oportunidades')">
-                        <i class="fas fa-briefcase"></i> Ver Oportunidades
+                    <button class="btn btn-secondary" onclick="scrollToSection('proyectos')">
+                        <i class="fas fa-code"></i> Ver Proyectos
                     </button>
                 </div>
             </div>
             <div class="hero-image">
-                <i class="fab fa-js-square"></i>
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <span class="control red"></span>
+                            <span class="control yellow"></span>
+                            <span class="control green"></span>
+                        </div>
+                        <span class="window-title">main.js</span>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line"><span class="keyword">const</span> <span class="variable">developer</span> = {</div>
+                        <div class="code-line">  <span class="property">nombre</span>: <span class="string">'Tu Nombre'</span>,</div>
+                        <div class="code-line">  <span class="property">nivel</span>: <span class="string">'Junior'</span>,</div>
+                        <div class="code-line">  <span class="property">aprendiendo</span>: <span class="string">'JavaScript'</span></div>
+                        <div class="code-line">};</div>
+                        <div class="code-line"></div>
+                        <div class="code-line"><span class="function">console.log</span>(<span class="string">'¡Bienvenido a JS Academy!'</span>);</div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Sección de Conocimientos Requeridos -->
-        <section id="conocimientos" class="section">
+        <!-- Sección de Módulos de Aprendizaje -->
+        <section id="modulos" class="section">
             <div class="container">
-                <h2 class="section-title">Conocimientos Esenciales</h2>
-                <div class="knowledge-grid">
-                    <div class="knowledge-card" data-category="fundamentos">
-                        <div class="card-header">
-                            <i class="fas fa-code"></i>
-                            <h3>Fundamentos de JavaScript</h3>
+                <div class="section-header">
+                    <h2 class="section-title">Módulos de Aprendizaje</h2>
+                    <p class="section-subtitle">Un camino estructurado para dominar JavaScript paso a paso</p>
+                </div>
+                
+                <div class="modules-grid">
+                    <!-- Módulo 1 -->
+                    <div class="module-card" data-module="1">
+                        <div class="module-header">
+                            <div class="module-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="module-info">
+                                <span class="module-number">Módulo 1</span>
+                                <h3>Fundamentos de JavaScript</h3>
+                                <p>Variables, tipos de datos, operadores y estructuras de control</p>
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <ul>
-                                <li>Variables (let, const, var)</li>
-                                <li>Tipos de datos y operadores</li>
-                                <li>Funciones y scope</li>
-                                <li>Arrays y objetos</li>
-                                <li>Control de flujo (if, switch, loops)</li>
-                                <li>ES6+ características</li>
-                            </ul>
+                        <div class="module-content">
+                            <div class="module-topics">
+                                <span class="topic-tag">Variables</span>
+                                <span class="topic-tag">Operadores</span>
+                                <span class="topic-tag">Funciones</span>
+                                <span class="topic-tag">Arrays</span>
+                            </div>
+                            <div class="module-stats">
+                                <span><i class="fas fa-clock"></i> 4-6 horas</span>
+                                <span><i class="fas fa-file-code"></i> 15 ejemplos</span>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <button class="btn btn-outline" onclick="toggleCard(this)">Ver Detalles</button>
-                        </div>
-                    </div>
-
-                    <div class="knowledge-card" data-category="dom">
-                        <div class="card-header">
-                            <i class="fas fa-window-maximize"></i>
-                            <h3>DOM Manipulation</h3>
-                        </div>
-                        <div class="card-content">
-                            <ul>
-                                <li>Selección de elementos</li>
-                                <li>Event listeners</li>
-                                <li>Modificación de contenido</li>
-                                <li>Creación y eliminación de elementos</li>
-                                <li>Trabajo con formularios</li>
-                                <li>Validación de datos</li>
-                            </ul>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-outline" onclick="toggleCard(this)">Ver Detalles</button>
+                        <div class="module-footer">
+                            <a href="modulo1-fundamentos.html" class="btn btn-primary">
+                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
+                            </a>
                         </div>
                     </div>
 
-                    <div class="knowledge-card" data-category="async">
-                        <div class="card-header">
-                            <i class="fas fa-sync-alt"></i>
-                            <h3>Programación Asíncrona</h3>
+                    <!-- Módulo 2 -->
+                    <div class="module-card" data-module="2">
+                        <div class="module-header">
+                            <div class="module-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="module-info">
+                                <span class="module-number">Módulo 2</span>
+                                <h3>JavaScript Moderno (ES6+)</h3>
+                                <p>Arrow functions, destructuring, modules y características modernas</p>
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <ul>
-                                <li>Callbacks</li>
-                                <li>Promises</li>
-                                <li>Async/Await</li>
-                                <li>Fetch API</li>
-                                <li>Manejo de errores</li>
-                                <li>Timers y intervals</li>
-                            </ul>
+                        <div class="module-content">
+                            <div class="module-topics">
+                                <span class="topic-tag">ES6+</span>
+                                <span class="topic-tag">Arrow Functions</span>
+                                <span class="topic-tag">Destructuring</span>
+                                <span class="topic-tag">Modules</span>
+                            </div>
+                            <div class="module-stats">
+                                <span><i class="fas fa-clock"></i> 3-5 horas</span>
+                                <span><i class="fas fa-file-code"></i> 12 ejemplos</span>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <button class="btn btn-outline" onclick="toggleCard(this)">Ver Detalles</button>
+                        <div class="module-footer">
+                            <a href="modulo2-moderno.html" class="btn btn-primary">
+                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
+                            </a>
                         </div>
                     </div>
 
-                    <div class="knowledge-card" data-category="frameworks">
-                        <div class="card-header">
-                            <i class="fab fa-react"></i>
-                            <h3>Frameworks/Librerías</h3>
+                    <!-- Módulo 3 -->
+                    <div class="module-card" data-module="3">
+                        <div class="module-header">
+                            <div class="module-icon">
+                                <i class="fas fa-window-maximize"></i>
+                            </div>
+                            <div class="module-info">
+                                <span class="module-number">Módulo 3</span>
+                                <h3>DOM Manipulation</h3>
+                                <p>Interactuar con el DOM, eventos y formularios</p>
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <ul>
-                                <li>React (componentes, hooks, state)</li>
-                                <li>Vue.js (opcional)</li>
-                                <li>jQuery (básico)</li>
-                                <li>Node.js (conceptos básicos)</li>
-                                <li>NPM/Yarn</li>
-                                <li>Webpack/Vite</li>
-                            </ul>
+                        <div class="module-content">
+                            <div class="module-topics">
+                                <span class="topic-tag">DOM</span>
+                                <span class="topic-tag">Eventos</span>
+                                <span class="topic-tag">Formularios</span>
+                                <span class="topic-tag">Validación</span>
+                            </div>
+                            <div class="module-stats">
+                                <span><i class="fas fa-clock"></i> 5-7 horas</span>
+                                <span><i class="fas fa-file-code"></i> 18 ejemplos</span>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <button class="btn btn-outline" onclick="toggleCard(this)">Ver Detalles</button>
+                        <div class="module-footer">
+                            <a href="modulo3-dom.html" class="btn btn-primary">
+                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Módulo 4 -->
+                    <div class="module-card" data-module="4">
+                        <div class="module-header">
+                            <div class="module-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="module-info">
+                                <span class="module-number">Módulo 4</span>
+                                <h3>Programación Asíncrona</h3>
+                                <p>Promises, async/await, fetch API y manejo de errores</p>
+                            </div>
+                        </div>
+                        <div class="module-content">
+                            <div class="module-topics">
+                                <span class="topic-tag">Promises</span>
+                                <span class="topic-tag">Async/Await</span>
+                                <span class="topic-tag">Fetch API</span>
+                                <span class="topic-tag">Callbacks</span>
+                            </div>
+                            <div class="module-stats">
+                                <span><i class="fas fa-clock"></i> 6-8 horas</span>
+                                <span><i class="fas fa-file-code"></i> 20 ejemplos</span>
+                            </div>
+                        </div>
+                        <div class="module-footer">
+                            <a href="modulo4-asincrono.html" class="btn btn-primary">
+                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Módulo 5 -->
+                    <div class="module-card" data-module="5">
+                        <div class="module-header">
+                            <div class="module-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="module-info">
+                                <span class="module-number">Módulo 5</span>
+                                <h3>Frameworks y Librerías</h3>
+                                <p>React, Node.js, NPM y herramientas modernas</p>
+                            </div>
+                        </div>
+                        <div class="module-content">
+                            <div class="module-topics">
+                                <span class="topic-tag">React</span>
+                                <span class="topic-tag">Node.js</span>
+                                <span class="topic-tag">NPM</span>
+                                <span class="topic-tag">Webpack</span>
+                            </div>
+                            <div class="module-stats">
+                                <span><i class="fas fa-clock"></i> 8-10 horas</span>
+                                <span><i class="fas fa-file-code"></i> 25 ejemplos</span>
+                            </div>
+                        </div>
+                        <div class="module-footer">
+                            <a href="modulo5-frameworks.html" class="btn btn-primary">
+                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Módulo 6 -->
+                    <div class="module-card" data-module="6">
+                        <div class="module-header">
+                            <div class="module-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="module-info">
+                                <span class="module-number">Módulo 6</span>
+                                <h3>Herramientas de Desarrollo</h3>
+                                <p>Git, VS Code, DevTools y debugging profesional</p>
+                            </div>
+                        </div>
+                        <div class="module-content">
+                            <div class="module-topics">
+                                <span class="topic-tag">Git</span>
+                                <span class="topic-tag">VS Code</span>
+                                <span class="topic-tag">DevTools</span>
+                                <span class="topic-tag">Debugging</span>
+                            </div>
+                            <div class="module-stats">
+                                <span><i class="fas fa-clock"></i> 4-6 horas</span>
+                                <span><i class="fas fa-file-code"></i> 10 ejemplos</span>
+                            </div>
+                        </div>
+                        <div class="module-footer">
+                            <a href="modulo6-herramientas.html" class="btn btn-primary">
+                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección de Herramientas -->
-        <section id="herramientas" class="section bg-light">
+        <!-- Sección de Proyectos Prácticos -->
+        <section id="proyectos" class="section bg-light">
             <div class="container">
-                <h2 class="section-title">Herramientas de Desarrollo</h2>
-                <div class="tools-grid">
-                    <div class="tool-item">
-                        <i class="fab fa-git-alt"></i>
-                        <h3>Git & GitHub</h3>
-                        <p>Control de versiones y colaboración</p>
-                    </div>
-                    <div class="tool-item">
-                        <i class="fas fa-code"></i>
-                        <h3>VS Code</h3>
-                        <p>Editor de código principal</p>
-                    </div>
-                    <div class="tool-item">
-                        <i class="fas fa-bug"></i>
-                        <h3>DevTools</h3>
-                        <p>Depuración y testing</p>
-                    </div>
-                    <div class="tool-item">
-                        <i class="fas fa-terminal"></i>
-                        <h3>Terminal</h3>
-                        <p>Línea de comandos</p>
-                    </div>
+                <div class="section-header">
+                    <h2 class="section-title">Proyectos Prácticos</h2>
+                    <p class="section-subtitle">Aplica lo que aprendas en proyectos reales y construye tu portfolio</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Sección de Proyectos -->
-        <section id="proyectos" class="section">
-            <div class="container">
-                <h2 class="section-title">Proyectos Recomendados</h2>
+                
                 <div class="projects-grid">
                     <div class="project-card">
-                        <div class="project-header">
+                        <div class="project-image">
                             <i class="fas fa-todo-list"></i>
-                            <h3>Todo List App</h3>
                         </div>
                         <div class="project-content">
-                            <p>Aplicación de lista de tareas con funcionalidades CRUD</p>
+                            <div class="project-level">
+                                <span class="level-badge beginner">Principiante</span>
+                            </div>
+                            <h3>Todo List App</h3>
+                            <p>Aplicación completa de gestión de tareas con funcionalidades CRUD, filtros y persistencia local.</p>
                             <div class="project-skills">
                                 <span class="skill-tag">DOM</span>
                                 <span class="skill-tag">LocalStorage</span>
                                 <span class="skill-tag">Event Handling</span>
                             </div>
+                            <div class="project-time">
+                                <i class="fas fa-clock"></i> 2-3 días
+                            </div>
                         </div>
                         <div class="project-footer">
-                            <button class="btn btn-primary" onclick="showProjectDetails('todo')">Ver Proyecto</button>
+                            <a href="#" class="btn btn-outline">Ver Proyecto</a>
                         </div>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-header">
+                        <div class="project-image">
                             <i class="fas fa-cloud-sun"></i>
-                            <h3>Weather App</h3>
                         </div>
                         <div class="project-content">
-                            <p>Aplicación del clima con API externa</p>
+                            <div class="project-level">
+                                <span class="level-badge intermediate">Intermedio</span>
+                            </div>
+                            <h3>Weather App</h3>
+                            <p>Aplicación del clima con API externa, geolocalización y pronóstico extendido.</p>
                             <div class="project-skills">
                                 <span class="skill-tag">Fetch API</span>
                                 <span class="skill-tag">Async/Await</span>
                                 <span class="skill-tag">JSON</span>
                             </div>
+                            <div class="project-time">
+                                <i class="fas fa-clock"></i> 3-5 días
+                            </div>
                         </div>
                         <div class="project-footer">
-                            <button class="btn btn-primary" onclick="showProjectDetails('weather')">Ver Proyecto</button>
+                            <a href="#" class="btn btn-outline">Ver Proyecto</a>
                         </div>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-header">
+                        <div class="project-image">
                             <i class="fas fa-gamepad"></i>
-                            <h3>Memory Game</h3>
                         </div>
                         <div class="project-content">
-                            <p>Juego de memoria con tarjetas</p>
+                            <div class="project-level">
+                                <span class="level-badge intermediate">Intermedio</span>
+                            </div>
+                            <h3>Memory Game</h3>
+                            <p>Juego de memoria con diferentes niveles de dificultad y sistema de puntuación.</p>
                             <div class="project-skills">
                                 <span class="skill-tag">Game Logic</span>
                                 <span class="skill-tag">CSS Animations</span>
                                 <span class="skill-tag">Timer</span>
                             </div>
+                            <div class="project-time">
+                                <i class="fas fa-clock"></i> 4-6 días
+                            </div>
                         </div>
                         <div class="project-footer">
-                            <button class="btn btn-primary" onclick="showProjectDetails('memory')">Ver Proyecto</button>
+                            <a href="#" class="btn btn-outline">Ver Proyecto</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección de Oportunidades -->
-        <section id="oportunidades" class="section bg-light">
+        <!-- Sección de Recursos -->
+        <section id="recursos" class="section">
             <div class="container">
-                <h2 class="section-title">Oportunidades de Trabajo</h2>
-                <div class="opportunities-grid">
-                    <div class="opportunity-card">
-                        <div class="opportunity-header">
-                            <i class="fas fa-building"></i>
-                            <h3>Desarrollador Frontend Junior</h3>
-                            <span class="salary">$25,000 - $35,000 MXN</span>
+                <div class="section-header">
+                    <h2 class="section-title">Recursos Adicionales</h2>
+                    <p class="section-subtitle">Herramientas y enlaces útiles para tu aprendizaje</p>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-book"></i>
                         </div>
-                        <div class="opportunity-content">
-                            <p><strong>Empresa:</strong> TechStart México</p>
-                            <p><strong>Ubicación:</strong> Ciudad de México (Remoto)</p>
-                            <p><strong>Requisitos:</strong></p>
-                            <ul>
-                                <li>1-2 años de experiencia</li>
-                                <li>Conocimiento en React</li>
-                                <li>Git y GitHub</li>
-                                <li>Inglés intermedio</li>
-                            </ul>
-                        </div>
-                        <div class="opportunity-footer">
-                            <button class="btn btn-success" onclick="applyJob('frontend-junior')">
-                                <i class="fas fa-paper-plane"></i> Aplicar
-                            </button>
-                            <button class="btn btn-outline" onclick="saveJob('frontend-junior')">
-                                <i class="fas fa-heart"></i> Guardar
-                            </button>
-                        </div>
+                        <h3>Documentación</h3>
+                        <ul>
+                            <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank">MDN JavaScript</a></li>
+                            <li><a href="https://javascript.info/" target="_blank">JavaScript.info</a></li>
+                            <li><a href="https://reactjs.org/docs/" target="_blank">React Docs</a></li>
+                        </ul>
                     </div>
 
-                    <div class="opportunity-card">
-                        <div class="opportunity-header">
-                            <i class="fas fa-laptop-code"></i>
-                            <h3>JavaScript Developer</h3>
-                            <span class="salary">$30,000 - $40,000 MXN</span>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-play-circle"></i>
                         </div>
-                        <div class="opportunity-content">
-                            <p><strong>Empresa:</strong> Digital Solutions</p>
-                            <p><strong>Ubicación:</strong> Guadalajara (Híbrido)</p>
-                            <p><strong>Requisitos:</strong></p>
-                            <ul>
-                                <li>Conocimiento sólido en JS</li>
-                                <li>Experiencia con APIs</li>
-                                <li>Node.js básico</li>
-                                <li>Trabajo en equipo</li>
-                            </ul>
-                        </div>
-                        <div class="opportunity-footer">
-                            <button class="btn btn-success" onclick="applyJob('js-developer')">
-                                <i class="fas fa-paper-plane"></i> Aplicar
-                            </button>
-                            <button class="btn btn-outline" onclick="saveJob('js-developer')">
-                                <i class="fas fa-heart"></i> Guardar
-                            </button>
-                        </div>
+                        <h3>Plataformas</h3>
+                        <ul>
+                            <li><a href="https://www.freecodecamp.org/" target="_blank">FreeCodeCamp</a></li>
+                            <li><a href="https://codepen.io/" target="_blank">CodePen</a></li>
+                            <li><a href="https://repl.it/" target="_blank">Repl.it</a></li>
+                        </ul>
                     </div>
 
-                    <div class="opportunity-card">
-                        <div class="opportunity-header">
-                            <i class="fas fa-mobile-alt"></i>
-                            <h3>Frontend Developer</h3>
-                            <span class="salary">$28,000 - $38,000 MXN</span>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-users"></i>
                         </div>
-                        <div class="opportunity-content">
-                            <p><strong>Empresa:</strong> MobileFirst</p>
-                            <p><strong>Ubicación:</strong> Monterrey (Presencial)</p>
-                            <p><strong>Requisitos:</strong></p>
-                            <ul>
-                                <li>HTML, CSS, JavaScript</li>
-                                <li>Responsive design</li>
-                                <li>Vue.js o React</li>
-                                <li>Portfolio de proyectos</li>
-                            </ul>
+                        <h3>Comunidades</h3>
+                        <ul>
+                            <li><a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a></li>
+                            <li><a href="https://dev.to/" target="_blank">Dev.to</a></li>
+                            <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section id="contacto" class="section bg-light">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2>¿Tienes Preguntas?</h2>
+                        <p>Estamos aquí para ayudarte en tu camino de aprendizaje. No dudes en contactarnos si necesitas ayuda o tienes alguna sugerencia.</p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <i class="fas fa-envelope"></i>
+                                <span>contacto@jsacademy.com</span>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fab fa-github"></i>
+                                <span>github.com/jsacademy</span>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fab fa-discord"></i>
+                                <span>Discord Community</span>
+                            </div>
                         </div>
-                        <div class="opportunity-footer">
-                            <button class="btn btn-success" onclick="applyJob('frontend-dev')">
-                                <i class="fas fa-paper-plane"></i> Aplicar
+                    </div>
+                    <div class="contact-form">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Tu email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Tu mensaje" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Enviar Mensaje
                             </button>
-                            <button class="btn btn-outline" onclick="saveJob('frontend-dev')">
-                                <i class="fas fa-heart"></i> Guardar
-                            </button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -335,40 +476,45 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>JavaScript Junior Developer</h3>
-                    <p>Tu guía completa para comenzar tu carrera en desarrollo web</p>
+                    <div class="footer-brand">
+                        <i class="fab fa-js-square"></i>
+                        <span>JS Academy</span>
+                    </div>
+                    <p>La mejor plataforma para aprender JavaScript desde cero hasta nivel profesional.</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Enlaces Útiles</h4>
+                    <h4>Módulos</h4>
                     <ul>
-                        <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank">MDN JavaScript</a></li>
-                        <li><a href="https://www.freecodecamp.org/" target="_blank">FreeCodeCamp</a></li>
-                        <li><a href="https://javascript.info/" target="_blank">JavaScript.info</a></li>
+                        <li><a href="modulo1-fundamentos.html">Fundamentos</a></li>
+                        <li><a href="modulo2-moderno.html">JavaScript Moderno</a></li>
+                        <li><a href="modulo3-dom.html">DOM Manipulation</a></li>
+                        <li><a href="modulo4-asincrono.html">Programación Asíncrona</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <p>¿Tienes preguntas? ¡Contáctanos!</p>
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="#proyectos">Proyectos</a></li>
+                        <li><a href="#recursos">Documentación</a></li>
+                        <li><a href="#contacto">Comunidad</a></li>
+                        <li><a href="#contacto">Soporte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 JavaScript Junior Developer. Todos los derechos reservados.</p>
+                <p>&copy; 2024 JS Academy. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Modal para detalles de proyectos -->
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="modalBody"></div>
-        </div>
-    </div>
 
     <script src="script.js"></script>
 </body>

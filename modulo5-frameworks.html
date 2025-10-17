@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frameworks y Librerías - Academia de Programación</title>
+    <meta name="description" content="Aprende sobre frameworks y librerías de JavaScript: React, Node.js, NPM, y herramientas modernas de desarrollo.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-js-square"></i>
+                    <span>JavaScript Academy</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                    <a href="index.html#modules" class="nav-link">Módulos</a>
+                    <a href="index.html#projects" class="nav-link">Proyectos</a>
+                    <a href="index.html#contact" class="nav-link">Contacto</a>
+                </nav>
+                <button class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+        <div class="container">
+            <a href="index.html">Inicio</a>
+            <span class="separator">></span>
+            <a href="index.html#modules">Módulos</a>
+            <span class="separator">></span>
+            <span id="current-page">Frameworks y Librerías</span>
+        </div>
+    </nav>
+
+    <!-- Barra de Progreso -->
+    <section class="progress-bar-section">
+        <div class="container">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="progress-label">Progreso del Módulo</span>
+                    <span class="progress-percentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="moduleProgress"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero del Módulo -->
+    <section class="module-hero">
+        <div class="container">
+            <div class="module-header">
+                <div class="module-badge">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <span>Módulo 5</span>
+                </div>
+                <h1>Frameworks y Librerías</h1>
+                <p class="module-description">
+                    Explora el ecosistema de JavaScript moderno. Aprende React, Node.js, NPM y las herramientas 
+                    que todo desarrollador JavaScript debe conocer.
+                </p>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>8-10 horas</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-code"></i>
+                        <span>30+ ejemplos</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-star"></i>
+                        <span>Avanzado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navegación del Módulo -->
+    <section class="module-nav">
+        <div class="container">
+            <div class="module-nav-content">
+                <h3>📚 Lecciones del Módulo</h3>
+                <div class="module-nav-list">
+                    <a href="#npm" class="nav-item" data-section="npm">
+                        <div class="nav-item-icon">
+                            <i class="fab fa-npm"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">NPM y Gestión de Paquetes</span>
+                            <span class="nav-item-desc">Instalar y gestionar dependencias</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#react" class="nav-item" data-section="react">
+                        <div class="nav-item-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">React Básico</span>
+                            <span class="nav-item-desc">Componentes, props y estado</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#nodejs" class="nav-item" data-section="nodejs">
+                        <div class="nav-item-icon">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Node.js</span>
+                            <span class="nav-item-desc">JavaScript en el servidor</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#bundlers" class="nav-item" data-section="bundlers">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Bundlers</span>
+                            <span class="nav-item-desc">Webpack, Vite, Parcel</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#testing" class="nav-item" data-section="testing">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Testing</span>
+                            <span class="nav-item-desc">Jest, Mocha, testing frameworks</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#deployment" class="nav-item" data-section="deployment">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Deployment</span>
+                            <span class="nav-item-desc">Vercel, Netlify, GitHub Pages</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 1: NPM y Gestión de Paquetes -->
+    <section id="npm" class="lesson-section" data-lesson="npm">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fab fa-npm"></i>
+                    <span>Lección 1</span>
+                </div>
+                <h2>NPM y Gestión de Paquetes</h2>
+                <p class="lesson-intro">Aprende a usar NPM para gestionar dependencias, scripts y configurar proyectos JavaScript modernos.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>package.json</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>npm install</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Scripts y dependencias</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('npm-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="npm-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fab fa-npm"></i> ¿Qué es NPM?</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>Node Package Manager</code>
+                                        <span>Gestor de paquetes de Node.js</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Registry</code>
+                                        <span>Repositorio de paquetes</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>package.json</code>
+                                        <span>Archivo de configuración del proyecto</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-cogs"></i> Comandos Principales</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>npm init</code>
+                                        <span>Inicializar proyecto</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>npm install</code>
+                                        <span>Instalar dependencias</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>npm run</code>
+                                        <span>Ejecutar scripts</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('npm-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="npm-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('npm', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('npm', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('npm', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="npm-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Configuración Básica de NPM</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('npm-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="npm-basic-code">// package.json básico
+const packageJson = {
+    "name": "mi-proyecto",
+    "version": "1.0.0",
+    "description": "Mi primer proyecto con NPM",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "node --watch index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": ["javascript", "npm", "node"],
+    "author": "Tu Nombre",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.18.2",
+        "lodash": "^4.17.21"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1",
+        "jest": "^29.5.0"
+    }
+};
+
+console.log('package.json generado:');
+console.log(JSON.stringify(packageJson, null, 2));
+
+// Comandos NPM comunes
+console.log('\n=== Comandos NPM ===');
+console.log('npm init -y                    # Inicializar con valores por defecto');
+console.log('npm install express            # Instalar dependencia');
+console.log('npm install -D jest            # Instalar como devDependency');
+console.log('npm run start                  # Ejecutar script start');
+console.log('npm run dev                    # Ejecutar script dev');
+console.log('npm list                       # Ver dependencias instaladas');
+console.log('npm outdated                   # Ver paquetes desactualizados');
+console.log('npm update                     # Actualizar dependencias');</code></pre>
+                                </div>
+                                <div class="code-output" id="npm-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="npm-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Scripts Avanzados y Configuración</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('npm-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="npm-advanced-code">// Scripts avanzados en package.json
+const advancedScripts = {
+    "scripts": {
+        "start": "node src/index.js",
+        "dev": "nodemon src/index.js",
+        "build": "webpack --mode production",
+        "build:dev": "webpack --mode development",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage",
+        "lint": "eslint src/**/*.js",
+        "lint:fix": "eslint src/**/*.js --fix",
+        "format": "prettier --write src/**/*.js",
+        "clean": "rimraf dist",
+        "prebuild": "npm run clean",
+        "postbuild": "echo 'Build completed successfully'",
+        "precommit": "npm run lint && npm run test",
+        "deploy": "npm run build && npm run deploy:prod",
+        "deploy:prod": "gh-pages -d dist"
+    }
+};
+
+// Configuración de workspaces (monorepo)
+const workspaceConfig = {
+    "name": "mi-monorepo",
+    "private": true,
+    "workspaces": [
+        "packages/*",
+        "apps/*"
+    ],
+    "scripts": {
+        "build": "npm run build --workspaces",
+        "test": "npm run test --workspaces",
+        "lint": "npm run lint --workspaces"
+    }
+};
+
+// Configuración de npmrc
+const npmrcConfig = `
+registry=https://registry.npmjs.org/
+save-exact=true
+package-lock=true
+fund=false
+audit=false
+`;
+
+console.log('Scripts avanzados:');
+console.log(JSON.stringify(advancedScripts, null, 2));
+
+console.log('\nConfiguración de workspace:');
+console.log(JSON.stringify(workspaceConfig, null, 2));
+
+console.log('\nConfiguración .npmrc:');
+console.log(npmrcConfig);
+
+// Simular instalación de paquetes
+console.log('\n=== Simulación de instalación ===');
+console.log('Instalando dependencias...');
+console.log('✓ express@4.18.2');
+console.log('✓ lodash@4.17.21');
+console.log('✓ react@18.2.0');
+console.log('✓ react-dom@18.2.0');
+console.log('Instalación completada en 2.5s');</code></pre>
+                                </div>
+                                <div class="code-output" id="npm-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="npm-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Generador de package.json</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Nombre del proyecto:</label>
+                                        <input type="text" id="interactive-project-name" placeholder="mi-proyecto" value="mi-proyecto">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Versión:</label>
+                                        <input type="text" id="interactive-version" placeholder="1.0.0" value="1.0.0">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Dependencias (separadas por comas):</label>
+                                        <input type="text" id="interactive-dependencies" placeholder="express, lodash, react" value="express, lodash, react">
+                                    </div>
+                                    <button class="btn btn-primary" onclick="generatePackageJson()">
+                                        <i class="fas fa-magic"></i> Generar package.json
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Qué es NPM y cómo funciona el ecosistema de paquetes</li>
+                            <li>Cómo configurar un proyecto con <code>package.json</code></li>
+                            <li>La diferencia entre dependencias y devDependencies</li>
+                            <li>Scripts personalizados y automatización</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 2: React Básico -->
+    <section id="react" class="lesson-section bg-light" data-lesson="react">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fab fa-react"></i>
+                    <span>Lección 2</span>
+                </div>
+                <h2>React Básico</h2>
+                <p class="lesson-intro">Introducción a React: componentes, props, estado y el ecosistema de desarrollo moderno.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Componentes funcionales</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Props y estado</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>JSX y hooks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('react-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="react-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fab fa-react"></i> Conceptos de React</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>Componentes</code>
+                                        <span>Bloques reutilizables de UI</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Props</code>
+                                        <span>Datos que se pasan a componentes</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Estado</code>
+                                        <span>Datos internos del componente</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>JSX</code>
+                                        <span>Sintaxis que combina JS y HTML</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-hook"></i> Hooks Principales</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>useState</code>
+                                        <span>Manejo de estado local</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>useEffect</code>
+                                        <span>Efectos secundarios</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>useContext</code>
+                                        <span>Consumir contexto</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('react-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="react-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('react', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('react', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('react', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="react-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Componente React Básico</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('react-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="react-basic-code">// Componente funcional básico
+function Saludo({ nombre, edad }) {
+    return (
+        <div className="saludo">
+            <h2>¡Hola, {nombre}!</h2>
+            <p>Tienes {edad} años</p>
+        </div>
+    );
+}
+
+// Componente con estado usando useState
+function Contador() {
+    const [contador, setContador] = React.useState(0);
+    
+    const incrementar = () => {
+        setContador(contador + 1);
+    };
+    
+    const decrementar = () => {
+        setContador(contador - 1);
+    };
+    
+    return (
+        <div className="contador">
+            <h3>Contador: {contador}</h3>
+            <button onClick={incrementar}>+</button>
+            <button onClick={decrementar}>-</button>
+        </div>
+    );
+}
+
+// Componente con useEffect
+function Reloj() {
+    const [hora, setHora] = React.useState(new Date());
+    
+    React.useEffect(() => {
+        const timer = setInterval(() => {
+            setHora(new Date());
+        }, 1000);
+        
+        return () => clearInterval(timer);
+    }, []);
+    
+    return (
+        <div className="reloj">
+            <h3>Hora actual: {hora.toLocaleTimeString()}</h3>
+        </div>
+    );
+}
+
+// Componente principal
+function App() {
+    return (
+        <div className="app">
+            <h1>Mi Aplicación React</h1>
+            <Saludo nombre="Ana" edad={25} />
+            <Contador />
+            <Reloj />
+        </div>
+    );
+}
+
+// Renderizar la aplicación
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+
+console.log('Componentes React definidos y renderizados');</code></pre>
+                                </div>
+                                <div class="code-output" id="react-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="react-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Lista de Tareas con React</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('react-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="react-advanced-code">// Hook personalizado para tareas
+function useTareas() {
+    const [tareas, setTareas] = React.useState([]);
+    const [nuevaTarea, setNuevaTarea] = React.useState('');
+    
+    const agregarTarea = () => {
+        if (nuevaTarea.trim()) {
+            setTareas([...tareas, {
+                id: Date.now(),
+                texto: nuevaTarea,
+                completada: false
+            }]);
+            setNuevaTarea('');
+        }
+    };
+    
+    const toggleTarea = (id) => {
+        setTareas(tareas.map(tarea =>
+            tarea.id === id ? { ...tarea, completada: !tarea.completada } : tarea
+        ));
+    };
+    
+    const eliminarTarea = (id) => {
+        setTareas(tareas.filter(tarea => tarea.id !== id));
+    };
+    
+    return {
+        tareas,
+        nuevaTarea,
+        setNuevaTarea,
+        agregarTarea,
+        toggleTarea,
+        eliminarTarea
+    };
+}
+
+// Componente de tarea individual
+function TareaItem({ tarea, onToggle, onEliminar }) {
+    return (
+        <div className={`tarea ${tarea.completada ? 'completada' : ''}`}>
+            <input
+                type="checkbox"
+                checked={tarea.completada}
+                onChange={() => onToggle(tarea.id)}
+            />
+            <span>{tarea.texto}</span>
+            <button onClick={() => onEliminar(tarea.id)}>Eliminar</button>
+        </div>
+    );
+}
+
+// Componente principal de lista de tareas
+function ListaTareas() {
+    const { tareas, nuevaTarea, setNuevaTarea, agregarTarea, toggleTarea, eliminarTarea } = useTareas();
+    
+    const tareasCompletadas = tareas.filter(t => t.completada).length;
+    const totalTareas = tareas.length;
+    
+    return (
+        <div className="lista-tareas">
+            <h2>Lista de Tareas</h2>
+            
+            <div className="agregar-tarea">
+                <input
+                    type="text"
+                    value={nuevaTarea}
+                    onChange={(e) => setNuevaTarea(e.target.value)}
+                    placeholder="Nueva tarea..."
+                    onKeyPress={(e) => e.key === 'Enter' && agregarTarea()}
+                />
+                <button onClick={agregarTarea}>Agregar</button>
+            </div>
+            
+            <div className="estadisticas">
+                <p>Completadas: {tareasCompletadas} / {totalTareas}</p>
+            </div>
+            
+            <div className="tareas">
+                {tareas.map(tarea => (
+                    <TareaItem
+                        key={tarea.id}
+                        tarea={tarea}
+                        onToggle={toggleTarea}
+                        onEliminar={eliminarTarea}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+// Aplicación principal
+function App() {
+    return (
+        <div className="app">
+            <h1>Mi Aplicación de Tareas</h1>
+            <ListaTareas />
+        </div>
+    );
+}
+
+console.log('Aplicación React de lista de tareas creada');</code></pre>
+                                </div>
+                                <div class="code-output" id="react-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="react-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Constructor de Componentes React</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Nombre del componente:</label>
+                                        <input type="text" id="interactive-component-name" placeholder="MiComponente" value="MiComponente">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Props (separadas por comas):</label>
+                                        <input type="text" id="interactive-props" placeholder="nombre, edad, activo" value="nombre, edad, activo">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>¿Usar estado?</label>
+                                        <select id="interactive-use-state">
+                                            <option value="true">Sí</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-primary" onclick="generateReactComponent()">
+                                        <i class="fas fa-magic"></i> Generar Componente
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Los conceptos básicos de React: componentes, props y estado</li>
+                            <li>Cómo usar hooks como <code>useState</code> y <code>useEffect</code></li>
+                            <li>La sintaxis JSX para crear interfaces</li>
+                            <li>Cómo crear hooks personalizados para reutilizar lógica</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 3: Node.js -->
+    <section id="nodejs" class="lesson-section" data-lesson="nodejs">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fab fa-node-js"></i>
+                    <span>Lección 3</span>
+                </div>
+                <h2>Node.js</h2>
+                <p class="lesson-intro">JavaScript en el servidor. Aprende a crear APIs, servidores web y aplicaciones backend con Node.js.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Runtime de JavaScript</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Módulos y require</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>APIs y servidores</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('nodejs-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="nodejs-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fab fa-node-js"></i> ¿Qué es Node.js?</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>Runtime</code>
+                                        <span>Entorno de ejecución de JavaScript</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>V8 Engine</code>
+                                        <span>Motor de JavaScript de Chrome</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Event Loop</code>
+                                        <span>Modelo de programación asíncrona</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-cogs"></i> Características</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>No bloqueante</code>
+                                        <span>I/O asíncrono</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>NPM</code>
+                                        <span>Ecosistema de paquetes</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Cross-platform</code>
+                                        <span>Multiplataforma</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('nodejs-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="nodejs-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('nodejs', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('nodejs', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('nodejs', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="nodejs-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Servidor HTTP Básico</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('nodejs-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="nodejs-basic-code">// Importar módulos de Node.js
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+
+// Crear servidor HTTP básico
+const servidor = http.createServer((req, res) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    
+    // Configurar headers
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    
+    // Manejar diferentes rutas
+    if (req.url === '/') {
+        res.writeHead(200);
+        res.end(JSON.stringify({
+            mensaje: '¡Hola desde Node.js!',
+            timestamp: new Date().toISOString(),
+            version: process.version
+        }));
+    } else if (req.url === '/api/usuarios') {
+        res.writeHead(200);
+        res.end(JSON.stringify([
+            { id: 1, nombre: 'Ana', email: 'ana@email.com' },
+            { id: 2, nombre: 'Carlos', email: 'carlos@email.com' },
+            { id: 3, nombre: 'María', email: 'maria@email.com' }
+        ]));
+    } else if (req.url === '/api/estadisticas') {
+        res.writeHead(200);
+        res.end(JSON.stringify({
+            memoria: process.memoryUsage(),
+            uptime: process.uptime(),
+            plataforma: process.platform,
+            arquitectura: process.arch
+        }));
+    } else {
+        res.writeHead(404);
+        res.end(JSON.stringify({ error: 'Ruta no encontrada' }));
+    }
+});
+
+// Iniciar servidor
+const puerto = process.env.PORT || 3000;
+servidor.listen(puerto, () => {
+    console.log(`Servidor ejecutándose en http://localhost:${puerto}`);
+    console.log('Rutas disponibles:');
+    console.log('  GET / - Página principal');
+    console.log('  GET /api/usuarios - Lista de usuarios');
+    console.log('  GET /api/estadisticas - Estadísticas del servidor');
+});
+
+// Manejo de errores
+servidor.on('error', (error) => {
+    console.error('Error del servidor:', error);
+});
+
+// Cierre graceful
+process.on('SIGTERM', () => {
+    console.log('Cerrando servidor...');
+    servidor.close(() => {
+        console.log('Servidor cerrado');
+        process.exit(0);
+    });
+});</code></pre>
+                                </div>
+                                <div class="code-output" id="nodejs-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="nodejs-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">API REST con Express</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('nodejs-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="nodejs-advanced-code">// Simular Express.js (simplificado)
+class Express {
+    constructor() {
+        this.routes = [];
+        this.middleware = [];
+    }
+    
+    use(middleware) {
+        this.middleware.push(middleware);
+    }
+    
+    get(path, handler) {
+        this.routes.push({ method: 'GET', path, handler });
+    }
+    
+    post(path, handler) {
+        this.routes.push({ method: 'POST', path, handler });
+    }
+    
+    put(path, handler) {
+        this.routes.push({ method: 'PUT', path, handler });
+    }
+    
+    delete(path, handler) {
+        this.routes.push({ method: 'DELETE', path, handler });
+    }
+    
+    listen(port, callback) {
+        const server = require('http').createServer((req, res) => {
+            // Aplicar middleware
+            this.middleware.forEach(middleware => {
+                middleware(req, res, () => {});
+            });
+            
+            // Buscar ruta
+            const route = this.routes.find(r => 
+                r.method === req.method && req.url.startsWith(r.path)
+            );
+            
+            if (route) {
+                route.handler(req, res);
+            } else {
+                res.writeHead(404);
+                res.end('Ruta no encontrada');
+            }
+        });
+        
+        server.listen(port, callback);
+    }
+}
+
+// Simular base de datos en memoria
+let usuarios = [
+    { id: 1, nombre: 'Ana', email: 'ana@email.com', activo: true },
+    { id: 2, nombre: 'Carlos', email: 'carlos@email.com', activo: true },
+    { id: 3, nombre: 'María', email: 'maria@email.com', activo: false }
+];
+
+let nextId = 4;
+
+// Crear aplicación Express
+const app = new Express();
+
+// Middleware para parsing JSON
+app.use((req, res, next) => {
+    let body = '';
+    req.on('data', chunk => {
+        body += chunk.toString();
+    });
+    req.on('end', () => {
+        try {
+            req.body = body ? JSON.parse(body) : {};
+        } catch (error) {
+            req.body = {};
+        }
+        next();
+    });
+});
+
+// Middleware de logging
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    next();
+});
+
+// Rutas de la API
+app.get('/api/usuarios', (req, res) => {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(usuarios));
+});
+
+app.get('/api/usuarios/:id', (req, res) => {
+    const id = parseInt(req.url.split('/').pop());
+    const usuario = usuarios.find(u => u.id === id);
+    
+    if (usuario) {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(usuario));
+    } else {
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Usuario no encontrado' }));
+    }
+});
+
+app.post('/api/usuarios', (req, res) => {
+    const { nombre, email } = req.body;
+    
+    if (!nombre || !email) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Nombre y email son requeridos' }));
+        return;
+    }
+    
+    const nuevoUsuario = {
+        id: nextId++,
+        nombre,
+        email,
+        activo: true
+    };
+    
+    usuarios.push(nuevoUsuario);
+    
+    res.writeHead(201, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(nuevoUsuario));
+});
+
+app.put('/api/usuarios/:id', (req, res) => {
+    const id = parseInt(req.url.split('/').pop());
+    const usuarioIndex = usuarios.findIndex(u => u.id === id);
+    
+    if (usuarioIndex === -1) {
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Usuario no encontrado' }));
+        return;
+    }
+    
+    const { nombre, email, activo } = req.body;
+    usuarios[usuarioIndex] = {
+        ...usuarios[usuarioIndex],
+        ...(nombre && { nombre }),
+        ...(email && { email }),
+        ...(activo !== undefined && { activo })
+    };
+    
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(usuarios[usuarioIndex]));
+});
+
+app.delete('/api/usuarios/:id', (req, res) => {
+    const id = parseInt(req.url.split('/').pop());
+    const usuarioIndex = usuarios.findIndex(u => u.id === id);
+    
+    if (usuarioIndex === -1) {
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Usuario no encontrado' }));
+        return;
+    }
+    
+    usuarios.splice(usuarioIndex, 1);
+    
+    res.writeHead(204);
+    res.end();
+});
+
+// Iniciar servidor
+const puerto = process.env.PORT || 3000;
+app.listen(puerto, () => {
+    console.log(`API REST ejecutándose en http://localhost:${puerto}`);
+    console.log('Endpoints disponibles:');
+    console.log('  GET    /api/usuarios     - Listar usuarios');
+    console.log('  GET    /api/usuarios/:id - Obtener usuario');
+    console.log('  POST   /api/usuarios     - Crear usuario');
+    console.log('  PUT    /api/usuarios/:id - Actualizar usuario');
+    console.log('  DELETE /api/usuarios/:id - Eliminar usuario');
+});</code></pre>
+                                </div>
+                                <div class="code-output" id="nodejs-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="nodejs-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Generador de API Node.js</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Nombre del recurso:</label>
+                                        <input type="text" id="interactive-resource-name" placeholder="productos" value="productos">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Campos (separados por comas):</label>
+                                        <input type="text" id="interactive-fields" placeholder="nombre, precio, categoria" value="nombre, precio, categoria">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Puerto:</label>
+                                        <input type="number" id="interactive-port" placeholder="3000" value="3000">
+                                    </div>
+                                    <button class="btn btn-primary" onclick="generateNodeAPI()">
+                                        <i class="fas fa-magic"></i> Generar API
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Qué es Node.js y cómo funciona el runtime de JavaScript</li>
+                            <li>Cómo crear servidores HTTP básicos</li>
+                            <li>El sistema de módulos de Node.js con <code>require</code></li>
+                            <li>Conceptos de APIs REST y manejo de rutas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ejercicios Prácticos -->
+    <section class="exercises-section">
+        <div class="container">
+            <h2>💪 Ejercicios Prácticos</h2>
+            <p class="section-description">Pon a prueba tus conocimientos de frameworks y librerías con estos ejercicios prácticos.</p>
+            
+            <div class="exercises-grid">
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Proyecto Full-Stack</h3>
+                        <span class="difficulty advanced">Avanzado</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Crea una aplicación full-stack con React frontend y Node.js backend.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Frontend con React y hooks</li>
+                                <li>Backend con Express.js</li>
+                                <li>API REST completa</li>
+                                <li>Manejo de estado con useState</li>
+                                <li>Fetch API para comunicación</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise1-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise1-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-javascript">// Backend (server.js)
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+const PORT = 3001;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Base de datos en memoria
+let tareas = [
+    { id: 1, texto: 'Aprender React', completada: false },
+    { id: 2, texto: 'Crear API con Node.js', completada: true }
+];
+
+let nextId = 3;
+
+// Rutas API
+app.get('/api/tareas', (req, res) => {
+    res.json(tareas);
+});
+
+app.post('/api/tareas', (req, res) => {
+    const { texto } = req.body;
+    const nuevaTarea = {
+        id: nextId++,
+        texto,
+        completada: false
+    };
+    tareas.push(nuevaTarea);
+    res.status(201).json(nuevaTarea);
+});
+
+app.put('/api/tareas/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const tarea = tareas.find(t => t.id === id);
+    
+    if (!tarea) {
+        return res.status(404).json({ error: 'Tarea no encontrada' });
+    }
+    
+    tarea.completada = !tarea.completada;
+    res.json(tarea);
+});
+
+app.delete('/api/tareas/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = tareas.findIndex(t => t.id === id);
+    
+    if (index === -1) {
+        return res.status(404).json({ error: 'Tarea no encontrada' });
+    }
+    
+    tareas.splice(index, 1);
+    res.status(204).send();
+});
+
+app.listen(PORT, () => {
+    console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
+});
+
+// Frontend (App.js)
+import React, { useState, useEffect } from 'react';
+
+function App() {
+    const [tareas, setTareas] = useState([]);
+    const [nuevaTarea, setNuevaTarea] = useState('');
+    const [cargando, setCargando] = useState(true);
+
+    // Cargar tareas al montar el componente
+    useEffect(() => {
+        cargarTareas();
+    }, []);
+
+    const cargarTareas = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/api/tareas');
+            const data = await response.json();
+            setTareas(data);
+        } catch (error) {
+            console.error('Error cargando tareas:', error);
+        } finally {
+            setCargando(false);
+        }
+    };
+
+    const agregarTarea = async () => {
+        if (!nuevaTarea.trim()) return;
+
+        try {
+            const response = await fetch('http://localhost:3001/api/tareas', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ texto: nuevaTarea }),
+            });
+
+            const tarea = await response.json();
+            setTareas([...tareas, tarea]);
+            setNuevaTarea('');
+        } catch (error) {
+            console.error('Error agregando tarea:', error);
+        }
+    };
+
+    const toggleTarea = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:3001/api/tareas/${id}`, {
+                method: 'PUT',
+            });
+
+            const tareaActualizada = await response.json();
+            setTareas(tareas.map(t => 
+                t.id === id ? tareaActualizada : t
+            ));
+        } catch (error) {
+            console.error('Error actualizando tarea:', error);
+        }
+    };
+
+    const eliminarTarea = async (id) => {
+        try {
+            await fetch(`http://localhost:3001/api/tareas/${id}`, {
+                method: 'DELETE',
+            });
+
+            setTareas(tareas.filter(t => t.id !== id));
+        } catch (error) {
+            console.error('Error eliminando tarea:', error);
+        }
+    };
+
+    if (cargando) {
+        return <div>Cargando...</div>;
+    }
+
+    return (
+        <div className="app">
+            <h1>Lista de Tareas Full-Stack</h1>
+            
+            <div className="agregar-tarea">
+                <input
+                    type="text"
+                    value={nuevaTarea}
+                    onChange={(e) => setNuevaTarea(e.target.value)}
+                    placeholder="Nueva tarea..."
+                    onKeyPress={(e) => e.key === 'Enter' && agregarTarea()}
+                />
+                <button onClick={agregarTarea}>Agregar</button>
+            </div>
+
+            <div className="tareas">
+                {tareas.map(tarea => (
+                    <div key={tarea.id} className={`tarea ${tarea.completada ? 'completada' : ''}`}>
+                        <input
+                            type="checkbox"
+                            checked={tarea.completada}
+                            onChange={() => toggleTarea(tarea.id)}
+                        />
+                        <span>{tarea.texto}</span>
+                        <button onClick={() => eliminarTarea(tarea.id)}>Eliminar</button>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default App;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Configuración de Proyecto Moderno</h3>
+                        <span class="difficulty intermediate">Intermedio</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Configura un proyecto JavaScript moderno con todas las herramientas necesarias.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>package.json con scripts</li>
+                                <li>Configuración de ESLint y Prettier</li>
+                                <li>Webpack o Vite para bundling</li>
+                                <li>Jest para testing</li>
+                                <li>GitHub Actions para CI/CD</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise2-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise2-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-json">// package.json
+{
+  "name": "proyecto-moderno",
+  "version": "1.0.0",
+  "description": "Proyecto JavaScript moderno con todas las herramientas",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "lint:fix": "eslint src/**/*.{js,jsx} --fix",
+    "format": "prettier --write src/**/*.{js,jsx,json,css,md}",
+    "format:check": "prettier --check src/**/*.{js,jsx,json,css,md}",
+    "prepare": "husky install",
+    "precommit": "lint-staged"
+  },
+  "keywords": ["javascript", "modern", "vite", "jest", "eslint"],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "vite": "^4.3.9"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/**/*.{json,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"],
+    "moduleNameMapping": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
+  }
+}
+
+// .eslintrc.js
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+    jest: true
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'prettier'
+  ],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 12,
+    sourceType: 'module'
+  },
+  plugins: ['react', 'react-hooks'],
+  rules: {
+    'react/prop-types': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'no-unused-vars': 'warn',
+    'no-console': 'warn'
+  },
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  }
+};
+
+// .prettierrc
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false
+}
+
+// vite.config.js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,
+    open: true
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: true
+  }
+});
+
+// .github/workflows/ci.yml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run linter
+      run: npm run lint
+    
+    - name: Run tests
+      run: npm run test:coverage
+    
+    - name: Build project
+      run: npm run build
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage/lcov.info</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navegación entre módulos -->
+    <section class="module-navigation">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="modulo4-asincrono.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Módulo Anterior
+                </a>
+                <a href="index.html#modules" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Ver Todos los Módulos
+                </a>
+                <a href="modulo6-herramientas.html" class="btn btn-outline">
+                    Siguiente Módulo <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JavaScript Academy</h3>
+                    <p>Aprende JavaScript desde cero hasta nivel profesional con ejemplos prácticos y ejercicios interactivos.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Módulos</h4>
+                    <ul>
+                        <li><a href="modulo1-fundamentos.html">Fundamentos</a></li>
+                        <li><a href="modulo2-moderno.html">JavaScript Moderno</a></li>
+                        <li><a href="modulo3-dom.html">DOM Manipulation</a></li>
+                        <li><a href="modulo4-asincrono.html">Programación Asíncrona</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="index.html#projects">Proyectos</a></li>
+                        <li><a href="index.html#resources">Recursos</a></li>
+                        <li><a href="index.html#contact">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JavaScript Academy. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Estado del módulo
+        let moduleProgress = 0;
+        let completedLessons = new Set();
+        let currentSection = 'npm';
+
+        // Funciones de progreso
+        function updateProgress() {
+            const totalLessons = 6;
+            const progress = (completedLessons.size / totalLessons) * 100;
+            moduleProgress = Math.round(progress);
+            
+            const progressFill = document.getElementById('moduleProgress');
+            const progressPercentage = document.querySelector('.progress-percentage');
+            
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+            if (progressPercentage) {
+                progressPercentage.textContent = progress + '%';
+            }
+        }
+
+        function markLessonComplete(lessonId) {
+            completedLessons.add(lessonId);
+            updateProgress();
+            
+            const navItem = document.querySelector(`[data-section="${lessonId}"]`);
+            if (navItem) {
+                const statusIcon = navItem.querySelector('.nav-item-status i');
+                statusIcon.className = 'fas fa-check-circle';
+                statusIcon.style.color = '#28a745';
+            }
+        }
+
+        // Funciones de navegación
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const toggleIcon = section.previousElementSibling.querySelector('.toggle-icon');
+            
+            if (section.classList.contains('collapsed')) {
+                section.classList.remove('collapsed');
+                toggleIcon.style.transform = 'rotate(180deg)';
+            } else {
+                section.classList.add('collapsed');
+                toggleIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function showExampleTab(lesson, tab) {
+            const tabContents = document.querySelectorAll(`#${lesson}-example .example-tab-content`);
+            const tabButtons = document.querySelectorAll(`#${lesson}-example .tab-btn`);
+            
+            tabContents.forEach(content => content.classList.remove('active'));
+            tabButtons.forEach(button => button.classList.remove('active'));
+            
+            document.getElementById(`${lesson}-${tab}`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Funciones de código
+        function runCode(codeId) {
+            const codeElement = document.getElementById(codeId);
+            const outputId = codeId.replace('-code', '-output');
+            const outputElement = document.getElementById(outputId);
+            
+            if (!codeElement || !outputElement) return;
+            
+            const code = codeElement.textContent;
+            
+            const originalLog = console.log;
+            let output = '';
+            console.log = function(...args) {
+                output += args.join(' ') + '\n';
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                eval(code);
+                outputElement.innerHTML = `<pre class="output-content">${output || 'Código ejecutado correctamente'}</pre>`;
+                outputElement.style.display = 'block';
+            } catch (error) {
+                outputElement.innerHTML = `<pre class="output-error">Error: ${error.message}</pre>`;
+                outputElement.style.display = 'block';
+            } finally {
+                console.log = originalLog;
+            }
+        }
+
+        // Funciones interactivas
+        function generatePackageJson() {
+            const projectName = document.getElementById('interactive-project-name').value;
+            const version = document.getElementById('interactive-version').value;
+            const dependencies = document.getElementById('interactive-dependencies').value;
+            const output = document.getElementById('interactive-output');
+            
+            if (!projectName || !version) {
+                output.innerHTML = '<div class="error">Por favor, completa el nombre y la versión</div>';
+                return;
+            }
+            
+            const depsArray = dependencies.split(',').map(dep => dep.trim()).filter(dep => dep);
+            const dependenciesObj = {};
+            depsArray.forEach(dep => {
+                dependenciesObj[dep] = '^1.0.0';
+            });
+            
+            const packageJson = {
+                name: projectName,
+                version: version,
+                description: `Proyecto ${projectName}`,
+                main: 'index.js',
+                scripts: {
+                    start: 'node index.js',
+                    dev: 'node --watch index.js',
+                    test: 'echo "Error: no test specified" && exit 1'
+                },
+                keywords: ['javascript', 'node'],
+                author: 'Tu Nombre',
+                license: 'MIT',
+                dependencies: dependenciesObj
+            };
+            
+            output.innerHTML = `
+                <div class="success">
+                    <h5>✅ package.json Generado</h5>
+                    <pre class="object-display">${JSON.stringify(packageJson, null, 2)}</pre>
+                    <p><strong>Comandos para usar:</strong></p>
+                    <ul>
+                        <li><code>npm init -y</code> - Inicializar proyecto</li>
+                        <li><code>npm install ${depsArray.join(' ')}</code> - Instalar dependencias</li>
+                        <li><code>npm start</code> - Ejecutar aplicación</li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        function generateReactComponent() {
+            const componentName = document.getElementById('interactive-component-name').value;
+            const props = document.getElementById('interactive-props').value;
+            const useState = document.getElementById('interactive-use-state').value === 'true';
+            const output = document.getElementById('interactive-output');
+            
+            if (!componentName) {
+                output.innerHTML = '<div class="error">Por favor, ingresa un nombre para el componente</div>';
+                return;
+            }
+            
+            const propsArray = props.split(',').map(prop => prop.trim()).filter(prop => prop);
+            const propsDestructuring = propsArray.length > 0 ? `{ ${propsArray.join(', ')} }` : '';
+            const propsInterface = propsArray.length > 0 ? `interface ${componentName}Props {\n${propsArray.map(prop => `  ${prop}: string;`).join('\n')}\n}` : '';
+            
+            let componentCode = '';
+            
+            if (propsInterface) {
+                componentCode += `${propsInterface}\n\n`;
+            }
+            
+            componentCode += `function ${componentName}(${propsDestructuring}) {\n`;
+            
+            if (useState) {
+                componentCode += `  const [estado, setEstado] = React.useState('');\n\n`;
+            }
+            
+            componentCode += `  return (\n`;
+            componentCode += `    <div className="${componentName.toLowerCase()}">\n`;
+            componentCode += `      <h2>${componentName}</h2>\n`;
+            
+            if (propsArray.length > 0) {
+                propsArray.forEach(prop => {
+                    componentCode += `      <p>{${prop}}</p>\n`;
+                });
+            }
+            
+            if (useState) {
+                componentCode += `      <p>Estado: {estado}</p>\n`;
+                componentCode += `      <button onClick={() => setEstado('Actualizado')}>\n`;
+                componentCode += `        Actualizar Estado\n`;
+                componentCode += `      </button>\n`;
+            }
+            
+            componentCode += `    </div>\n`;
+            componentCode += `  );\n`;
+            componentCode += `}\n\n`;
+            componentCode += `export default ${componentName};`;
+            
+            output.innerHTML = `
+                <div class="success">
+                    <h5>✅ Componente React Generado</h5>
+                    <pre class="object-display">${componentCode}</pre>
+                    <p><strong>Características:</strong></p>
+                    <ul>
+                        <li>Componente funcional: <code>${componentName}</code></li>
+                        <li>Props: ${propsArray.length > 0 ? propsArray.join(', ') : 'Ninguna'}</li>
+                        <li>Estado: ${useState ? 'Sí (useState)' : 'No'}</li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        function generateNodeAPI() {
+            const resourceName = document.getElementById('interactive-resource-name').value;
+            const fields = document.getElementById('interactive-fields').value;
+            const port = document.getElementById('interactive-port').value;
+            const output = document.getElementById('interactive-output');
+            
+            if (!resourceName || !fields) {
+                output.innerHTML = '<div class="error">Por favor, completa el nombre del recurso y los campos</div>';
+                return;
+            }
+            
+            const fieldsArray = fields.split(',').map(field => field.trim()).filter(field => field);
+            const resourceNamePlural = resourceName + 's';
+            const resourceNameCapitalized = resourceName.charAt(0).toUpperCase() + resourceName.slice(1);
+            
+            let apiCode = `const express = require('express');\n`;
+            apiCode += `const cors = require('cors');\n\n`;
+            apiCode += `const app = express();\n`;
+            apiCode += `const PORT = ${port};\n\n`;
+            apiCode += `app.use(cors());\n`;
+            apiCode += `app.use(express.json());\n\n`;
+            apiCode += `// Base de datos en memoria\n`;
+            apiCode += `let ${resourceNamePlural} = [\n`;
+            apiCode += `  { id: 1, ${fieldsArray.map(field => `${field}: 'Ejemplo ${field}'`).join(', ')} }\n`;
+            apiCode += `];\n\n`;
+            apiCode += `let nextId = 2;\n\n`;
+            apiCode += `// Rutas API\n`;
+            apiCode += `app.get('/api/${resourceNamePlural}', (req, res) => {\n`;
+            apiCode += `  res.json(${resourceNamePlural});\n`;
+            apiCode += `});\n\n`;
+            apiCode += `app.post('/api/${resourceNamePlural}', (req, res) => {\n`;
+            apiCode += `  const { ${fieldsArray.join(', ')} } = req.body;\n`;
+            apiCode += `  const nuevo${resourceNameCapitalized} = {\n`;
+            apiCode += `    id: nextId++,\n`;
+            fieldsArray.forEach(field => {
+                apiCode += `    ${field},\n`;
+            });
+            apiCode += `  };\n`;
+            apiCode += `  ${resourceNamePlural}.push(nuevo${resourceNameCapitalized});\n`;
+            apiCode += `  res.status(201).json(nuevo${resourceNameCapitalized});\n`;
+            apiCode += `});\n\n`;
+            apiCode += `app.listen(PORT, () => {\n`;
+            apiCode += `  console.log(\`API de ${resourceNamePlural} ejecutándose en http://localhost:\${PORT}\`);\n`;
+            apiCode += `});`;
+            
+            output.innerHTML = `
+                <div class="success">
+                    <h5>✅ API Node.js Generada</h5>
+                    <pre class="object-display">${apiCode}</pre>
+                    <p><strong>Endpoints disponibles:</strong></p>
+                    <ul>
+                        <li><code>GET /api/${resourceNamePlural}</code> - Listar ${resourceNamePlural}</li>
+                        <li><code>POST /api/${resourceNamePlural}</code> - Crear ${resourceName}</li>
+                    </ul>
+                    <p><strong>Campos:</strong> ${fieldsArray.join(', ')}</p>
+                </div>
+            `;
+        }
+
+        // Observador de intersección para progreso
+        function setupProgressObserver() {
+            const lessons = document.querySelectorAll('.lesson-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const lessonId = entry.target.dataset.lesson;
+                        if (lessonId && !completedLessons.has(lessonId)) {
+                            setTimeout(() => {
+                                markLessonComplete(lessonId);
+                            }, 3000);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            lessons.forEach(lesson => observer.observe(lesson));
+        }
+
+        // Navegación suave
+        function setupSmoothNavigation() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        const sectionId = target.id;
+                        if (sectionId) {
+                            currentSection = sectionId;
+                            updateNavigationState();
+                        }
+                    }
+                });
+            });
+        }
+
+        function updateNavigationState() {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeItem = document.querySelector(`[data-section="${currentSection}"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+
+        function updateBreadcrumb() {
+            const currentPage = document.getElementById('current-page');
+            if (currentPage) {
+                currentPage.textContent = 'Frameworks y Librerías';
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBreadcrumb();
+            setupSmoothNavigation();
+            setupProgressObserver();
+            Prism.highlightAll();
+            updateNavigationState();
+        });
+
+        // Funciones globales
+        window.toggleCode = function(codeId) {
+            const codeBlock = document.getElementById(codeId);
+            if (codeBlock.style.display === 'none') {
+                codeBlock.style.display = 'block';
+                Prism.highlightAll();
+            } else {
+                codeBlock.style.display = 'none';
+            }
+        };
+
+        window.toggleSection = toggleSection;
+        window.showExampleTab = showExampleTab;
+        window.runCode = runCode;
+        window.generatePackageJson = generatePackageJson;
+        window.generateReactComponent = generateReactComponent;
+        window.generateNodeAPI = generateNodeAPI;
+    </script>
+</body>
+</html>

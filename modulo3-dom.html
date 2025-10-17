@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation - Academia de Programación</title>
+    <meta name="description" content="Aprende a manipular el DOM con JavaScript: selección de elementos, eventos, modificación de contenido, formularios y validación.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-js-square"></i>
+                    <span>JavaScript Academy</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                    <a href="index.html#modules" class="nav-link">Módulos</a>
+                    <a href="index.html#projects" class="nav-link">Proyectos</a>
+                    <a href="index.html#contact" class="nav-link">Contacto</a>
+                </nav>
+                <button class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+        <div class="container">
+            <a href="index.html">Inicio</a>
+            <span class="separator">></span>
+            <a href="index.html#modules">Módulos</a>
+            <span class="separator">></span>
+            <span id="current-page">DOM Manipulation</span>
+        </div>
+    </nav>
+
+    <!-- Barra de Progreso -->
+    <section class="progress-bar-section">
+        <div class="container">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="progress-label">Progreso del Módulo</span>
+                    <span class="progress-percentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="moduleProgress"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero del Módulo -->
+    <section class="module-hero">
+        <div class="container">
+            <div class="module-header">
+                <div class="module-badge">
+                    <i class="fas fa-mouse-pointer"></i>
+                    <span>Módulo 3</span>
+                </div>
+                <h1>DOM Manipulation</h1>
+                <p class="module-description">
+                    Domina la manipulación del Document Object Model. Aprende a seleccionar elementos, 
+                    manejar eventos, modificar contenido y crear interfaces interactivas.
+                </p>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>5-7 horas</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-code"></i>
+                        <span>20+ ejemplos</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-star"></i>
+                        <span>Intermedio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navegación del Módulo -->
+    <section class="module-nav">
+        <div class="container">
+            <div class="module-nav-content">
+                <h3>📚 Lecciones del Módulo</h3>
+                <div class="module-nav-list">
+                    <a href="#seleccion" class="nav-item" data-section="seleccion">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Selección de Elementos</span>
+                            <span class="nav-item-desc">getElementById, querySelector, etc.</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#eventos" class="nav-item" data-section="eventos">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-hand-pointer"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Eventos</span>
+                            <span class="nav-item-desc">addEventListener, tipos de eventos</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#modificacion" class="nav-item" data-section="modificacion">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Modificación de Contenido</span>
+                            <span class="nav-item-desc">innerHTML, textContent, estilos</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#formularios" class="nav-item" data-section="formularios">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-wpforms"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Formularios</span>
+                            <span class="nav-item-desc">Validación, envío, datos</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#animaciones" class="nav-item" data-section="animaciones">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Animaciones</span>
+                            <span class="nav-item-desc">Transiciones, efectos visuales</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#localStorage" class="nav-item" data-section="localStorage">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">LocalStorage</span>
+                            <span class="nav-item-desc">Persistencia de datos</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 1: Selección de Elementos -->
+    <section id="seleccion" class="lesson-section" data-lesson="seleccion">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fas fa-search"></i>
+                    <span>Lección 1</span>
+                </div>
+                <h2>Selección de Elementos</h2>
+                <p class="lesson-intro">Aprende los diferentes métodos para seleccionar elementos del DOM y trabajar con ellos en JavaScript.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Métodos de selección</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Selectores CSS</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Colecciones de elementos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('seleccion-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="seleccion-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fas fa-search"></i> Métodos de Selección</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>getElementById()</code>
+                                        <span>Selecciona por ID único</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>querySelector()</code>
+                                        <span>Selecciona con CSS selector</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>querySelectorAll()</code>
+                                        <span>Selecciona múltiples elementos</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>getElementsByClassName()</code>
+                                        <span>Selecciona por clase</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-tags"></i> Selectores CSS</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>#id</code>
+                                        <span>Por ID</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>.clase</code>
+                                        <span>Por clase</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>elemento</code>
+                                        <span>Por etiqueta</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>[atributo]</code>
+                                        <span>Por atributo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('seleccion-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="seleccion-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('seleccion', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('seleccion', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('seleccion', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="seleccion-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Selección Básica</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('seleccion-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="seleccion-basic-code">// Selección por ID
+const titulo = document.getElementById('titulo');
+console.log('Elemento por ID:', titulo);
+
+// Selección por clase
+const parrafos = document.getElementsByClassName('parrafo');
+console.log('Elementos por clase:', parrafos);
+
+// Selección por etiqueta
+const divs = document.getElementsByTagName('div');
+console.log('Elementos div:', divs);
+
+// Selección con querySelector
+const primerParrafo = document.querySelector('.parrafo');
+console.log('Primer párrafo:', primerParrafo);
+
+// Selección múltiple con querySelectorAll
+const todosParrafos = document.querySelectorAll('.parrafo');
+console.log('Todos los párrafos:', todosParrafos);
+
+// Selección por atributo
+const enlaces = document.querySelectorAll('a[href]');
+console.log('Enlaces con href:', enlaces);</code></pre>
+                                </div>
+                                <div class="code-output" id="seleccion-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="seleccion-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Selección Avanzada</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('seleccion-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="seleccion-advanced-code">// Selectores complejos
+const elementos = document.querySelectorAll('div.contenido > p:first-child');
+console.log('Párrafos hijos directos:', elementos);
+
+// Selección por atributos específicos
+const inputs = document.querySelectorAll('input[type="text"]');
+console.log('Inputs de texto:', inputs);
+
+// Selección por pseudo-clases
+const hoverElements = document.querySelectorAll('button:hover');
+console.log('Botones en hover:', hoverElements);
+
+// Navegación en el DOM
+const contenedor = document.querySelector('.contenedor');
+const hijos = contenedor.children;
+const padre = contenedor.parentElement;
+const hermanos = contenedor.nextElementSibling;
+
+console.log('Hijos del contenedor:', hijos);
+console.log('Elemento padre:', padre);
+console.log('Hermano siguiente:', hermanos);
+
+// Verificar si existe un elemento
+const existe = document.getElementById('no-existe');
+if (existe) {
+    console.log('El elemento existe');
+} else {
+    console.log('El elemento no existe');
+}</code></pre>
+                                </div>
+                                <div class="code-output" id="seleccion-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="seleccion-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Selector Interactivo</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Selector CSS:</label>
+                                        <input type="text" id="interactive-selector" placeholder="Ej: .clase, #id, p" value="p">
+                                    </div>
+                                    <button class="btn btn-primary" onclick="testSelector()">
+                                        <i class="fas fa-search"></i> Buscar Elementos
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Los diferentes métodos para seleccionar elementos del DOM</li>
+                            <li>Cómo usar selectores CSS con <code>querySelector</code></li>
+                            <li>La diferencia entre seleccionar uno o múltiples elementos</li>
+                            <li>Navegación entre elementos padre e hijos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 2: Eventos -->
+    <section id="eventos" class="lesson-section bg-light" data-lesson="eventos">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fas fa-hand-pointer"></i>
+                    <span>Lección 2</span>
+                </div>
+                <h2>Eventos</h2>
+                <p class="lesson-intro">Aprende a manejar eventos del usuario para crear interfaces interactivas y responsivas.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>addEventListener</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Tipos de eventos</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Event delegation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('eventos-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="eventos-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fas fa-hand-pointer"></i> Tipos de Eventos</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>click</code>
+                                        <span>Click del mouse</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>keydown</code>
+                                        <span>Tecla presionada</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>submit</code>
+                                        <span>Enviar formulario</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>load</code>
+                                        <span>Página cargada</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-cogs"></i> Métodos de Eventos</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>addEventListener()</code>
+                                        <span>Agregar evento</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>removeEventListener()</code>
+                                        <span>Remover evento</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>preventDefault()</code>
+                                        <span>Prevenir comportamiento por defecto</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('eventos-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="eventos-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('eventos', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('eventos', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('eventos', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="eventos-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Eventos Básicos</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('eventos-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="eventos-basic-code">// Crear elementos para el ejemplo
+const boton = document.createElement('button');
+boton.textContent = 'Haz clic aquí';
+boton.id = 'miBoton';
+document.body.appendChild(boton);
+
+const input = document.createElement('input');
+input.type = 'text';
+input.placeholder = 'Escribe algo...';
+input.id = 'miInput';
+document.body.appendChild(input);
+
+// Evento de click
+boton.addEventListener('click', function() {
+    console.log('¡Botón clickeado!');
+    this.style.backgroundColor = 'lightblue';
+});
+
+// Evento de input
+input.addEventListener('input', function(event) {
+    console.log('Texto ingresado:', event.target.value);
+});
+
+// Evento de tecla presionada
+input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        console.log('Enter presionado!');
+    }
+});
+
+// Evento de focus
+input.addEventListener('focus', function() {
+    this.style.border = '2px solid blue';
+});
+
+// Evento de blur
+input.addEventListener('blur', function() {
+    this.style.border = '1px solid gray';
+});
+
+console.log('Eventos configurados. Prueba el botón y el input.');</code></pre>
+                                </div>
+                                <div class="code-output" id="eventos-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="eventos-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Event Delegation</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('eventos-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="eventos-advanced-code">// Crear lista dinámica
+const lista = document.createElement('ul');
+lista.id = 'miLista';
+document.body.appendChild(lista);
+
+// Agregar algunos elementos
+for (let i = 1; i <= 3; i++) {
+    const li = document.createElement('li');
+    li.textContent = `Elemento ${i}`;
+    li.className = 'item-lista';
+    li.style.cursor = 'pointer';
+    li.style.padding = '5px';
+    li.style.margin = '2px';
+    li.style.border = '1px solid #ccc';
+    lista.appendChild(li);
+}
+
+// Event delegation - un solo listener para todos los elementos
+lista.addEventListener('click', function(event) {
+    // Verificar si el elemento clickeado es un li
+    if (event.target.classList.contains('item-lista')) {
+        console.log('Elemento clickeado:', event.target.textContent);
+        event.target.style.backgroundColor = 'yellow';
+    }
+});
+
+// Evento de mouseover
+lista.addEventListener('mouseover', function(event) {
+    if (event.target.classList.contains('item-lista')) {
+        event.target.style.backgroundColor = 'lightgreen';
+    }
+});
+
+// Evento de mouseout
+lista.addEventListener('mouseout', function(event) {
+    if (event.target.classList.contains('item-lista')) {
+        event.target.style.backgroundColor = '';
+    }
+});
+
+console.log('Event delegation configurado. Haz clic en los elementos de la lista.');</code></pre>
+                                </div>
+                                <div class="code-output" id="eventos-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="eventos-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Simulador de Eventos</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Texto del botón:</label>
+                                        <input type="text" id="interactive-button-text" placeholder="Texto del botón" value="Mi Botón">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Color de fondo:</label>
+                                        <select id="interactive-button-color">
+                                            <option value="lightblue">Azul claro</option>
+                                            <option value="lightgreen">Verde claro</option>
+                                            <option value="lightcoral">Rojo claro</option>
+                                            <option value="lightyellow">Amarillo claro</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-primary" onclick="createInteractiveButton()">
+                                        <i class="fas fa-plus"></i> Crear Botón Interactivo
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Cómo usar <code>addEventListener</code> para manejar eventos</li>
+                            <li>Los diferentes tipos de eventos del DOM</li>
+                            <li>Event delegation para elementos dinámicos</li>
+                            <li>Cómo prevenir el comportamiento por defecto</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 3: Modificación de Contenido -->
+    <section id="modificacion" class="lesson-section" data-lesson="modificacion">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fas fa-edit"></i>
+                    <span>Lección 3</span>
+                </div>
+                <h2>Modificación de Contenido</h2>
+                <p class="lesson-intro">Aprende a modificar el contenido, estilos y estructura de los elementos del DOM dinámicamente.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>innerHTML vs textContent</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Modificación de estilos</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Creación de elementos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('modificacion-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="modificacion-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fas fa-edit"></i> Modificación de Contenido</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>innerHTML</code>
+                                        <span>Contenido HTML completo</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>textContent</code>
+                                        <span>Solo texto, sin HTML</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>innerText</code>
+                                        <span>Texto visible (considera estilos)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-paint-brush"></i> Modificación de Estilos</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>style.propiedad</code>
+                                        <span>Estilo individual</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>classList</code>
+                                        <span>Agregar/remover clases</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>setAttribute()</code>
+                                        <span>Atributos del elemento</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('modificacion-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="modificacion-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('modificacion', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('modificacion', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('modificacion', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="modificacion-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Modificación Básica</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('modificacion-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="modificacion-basic-code">// Crear elemento de ejemplo
+const div = document.createElement('div');
+div.id = 'miDiv';
+div.style.padding = '10px';
+div.style.border = '1px solid #ccc';
+div.style.margin = '10px';
+document.body.appendChild(div);
+
+// Modificar contenido con innerHTML
+div.innerHTML = '<h3>Contenido con HTML</h3><p>Este es un párrafo con <strong>texto en negrita</strong></p>';
+
+// Modificar solo texto
+const parrafo = div.querySelector('p');
+parrafo.textContent = 'Este es solo texto, sin HTML';
+
+// Agregar más contenido
+div.innerHTML += '<button>Nuevo botón</button>';
+
+// Modificar estilos
+div.style.backgroundColor = 'lightblue';
+div.style.borderRadius = '5px';
+
+// Agregar clase CSS
+div.classList.add('mi-clase');
+
+console.log('Contenido modificado:', div.innerHTML);
+console.log('Clases:', div.classList.toString());</code></pre>
+                                </div>
+                                <div class="code-output" id="modificacion-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="modificacion-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Creación Dinámica de Elementos</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('modificacion-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="modificacion-advanced-code">// Función para crear tarjeta de producto
+function crearTarjetaProducto(producto) {
+    const tarjeta = document.createElement('div');
+    tarjeta.className = 'producto-tarjeta';
+    tarjeta.style.cssText = `
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 10px;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        display: inline-block;
+        width: 200px;
+    `;
+    
+    tarjeta.innerHTML = `
+        <h3>${producto.nombre}</h3>
+        <p class="precio">$${producto.precio}</p>
+        <p class="descripcion">${producto.descripcion}</p>
+        <button class="btn-comprar">Comprar</button>
+    `;
+    
+    // Agregar evento al botón
+    const boton = tarjeta.querySelector('.btn-comprar');
+    boton.addEventListener('click', function() {
+        this.textContent = '¡Agregado!';
+        this.style.backgroundColor = 'green';
+        this.style.color = 'white';
+    });
+    
+    return tarjeta;
+}
+
+// Crear contenedor
+const contenedor = document.createElement('div');
+contenedor.id = 'productos-contenedor';
+contenedor.style.textAlign = 'center';
+document.body.appendChild(contenedor);
+
+// Datos de productos
+const productos = [
+    { nombre: 'Laptop', precio: 999, descripcion: 'Laptop gaming' },
+    { nombre: 'Mouse', precio: 25, descripcion: 'Mouse inalámbrico' },
+    { nombre: 'Teclado', precio: 75, descripcion: 'Teclado mecánico' }
+];
+
+// Crear tarjetas
+productos.forEach(producto => {
+    const tarjeta = crearTarjetaProducto(producto);
+    contenedor.appendChild(tarjeta);
+});
+
+console.log('Tarjetas de productos creadas dinámicamente');</code></pre>
+                                </div>
+                                <div class="code-output" id="modificacion-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="modificacion-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Editor de Texto Dinámico</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Texto:</label>
+                                        <input type="text" id="interactive-text" placeholder="Escribe tu texto" value="¡Hola Mundo!">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Color:</label>
+                                        <select id="interactive-color">
+                                            <option value="red">Rojo</option>
+                                            <option value="blue">Azul</option>
+                                            <option value="green">Verde</option>
+                                            <option value="purple">Morado</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Tamaño:</label>
+                                        <select id="interactive-size">
+                                            <option value="16px">Pequeño</option>
+                                            <option value="24px">Mediano</option>
+                                            <option value="32px">Grande</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-primary" onclick="createDynamicText()">
+                                        <i class="fas fa-magic"></i> Crear Texto
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>La diferencia entre <code>innerHTML</code>, <code>textContent</code> e <code>innerText</code></li>
+                            <li>Cómo modificar estilos con <code>style</code> y <code>classList</code></li>
+                            <li>Creación dinámica de elementos con <code>createElement</code></li>
+                            <li>Manipulación de atributos con <code>setAttribute</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ejercicios Prácticos -->
+    <section class="exercises-section">
+        <div class="container">
+            <h2>💪 Ejercicios Prácticos</h2>
+            <p class="section-description">Pon a prueba tus conocimientos de manipulación del DOM con estos ejercicios prácticos.</p>
+            
+            <div class="exercises-grid">
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Calculadora Interactiva</h3>
+                        <span class="difficulty beginner">Principiante</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Crea una calculadora básica que permita sumar, restar, multiplicar y dividir.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Crear interfaz con botones y display</li>
+                                <li>Manejar eventos de click</li>
+                                <li>Mostrar resultados en tiempo real</li>
+                                <li>Validar división por cero</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise1-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise1-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-javascript">// Crear interfaz de calculadora
+const calculadora = document.createElement('div');
+calculadora.style.cssText = `
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background: #f5f5f5;
+`;
+
+const display = document.createElement('input');
+display.type = 'text';
+display.id = 'display';
+display.style.cssText = `
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+    text-align: right;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+`;
+
+calculadora.appendChild(display);
+
+// Crear botones
+const botones = [
+    ['C', 'CE', '/', '*'],
+    ['7', '8', '9', '-'],
+    ['4', '5', '6', '+'],
+    ['1', '2', '3', '='],
+    ['0', '.', '', '']
+];
+
+let operacion = '';
+let numero1 = '';
+let numero2 = '';
+
+botones.forEach(fila => {
+    const filaDiv = document.createElement('div');
+    filaDiv.style.display = 'flex';
+    filaDiv.style.gap = '5px';
+    filaDiv.style.marginBottom = '5px';
+    
+    fila.forEach(texto => {
+        if (texto) {
+            const boton = document.createElement('button');
+            boton.textContent = texto;
+            boton.style.cssText = `
+                flex: 1;
+                height: 50px;
+                font-size: 18px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                cursor: pointer;
+                background: white;
+            `;
+            
+            boton.addEventListener('click', () => manejarClick(texto));
+            filaDiv.appendChild(boton);
+        } else {
+            const espacio = document.createElement('div');
+            espacio.style.flex = '1';
+            filaDiv.appendChild(espacio);
+        }
+    });
+    
+    calculadora.appendChild(filaDiv);
+});
+
+function manejarClick(valor) {
+    if (valor >= '0' && valor <= '9' || valor === '.') {
+        if (!operacion) {
+            numero1 += valor;
+            display.value = numero1;
+        } else {
+            numero2 += valor;
+            display.value = numero2;
+        }
+    } else if (['+', '-', '*', '/'].includes(valor)) {
+        operacion = valor;
+    } else if (valor === '=') {
+        calcular();
+    } else if (valor === 'C') {
+        limpiar();
+    } else if (valor === 'CE') {
+        display.value = '';
+    }
+}
+
+function calcular() {
+    const n1 = parseFloat(numero1);
+    const n2 = parseFloat(numero2);
+    let resultado = 0;
+    
+    switch (operacion) {
+        case '+': resultado = n1 + n2; break;
+        case '-': resultado = n1 - n2; break;
+        case '*': resultado = n1 * n2; break;
+        case '/': 
+            if (n2 === 0) {
+                display.value = 'Error: División por cero';
+                return;
+            }
+            resultado = n1 / n2; 
+            break;
+    }
+    
+    display.value = resultado;
+    numero1 = resultado.toString();
+    numero2 = '';
+    operacion = '';
+}
+
+function limpiar() {
+    numero1 = '';
+    numero2 = '';
+    operacion = '';
+    display.value = '';
+}
+
+document.body.appendChild(calculadora);</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Lista de Tareas</h3>
+                        <span class="difficulty intermediate">Intermedio</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Crea una aplicación de lista de tareas con funcionalidades completas.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Agregar nuevas tareas</li>
+                                <li>Marcar tareas como completadas</li>
+                                <li>Eliminar tareas</li>
+                                <li>Filtrar por estado</li>
+                                <li>Persistencia con localStorage</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise2-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise2-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-javascript">// Crear interfaz de lista de tareas
+const todoApp = document.createElement('div');
+todoApp.style.cssText = `
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+`;
+
+// Input para nueva tarea
+const inputContainer = document.createElement('div');
+inputContainer.style.cssText = `
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+`;
+
+const inputTarea = document.createElement('input');
+inputTarea.type = 'text';
+inputTarea.placeholder = 'Nueva tarea...';
+inputTarea.style.cssText = `
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+`;
+
+const btnAgregar = document.createElement('button');
+btnAgregar.textContent = 'Agregar';
+btnAgregar.style.cssText = `
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+`;
+
+// Filtros
+const filtros = document.createElement('div');
+filtros.style.cssText = `
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+`;
+
+const btnTodos = document.createElement('button');
+btnTodos.textContent = 'Todas';
+btnTodos.className = 'filtro-btn active';
+
+const btnPendientes = document.createElement('button');
+btnPendientes.textContent = 'Pendientes';
+btnPendientes.className = 'filtro-btn';
+
+const btnCompletadas = document.createElement('button');
+btnCompletadas.textContent = 'Completadas';
+btnCompletadas.className = 'filtro-btn';
+
+[filtros, btnTodos, btnPendientes, btnCompletadas].forEach(el => {
+    if (el !== filtros) {
+        el.style.cssText = `
+            padding: 5px 15px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            border-radius: 5px;
+        `;
+        filtros.appendChild(el);
+    }
+});
+
+// Lista de tareas
+const listaTareas = document.createElement('ul');
+listaTareas.id = 'lista-tareas';
+listaTareas.style.cssText = `
+    list-style: none;
+    padding: 0;
+    margin: 0;
+`;
+
+// Contador
+const contador = document.createElement('div');
+contador.id = 'contador';
+contador.style.cssText = `
+    margin-top: 20px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    text-align: center;
+`;
+
+// Estado de la aplicación
+let tareas = JSON.parse(localStorage.getItem('tareas')) || [];
+let filtroActual = 'todas';
+
+// Funciones
+function renderizarTareas() {
+    listaTareas.innerHTML = '';
+    
+    const tareasFiltradas = tareas.filter(tarea => {
+        if (filtroActual === 'pendientes') return !tarea.completada;
+        if (filtroActual === 'completadas') return tarea.completada;
+        return true;
+    });
+    
+    tareasFiltradas.forEach((tarea, index) => {
+        const li = document.createElement('li');
+        li.style.cssText = `
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #eee;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            background: ${tarea.completada ? '#d4edda' : 'white'};
+        `;
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = tarea.completada;
+        checkbox.addEventListener('change', () => toggleTarea(tarea.id));
+        
+        const texto = document.createElement('span');
+        texto.textContent = tarea.texto;
+        texto.style.cssText = `
+            flex: 1;
+            margin: 0 10px;
+            text-decoration: ${tarea.completada ? 'line-through' : 'none'};
+            color: ${tarea.completada ? '#6c757d' : '#333'};
+        `;
+        
+        const btnEliminar = document.createElement('button');
+        btnEliminar.textContent = 'Eliminar';
+        btnEliminar.style.cssText = `
+            padding: 5px 10px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        `;
+        btnEliminar.addEventListener('click', () => eliminarTarea(tarea.id));
+        
+        li.appendChild(checkbox);
+        li.appendChild(texto);
+        li.appendChild(btnEliminar);
+        listaTareas.appendChild(li);
+    });
+    
+    actualizarContador();
+}
+
+function agregarTarea() {
+    const texto = inputTarea.value.trim();
+    if (texto) {
+        const nuevaTarea = {
+            id: Date.now(),
+            texto: texto,
+            completada: false
+        };
+        tareas.push(nuevaTarea);
+        inputTarea.value = '';
+        guardarTareas();
+        renderizarTareas();
+    }
+}
+
+function toggleTarea(id) {
+    const tarea = tareas.find(t => t.id === id);
+    if (tarea) {
+        tarea.completada = !tarea.completada;
+        guardarTareas();
+        renderizarTareas();
+    }
+}
+
+function eliminarTarea(id) {
+    tareas = tareas.filter(t => t.id !== id);
+    guardarTareas();
+    renderizarTareas();
+}
+
+function setFiltro(filtro) {
+    filtroActual = filtro;
+    document.querySelectorAll('.filtro-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.background = 'white';
+    });
+    event.target.classList.add('active');
+    event.target.style.background = '#007bff';
+    event.target.style.color = 'white';
+    renderizarTareas();
+}
+
+function actualizarContador() {
+    const total = tareas.length;
+    const completadas = tareas.filter(t => t.completada).length;
+    const pendientes = total - completadas;
+    
+    contador.innerHTML = `
+        Total: ${total} | Completadas: ${completadas} | Pendientes: ${pendientes}
+    `;
+}
+
+function guardarTareas() {
+    localStorage.setItem('tareas', JSON.stringify(tareas));
+}
+
+// Event listeners
+btnAgregar.addEventListener('click', agregarTarea);
+inputTarea.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') agregarTarea();
+});
+
+btnTodos.addEventListener('click', () => setFiltro('todas'));
+btnPendientes.addEventListener('click', () => setFiltro('pendientes'));
+btnCompletadas.addEventListener('click', () => setFiltro('completadas'));
+
+// Montar la aplicación
+inputContainer.appendChild(inputTarea);
+inputContainer.appendChild(btnAgregar);
+
+todoApp.appendChild(inputContainer);
+todoApp.appendChild(filtros);
+todoApp.appendChild(listaTareas);
+todoApp.appendChild(contador);
+
+document.body.appendChild(todoApp);
+
+// Renderizar inicial
+renderizarTareas();</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navegación entre módulos -->
+    <section class="module-navigation">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="modulo2-moderno.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Módulo Anterior
+                </a>
+                <a href="index.html#modules" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Ver Todos los Módulos
+                </a>
+                <a href="modulo4-asincrono.html" class="btn btn-outline">
+                    Siguiente Módulo <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JavaScript Academy</h3>
+                    <p>Aprende JavaScript desde cero hasta nivel profesional con ejemplos prácticos y ejercicios interactivos.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Módulos</h4>
+                    <ul>
+                        <li><a href="modulo1-fundamentos.html">Fundamentos</a></li>
+                        <li><a href="modulo2-moderno.html">JavaScript Moderno</a></li>
+                        <li><a href="modulo3-dom.html">DOM Manipulation</a></li>
+                        <li><a href="modulo4-asincrono.html">Programación Asíncrona</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="index.html#projects">Proyectos</a></li>
+                        <li><a href="index.html#resources">Recursos</a></li>
+                        <li><a href="index.html#contact">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JavaScript Academy. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Estado del módulo
+        let moduleProgress = 0;
+        let completedLessons = new Set();
+        let currentSection = 'seleccion';
+
+        // Funciones de progreso
+        function updateProgress() {
+            const totalLessons = 6;
+            const progress = (completedLessons.size / totalLessons) * 100;
+            moduleProgress = Math.round(progress);
+            
+            const progressFill = document.getElementById('moduleProgress');
+            const progressPercentage = document.querySelector('.progress-percentage');
+            
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+            if (progressPercentage) {
+                progressPercentage.textContent = progress + '%';
+            }
+        }
+
+        function markLessonComplete(lessonId) {
+            completedLessons.add(lessonId);
+            updateProgress();
+            
+            const navItem = document.querySelector(`[data-section="${lessonId}"]`);
+            if (navItem) {
+                const statusIcon = navItem.querySelector('.nav-item-status i');
+                statusIcon.className = 'fas fa-check-circle';
+                statusIcon.style.color = '#28a745';
+            }
+        }
+
+        // Funciones de navegación
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const toggleIcon = section.previousElementSibling.querySelector('.toggle-icon');
+            
+            if (section.classList.contains('collapsed')) {
+                section.classList.remove('collapsed');
+                toggleIcon.style.transform = 'rotate(180deg)';
+            } else {
+                section.classList.add('collapsed');
+                toggleIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function showExampleTab(lesson, tab) {
+            const tabContents = document.querySelectorAll(`#${lesson}-example .example-tab-content`);
+            const tabButtons = document.querySelectorAll(`#${lesson}-example .tab-btn`);
+            
+            tabContents.forEach(content => content.classList.remove('active'));
+            tabButtons.forEach(button => button.classList.remove('active'));
+            
+            document.getElementById(`${lesson}-${tab}`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Funciones de código
+        function runCode(codeId) {
+            const codeElement = document.getElementById(codeId);
+            const outputId = codeId.replace('-code', '-output');
+            const outputElement = document.getElementById(outputId);
+            
+            if (!codeElement || !outputElement) return;
+            
+            const code = codeElement.textContent;
+            
+            const originalLog = console.log;
+            let output = '';
+            console.log = function(...args) {
+                output += args.join(' ') + '\n';
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                eval(code);
+                outputElement.innerHTML = `<pre class="output-content">${output || 'Código ejecutado correctamente'}</pre>`;
+                outputElement.style.display = 'block';
+            } catch (error) {
+                outputElement.innerHTML = `<pre class="output-error">Error: ${error.message}</pre>`;
+                outputElement.style.display = 'block';
+            } finally {
+                console.log = originalLog;
+            }
+        }
+
+        // Funciones interactivas
+        function testSelector() {
+            const selector = document.getElementById('interactive-selector').value;
+            const output = document.getElementById('interactive-output');
+            
+            try {
+                const elements = document.querySelectorAll(selector);
+                const count = elements.length;
+                
+                let result = `✅ Encontrados ${count} elemento(s) con el selector "${selector}"\n\n`;
+                
+                elements.forEach((el, index) => {
+                    result += `${index + 1}. ${el.tagName.toLowerCase()}`;
+                    if (el.id) result += `#${el.id}`;
+                    if (el.className) result += `.${el.className.split(' ').join('.')}`;
+                    result += ` - "${el.textContent.substring(0, 50)}${el.textContent.length > 50 ? '...' : ''}"\n`;
+                });
+                
+                output.innerHTML = `<pre class="output-content">${result}</pre>`;
+            } catch (error) {
+                output.innerHTML = `<div class="error">❌ Error en el selector: ${error.message}</div>`;
+            }
+        }
+
+        function createInteractiveButton() {
+            const text = document.getElementById('interactive-button-text').value;
+            const color = document.getElementById('interactive-button-color').value;
+            const output = document.getElementById('interactive-output');
+            
+            if (!text) {
+                output.innerHTML = '<div class="error">Por favor, ingresa un texto para el botón</div>';
+                return;
+            }
+            
+            // Crear botón
+            const button = document.createElement('button');
+            button.textContent = text;
+            button.style.cssText = `
+                padding: 10px 20px;
+                background: ${color};
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                margin: 10px;
+            `;
+            
+            // Agregar eventos
+            let clickCount = 0;
+            button.addEventListener('click', function() {
+                clickCount++;
+                this.textContent = `${text} (${clickCount} clicks)`;
+                this.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+            
+            button.addEventListener('mouseover', function() {
+                this.style.opacity = '0.8';
+            });
+            
+            button.addEventListener('mouseout', function() {
+                this.style.opacity = '1';
+            });
+            
+            // Limpiar output anterior
+            output.innerHTML = '';
+            output.appendChild(button);
+            
+            output.innerHTML += `
+                <div class="success">
+                    <h5>✅ Botón Interactivo Creado</h5>
+                    <p>Haz clic en el botón para ver la interacción</p>
+                </div>
+            `;
+        }
+
+        function createDynamicText() {
+            const text = document.getElementById('interactive-text').value;
+            const color = document.getElementById('interactive-color').value;
+            const size = document.getElementById('interactive-size').value;
+            const output = document.getElementById('interactive-output');
+            
+            if (!text) {
+                output.innerHTML = '<div class="error">Por favor, ingresa un texto</div>';
+                return;
+            }
+            
+            // Crear elemento de texto
+            const textElement = document.createElement('div');
+            textElement.textContent = text;
+            textElement.style.cssText = `
+                color: ${color};
+                font-size: ${size};
+                font-weight: bold;
+                padding: 20px;
+                margin: 10px 0;
+                border: 2px solid ${color};
+                border-radius: 10px;
+                text-align: center;
+                background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+                transition: all 0.3s ease;
+            `;
+            
+            // Agregar efectos hover
+            textElement.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+            });
+            
+            textElement.addEventListener('mouseout', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = 'none';
+            });
+            
+            // Limpiar y mostrar
+            output.innerHTML = '';
+            output.appendChild(textElement);
+            
+            output.innerHTML += `
+                <div class="success">
+                    <h5>✅ Texto Dinámico Creado</h5>
+                    <p>Pasa el mouse sobre el texto para ver el efecto</p>
+                </div>
+            `;
+        }
+
+        // Observador de intersección para progreso
+        function setupProgressObserver() {
+            const lessons = document.querySelectorAll('.lesson-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const lessonId = entry.target.dataset.lesson;
+                        if (lessonId && !completedLessons.has(lessonId)) {
+                            setTimeout(() => {
+                                markLessonComplete(lessonId);
+                            }, 3000);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            lessons.forEach(lesson => observer.observe(lesson));
+        }
+
+        // Navegación suave
+        function setupSmoothNavigation() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        const sectionId = target.id;
+                        if (sectionId) {
+                            currentSection = sectionId;
+                            updateNavigationState();
+                        }
+                    }
+                });
+            });
+        }
+
+        function updateNavigationState() {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeItem = document.querySelector(`[data-section="${currentSection}"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+
+        function updateBreadcrumb() {
+            const currentPage = document.getElementById('current-page');
+            if (currentPage) {
+                currentPage.textContent = 'DOM Manipulation';
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBreadcrumb();
+            setupSmoothNavigation();
+            setupProgressObserver();
+            Prism.highlightAll();
+            updateNavigationState();
+        });
+
+        // Funciones globales
+        window.toggleCode = function(codeId) {
+            const codeBlock = document.getElementById(codeId);
+            if (codeBlock.style.display === 'none') {
+                codeBlock.style.display = 'block';
+                Prism.highlightAll();
+            } else {
+                codeBlock.style.display = 'none';
+            }
+        };
+
+        window.toggleSection = toggleSection;
+        window.showExampleTab = showExampleTab;
+        window.runCode = runCode;
+        window.testSelector = testSelector;
+        window.createInteractiveButton = createInteractiveButton;
+        window.createDynamicText = createDynamicText;
+    </script>
+</body>
+</html>

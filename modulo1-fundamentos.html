@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Fundamentos de JavaScript - JS Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body>
+    <!-- Header con navegación -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fab fa-js-square"></i>
+                <span>JS Academy</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="index.html#modulos" class="nav-link">Módulos</a></li>
+                <li><a href="index.html#proyectos" class="nav-link">Proyectos</a></li>
+                <li><a href="index.html#recursos" class="nav-link">Recursos</a></li>
+                <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb" id="breadcrumb">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="index.html#modulos">Módulos</a>
+            </li>
+            <li class="breadcrumb-item active" id="current-page">Fundamentos de JavaScript</li>
+        </ol>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <!-- Hero del módulo -->
+        <section class="module-hero">
+            <div class="container">
+                <div class="module-header">
+                    <div class="module-badge">
+                        <i class="fas fa-code"></i>
+                        <span>Módulo 1</span>
+                    </div>
+                    <h1>Fundamentos de JavaScript</h1>
+                    <p class="module-description">
+                        Aprende los conceptos básicos de JavaScript: variables, tipos de datos, operadores, 
+                        estructuras de control, funciones, arrays y objetos. La base sólida para tu carrera como desarrollador.
+                    </p>
+                    <div class="module-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>4-6 horas</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-file-code"></i>
+                            <span>15 ejemplos</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-signal"></i>
+                            <span>Principiante</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Barra de progreso -->
+        <section class="progress-bar-section">
+            <div class="container">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span class="progress-label">Progreso del Módulo</span>
+                        <span class="progress-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="moduleProgress"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación del módulo -->
+        <section class="module-nav">
+            <div class="container">
+                <div class="module-nav-content">
+                    <h3>Contenido del Módulo</h3>
+                    <div class="module-nav-list">
+                        <a href="#variables" class="nav-item" data-section="variables">
+                            <div class="nav-item-icon">
+                                <i class="fas fa-tag"></i>
+                            </div>
+                            <div class="nav-item-content">
+                                <span class="nav-item-title">Variables y Tipos de Datos</span>
+                                <span class="nav-item-desc">Aprende a declarar variables y trabajar con diferentes tipos de datos</span>
+                            </div>
+                            <div class="nav-item-status">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </a>
+                        <a href="#operadores" class="nav-item" data-section="operadores">
+                            <div class="nav-item-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="nav-item-content">
+                                <span class="nav-item-title">Operadores</span>
+                                <span class="nav-item-desc">Aritméticos, de comparación y lógicos</span>
+                            </div>
+                            <div class="nav-item-status">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </a>
+                        <a href="#control" class="nav-item" data-section="control">
+                            <div class="nav-item-icon">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            <div class="nav-item-content">
+                                <span class="nav-item-title">Estructuras de Control</span>
+                                <span class="nav-item-desc">if/else, switch, bucles y condicionales</span>
+                            </div>
+                            <div class="nav-item-status">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </a>
+                        <a href="#funciones" class="nav-item" data-section="funciones">
+                            <div class="nav-item-icon">
+                                <i class="fas fa-function"></i>
+                            </div>
+                            <div class="nav-item-content">
+                                <span class="nav-item-title">Funciones</span>
+                                <span class="nav-item-desc">Declaración, parámetros y scope</span>
+                            </div>
+                            <div class="nav-item-status">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </a>
+                        <a href="#arrays" class="nav-item" data-section="arrays">
+                            <div class="nav-item-icon">
+                                <i class="fas fa-list"></i>
+                            </div>
+                            <div class="nav-item-content">
+                                <span class="nav-item-title">Arrays y Objetos</span>
+                                <span class="nav-item-desc">Estructuras de datos fundamentales</span>
+                            </div>
+                            <div class="nav-item-status">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </a>
+                        <a href="#ejercicios" class="nav-item" data-section="ejercicios">
+                            <div class="nav-item-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <div class="nav-item-content">
+                                <span class="nav-item-title">Ejercicios Prácticos</span>
+                                <span class="nav-item-desc">Aplica lo aprendido con proyectos reales</span>
+                            </div>
+                            <div class="nav-item-status">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 1: Variables y Tipos de Datos -->
+        <section id="variables" class="lesson-section" data-lesson="variables">
+            <div class="container">
+                <div class="lesson-header">
+                    <div class="lesson-badge">
+                        <i class="fas fa-tag"></i>
+                        <span>Lección 1</span>
+                    </div>
+                    <h2>Variables y Tipos de Datos</h2>
+                    <p class="lesson-intro">Las variables son contenedores para almacenar datos. En JavaScript, puedes declarar variables usando <code>var</code>, <code>let</code> o <code>const</code>.</p>
+                    
+                    <!-- Puntos clave destacados -->
+                    <div class="key-points">
+                        <h4>🎯 Puntos Clave</h4>
+                        <div class="key-points-grid">
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>3 formas de declarar variables</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>7 tipos de datos principales</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Scope y hoisting importantes</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Type coercion y comparaciones</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Closures y lexical scope</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-content">
+                    <!-- Teoría colapsable -->
+                    <div class="theory-section">
+                        <div class="section-toggle" onclick="toggleSection('variables-theory')">
+                            <h3><i class="fas fa-book"></i> Teoría</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div id="variables-theory" class="theory-content collapsed">
+                            <div class="theory-grid">
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-tag"></i> Declaración de Variables</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item">
+                                            <code>var</code>
+                                            <span>Declaración tradicional, con scope de función</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>let</code>
+                                            <span>Declaración moderna, con scope de bloque</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>const</code>
+                                            <span>Constante que no puede ser reasignada</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-database"></i> Tipos de Datos</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item">
+                                            <code>String</code>
+                                            <span>Texto entre comillas</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>Number</code>
+                                            <span>Números enteros o decimales</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>Boolean</code>
+                                            <span>true o false</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>Object</code>
+                                            <span>Colección de propiedades</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>Array</code>
+                                            <span>Lista ordenada de elementos</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ejemplo interactivo -->
+                    <div class="example-section">
+                        <div class="section-toggle" onclick="toggleSection('variables-example')">
+                            <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div id="variables-example" class="example-content collapsed">
+                            <div class="example-tabs">
+                                <button class="tab-btn active" onclick="showExampleTab('variables', 'basic')">Básico</button>
+                                <button class="tab-btn" onclick="showExampleTab('variables', 'advanced')">Avanzado</button>
+                                <button class="tab-btn" onclick="showExampleTab('variables', 'interactive')">Interactivo</button>
+                            </div>
+
+                            <div id="variables-basic" class="example-tab-content active">
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-title">Declaración Básica de Variables</span>
+                                        <button class="btn btn-sm btn-primary" onclick="runCode('variables-basic-code')">
+                                            <i class="fas fa-play"></i> Ejecutar
+                                        </button>
+                                    </div>
+                                    <div class="code-block">
+                                        <pre><code class="language-javascript" id="variables-basic-code">// Declaración de variables
+var nombre = "Juan";           // String
+let edad = 25;                 // Number
+const PI = 3.14159;           // Number (constante)
+
+// Tipos de datos básicos
+let texto = "Hola mundo";      // String
+let numero = 42;               // Number
+let booleano = true;           // Boolean
+
+console.log("Nombre:", nombre);
+console.log("Edad:", edad);
+console.log("PI:", PI);</code></pre>
+                                    </div>
+                                    <div class="code-output" id="variables-basic-output"></div>
+                                </div>
+                            </div>
+
+                            <div id="variables-advanced" class="example-tab-content">
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-title">Objetos y Arrays</span>
+                                        <button class="btn btn-sm btn-primary" onclick="runCode('variables-advanced-code')">
+                                            <i class="fas fa-play"></i> Ejecutar
+                                        </button>
+                                    </div>
+                                    <div class="code-block">
+                                        <pre><code class="language-javascript" id="variables-advanced-code">// Objeto con propiedades
+let usuario = {
+    nombre: "María García",
+    edad: 28,
+    activo: true,
+    hobbies: ["programar", "leer", "viajar"]
+};
+
+// Acceso a propiedades
+console.log("Nombre:", usuario.nombre);
+console.log("Hobbies:", usuario.hobbies);
+console.log("Primer hobby:", usuario.hobbies[0]);</code></pre>
+                                    </div>
+                                    <div class="code-output" id="variables-advanced-output"></div>
+                                </div>
+                            </div>
+
+                            <div id="variables-interactive" class="example-tab-content">
+                                <div class="interactive-example">
+                                    <h4>🎮 Prueba tú mismo</h4>
+                                    <div class="interactive-content">
+                                        <div class="input-group">
+                                            <label>Nombre:</label>
+                                            <input type="text" id="interactive-nombre" placeholder="Tu nombre" value="Ana">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Edad:</label>
+                                            <input type="number" id="interactive-edad" placeholder="Tu edad" value="25">
+                                        </div>
+                                        <button class="btn btn-primary" onclick="createUserObject()">
+                                            <i class="fas fa-magic"></i> Crear Objeto
+                                        </button>
+                                        <div class="interactive-output" id="interactive-output"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resumen de la lección -->
+                    <div class="lesson-summary">
+                        <h4>📝 Resumen</h4>
+                        <div class="summary-content">
+                            <p>En esta lección aprendiste sobre:</p>
+                            <ul>
+                                <li>Las tres formas de declarar variables: <code>var</code>, <code>let</code> y <code>const</code></li>
+                                <li>Los tipos de datos principales en JavaScript</li>
+                                <li>Cómo crear y acceder a objetos y arrays</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Operadores -->
+        <section id="operadores" class="lesson-section bg-light">
+            <div class="container">
+                <div class="lesson-header">
+                    <h2>Operadores</h2>
+                    <p>Los operadores permiten realizar operaciones con valores. JavaScript incluye operadores aritméticos, de comparación y lógicos.</p>
+                </div>
+
+                <div class="lesson-content">
+                    <div class="theory-section">
+                        <h3>Teoría</h3>
+                        <div class="theory-content">
+                            <h4>Operadores Aritméticos</h4>
+                            <ul>
+                                <li><code>+</code> Suma</li>
+                                <li><code>-</code> Resta</li>
+                                <li><code>*</code> Multiplicación</li>
+                                <li><code>/</code> División</li>
+                                <li><code>%</code> Módulo (resto)</li>
+                                <li><code>**</code> Exponenciación</li>
+                            </ul>
+
+                            <h4>Operadores de Comparación</h4>
+                            <ul>
+                                <li><code>==</code> Igualdad débil</li>
+                                <li><code>===</code> Igualdad estricta</li>
+                                <li><code>!=</code> Desigualdad débil</li>
+                                <li><code>!==</code> Desigualdad estricta</li>
+                                <li><code>&gt;</code> Mayor que</li>
+                                <li><code>&lt;</code> Menor que</li>
+                                <li><code>&gt;=</code> Mayor o igual</li>
+                                <li><code>&lt;=</code> Menor o igual</li>
+                            </ul>
+
+                            <h4>Operadores Lógicos</h4>
+                            <ul>
+                                <li><code>&&</code> AND lógico</li>
+                                <li><code>||</code> OR lógico</li>
+                                <li><code>!</code> NOT lógico</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example-section">
+                        <h3>Ejemplo Práctico</h3>
+                        <div class="example-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Uso de Operadores</span>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleCode('operadores-code')">
+                                        <i class="fas fa-code"></i> Ver Código
+                                    </button>
+                                </div>
+                                <div id="operadores-code" class="code-block" style="display: none;">
+                                    <pre><code class="language-javascript">// Operadores aritméticos
+let a = 10;
+let b = 3;
+
+console.log(a + b);   // 13 (suma)
+console.log(a - b);   // 7 (resta)
+console.log(a * b);   // 30 (multiplicación)
+console.log(a / b);   // 3.33... (división)
+console.log(a % b);   // 1 (módulo/resto)
+console.log(a ** b);  // 1000 (exponenciación)
+
+// Operadores de comparación
+let x = 5;
+let y = "5";
+
+console.log(x == y);   // true (igualdad débil)
+console.log(x === y);  // false (igualdad estricta)
+console.log(x != y);   // false (desigualdad débil)
+console.log(x !== y);  // true (desigualdad estricta)
+console.log(x > 3);    // true
+console.log(x < 10);   // true
+console.log(x >= 5);   // true
+console.log(x <= 5);   // true
+
+// Operadores lógicos
+let esAdulto = true;
+let tieneLicencia = false;
+
+console.log(esAdulto && tieneLicencia);  // false (AND)
+console.log(esAdulto || tieneLicencia);  // true (OR)
+console.log(!esAdulto);                  // false (NOT)</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: Estructuras de Control -->
+        <section id="control" class="lesson-section">
+            <div class="container">
+                <div class="lesson-header">
+                    <h2>Estructuras de Control</h2>
+                    <p>Las estructuras de control permiten que tu código tome decisiones y repita operaciones basándose en condiciones.</p>
+                </div>
+
+                <div class="lesson-content">
+                    <div class="theory-section">
+                        <h3>Teoría</h3>
+                        <div class="theory-content">
+                            <h4>Condicionales</h4>
+                            <ul>
+                                <li><strong>if/else:</strong> Ejecuta código basado en una condición</li>
+                                <li><strong>switch:</strong> Evalúa múltiples casos</li>
+                                <li><strong>Operador ternario:</strong> Condicional en una línea</li>
+                            </ul>
+
+                            <h4>Bucles (Loops)</h4>
+                            <ul>
+                                <li><strong>for:</strong> Bucle con contador</li>
+                                <li><strong>while:</strong> Bucle mientras se cumple condición</li>
+                                <li><strong>for...of:</strong> Iterar sobre arrays</li>
+                                <li><strong>for...in:</strong> Iterar sobre propiedades de objetos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example-section">
+                        <h3>Ejemplo Práctico</h3>
+                        <div class="example-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Estructuras de Control</span>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleCode('control-code')">
+                                        <i class="fas fa-code"></i> Ver Código
+                                    </button>
+                                </div>
+                                <div id="control-code" class="code-block" style="display: none;">
+                                    <pre><code class="language-javascript">// Condicionales
+let temperatura = 25;
+
+if (temperatura > 30) {
+    console.log("Hace mucho calor");
+} else if (temperatura > 20) {
+    console.log("Temperatura agradable");
+} else if (temperatura > 10) {
+    console.log("Hace fresco");
+} else {
+    console.log("Hace frío");
+}
+
+// Operador ternario
+let mensaje = temperatura > 25 ? "Calor" : "Fresco";
+
+// Switch
+let dia = "lunes";
+
+switch (dia) {
+    case "lunes":
+        console.log("Inicio de semana");
+        break;
+    case "viernes":
+        console.log("¡Fin de semana!");
+        break;
+    case "sábado":
+    case "domingo":
+        console.log("Día de descanso");
+        break;
+    default:
+        console.log("Día laboral");
+}
+
+// Bucles
+// For loop
+for (let i = 0; i < 5; i++) {
+    console.log(`Iteración ${i}`);
+}
+
+// While loop
+let contador = 0;
+while (contador < 3) {
+    console.log(`Contador: ${contador}`);
+    contador++;
+}
+
+// For...of (para arrays)
+let frutas = ["manzana", "banana", "naranja"];
+for (let fruta of frutas) {
+    console.log(fruta);
+}
+
+// For...in (para objetos)
+let persona = { nombre: "Juan", edad: 30 };
+for (let propiedad in persona) {
+    console.log(`${propiedad}: ${persona[propiedad]}`);
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: Funciones -->
+        <section id="funciones" class="lesson-section bg-light">
+            <div class="container">
+                <div class="lesson-header">
+                    <h2>Funciones</h2>
+                    <p>Las funciones son bloques de código reutilizables que realizan una tarea específica. Son fundamentales en JavaScript.</p>
+                </div>
+
+                <div class="lesson-content">
+                    <div class="theory-section">
+                        <h3>Teoría</h3>
+                        <div class="theory-content">
+                            <h4>Tipos de Funciones</h4>
+                            <ul>
+                                <li><strong>Función declarada:</strong> function nombre() {}</li>
+                                <li><strong>Función expresada:</strong> let nombre = function() {}</li>
+                                <li><strong>Arrow function:</strong> let nombre = () => {}</li>
+                            </ul>
+
+                            <h4>Conceptos Importantes</h4>
+                            <ul>
+                                <li><strong>Parámetros:</strong> Valores que recibe la función</li>
+                                <li><strong>Return:</strong> Valor que devuelve la función</li>
+                                <li><strong>Scope:</strong> Alcance de las variables</li>
+                                <li><strong>Hoisting:</strong> Elevación de declaraciones</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example-section">
+                        <h3>Ejemplo Práctico</h3>
+                        <div class="example-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Declaración de Funciones</span>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleCode('funciones-code')">
+                                        <i class="fas fa-code"></i> Ver Código
+                                    </button>
+                                </div>
+                                <div id="funciones-code" class="code-block" style="display: none;">
+                                    <pre><code class="language-javascript">// Función declarada
+function saludar(nombre) {
+    return `Hola, ${nombre}!`;
+}
+
+// Función expresada
+let sumar = function(a, b) {
+    return a + b;
+};
+
+// Arrow function (ES6)
+let multiplicar = (a, b) => a * b;
+
+// Función con parámetros por defecto
+function crearUsuario(nombre, edad = 18, activo = true) {
+    return {
+        nombre,
+        edad,
+        activo
+    };
+}
+
+// Scope y Hoisting
+function ejemplo() {
+    let local = "Soy local";
+    var global = "Soy global";
+}
+
+// Hoisting con var
+console.log(x); // undefined (no error)
+var x = 5;
+
+// No hoisting con let/const
+// console.log(y); // ReferenceError
+let y = 10;
+
+// Uso de funciones
+console.log(saludar("María"));           // "Hola, María!"
+console.log(sumar(5, 3));                // 8
+console.log(multiplicar(4, 6));          // 24
+console.log(crearUsuario("Juan", 25));   // { nombre: "Juan", edad: 25, activo: true }</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 5: Arrays y Objetos -->
+        <section id="arrays" class="lesson-section">
+            <div class="container">
+                <div class="lesson-header">
+                    <h2>Arrays y Objetos</h2>
+                    <p>Los arrays y objetos son estructuras de datos fundamentales en JavaScript para organizar y manipular información.</p>
+                </div>
+
+                <div class="lesson-content">
+                    <div class="theory-section">
+                        <h3>Teoría</h3>
+                        <div class="theory-content">
+                            <h4>Arrays</h4>
+                            <ul>
+                                <li><strong>Métodos básicos:</strong> push(), pop(), shift(), unshift()</li>
+                                <li><strong>Métodos de transformación:</strong> map(), filter(), reduce()</li>
+                                <li><strong>Búsqueda:</strong> indexOf(), includes(), find()</li>
+                            </ul>
+
+                            <h4>Objetos</h4>
+                            <ul>
+                                <li><strong>Propiedades:</strong> Acceso con punto o corchetes</li>
+                                <li><strong>Métodos:</strong> Funciones dentro de objetos</li>
+                                <li><strong>Destructuring:</strong> Extraer propiedades</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example-section">
+                        <h3>Ejemplo Práctico</h3>
+                        <div class="example-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Arrays y Objetos</span>
+                                    <button class="btn btn-sm btn-outline" onclick="toggleCode('arrays-code')">
+                                        <i class="fas fa-code"></i> Ver Código
+                                    </button>
+                                </div>
+                                <div id="arrays-code" class="code-block" style="display: none;">
+                                    <pre><code class="language-javascript">// Arrays
+let numeros = [1, 2, 3, 4, 5];
+
+// Métodos de array
+numeros.push(6);           // [1, 2, 3, 4, 5, 6]
+numeros.pop();             // [1, 2, 3, 4, 5]
+numeros.unshift(0);        // [0, 1, 2, 3, 4, 5]
+numeros.shift();           // [1, 2, 3, 4, 5]
+
+// Métodos de transformación
+let dobles = numeros.map(n => n * 2);        // [2, 4, 6, 8, 10]
+let pares = numeros.filter(n => n % 2 === 0); // [2, 4]
+let suma = numeros.reduce((acc, n) => acc + n, 0); // 15
+
+// Búsqueda
+let indice = numeros.indexOf(3);     // 2
+let existe = numeros.includes(3);    // true
+let encontrado = numeros.find(n => n > 3); // 4
+
+// Objetos
+let persona = {
+    nombre: "Ana",
+    edad: 25,
+    saludar: function() {
+        return `Hola, soy ${this.nombre}`;
+    }
+};
+
+// Acceso a propiedades
+console.log(persona.nombre);        // "Ana"
+console.log(persona["edad"]);       // 25
+console.log(persona.saludar());     // "Hola, soy Ana"
+
+// Modificación
+persona.ciudad = "Madrid";
+persona.edad = 26;
+
+// Destructuring
+let { nombre, edad } = persona;
+console.log(nombre, edad); // "Ana" 26</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Ejercicios Prácticos -->
+        <section id="ejercicios" class="lesson-section bg-light">
+            <div class="container">
+                <div class="lesson-header">
+                    <h2>Ejercicios Prácticos</h2>
+                    <p>Pon en práctica lo que has aprendido con estos ejercicios reales. Cada ejercicio incluye una solución paso a paso.</p>
+                </div>
+
+                <div class="exercises-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <h3>Ejercicio 1: Calculadora Básica</h3>
+                            <span class="difficulty beginner">Principiante</span>
+                        </div>
+                        <div class="exercise-content">
+                            <p>Crea una calculadora que realice las operaciones básicas: suma, resta, multiplicación y división.</p>
+                            <div class="exercise-requirements">
+                                <h4>Requisitos:</h4>
+                                <ul>
+                                    <li>Crear una clase Calculadora</li>
+                                    <li>Implementar métodos para cada operación</li>
+                                    <li>Manejar errores (división por cero)</li>
+                                    <li>Mantener historial de operaciones</li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-outline" onclick="toggleCode('ejercicio1-code')">
+                                <i class="fas fa-code"></i> Ver Solución
+                            </button>
+                            <div id="ejercicio1-code" class="code-block" style="display: none;">
+                                <pre><code class="language-javascript">// Solución del Ejercicio 1: Calculadora Básica
+class Calculadora {
+    constructor() {
+        this.historial = [];
+    }
+    
+    sumar(a, b) {
+        let resultado = a + b;
+        this.agregarAlHistorial(`${a} + ${b} = ${resultado}`);
+        return resultado;
+    }
+    
+    restar(a, b) {
+        let resultado = a - b;
+        this.agregarAlHistorial(`${a} - ${b} = ${resultado}`);
+        return resultado;
+    }
+    
+    multiplicar(a, b) {
+        let resultado = a * b;
+        this.agregarAlHistorial(`${a} * ${b} = ${resultado}`);
+        return resultado;
+    }
+    
+    dividir(a, b) {
+        if (b === 0) {
+            throw new Error('No se puede dividir por cero');
+        }
+        let resultado = a / b;
+        this.agregarAlHistorial(`${a} / ${b} = ${resultado}`);
+        return resultado;
+    }
+    
+    agregarAlHistorial(operacion) {
+        this.historial.push(operacion);
+    }
+    
+    obtenerHistorial() {
+        return this.historial;
+    }
+}
+
+// Uso de la calculadora
+let calc = new Calculadora();
+console.log(calc.sumar(5, 3));        // 8
+console.log(calc.multiplicar(4, 6));  // 24
+console.log(calc.obtenerHistorial());</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <h3>Ejercicio 2: Gestor de Tareas</h3>
+                            <span class="difficulty intermediate">Intermedio</span>
+                        </div>
+                        <div class="exercise-content">
+                            <p>Crea un sistema de gestión de tareas con funcionalidades CRUD y persistencia local.</p>
+                            <div class="exercise-requirements">
+                                <h4>Requisitos:</h4>
+                                <ul>
+                                    <li>Agregar, editar y eliminar tareas</li>
+                                    <li>Marcar tareas como completadas</li>
+                                    <li>Filtrar por estado</li>
+                                    <li>Guardar en localStorage</li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-outline" onclick="toggleCode('ejercicio2-code')">
+                                <i class="fas fa-code"></i> Ver Solución
+                            </button>
+                            <div id="ejercicio2-code" class="code-block" style="display: none;">
+                                <pre><code class="language-javascript">// Solución del Ejercicio 2: Gestor de Tareas
+class GestorTareas {
+    constructor() {
+        this.tareas = this.cargarTareas();
+    }
+    
+    agregarTarea(texto, prioridad = 'media') {
+        const tarea = {
+            id: Date.now(),
+            texto,
+            prioridad,
+            completada: false,
+            fechaCreacion: new Date().toISOString()
+        };
+        
+        this.tareas.push(tarea);
+        this.guardarTareas();
+        return tarea;
+    }
+    
+    completarTarea(id) {
+        const tarea = this.tareas.find(t => t.id === id);
+        if (tarea) {
+            tarea.completada = true;
+            this.guardarTareas();
+        }
+    }
+    
+    eliminarTarea(id) {
+        this.tareas = this.tareas.filter(t => t.id !== id);
+        this.guardarTareas();
+    }
+    
+    obtenerTareas(filtro = 'todas') {
+        switch (filtro) {
+            case 'completadas':
+                return this.tareas.filter(t => t.completada);
+            case 'pendientes':
+                return this.tareas.filter(t => !t.completada);
+            default:
+                return this.tareas;
+        }
+    }
+    
+    guardarTareas() {
+        localStorage.setItem('tareas', JSON.stringify(this.tareas));
+    }
+    
+    cargarTareas() {
+        const tareas = localStorage.getItem('tareas');
+        return tareas ? JSON.parse(tareas) : [];
+    }
+}
+
+// Uso del gestor de tareas
+const gestor = new GestorTareas();
+gestor.agregarTarea('Aprender JavaScript', 'alta');
+gestor.agregarTarea('Hacer ejercicio', 'media');
+console.log(gestor.obtenerTareas());</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Consejos para Entrevistas -->
+        <section class="interview-tips">
+            <div class="container">
+                <h2>💼 Consejos para Entrevistas de Trabajo</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <h3><i class="fas fa-question-circle"></i> Preguntas Técnicas Comunes</h3>
+                        <ul>
+                            <li><strong>"¿Cuál es la diferencia entre var, let y const?"</strong><br>
+                            Explica scope, hoisting y reasignación</li>
+                            <li><strong>"¿Qué es el hoisting?"</strong><br>
+                            Declaraciones se elevan, asignaciones no</li>
+                            <li><strong>"¿Qué es un closure?"</strong><br>
+                            Función que accede a variables del scope padre</li>
+                            <li><strong>"¿Cuál es la diferencia entre == y ===?"</strong><br>
+                            Comparación flexible vs estricta</li>
+                        </ul>
+                    </div>
+                    <div class="tip-card">
+                        <h3><i class="fas fa-code"></i> Ejercicios de Código</h3>
+                        <ul>
+                            <li><strong>Implementar una función que sume números indefinidos</strong></li>
+                            <li><strong>Crear un contador con closure</strong></li>
+                            <li><strong>Explicar el resultado de: console.log(typeof null)</strong></li>
+                            <li><strong>Implementar debounce o throttle</strong></li>
+                        </ul>
+                    </div>
+                    <div class="tip-card">
+                        <h3><i class="fas fa-lightbulb"></i> Conceptos Clave</h3>
+                        <ul>
+                            <li>Scope y lexical scope</li>
+                            <li>Prototype y herencia</li>
+                            <li>Event loop y asincronía</li>
+                            <li>Type coercion y truthy/falsy</li>
+                            <li>Closures y module pattern</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación entre módulos -->
+        <section class="module-navigation">
+            <div class="container">
+                <div class="nav-buttons">
+                    <a href="index.html#modulos" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> Volver a Módulos
+                    </a>
+                    <a href="modulo2-moderno.html" class="btn btn-primary">
+                        Siguiente Módulo <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fab fa-js-square"></i>
+                        <span>JS Academy</span>
+                    </div>
+                    <p>La mejor plataforma para aprender JavaScript desde cero hasta nivel profesional.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Módulos</h4>
+                    <ul>
+                        <li><a href="modulo1-fundamentos.html">Fundamentos</a></li>
+                        <li><a href="modulo2-moderno.html">JavaScript Moderno</a></li>
+                        <li><a href="modulo3-dom.html">DOM Manipulation</a></li>
+                        <li><a href="modulo4-asincrono.html">Programación Asíncrona</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="index.html#proyectos">Proyectos</a></li>
+                        <li><a href="index.html#recursos">Documentación</a></li>
+                        <li><a href="index.html#contacto">Comunidad</a></li>
+                        <li><a href="index.html#contacto">Soporte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JS Academy. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Estado del módulo
+        let moduleProgress = 0;
+        let completedLessons = new Set();
+        let currentSection = 'variables';
+
+        // Funciones de progreso
+        function updateProgress() {
+            const totalLessons = 6;
+            const progress = (completedLessons.size / totalLessons) * 100;
+            moduleProgress = Math.round(progress);
+            
+            const progressFill = document.getElementById('moduleProgress');
+            const progressPercentage = document.querySelector('.progress-percentage');
+            
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+            if (progressPercentage) {
+                progressPercentage.textContent = progress + '%';
+            }
+        }
+
+        function markLessonComplete(lessonId) {
+            completedLessons.add(lessonId);
+            updateProgress();
+            
+            // Actualizar estado visual
+            const navItem = document.querySelector(`[data-section="${lessonId}"]`);
+            if (navItem) {
+                const statusIcon = navItem.querySelector('.nav-item-status i');
+                statusIcon.className = 'fas fa-check-circle';
+                statusIcon.style.color = '#28a745';
+            }
+        }
+
+        // Funciones de navegación
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const toggleIcon = section.previousElementSibling.querySelector('.toggle-icon');
+            
+            if (section.classList.contains('collapsed')) {
+                section.classList.remove('collapsed');
+                toggleIcon.style.transform = 'rotate(180deg)';
+            } else {
+                section.classList.add('collapsed');
+                toggleIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function showExampleTab(lesson, tab) {
+            // Ocultar todas las pestañas
+            const tabContents = document.querySelectorAll(`#${lesson}-example .example-tab-content`);
+            const tabButtons = document.querySelectorAll(`#${lesson}-example .tab-btn`);
+            
+            tabContents.forEach(content => content.classList.remove('active'));
+            tabButtons.forEach(button => button.classList.remove('active'));
+            
+            // Mostrar pestaña seleccionada
+            document.getElementById(`${lesson}-${tab}`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Funciones de código
+        function runCode(codeId) {
+            const codeElement = document.getElementById(codeId);
+            const outputId = codeId.replace('-code', '-output');
+            const outputElement = document.getElementById(outputId);
+            
+            if (!codeElement || !outputElement) return;
+            
+            const code = codeElement.textContent;
+            
+            // Capturar console.log
+            const originalLog = console.log;
+            let output = '';
+            console.log = function(...args) {
+                output += args.join(' ') + '\n';
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                // Ejecutar código
+                eval(code);
+                outputElement.innerHTML = `<pre class="output-content">${output || 'Código ejecutado correctamente'}</pre>`;
+                outputElement.style.display = 'block';
+            } catch (error) {
+                outputElement.innerHTML = `<pre class="output-error">Error: ${error.message}</pre>`;
+                outputElement.style.display = 'block';
+            } finally {
+                // Restaurar console.log
+                console.log = originalLog;
+            }
+        }
+
+        // Función interactiva
+        function createUserObject() {
+            const nombre = document.getElementById('interactive-nombre').value;
+            const edad = parseInt(document.getElementById('interactive-edad').value);
+            const output = document.getElementById('interactive-output');
+            
+            if (!nombre || !edad) {
+                output.innerHTML = '<div class="error">Por favor, completa ambos campos</div>';
+                return;
+            }
+            
+            const usuario = {
+                nombre: nombre,
+                edad: edad,
+                activo: true,
+                hobbies: ['programar', 'leer', 'viajar']
+            };
+            
+            output.innerHTML = `
+                <div class="success">
+                    <h5>✅ Objeto creado exitosamente:</h5>
+                    <pre class="object-display">${JSON.stringify(usuario, null, 2)}</pre>
+                    <p><strong>Acceso a propiedades:</strong></p>
+                    <ul>
+                        <li>Nombre: <code>usuario.nombre</code> = "${usuario.nombre}"</li>
+                        <li>Edad: <code>usuario.edad</code> = ${usuario.edad}</li>
+                        <li>Primer hobby: <code>usuario.hobbies[0]</code> = "${usuario.hobbies[0]}"</li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        // Observador de intersección para progreso
+        function setupProgressObserver() {
+            const lessons = document.querySelectorAll('.lesson-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const lessonId = entry.target.dataset.lesson;
+                        if (lessonId && !completedLessons.has(lessonId)) {
+                            // Simular que la lección se completó después de 3 segundos de visualización
+                            setTimeout(() => {
+                                markLessonComplete(lessonId);
+                            }, 3000);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            lessons.forEach(lesson => observer.observe(lesson));
+        }
+
+        // Navegación suave
+        function setupSmoothNavigation() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Actualizar sección actual
+                        const sectionId = target.id;
+                        if (sectionId) {
+                            currentSection = sectionId;
+                            updateNavigationState();
+                        }
+                    }
+                });
+            });
+        }
+
+        function updateNavigationState() {
+            // Actualizar estado de navegación
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeItem = document.querySelector(`[data-section="${currentSection}"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+
+        // Actualizar breadcrumb
+        function updateBreadcrumb() {
+            const currentPage = document.getElementById('current-page');
+            if (currentPage) {
+                currentPage.textContent = 'Fundamentos de JavaScript';
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBreadcrumb();
+            setupSmoothNavigation();
+            setupProgressObserver();
+            
+            // Resaltar sintaxis inicial
+            Prism.highlightAll();
+            
+            // Marcar primera lección como activa
+            updateNavigationState();
+        });
+
+        // Funciones globales para compatibilidad
+        window.toggleCode = function(codeId) {
+            const codeBlock = document.getElementById(codeId);
+            if (codeBlock.style.display === 'none') {
+                codeBlock.style.display = 'block';
+                Prism.highlightAll();
+            } else {
+                codeBlock.style.display = 'none';
+            }
+        };
+
+        window.toggleSection = toggleSection;
+        window.showExampleTab = showExampleTab;
+        window.runCode = runCode;
+        window.createUserObject = createUserObject;
+    </script>
+</body>
+</html>

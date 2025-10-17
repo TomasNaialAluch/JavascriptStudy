@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Moderno (ES6+) - Academia de Programación</title>
+    <meta name="description" content="Aprende las características modernas de JavaScript ES6+ incluyendo let/const, arrow functions, template literals, destructuring, spread operator y más.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-js-square"></i>
+                    <span>JavaScript Academy</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                    <a href="index.html#modules" class="nav-link">Módulos</a>
+                    <a href="index.html#projects" class="nav-link">Proyectos</a>
+                    <a href="index.html#contact" class="nav-link">Contacto</a>
+                </nav>
+                <button class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+        <div class="container">
+            <a href="index.html">Inicio</a>
+            <span class="separator">></span>
+            <a href="index.html#modules">Módulos</a>
+            <span class="separator">></span>
+            <span id="current-page">JavaScript Moderno (ES6+)</span>
+        </div>
+    </nav>
+
+    <!-- Barra de Progreso -->
+    <section class="progress-bar-section">
+        <div class="container">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="progress-label">Progreso del Módulo</span>
+                    <span class="progress-percentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="moduleProgress"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero del Módulo -->
+    <section class="module-hero">
+        <div class="container">
+            <div class="module-header">
+                <div class="module-badge">
+                    <i class="fas fa-rocket"></i>
+                    <span>Módulo 2</span>
+                </div>
+                <h1>JavaScript Moderno (ES6+)</h1>
+                <p class="module-description">
+                    Domina las características modernas de JavaScript que revolucionaron el desarrollo web. 
+                    Aprende ES6+ con ejemplos prácticos y ejercicios interactivos.
+                </p>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>4-6 horas</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-code"></i>
+                        <span>15+ ejemplos</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-star"></i>
+                        <span>Intermedio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navegación del Módulo -->
+    <section class="module-nav">
+        <div class="container">
+            <div class="module-nav-content">
+                <h3>📚 Lecciones del Módulo</h3>
+                <div class="module-nav-list">
+                    <a href="#let-const" class="nav-item" data-section="let-const">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-tag"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Let, Const y Var</span>
+                            <span class="nav-item-desc">Declaraciones modernas de variables</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#arrow-functions" class="nav-item" data-section="arrow-functions">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Arrow Functions</span>
+                            <span class="nav-item-desc">Sintaxis moderna de funciones</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#template-literals" class="nav-item" data-section="template-literals">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Template Literals</span>
+                            <span class="nav-item-desc">Strings modernos con interpolación</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#destructuring" class="nav-item" data-section="destructuring">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-unpack"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Destructuring</span>
+                            <span class="nav-item-desc">Extracción elegante de datos</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#spread-rest" class="nav-item" data-section="spread-rest">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Spread & Rest</span>
+                            <span class="nav-item-desc">Operadores de expansión</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#modules" class="nav-item" data-section="modules">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Módulos ES6</span>
+                            <span class="nav-item-desc">Import/Export moderno</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 1: Let, Const y Var -->
+    <section id="let-const" class="lesson-section" data-lesson="let-const">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fas fa-tag"></i>
+                    <span>Lección 1</span>
+                </div>
+                <h2>Let, Const y Var</h2>
+                <p class="lesson-intro">Las declaraciones modernas de variables que cambiaron JavaScript para siempre. Entiende las diferencias y cuándo usar cada una.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Scope de bloque vs función</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Hoisting y temporal dead zone</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Inmutabilidad con const</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('let-const-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="let-const-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fas fa-tag"></i> Declaraciones de Variables</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>var</code>
+                                        <span>Scope de función, se puede redeclarar</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>let</code>
+                                        <span>Scope de bloque, no se puede redeclarar</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>const</code>
+                                        <span>Scope de bloque, valor inmutable</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-exclamation-triangle"></i> Diferencias Importantes</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>Hoisting</code>
+                                        <span>var se eleva, let/const no</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>TDZ</code>
+                                        <span>Temporal Dead Zone en let/const</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Scope</code>
+                                        <span>Bloque vs función</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('let-const-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="let-const-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('let-const', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('let-const', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('let-const', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="let-const-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Declaraciones Básicas</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('let-const-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="let-const-basic-code">// Declaraciones modernas
+let nombre = "Ana";
+const edad = 25;
+var ciudad = "Madrid"; // Evitar usar var
+
+// Scope de bloque
+if (true) {
+    let bloqueVariable = "Solo en este bloque";
+    const bloqueConstante = "También solo aquí";
+    var funcionVariable = "Accesible fuera del bloque";
+}
+
+console.log("Nombre:", nombre);
+console.log("Edad:", edad);
+console.log("Ciudad:", ciudad);
+// console.log(bloqueVariable); // Error: no definida
+console.log("Variable de función:", funcionVariable);</code></pre>
+                                </div>
+                                <div class="code-output" id="let-const-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="let-const-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Hoisting y Temporal Dead Zone</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('let-const-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="let-const-advanced-code">// Hoisting con var
+console.log("Var antes:", varVariable); // undefined (no error)
+var varVariable = "Soy var";
+
+// Temporal Dead Zone con let/const
+try {
+    console.log("Let antes:", letVariable); // Error!
+} catch (e) {
+    console.log("Error TDZ:", e.message);
+}
+let letVariable = "Soy let";
+
+// Const con objetos
+const usuario = {
+    nombre: "Carlos",
+    edad: 30
+};
+
+usuario.edad = 31; // ✅ Permitido (propiedad mutable)
+// usuario = {}; // ❌ Error (reasignación no permitida)
+
+console.log("Usuario:", usuario);</code></pre>
+                                </div>
+                                <div class="code-output" id="let-const-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="let-const-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Prueba el Scope</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Variable:</label>
+                                        <select id="interactive-var-type">
+                                            <option value="var">var</option>
+                                            <option value="let">let</option>
+                                            <option value="const">const</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Valor:</label>
+                                        <input type="text" id="interactive-var-value" placeholder="Valor de la variable" value="Hola Mundo">
+                                    </div>
+                                    <button class="btn btn-primary" onclick="testVariableScope()">
+                                        <i class="fas fa-flask"></i> Probar Scope
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Las diferencias entre <code>var</code>, <code>let</code> y <code>const</code></li>
+                            <li>El concepto de scope de bloque vs función</li>
+                            <li>Hoisting y Temporal Dead Zone</li>
+                            <li>Cuándo usar cada tipo de declaración</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 2: Arrow Functions -->
+    <section id="arrow-functions" class="lesson-section bg-light" data-lesson="arrow-functions">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>Lección 2</span>
+                </div>
+                <h2>Arrow Functions</h2>
+                <p class="lesson-intro">La sintaxis moderna y concisa para escribir funciones en JavaScript. Más legible, menos código.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Sintaxis concisa</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>No tienen su propio 'this'</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Return implícito</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('arrow-functions-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="arrow-functions-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fas fa-arrow-right"></i> Sintaxis Arrow Functions</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>() => {}</code>
+                                        <span>Sin parámetros</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>x => x * 2</code>
+                                        <span>Un parámetro, return implícito</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>(a, b) => a + b</code>
+                                        <span>Múltiples parámetros</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-exclamation-triangle"></i> Diferencias con Function</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>this</code>
+                                        <span>No tienen su propio contexto</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>arguments</code>
+                                        <span>No tienen objeto arguments</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>constructor</code>
+                                        <span>No pueden ser constructores</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('arrow-functions-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="arrow-functions-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('arrow-functions', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('arrow-functions', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('arrow-functions', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="arrow-functions-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Sintaxis Básica</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('arrow-functions-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="arrow-functions-basic-code">// Función tradicional
+function sumar(a, b) {
+    return a + b;
+}
+
+// Arrow function equivalente
+const sumarArrow = (a, b) => a + b;
+
+// Con un solo parámetro (sin paréntesis)
+const duplicar = x => x * 2;
+
+// Sin parámetros
+const saludar = () => "Hola mundo";
+
+// Con múltiples líneas
+const procesarDatos = (datos) => {
+    const resultado = datos.map(item => item * 2);
+    return resultado.filter(item => item > 10);
+};
+
+console.log("Suma tradicional:", sumar(5, 3));
+console.log("Suma arrow:", sumarArrow(5, 3));
+console.log("Duplicar:", duplicar(7));
+console.log("Saludar:", saludar());
+console.log("Procesar:", procesarDatos([1, 5, 8, 12]));</code></pre>
+                                </div>
+                                <div class="code-output" id="arrow-functions-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="arrow-functions-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Uso con Arrays y Objetos</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('arrow-functions-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="arrow-functions-advanced-code">const numeros = [1, 2, 3, 4, 5];
+const personas = [
+    { nombre: "Ana", edad: 25 },
+    { nombre: "Carlos", edad: 30 },
+    { nombre: "María", edad: 28 }
+];
+
+// Map con arrow function
+const cuadrados = numeros.map(n => n * n);
+
+// Filter con arrow function
+const pares = numeros.filter(n => n % 2 === 0);
+
+// Reduce con arrow function
+const suma = numeros.reduce((acc, n) => acc + n, 0);
+
+// Find con arrow function
+const mayor = numeros.find(n => n > 3);
+
+// Sort con arrow function
+const ordenados = personas.sort((a, b) => a.edad - b.edad);
+
+console.log("Cuadrados:", cuadrados);
+console.log("Pares:", pares);
+console.log("Suma total:", suma);
+console.log("Mayor que 3:", mayor);
+console.log("Ordenados por edad:", ordenados);</code></pre>
+                                </div>
+                                <div class="code-output" id="arrow-functions-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="arrow-functions-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Crea tu Arrow Function</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Operación:</label>
+                                        <select id="interactive-operation">
+                                            <option value="sum">Sumar</option>
+                                            <option value="multiply">Multiplicar</option>
+                                            <option value="power">Elevar al cuadrado</option>
+                                            <option value="filter">Filtrar pares</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Números (separados por comas):</label>
+                                        <input type="text" id="interactive-numbers" placeholder="1,2,3,4,5" value="1,2,3,4,5">
+                                    </div>
+                                    <button class="btn btn-primary" onclick="createArrowFunction()">
+                                        <i class="fas fa-magic"></i> Crear Función
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>La sintaxis concisa de arrow functions</li>
+                            <li>Return implícito en expresiones simples</li>
+                            <li>Uso con métodos de array (map, filter, reduce)</li>
+                            <li>Diferencias importantes con funciones tradicionales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 3: Template Literals -->
+    <section id="template-literals" class="lesson-section" data-lesson="template-literals">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fas fa-quote-left"></i>
+                    <span>Lección 3</span>
+                </div>
+                <h2>Template Literals</h2>
+                <p class="lesson-intro">La forma moderna de trabajar con strings. Interpolación, multilínea y expresiones embebidas.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Interpolación de variables</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Strings multilínea</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Expresiones embebidas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('template-literals-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="template-literals-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fas fa-quote-left"></i> Sintaxis Template Literals</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>`texto`</code>
+                                        <span>Backticks en lugar de comillas</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>${variable}</code>
+                                        <span>Interpolación de variables</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>${expresion}</code>
+                                        <span>Evaluación de expresiones</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-star"></i> Ventajas</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>Legibilidad</code>
+                                        <span>Código más limpio y claro</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Multilínea</code>
+                                        <span>Strings sin concatenación</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Flexibilidad</code>
+                                        <span>Expresiones complejas</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('template-literals-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="template-literals-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('template-literals', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('template-literals', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('template-literals', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="template-literals-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Interpolación Básica</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('template-literals-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="template-literals-basic-code">const nombre = "María";
+const edad = 28;
+const ciudad = "Barcelona";
+
+// Forma tradicional (concatenación)
+const mensajeTradicional = "Hola, me llamo " + nombre + 
+    ", tengo " + edad + " años y vivo en " + ciudad + ".";
+
+// Con template literals
+const mensajeModerno = `Hola, me llamo ${nombre}, tengo ${edad} años y vivo en ${ciudad}.`;
+
+// Con expresiones
+const saludo = `¡Hola ${nombre}! El año que viene tendrás ${edad + 1} años.`;
+
+// Multilínea
+const carta = `
+Estimado/a ${nombre},
+
+Espero que estés bien en ${ciudad}.
+Te escribo para informarte que...
+
+Saludos cordiales,
+El equipo
+`;
+
+console.log("Tradicional:", mensajeTradicional);
+console.log("Moderno:", mensajeModerno);
+console.log("Con expresiones:", saludo);
+console.log("Carta:", carta);</code></pre>
+                                </div>
+                                <div class="code-output" id="template-literals-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="template-literals-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Uso Avanzado</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('template-literals-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="template-literals-advanced-code">// Función que genera HTML
+function crearTarjetaUsuario(usuario) {
+    return `
+        <div class="usuario-card">
+            <h3>${usuario.nombre}</h3>
+            <p>Edad: ${usuario.edad} años</p>
+            <p>Email: ${usuario.email}</p>
+            <p>Activo: ${usuario.activo ? 'Sí' : 'No'}</p>
+        </div>
+    `;
+}
+
+// Función con template literals anidados
+function generarReporte(datos) {
+    const fecha = new Date().toLocaleDateString();
+    const total = datos.reduce((sum, item) => sum + item.valor, 0);
+    
+    return `
+        REPORTE - ${fecha}
+        ===================
+        Total de elementos: ${datos.length}
+        Suma total: $${total.toFixed(2)}
+        
+        Detalles:
+        ${datos.map(item => `- ${item.nombre}: $${item.valor}`).join('\n')}
+    `;
+}
+
+// Uso de las funciones
+const usuario = {
+    nombre: "Carlos",
+    edad: 30,
+    email: "carlos@email.com",
+    activo: true
+};
+
+const datos = [
+    { nombre: "Producto A", valor: 100 },
+    { nombre: "Producto B", valor: 200 },
+    { nombre: "Producto C", valor: 150 }
+];
+
+console.log("Tarjeta usuario:", crearTarjetaUsuario(usuario));
+console.log("Reporte:", generarReporte(datos));</code></pre>
+                                </div>
+                                <div class="code-output" id="template-literals-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="template-literals-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Generador de Mensajes</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Nombre:</label>
+                                        <input type="text" id="interactive-name" placeholder="Tu nombre" value="Ana">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Edad:</label>
+                                        <input type="number" id="interactive-age" placeholder="Tu edad" value="25">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Ciudad:</label>
+                                        <input type="text" id="interactive-city" placeholder="Tu ciudad" value="Madrid">
+                                    </div>
+                                    <button class="btn btn-primary" onclick="generateMessage()">
+                                        <i class="fas fa-magic"></i> Generar Mensaje
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>La sintaxis de template literals con backticks</li>
+                            <li>Interpolación de variables con <code>${}</code></li>
+                            <li>Creación de strings multilínea</li>
+                            <li>Evaluación de expresiones dentro de strings</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ejercicios Prácticos -->
+    <section class="exercises-section">
+        <div class="container">
+            <h2>💪 Ejercicios Prácticos</h2>
+            <p class="section-description">Pon a prueba tus conocimientos con estos ejercicios prácticos de JavaScript moderno.</p>
+            
+            <div class="exercises-grid">
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Conversor de Funciones</h3>
+                        <span class="difficulty beginner">Principiante</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Convierte las siguientes funciones tradicionales a arrow functions:</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Convertir función de suma</li>
+                                <li>Convertir función de multiplicación</li>
+                                <li>Convertir función de filtrado</li>
+                                <li>Usar template literals para mostrar resultados</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise1-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise1-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-javascript">// Funciones tradicionales
+function sumar(a, b) {
+    return a + b;
+}
+
+function multiplicar(x, y) {
+    return x * y;
+}
+
+function filtrarPares(numeros) {
+    return numeros.filter(function(n) {
+        return n % 2 === 0;
+    });
+}
+
+// Convertidas a arrow functions
+const sumarArrow = (a, b) => a + b;
+const multiplicarArrow = (x, y) => x * y;
+const filtrarParesArrow = numeros => numeros.filter(n => n % 2 === 0);
+
+// Uso con template literals
+const a = 5, b = 3;
+const numeros = [1, 2, 3, 4, 5, 6];
+
+console.log(`Suma: ${sumarArrow(a, b)}`);
+console.log(`Multiplicación: ${multiplicarArrow(a, b)}`);
+console.log(`Pares: ${filtrarParesArrow(numeros)}`);</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Generador de HTML</h3>
+                        <span class="difficulty intermediate">Intermedio</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Crea una función que genere HTML usando template literals y arrow functions.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Usar template literals para HTML</li>
+                                <li>Arrow functions para procesar datos</li>
+                                <li>Destructuring para extraer propiedades</li>
+                                <li>Generar lista de productos</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise2-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise2-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-javascript">const productos = [
+    { id: 1, nombre: "Laptop", precio: 999, categoria: "Electrónicos" },
+    { id: 2, nombre: "Mouse", precio: 25, categoria: "Accesorios" },
+    { id: 3, nombre: "Teclado", precio: 75, categoria: "Accesorios" }
+];
+
+// Arrow function para crear tarjeta de producto
+const crearTarjetaProducto = ({ nombre, precio, categoria }) => `
+    <div class="producto-card">
+        <h3>${nombre}</h3>
+        <p class="precio">$${precio}</p>
+        <p class="categoria">${categoria}</p>
+    </div>
+`;
+
+// Arrow function para filtrar por categoría
+const filtrarPorCategoria = (productos, categoria) => 
+    productos.filter(producto => producto.categoria === categoria);
+
+// Generar HTML
+const productosAccesorios = filtrarPorCategoria(productos, "Accesorios");
+const htmlAccesorios = productosAccesorios
+    .map(crearTarjetaProducto)
+    .join('\n');
+
+console.log(htmlAccesorios);</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navegación entre módulos -->
+    <section class="module-navigation">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="modulo1-fundamentos.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Módulo Anterior
+                </a>
+                <a href="index.html#modules" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Ver Todos los Módulos
+                </a>
+                <a href="modulo3-dom.html" class="btn btn-outline">
+                    Siguiente Módulo <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JavaScript Academy</h3>
+                    <p>Aprende JavaScript desde cero hasta nivel profesional con ejemplos prácticos y ejercicios interactivos.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Módulos</h4>
+                    <ul>
+                        <li><a href="modulo1-fundamentos.html">Fundamentos</a></li>
+                        <li><a href="modulo2-moderno.html">JavaScript Moderno</a></li>
+                        <li><a href="modulo3-dom.html">DOM Manipulation</a></li>
+                        <li><a href="modulo4-asincrono.html">Programación Asíncrona</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="index.html#projects">Proyectos</a></li>
+                        <li><a href="index.html#resources">Recursos</a></li>
+                        <li><a href="index.html#contact">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JavaScript Academy. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Estado del módulo
+        let moduleProgress = 0;
+        let completedLessons = new Set();
+        let currentSection = 'let-const';
+
+        // Funciones de progreso
+        function updateProgress() {
+            const totalLessons = 6;
+            const progress = (completedLessons.size / totalLessons) * 100;
+            moduleProgress = Math.round(progress);
+            
+            const progressFill = document.getElementById('moduleProgress');
+            const progressPercentage = document.querySelector('.progress-percentage');
+            
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+            if (progressPercentage) {
+                progressPercentage.textContent = progress + '%';
+            }
+        }
+
+        function markLessonComplete(lessonId) {
+            completedLessons.add(lessonId);
+            updateProgress();
+            
+            const navItem = document.querySelector(`[data-section="${lessonId}"]`);
+            if (navItem) {
+                const statusIcon = navItem.querySelector('.nav-item-status i');
+                statusIcon.className = 'fas fa-check-circle';
+                statusIcon.style.color = '#28a745';
+            }
+        }
+
+        // Funciones de navegación
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const toggleIcon = section.previousElementSibling.querySelector('.toggle-icon');
+            
+            if (section.classList.contains('collapsed')) {
+                section.classList.remove('collapsed');
+                toggleIcon.style.transform = 'rotate(180deg)';
+            } else {
+                section.classList.add('collapsed');
+                toggleIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function showExampleTab(lesson, tab) {
+            const tabContents = document.querySelectorAll(`#${lesson}-example .example-tab-content`);
+            const tabButtons = document.querySelectorAll(`#${lesson}-example .tab-btn`);
+            
+            tabContents.forEach(content => content.classList.remove('active'));
+            tabButtons.forEach(button => button.classList.remove('active'));
+            
+            document.getElementById(`${lesson}-${tab}`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Funciones de código
+        function runCode(codeId) {
+            const codeElement = document.getElementById(codeId);
+            const outputId = codeId.replace('-code', '-output');
+            const outputElement = document.getElementById(outputId);
+            
+            if (!codeElement || !outputElement) return;
+            
+            const code = codeElement.textContent;
+            
+            const originalLog = console.log;
+            let output = '';
+            console.log = function(...args) {
+                output += args.join(' ') + '\n';
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                eval(code);
+                outputElement.innerHTML = `<pre class="output-content">${output || 'Código ejecutado correctamente'}</pre>`;
+                outputElement.style.display = 'block';
+            } catch (error) {
+                outputElement.innerHTML = `<pre class="output-error">Error: ${error.message}</pre>`;
+                outputElement.style.display = 'block';
+            } finally {
+                console.log = originalLog;
+            }
+        }
+
+        // Funciones interactivas
+        function testVariableScope() {
+            const varType = document.getElementById('interactive-var-type').value;
+            const varValue = document.getElementById('interactive-var-value').value;
+            const output = document.getElementById('interactive-output');
+            
+            let result = '';
+            
+            try {
+                if (varType === 'var') {
+                    eval(`var testVar = "${varValue}";`);
+                    result = `✅ Variable 'var' creada: ${testVar}`;
+                } else if (varType === 'let') {
+                    eval(`let testLet = "${varValue}";`);
+                    result = `✅ Variable 'let' creada: ${testLet}`;
+                } else if (varType === 'const') {
+                    eval(`const testConst = "${varValue}";`);
+                    result = `✅ Constante 'const' creada: ${testConst}`;
+                }
+            } catch (error) {
+                result = `❌ Error: ${error.message}`;
+            }
+            
+            output.innerHTML = `<div class="success">${result}</div>`;
+        }
+
+        function createArrowFunction() {
+            const operation = document.getElementById('interactive-operation').value;
+            const numbersInput = document.getElementById('interactive-numbers').value;
+            const output = document.getElementById('interactive-output');
+            
+            const numbers = numbersInput.split(',').map(n => parseInt(n.trim()));
+            
+            let result = '';
+            let arrowFunction = '';
+            
+            switch (operation) {
+                case 'sum':
+                    arrowFunction = 'const sumar = (arr) => arr.reduce((acc, n) => acc + n, 0);';
+                    result = `Suma: ${numbers.reduce((acc, n) => acc + n, 0)}`;
+                    break;
+                case 'multiply':
+                    arrowFunction = 'const multiplicar = (arr) => arr.reduce((acc, n) => acc * n, 1);';
+                    result = `Multiplicación: ${numbers.reduce((acc, n) => acc * n, 1)}`;
+                    break;
+                case 'power':
+                    arrowFunction = 'const elevar = (arr) => arr.map(n => n * n);';
+                    result = `Cuadrados: [${numbers.map(n => n * n).join(', ')}]`;
+                    break;
+                case 'filter':
+                    arrowFunction = 'const filtrarPares = (arr) => arr.filter(n => n % 2 === 0);';
+                    result = `Pares: [${numbers.filter(n => n % 2 === 0).join(', ')}]`;
+                    break;
+            }
+            
+            output.innerHTML = `
+                <div class="success">
+                    <h5>✅ Arrow Function Creada:</h5>
+                    <pre class="object-display">${arrowFunction}</pre>
+                    <p><strong>Resultado:</strong> ${result}</p>
+                </div>
+            `;
+        }
+
+        function generateMessage() {
+            const name = document.getElementById('interactive-name').value;
+            const age = parseInt(document.getElementById('interactive-age').value);
+            const city = document.getElementById('interactive-city').value;
+            const output = document.getElementById('interactive-output');
+            
+            if (!name || !age || !city) {
+                output.innerHTML = '<div class="error">Por favor, completa todos los campos</div>';
+                return;
+            }
+            
+            const message = `
+                <div class="success">
+                    <h5>✅ Mensaje Generado con Template Literals:</h5>
+                    <div class="object-display">
+Hola, me llamo ${name}, tengo ${age} años y vivo en ${city}.
+
+El año que viene tendré ${age + 1} años.
+
+¡Espero que estés bien en ${city}!
+                    </div>
+                </div>
+            `;
+            
+            output.innerHTML = message;
+        }
+
+        // Observador de intersección para progreso
+        function setupProgressObserver() {
+            const lessons = document.querySelectorAll('.lesson-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const lessonId = entry.target.dataset.lesson;
+                        if (lessonId && !completedLessons.has(lessonId)) {
+                            setTimeout(() => {
+                                markLessonComplete(lessonId);
+                            }, 3000);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            lessons.forEach(lesson => observer.observe(lesson));
+        }
+
+        // Navegación suave
+        function setupSmoothNavigation() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        const sectionId = target.id;
+                        if (sectionId) {
+                            currentSection = sectionId;
+                            updateNavigationState();
+                        }
+                    }
+                });
+            });
+        }
+
+        function updateNavigationState() {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeItem = document.querySelector(`[data-section="${currentSection}"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+
+        function updateBreadcrumb() {
+            const currentPage = document.getElementById('current-page');
+            if (currentPage) {
+                currentPage.textContent = 'JavaScript Moderno (ES6+)';
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBreadcrumb();
+            setupSmoothNavigation();
+            setupProgressObserver();
+            Prism.highlightAll();
+            updateNavigationState();
+        });
+
+        // Funciones globales
+        window.toggleCode = function(codeId) {
+            const codeBlock = document.getElementById(codeId);
+            if (codeBlock.style.display === 'none') {
+                codeBlock.style.display = 'block';
+                Prism.highlightAll();
+            } else {
+                codeBlock.style.display = 'none';
+            }
+        };
+
+        window.toggleSection = toggleSection;
+        window.showExampleTab = showExampleTab;
+        window.runCode = runCode;
+        window.testVariableScope = testVariableScope;
+        window.createArrowFunction = createArrowFunction;
+        window.generateMessage = generateMessage;
+    </script>
+</body>
+</html>

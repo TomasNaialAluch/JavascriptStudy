@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramientas de Desarrollo - Academia de Programación</title>
+    <meta name="description" content="Aprende las herramientas esenciales para desarrolladores JavaScript: VS Code, Chrome DevTools, Git, debugging y más.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-js-square"></i>
+                    <span>JavaScript Academy</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                    <a href="index.html#modules" class="nav-link">Módulos</a>
+                    <a href="index.html#projects" class="nav-link">Proyectos</a>
+                    <a href="index.html#contact" class="nav-link">Contacto</a>
+                </nav>
+                <button class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+        <div class="container">
+            <a href="index.html">Inicio</a>
+            <span class="separator">></span>
+            <a href="index.html#modules">Módulos</a>
+            <span class="separator">></span>
+            <span id="current-page">Herramientas de Desarrollo</span>
+        </div>
+    </nav>
+
+    <!-- Barra de Progreso -->
+    <section class="progress-bar-section">
+        <div class="container">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="progress-label">Progreso del Módulo</span>
+                    <span class="progress-percentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="moduleProgress"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero del Módulo -->
+    <section class="module-hero">
+        <div class="container">
+            <div class="module-header">
+                <div class="module-badge">
+                    <i class="fas fa-tools"></i>
+                    <span>Módulo 6</span>
+                </div>
+                <h1>Herramientas de Desarrollo</h1>
+                <p class="module-description">
+                    Domina las herramientas esenciales para ser un desarrollador JavaScript productivo. 
+                    VS Code, Chrome DevTools, Git, debugging y flujos de trabajo modernos.
+                </p>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>4-6 horas</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-code"></i>
+                        <span>20+ ejemplos</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-star"></i>
+                        <span>Intermedio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navegación del Módulo -->
+    <section class="module-nav">
+        <div class="container">
+            <div class="module-nav-content">
+                <h3>📚 Lecciones del Módulo</h3>
+                <div class="module-nav-list">
+                    <a href="#vscode" class="nav-item" data-section="vscode">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">VS Code</span>
+                            <span class="nav-item-desc">Editor de código y extensiones</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#devtools" class="nav-item" data-section="devtools">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Chrome DevTools</span>
+                            <span class="nav-item-desc">Debugging y profiling</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#git" class="nav-item" data-section="git">
+                        <div class="nav-item-icon">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Git y GitHub</span>
+                            <span class="nav-item-desc">Control de versiones</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#debugging" class="nav-item" data-section="debugging">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Debugging</span>
+                            <span class="nav-item-desc">Técnicas de depuración</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#performance" class="nav-item" data-section="performance">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Performance</span>
+                            <span class="nav-item-desc">Optimización y profiling</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#workflow" class="nav-item" data-section="workflow">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Flujo de Trabajo</span>
+                            <span class="nav-item-desc">CI/CD y automatización</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#testing-advanced" class="nav-item" data-section="testing-advanced">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Testing Avanzado</span>
+                            <span class="nav-item-desc">Jest, Cypress, Testing Library</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                    <a href="#deployment" class="nav-item" data-section="deployment">
+                        <div class="nav-item-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="nav-item-content">
+                            <span class="nav-item-title">Deployment</span>
+                            <span class="nav-item-desc">Vercel, Netlify, Docker</span>
+                        </div>
+                        <div class="nav-item-status">
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 1: VS Code -->
+    <section id="vscode" class="lesson-section" data-lesson="vscode">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fas fa-code"></i>
+                    <span>Lección 1</span>
+                </div>
+                <h2>VS Code</h2>
+                <p class="lesson-intro">El editor de código más popular para JavaScript. Aprende a configurarlo, usar extensiones y optimizar tu flujo de trabajo.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Extensiones esenciales</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Atajos de teclado</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Configuración personalizada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('vscode-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="vscode-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fas fa-code"></i> Extensiones Esenciales</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>ESLint</code>
+                                        <span>Linting de JavaScript</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Prettier</code>
+                                        <span>Formateo de código</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Live Server</code>
+                                        <span>Servidor de desarrollo</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Auto Rename Tag</code>
+                                        <span>Renombrar tags HTML</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-keyboard"></i> Atajos Importantes</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>Ctrl+Shift+P</code>
+                                        <span>Paleta de comandos</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Ctrl+`</code>
+                                        <span>Terminal integrado</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Ctrl+D</code>
+                                        <span>Seleccionar siguiente ocurrencia</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Alt+Click</code>
+                                        <span>Múltiples cursores</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('vscode-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="vscode-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('vscode', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('vscode', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('vscode', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="vscode-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Configuración Básica de VS Code</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('vscode-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-json" id="vscode-basic-code">// settings.json - Configuración básica
+{
+  "editor.fontSize": 14,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true
+}
+
+// keybindings.json - Atajos personalizados
+[
+  {
+    "key": "ctrl+shift+f",
+    "command": "editor.action.formatDocument"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+shift+`",
+    "command": "workbench.action.terminal.new"
+  }
+]
+
+// tasks.json - Tareas personalizadas
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Dev Server",
+      "type": "shell",
+      "command": "npm run dev",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Run Tests",
+      "type": "shell",
+      "command": "npm test",
+      "group": "test"
+    }
+  ]
+}
+
+console.log('Configuración de VS Code generada');</code></pre>
+                                </div>
+                                <div class="code-output" id="vscode-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="vscode-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Configuración Avanzada y Snippets</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('vscode-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-json" id="vscode-advanced-code">// settings.json avanzado
+{
+  "editor.fontFamily": "'Fira Code', 'Consolas', monospace",
+  "editor.fontLigatures": true,
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.smoothScrolling": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "material-icon-theme",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.cursorBlinking": true,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.git": true
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  }
+}
+
+// snippets/javascript.json - Snippets personalizados
+{
+  "Console Log": {
+    "prefix": "cl",
+    "body": "console.log('$1:', $1);",
+    "description": "Console log con variable"
+  },
+  "Arrow Function": {
+    "prefix": "af",
+    "body": "const $1 = ($2) => {\n  $3\n};",
+    "description": "Arrow function"
+  },
+  "Async Function": {
+    "prefix": "async",
+    "body": "async function $1($2) {\n  try {\n    $3\n  } catch (error) {\n    console.error('Error:', error);\n  }\n}",
+    "description": "Async function con try/catch"
+  },
+  "React Component": {
+    "prefix": "rfc",
+    "body": "import React from 'react';\n\nconst $1 = () => {\n  return (\n    <div>\n      $2\n    </div>\n  );\n};\n\nexport default $1;",
+    "description": "React Functional Component"
+  },
+  "useEffect Hook": {
+    "prefix": "useEffect",
+    "body": "useEffect(() => {\n  $1\n}, [$2]);",
+    "description": "useEffect hook"
+  }
+}
+
+// launch.json - Configuración de debugging
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/src"
+    },
+    {
+      "name": "Attach to Chrome",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}/src"
+    },
+    {
+      "name": "Launch Node.js",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/index.js",
+      "console": "integratedTerminal"
+    }
+  ]
+}
+
+console.log('Configuración avanzada de VS Code generada');</code></pre>
+                                </div>
+                                <div class="code-output" id="vscode-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="vscode-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Generador de Configuración VS Code</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Tema de color:</label>
+                                        <select id="interactive-theme">
+                                            <option value="One Dark Pro">One Dark Pro</option>
+                                            <option value="Material Theme">Material Theme</option>
+                                            <option value="Monokai">Monokai</option>
+                                            <option value="Solarized Dark">Solarized Dark</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Tamaño de fuente:</label>
+                                        <input type="number" id="interactive-font-size" placeholder="14" value="14" min="10" max="24">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>¿Formateo automático?</label>
+                                        <select id="interactive-format">
+                                            <option value="true">Sí</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-primary" onclick="generateVSCodeConfig()">
+                                        <i class="fas fa-magic"></i> Generar Configuración
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Las extensiones esenciales para desarrollo JavaScript</li>
+                            <li>Atajos de teclado que mejoran la productividad</li>
+                            <li>Cómo configurar VS Code para tu flujo de trabajo</li>
+                            <li>Snippets personalizados y debugging</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 2: Chrome DevTools -->
+    <section id="devtools" class="lesson-section bg-light" data-lesson="devtools">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fas fa-bug"></i>
+                    <span>Lección 2</span>
+                </div>
+                <h2>Chrome DevTools</h2>
+                <p class="lesson-intro">Herramientas de desarrollo del navegador para debugging, profiling y optimización de aplicaciones web.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Console y debugging</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Network y performance</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Elements y DOM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('devtools-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="devtools-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fas fa-bug"></i> Paneles Principales</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>Console</code>
+                                        <span>Logs, errores y ejecución de código</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Elements</code>
+                                        <span>Inspección y edición del DOM</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Network</code>
+                                        <span>Monitoreo de peticiones HTTP</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Sources</code>
+                                        <span>Debugging de código JavaScript</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-tachometer-alt"></i> Herramientas de Performance</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>Performance</code>
+                                        <span>Profiling de rendimiento</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Memory</code>
+                                        <span>Análisis de memoria</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>Lighthouse</code>
+                                        <span>Auditoría de calidad</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('devtools-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="devtools-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('devtools', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('devtools', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('devtools', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="devtools-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Uso Básico de DevTools</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('devtools-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="devtools-basic-code">// Comandos útiles en la consola de DevTools
+console.log('Mensaje básico');
+console.warn('Advertencia');
+console.error('Error');
+console.info('Información');
+
+// Inspeccionar variables
+const usuario = { nombre: 'Ana', edad: 25, activo: true };
+console.log('Usuario:', usuario);
+console.table(usuario);
+
+// Inspeccionar arrays
+const numeros = [1, 2, 3, 4, 5];
+console.log('Array:', numeros);
+console.table(numeros);
+
+// Medir tiempo de ejecución
+console.time('operacion');
+for (let i = 0; i < 1000000; i++) {
+    Math.random();
+}
+console.timeEnd('operacion');
+
+// Agrupar logs
+console.group('Datos del Usuario');
+console.log('Nombre:', usuario.nombre);
+console.log('Edad:', usuario.edad);
+console.log('Activo:', usuario.activo);
+console.groupEnd();
+
+// Contar ejecuciones
+for (let i = 0; i < 5; i++) {
+    console.count('iteracion');
+}
+
+// Trace de la pila de llamadas
+function funcionA() {
+    console.log('En función A');
+    funcionB();
+}
+
+function funcionB() {
+    console.log('En función B');
+    console.trace('Trace de la pila');
+}
+
+funcionA();
+
+// Inspeccionar elementos del DOM
+console.log('Elementos con clase "btn":', document.querySelectorAll('.btn'));
+console.log('Elemento con ID "app":', document.getElementById('app'));
+
+// Evaluar expresiones
+console.log('2 + 2 =', 2 + 2);
+console.log('Math.PI =', Math.PI);
+console.log('Date.now() =', new Date().toLocaleString());</code></pre>
+                                </div>
+                                <div class="code-output" id="devtools-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="devtools-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Debugging Avanzado</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('devtools-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="devtools-advanced-code">// Función con debugging
+function procesarDatos(datos) {
+    console.log('Iniciando procesamiento...');
+    console.log('Datos recibidos:', datos);
+    
+    // Validar datos
+    if (!Array.isArray(datos)) {
+        console.error('Error: Los datos deben ser un array');
+        return;
+    }
+    
+    console.log('Datos válidos, procesando...');
+    
+    // Procesar cada elemento
+    const resultado = datos.map((item, index) => {
+        console.log(`Procesando item ${index}:`, item);
+        
+        // Simular procesamiento
+        const procesado = {
+            id: index + 1,
+            valor: item * 2,
+            timestamp: Date.now()
+        };
+        
+        console.log(`Item ${index} procesado:`, procesado);
+        return procesado;
+    });
+    
+    console.log('Procesamiento completado');
+    console.table(resultado);
+    
+    return resultado;
+}
+
+// Función con breakpoints condicionales
+function buscarUsuario(usuarios, id) {
+    console.log('Buscando usuario con ID:', id);
+    
+    for (let i = 0; i < usuarios.length; i++) {
+        const usuario = usuarios[i];
+        console.log(`Verificando usuario ${i}:`, usuario);
+        
+        // Breakpoint condicional: solo si el ID coincide
+        if (usuario.id === id) {
+            console.log('¡Usuario encontrado!', usuario);
+            return usuario;
+        }
+    }
+    
+    console.warn('Usuario no encontrado');
+    return null;
+}
+
+// Función para testing de performance
+function testPerformance() {
+    console.log('Iniciando test de performance...');
+    
+    // Test 1: Array methods
+    console.time('Array methods');
+    const numeros = Array.from({length: 100000}, (_, i) => i);
+    const dobles = numeros.map(n => n * 2);
+    const pares = dobles.filter(n => n % 2 === 0);
+    console.timeEnd('Array methods');
+    
+    // Test 2: Loop tradicional
+    console.time('Loop tradicional');
+    const resultado = [];
+    for (let i = 0; i < 100000; i++) {
+        const doble = i * 2;
+        if (doble % 2 === 0) {
+            resultado.push(doble);
+        }
+    }
+    console.timeEnd('Loop tradicional');
+    
+    console.log('Test de performance completado');
+}
+
+// Función para monitorear memoria
+function monitorearMemoria() {
+    if (performance.memory) {
+        console.log('Memoria utilizada:', performance.memory.usedJSHeapSize / 1024 / 1024, 'MB');
+        console.log('Memoria total:', performance.memory.totalJSHeapSize / 1024 / 1024, 'MB');
+        console.log('Límite de memoria:', performance.memory.jsHeapSizeLimit / 1024 / 1024, 'MB');
+    } else {
+        console.log('Información de memoria no disponible');
+    }
+}
+
+// Ejecutar ejemplos
+const datos = [1, 2, 3, 4, 5];
+procesarDatos(datos);
+
+const usuarios = [
+    { id: 1, nombre: 'Ana' },
+    { id: 2, nombre: 'Carlos' },
+    { id: 3, nombre: 'María' }
+];
+buscarUsuario(usuarios, 2);
+
+testPerformance();
+monitorearMemoria();</code></pre>
+                                </div>
+                                <div class="code-output" id="devtools-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="devtools-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Simulador de DevTools</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Comando de consola:</label>
+                                        <select id="interactive-console-command">
+                                            <option value="log">console.log()</option>
+                                            <option value="table">console.table()</option>
+                                            <option value="time">console.time()</option>
+                                            <option value="group">console.group()</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Datos (JSON):</label>
+                                        <input type="text" id="interactive-console-data" placeholder='{"nombre": "Ana", "edad": 25}' value='{"nombre": "Ana", "edad": 25}'>
+                                    </div>
+                                    <button class="btn btn-primary" onclick="simulateConsoleCommand()">
+                                        <i class="fas fa-play"></i> Simular Comando
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Cómo usar la consola para debugging y testing</li>
+                            <li>Los diferentes paneles de DevTools y sus funciones</li>
+                            <li>Técnicas de profiling y análisis de performance</li>
+                            <li>Herramientas para inspeccionar el DOM y las peticiones</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 3: Git y GitHub -->
+    <section id="git" class="lesson-section" data-lesson="git">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fab fa-git-alt"></i>
+                    <span>Lección 3</span>
+                </div>
+                <h2>Git y GitHub</h2>
+                <p class="lesson-intro">Control de versiones esencial para cualquier desarrollador. Aprende Git desde lo básico hasta flujos de trabajo avanzados.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <div class="key-points-grid">
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Comandos básicos</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Branches y merge</span>
+                        </div>
+                        <div class="key-point">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>GitHub workflow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('git-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="git-theory" class="theory-content collapsed">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fab fa-git-alt"></i> Comandos Básicos</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>git init</code>
+                                        <span>Inicializar repositorio</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>git add</code>
+                                        <span>Agregar archivos al staging</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>git commit</code>
+                                        <span>Crear commit</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>git push</code>
+                                        <span>Enviar cambios al remoto</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-code-branch"></i> Branches y Merge</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item">
+                                        <code>git branch</code>
+                                        <span>Listar/crear branches</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>git checkout</code>
+                                        <span>Cambiar de branch</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>git merge</code>
+                                        <span>Fusionar branches</span>
+                                    </div>
+                                    <div class="theory-item">
+                                        <code>git rebase</code>
+                                        <span>Reescribir historial</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('git-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="git-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('git', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('git', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('git', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="git-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Flujo Básico de Git</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('git-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-bash" id="git-basic-code"># Inicializar un nuevo repositorio
+git init mi-proyecto
+cd mi-proyecto
+
+# Configurar usuario (solo la primera vez)
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"
+
+# Verificar estado del repositorio
+git status
+
+# Crear archivo README
+echo "# Mi Proyecto" > README.md
+echo "Este es mi primer proyecto con Git" >> README.md
+
+# Agregar archivos al staging area
+git add README.md
+
+# Ver qué archivos están en staging
+git status
+
+# Crear el primer commit
+git commit -m "feat: agregar README inicial"
+
+# Ver el historial de commits
+git log --oneline
+
+# Crear más archivos
+echo "console.log('Hola Mundo');" > app.js
+echo "body { background: #f0f0f0; }" > styles.css
+
+# Agregar todos los archivos
+git add .
+
+# Commit con múltiples archivos
+git commit -m "feat: agregar archivos de aplicación"
+
+# Ver el historial completo
+git log --oneline --graph
+
+# Crear un archivo .gitignore
+echo "node_modules/" > .gitignore
+echo "*.log" >> .gitignore
+echo ".env" >> .gitignore
+
+# Agregar .gitignore
+git add .gitignore
+git commit -m "chore: agregar .gitignore"
+
+# Ver el estado actual
+git status
+git log --oneline</code></pre>
+                                </div>
+                                <div class="code-output" id="git-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="git-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Flujo Avanzado con Branches</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('git-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-bash" id="git-advanced-code"># Crear y cambiar a nueva rama
+git checkout -b feature/nueva-funcionalidad
+
+# Hacer cambios en la nueva rama
+echo "function nuevaFuncion() {" >> app.js
+echo "  console.log('Nueva funcionalidad');" >> app.js
+echo "}" >> app.js
+
+# Commit en la rama feature
+git add app.js
+git commit -m "feat: agregar nueva funcionalidad"
+
+# Crear otra rama para bugfix
+git checkout main
+git checkout -b bugfix/corregir-error
+
+# Corregir un error
+echo "// Bug corregido" >> app.js
+git add app.js
+git commit -m "fix: corregir error en app.js"
+
+# Volver a main y fusionar feature
+git checkout main
+git merge feature/nueva-funcionalidad
+
+# Fusionar bugfix
+git merge bugfix/corregir-error
+
+# Ver el historial con branches
+git log --oneline --graph --all
+
+# Eliminar ramas ya fusionadas
+git branch -d feature/nueva-funcionalidad
+git branch -d bugfix/corregir-error
+
+# Configurar repositorio remoto (GitHub)
+git remote add origin https://github.com/usuario/mi-proyecto.git
+
+# Enviar cambios al remoto
+git push -u origin main
+
+# Crear nueva rama y enviarla
+git checkout -b feature/otra-funcionalidad
+echo "// Otra funcionalidad" >> app.js
+git add app.js
+git commit -m "feat: otra funcionalidad"
+git push -u origin feature/otra-funcionalidad
+
+# Ver ramas remotas
+git branch -r
+
+# Actualizar rama local con cambios remotos
+git checkout main
+git pull origin main
+
+# Ver diferencias entre ramas
+git diff main feature/otra-funcionalidad
+
+# Ver estadísticas del repositorio
+git log --stat --oneline</code></pre>
+                                </div>
+                                <div class="code-output" id="git-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="git-interactive" class="example-tab-content">
+                            <div class="interactive-example">
+                                <h4>🎮 Generador de Comandos Git</h4>
+                                <div class="interactive-content">
+                                    <div class="input-group">
+                                        <label>Acción:</label>
+                                        <select id="interactive-git-action">
+                                            <option value="init">Inicializar repositorio</option>
+                                            <option value="commit">Hacer commit</option>
+                                            <option value="branch">Crear branch</option>
+                                            <option value="merge">Fusionar branch</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Mensaje/Parámetros:</label>
+                                        <input type="text" id="interactive-git-params" placeholder="Mensaje del commit o nombre del branch" value="feat: nueva funcionalidad">
+                                    </div>
+                                    <button class="btn btn-primary" onclick="generateGitCommand()">
+                                        <i class="fas fa-magic"></i> Generar Comando
+                                    </button>
+                                    <div class="interactive-output" id="interactive-output"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Los comandos básicos de Git para control de versiones</li>
+                            <li>Cómo trabajar con branches y merge</li>
+                            <li>Flujos de trabajo con GitHub</li>
+                            <li>Mejores prácticas para commits y mensajes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ejercicios Prácticos -->
+    <section class="exercises-section">
+        <div class="container">
+            <h2>💪 Ejercicios Prácticos</h2>
+            <p class="section-description">Pon a prueba tus conocimientos de herramientas de desarrollo con estos ejercicios prácticos.</p>
+            
+            <div class="exercises-grid">
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Configuración Completa de Proyecto</h3>
+                        <span class="difficulty advanced">Avanzado</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Configura un proyecto JavaScript completo con todas las herramientas de desarrollo.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Configurar VS Code con extensiones</li>
+                                <li>Configurar ESLint y Prettier</li>
+                                <li>Configurar Git con hooks</li>
+                                <li>Configurar debugging</li>
+                                <li>Configurar tasks y scripts</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise1-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise1-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-json">// .vscode/settings.json
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript", "javascriptreact"],
+  "prettier.requireConfig": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.associations": {
+    "*.js": "javascript"
+  }
+}
+
+// .vscode/launch.json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/src"
+    }
+  ]
+}
+
+// .vscode/tasks.json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Dev Server",
+      "type": "shell",
+      "command": "npm run dev",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+      }
+    }
+  ]
+}
+
+// .eslintrc.js
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true
+  },
+  extends: ['eslint:recommended', 'prettier'],
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module'
+  },
+  rules: {
+    'no-console': 'warn',
+    'no-unused-vars': 'error'
+  }
+};
+
+// .prettierrc
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5"
+}
+
+// .gitignore
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
+Thumbs.db
+
+// package.json
+{
+  "name": "proyecto-completo",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "format": "prettier --write src/**/*.js",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^2.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.0"
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Flujo de Trabajo Git Completo</h3>
+                        <span class="difficulty intermediate">Intermedio</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Implementa un flujo de trabajo Git completo con GitHub.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Configurar repositorio local y remoto</li>
+                                <li>Crear branches para features</li>
+                                <li>Implementar pull requests</li>
+                                <li>Configurar GitHub Actions</li>
+                                <li>Manejar conflictos de merge</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise2-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise2-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-bash"># 1. Configurar repositorio
+git init
+git remote add origin https://github.com/usuario/proyecto.git
+
+# 2. Crear rama principal
+git checkout -b main
+echo "# Proyecto" > README.md
+git add README.md
+git commit -m "feat: inicializar proyecto"
+git push -u origin main
+
+# 3. Crear feature branch
+git checkout -b feature/nueva-funcionalidad
+echo "function nuevaFuncion() { return 'Hola'; }" > src/funciones.js
+git add src/funciones.js
+git commit -m "feat: agregar nueva función"
+git push -u origin feature/nueva-funcionalidad
+
+# 4. Crear pull request (desde GitHub)
+# - Ir a GitHub
+# - Crear Pull Request
+# - Revisar cambios
+# - Merge a main
+
+# 5. Actualizar local después del merge
+git checkout main
+git pull origin main
+git branch -d feature/nueva-funcionalidad
+
+# 6. Crear hotfix branch
+git checkout -b hotfix/corregir-bug
+echo "// Bug corregido" >> src/funciones.js
+git add src/funciones.js
+git commit -m "fix: corregir bug crítico"
+git push -u origin hotfix/corregir-bug
+
+# 7. Merge hotfix
+git checkout main
+git merge hotfix/corregir-bug
+git push origin main
+git branch -d hotfix/corregir-bug
+
+# 8. Configurar GitHub Actions (.github/workflows/ci.yml)
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: npm test
+      - run: npm run lint</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navegación entre módulos -->
+    <section class="module-navigation">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="modulo5-frameworks.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Módulo Anterior
+                </a>
+                <a href="index.html#modules" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Ver Todos los Módulos
+                </a>
+                <a href="index.html#contact" class="btn btn-outline">
+                    Finalizar Curso <i class="fas fa-graduation-cap"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JavaScript Academy</h3>
+                    <p>Aprende JavaScript desde cero hasta nivel profesional con ejemplos prácticos y ejercicios interactivos.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Módulos</h4>
+                    <ul>
+                        <li><a href="modulo1-fundamentos.html">Fundamentos</a></li>
+                        <li><a href="modulo2-moderno.html">JavaScript Moderno</a></li>
+                        <li><a href="modulo3-dom.html">DOM Manipulation</a></li>
+                        <li><a href="modulo4-asincrono.html">Programación Asíncrona</a></li>
+                        <li><a href="modulo5-frameworks.html">Frameworks y Librerías</a></li>
+                        <li><a href="modulo6-herramientas.html">Herramientas de Desarrollo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="index.html#projects">Proyectos</a></li>
+                        <li><a href="index.html#resources">Recursos</a></li>
+                        <li><a href="index.html#contact">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JavaScript Academy. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Estado del módulo
+        let moduleProgress = 0;
+        let completedLessons = new Set();
+        let currentSection = 'vscode';
+
+        // Funciones de progreso
+        function updateProgress() {
+            const totalLessons = 6;
+            const progress = (completedLessons.size / totalLessons) * 100;
+            moduleProgress = Math.round(progress);
+            
+            const progressFill = document.getElementById('moduleProgress');
+            const progressPercentage = document.querySelector('.progress-percentage');
+            
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+            if (progressPercentage) {
+                progressPercentage.textContent = progress + '%';
+            }
+        }
+
+        function markLessonComplete(lessonId) {
+            completedLessons.add(lessonId);
+            updateProgress();
+            
+            const navItem = document.querySelector(`[data-section="${lessonId}"]`);
+            if (navItem) {
+                const statusIcon = navItem.querySelector('.nav-item-status i');
+                statusIcon.className = 'fas fa-check-circle';
+                statusIcon.style.color = '#28a745';
+            }
+        }
+
+        // Funciones de navegación
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const toggleIcon = section.previousElementSibling.querySelector('.toggle-icon');
+            
+            if (section.classList.contains('collapsed')) {
+                section.classList.remove('collapsed');
+                toggleIcon.style.transform = 'rotate(180deg)';
+            } else {
+                section.classList.add('collapsed');
+                toggleIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function showExampleTab(lesson, tab) {
+            const tabContents = document.querySelectorAll(`#${lesson}-example .example-tab-content`);
+            const tabButtons = document.querySelectorAll(`#${lesson}-example .tab-btn`);
+            
+            tabContents.forEach(content => content.classList.remove('active'));
+            tabButtons.forEach(button => button.classList.remove('active'));
+            
+            document.getElementById(`${lesson}-${tab}`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Funciones de código
+        function runCode(codeId) {
+            const codeElement = document.getElementById(codeId);
+            const outputId = codeId.replace('-code', '-output');
+            const outputElement = document.getElementById(outputId);
+            
+            if (!codeElement || !outputElement) return;
+            
+            const code = codeElement.textContent;
+            
+            const originalLog = console.log;
+            let output = '';
+            console.log = function(...args) {
+                output += args.join(' ') + '\n';
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                eval(code);
+                outputElement.innerHTML = `<pre class="output-content">${output || 'Código ejecutado correctamente'}</pre>`;
+                outputElement.style.display = 'block';
+            } catch (error) {
+                outputElement.innerHTML = `<pre class="output-error">Error: ${error.message}</pre>`;
+                outputElement.style.display = 'block';
+            } finally {
+                console.log = originalLog;
+            }
+        }
+
+        // Funciones interactivas
+        function generateVSCodeConfig() {
+            const theme = document.getElementById('interactive-theme').value;
+            const fontSize = document.getElementById('interactive-font-size').value;
+            const format = document.getElementById('interactive-format').value === 'true';
+            const output = document.getElementById('interactive-output');
+            
+            const config = {
+                "editor.fontSize": parseInt(fontSize),
+                "editor.tabSize": 2,
+                "editor.insertSpaces": true,
+                "editor.formatOnSave": format,
+                "workbench.colorTheme": theme,
+                "editor.codeActionsOnSave": {
+                    "source.fixAll.eslint": format
+                },
+                "files.autoSave": "afterDelay",
+                "emmet.includeLanguages": {
+                    "javascript": "javascriptreact"
+                }
+            };
+            
+            output.innerHTML = `
+                <div class="success">
+                    <h5>✅ Configuración VS Code Generada</h5>
+                    <pre class="object-display">${JSON.stringify(config, null, 2)}</pre>
+                    <p><strong>Instrucciones:</strong></p>
+                    <ul>
+                        <li>Copiar la configuración a <code>settings.json</code></li>
+                        <li>Reiniciar VS Code</li>
+                        <li>Instalar extensiones recomendadas</li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        function simulateConsoleCommand() {
+            const command = document.getElementById('interactive-console-command').value;
+            const data = document.getElementById('interactive-console-data').value;
+            const output = document.getElementById('interactive-output');
+            
+            try {
+                const parsedData = JSON.parse(data);
+                let result = '';
+                
+                switch (command) {
+                    case 'log':
+                        result = `console.log('${JSON.stringify(parsedData)}');`;
+                        break;
+                    case 'table':
+                        result = `console.table(${JSON.stringify(parsedData)});`;
+                        break;
+                    case 'time':
+                        result = `console.time('operacion');\n// ... código ...\nconsole.timeEnd('operacion');`;
+                        break;
+                    case 'group':
+                        result = `console.group('Datos');\nconsole.log('${JSON.stringify(parsedData)}');\nconsole.groupEnd();`;
+                        break;
+                }
+                
+                output.innerHTML = `
+                    <div class="success">
+                        <h5>✅ Comando de Consola Generado</h5>
+                        <pre class="object-display">${result}</pre>
+                        <p><strong>Instrucciones:</strong></p>
+                        <ul>
+                            <li>Abrir Chrome DevTools (F12)</li>
+                            <li>Ir a la pestaña Console</li>
+                            <li>Pegar y ejecutar el comando</li>
+                        </ul>
+                    </div>
+                `;
+            } catch (error) {
+                output.innerHTML = '<div class="error">Error: JSON inválido. Usa formato: {"clave": "valor"}</div>';
+            }
+        }
+
+        function generateGitCommand() {
+            const action = document.getElementById('interactive-git-action').value;
+            const params = document.getElementById('interactive-git-params').value;
+            const output = document.getElementById('interactive-output');
+            
+            let command = '';
+            let description = '';
+            
+            switch (action) {
+                case 'init':
+                    command = 'git init';
+                    description = 'Inicializa un nuevo repositorio Git';
+                    break;
+                case 'commit':
+                    command = `git commit -m "${params}"`;
+                    description = 'Crea un commit con el mensaje especificado';
+                    break;
+                case 'branch':
+                    command = `git checkout -b ${params}`;
+                    description = 'Crea y cambia a una nueva rama';
+                    break;
+                case 'merge':
+                    command = `git merge ${params}`;
+                    description = 'Fusiona la rama especificada con la actual';
+                    break;
+            }
+            
+            output.innerHTML = `
+                <div class="success">
+                    <h5>✅ Comando Git Generado</h5>
+                    <pre class="object-display">${command}</pre>
+                    <p><strong>Descripción:</strong> ${description}</p>
+                    <p><strong>Instrucciones:</strong></p>
+                    <ul>
+                        <li>Ejecutar en la terminal</li>
+                        <li>Verificar con <code>git status</code></li>
+                        <li>Ver historial con <code>git log --oneline</code></li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        // Observador de intersección para progreso
+        function setupProgressObserver() {
+            const lessons = document.querySelectorAll('.lesson-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const lessonId = entry.target.dataset.lesson;
+                        if (lessonId && !completedLessons.has(lessonId)) {
+                            setTimeout(() => {
+                                markLessonComplete(lessonId);
+                            }, 3000);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            lessons.forEach(lesson => observer.observe(lesson));
+        }
+
+        // Navegación suave
+        function setupSmoothNavigation() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        const sectionId = target.id;
+                        if (sectionId) {
+                            currentSection = sectionId;
+                            updateNavigationState();
+                        }
+                    }
+                });
+            });
+        }
+
+        function updateNavigationState() {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeItem = document.querySelector(`[data-section="${currentSection}"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+
+        function updateBreadcrumb() {
+            const currentPage = document.getElementById('current-page');
+            if (currentPage) {
+                currentPage.textContent = 'Herramientas de Desarrollo';
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBreadcrumb();
+            setupSmoothNavigation();
+            setupProgressObserver();
+            Prism.highlightAll();
+            updateNavigationState();
+        });
+
+        // Funciones globales
+        window.toggleCode = function(codeId) {
+            const codeBlock = document.getElementById(codeId);
+            if (codeBlock.style.display === 'none') {
+                codeBlock.style.display = 'block';
+                Prism.highlightAll();
+            } else {
+                codeBlock.style.display = 'none';
+            }
+        };
+
+        window.toggleSection = toggleSection;
+        window.showExampleTab = showExampleTab;
+        window.runCode = runCode;
+        window.generateVSCodeConfig = generateVSCodeConfig;
+        window.simulateConsoleCommand = simulateConsoleCommand;
+        window.generateGitCommand = generateGitCommand;
+    </script>
+</body>
+</html>
