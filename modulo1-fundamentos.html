@@ -3388,8 +3388,15 @@ let sumar = (a, b) => a + b;
 
     <div id="parameters-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('parameters-modal')">&times;</span>
-            <h2><i class="fas fa-cog"></i> Parámetros y Argumentos</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-cog"></i> Parámetros y Argumentos</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('parameters-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('parameters-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué son los parámetros?</h3>
                 <p>Los <strong>parámetros</strong> son variables que se definen en la declaración de la función. Los <strong>argumentos</strong> son los valores reales que se pasan cuando se llama la función.</p>
@@ -3416,8 +3423,15 @@ saludar("Juan");  // "Hola, Juan!"</code></pre>
 
     <div id="return-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('return-modal')">&times;</span>
-            <h2><i class="fas fa-undo"></i> Return - Valor de Retorno</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-undo"></i> Return - Valor de Retorno</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('return-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('return-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es return?</h3>
                 <p>La palabra clave <code>return</code> especifica qué valor debe devolver la función. Una función sin return devuelve <code>undefined</code>.</p>
@@ -3443,8 +3457,15 @@ let saludo = saludar("Juan"); // saludo = undefined</code></pre>
 
     <div id="scope-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('scope-modal')">&times;</span>
-            <h2><i class="fas fa-eye"></i> Scope - Alcance de Variables</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-eye"></i> Scope - Alcance de Variables</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('scope-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('scope-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es el scope?</h3>
                 <p>El <strong>scope</strong> es el alcance o visibilidad de una variable. Define dónde puede ser accedida una variable en el código.</p>
@@ -3474,8 +3495,15 @@ console.log(local);  // ❌ Error: local is not defined</code></pre>
 
     <div id="hoisting-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('hoisting-modal')">&times;</span>
-            <h2><i class="fas fa-arrow-up"></i> Hoisting - Elevación</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-arrow-up"></i> Hoisting - Elevación</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('hoisting-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('hoisting-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es el hoisting?</h3>
                 <p>El <strong>hoisting</strong> es el comportamiento de JavaScript de "elevar" las declaraciones de variables y funciones al inicio de su scope antes de la ejecución.</p>
@@ -3503,8 +3531,15 @@ let y = 10;</code></pre>
     <!-- Modales para Lección 5 (Arrays y Objetos) -->
     <div id="array-basic-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('array-basic-modal')">&times;</span>
-            <h2><i class="fas fa-list"></i> Métodos Básicos de Arrays</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-list"></i> Métodos Básicos de Arrays</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('array-basic-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('array-basic-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>push() y pop()</h3>
                 <p>Métodos para agregar y quitar elementos al <strong>final</strong> del array.</p>
@@ -3534,8 +3569,15 @@ let primero = numeros.shift(); // 1 - Quita el primero
 
     <div id="array-transform-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('array-transform-modal')">&times;</span>
-            <h2><i class="fas fa-magic"></i> Métodos de Transformación</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-magic"></i> Métodos de Transformación</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('array-transform-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('array-transform-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>map() - Transformar elementos</h3>
                 <p>Crea un nuevo array aplicando una función a cada elemento.</p>
@@ -3569,8 +3611,15 @@ console.log(suma); // 15</code></pre>
 
     <div id="array-search-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('array-search-modal')">&times;</span>
-            <h2><i class="fas fa-search"></i> Métodos de Búsqueda</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-search"></i> Métodos de Búsqueda</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('array-search-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('array-search-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>find() - Encontrar primer elemento</h3>
                 <p>Devuelve el primer elemento que cumpla la condición, o <code>undefined</code> si no encuentra nada.</p>
@@ -3598,8 +3647,15 @@ console.log(colores.includes("amarillo")); // false</code></pre>
 
     <div id="object-access-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('object-access-modal')">&times;</span>
-            <h2><i class="fas fa-key"></i> Acceso a Propiedades</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-key"></i> Acceso a Propiedades</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('object-access-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('object-access-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>Notación de punto</h3>
                 <p>Usa un punto seguido del nombre de la propiedad.</p>
