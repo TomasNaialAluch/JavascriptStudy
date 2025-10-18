@@ -3,194 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModulAnimation 3 - Arrays</title>
+    <title>Animaciones Interactivas - Módulo 3: Arrays y Objetos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
     <style>
-        .animation-page {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 2rem 0;
+            overflow-x: hidden;
         }
 
-        .animation-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .animation-header {
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
             text-align: center;
             color: white;
-            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .animation-header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .concept-section {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .concept-title {
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        /* Visualización de array */
-        .array-visualization {
-            background: #2c2c54;
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .array-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .array-element {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            min-width: 60px;
-            text-align: center;
-            position: relative;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .array-element:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .array-index {
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #4ecdc4;
-            color: #333;
-            padding: 0.3rem 0.6rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .array-element.highlighted {
-            background: linear-gradient(45deg, #feca57, #ff9ff3);
-            transform: scale(1.2);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-
-        /* Métodos de array */
-        .methods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .method-card {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .method-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .method-card.push { background: linear-gradient(135deg, #4834d4, #686de0); }
-        .method-card.pop { background: linear-gradient(135deg, #00d2d3, #54a0ff); }
-        .method-card.map { background: linear-gradient(135deg, #ff9ff3, #f368e0); }
-        .method-card.filter { background: linear-gradient(135deg, #96ceb4, #6c5ce7); }
-        .method-card.reduce { background: linear-gradient(135deg, #feca57, #ff6348); }
-
-        .method-icon {
+        .header h1 {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .method-name {
-            font-size: 1.3rem;
-            font-weight: bold;
             margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .method-description {
-            font-size: 0.9rem;
+        .header p {
+            font-size: 1.2rem;
             opacity: 0.9;
         }
 
-        /* Animación de transformación */
-        .transformation-demo {
-            background: #96ceb4;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
+        }
+
+        .animation-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
             color: #333;
-        }
-
-        .transformation-steps {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .transformation-step {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
             text-align: center;
-            min-width: 150px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .animation-area {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #dee2e6;
+            margin: 2rem 0;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .array-container {
+            position: absolute;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .array-item {
+            background: white;
+            color: #333;
+            padding: 0.5rem 1rem;
+            margin: 0.2rem;
+            border-radius: 8px;
+            display: inline-block;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .array-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .array-item.highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .object-container {
+            position: absolute;
+            background: linear-gradient(45deg, #fa709a, #fee140);
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 8px 25px rgba(250, 112, 154, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .object-property {
+            background: white;
+            color: #333;
+            padding: 0.5rem 1rem;
+            margin: 0.2rem;
+            border-radius: 8px;
+            display: block;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .object-property:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .object-property.highlight {
+            background: linear-gradient(45deg, #a8edea, #fed6e3);
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .method-block {
+            position: absolute;
+            background: linear-gradient(45deg, #a8edea, #fed6e3);
+            color: #333;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 8px 25px rgba(168, 237, 234, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .method-block:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(168, 237, 234, 0.6);
+        }
+
+        .arrow {
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border-radius: 2px;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: -6px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid #ee5a24;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .arrow.animated {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .data-flow {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
-        .transformation-step.active {
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        .data-flow.show {
+            animation: dataFlow 2s ease-in-out;
         }
 
-        .flow-arrow {
-            font-size: 2rem;
-            color: #333;
-            animation: bounce 1s infinite;
+        @keyframes dataFlow {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0; transform: scale(0.8); }
         }
 
-        /* Control buttons */
-        .control-buttons {
+        .control-panel {
             display: flex;
             justify-content: center;
             gap: 1rem;
@@ -198,355 +244,568 @@
             flex-wrap: wrap;
         }
 
-        .control-btn {
+        .btn {
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
             border: none;
             padding: 1rem 2rem;
             border-radius: 25px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
-        .control-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
-        /* Animaciones CSS */
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+        .btn:active {
+            transform: translateY(0);
         }
 
-        @keyframes slideIn {
-            from { transform: translateX(-100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .btn.secondary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
         }
 
-        @keyframes fadeInUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .btn.secondary:hover {
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
 
-        .animate-in {
-            animation: slideIn 0.6s ease-out;
+        .explanation {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+            display: none;
         }
 
-        .animate-up {
-            animation: fadeInUp 0.6s ease-out;
+        .explanation.show {
+            display: block;
+            animation: slideInUp 0.5s ease-out;
         }
 
-        /* Responsive */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .step {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transform: scale(1.2);
+        }
+
+        .step.completed {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .info-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .info-modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+            position: relative;
+        }
+
+        .info-modal-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+
+        .info-modal-body {
+            padding: 2rem;
+            color: #333;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .info-modal-close {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 2rem 2rem 2rem;
+            width: calc(100% - 4rem);
+            transition: all 0.3s ease;
+        }
+
+        .info-modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         @media (max-width: 768px) {
-            .animation-header h1 {
-                font-size: 2rem;
+            .container {
+                padding: 1rem;
             }
             
-            .array-container {
+            .animation-area {
+                height: 300px;
+            }
+            
+            .array-item, .object-property, .method-block {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .control-panel {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .methods-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .transformation-steps {
-                flex-direction: column;
+            .btn {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="animation-page">
-        <div class="animation-container">
-            <!-- Header -->
-            <div class="animation-header animate-up">
-                <h1><i class="fas fa-list"></i> ModulAnimation 3</h1>
-                <p>Arrays - Aprende con Animaciones Interactivas</p>
+    <div class="header">
+        <h1><i class="fas fa-magic"></i> Animaciones Interactivas</h1>
+        <p>Módulo 3: Arrays y Objetos - Aprende con Visualizaciones</p>
+    </div>
+
+    <div class="container">
+        <!-- Animación 1: Métodos de Array -->
+        <div class="animation-section">
+            <h2 class="section-title">Métodos de Array - Transformar Datos</h2>
+            <div class="code-block">
+                <div class="code-line">let numeros = [1, 2, 3, 4, 5];</div>
+                <div class="code-line"></div>
+                <div class="code-line">// map() - transformar cada elemento</div>
+                <div class="code-line">let dobles = numeros.map(n => n * 2);</div>
+                <div class="code-line"></div>
+                <div class="code-line">// filter() - filtrar elementos</div>
+                <div class="code-line">let pares = numeros.filter(n => n % 2 === 0);</div>
             </div>
-
-            <!-- Sección 1: Visualización de Array -->
-            <div class="concept-section animate-in">
-                <h2 class="concept-title">📋 Estructura de Arrays</h2>
-                <p class="concept-description">Haz clic en los elementos para ver sus índices</p>
-                
-                <div class="array-visualization">
-                    <h3>Array: [10, 20, 30, 40, 50]</h3>
-                    <div class="array-container" id="arrayContainer">
-                        <div class="array-element" data-index="0" onclick="highlightElement(0)">
-                            <div class="array-index">0</div>
-                            <div>10</div>
-                        </div>
-                        <div class="array-element" data-index="1" onclick="highlightElement(1)">
-                            <div class="array-index">1</div>
-                            <div>20</div>
-                        </div>
-                        <div class="array-element" data-index="2" onclick="highlightElement(2)">
-                            <div class="array-index">2</div>
-                            <div>30</div>
-                        </div>
-                        <div class="array-element" data-index="3" onclick="highlightElement(3)">
-                            <div class="array-index">3</div>
-                            <div>40</div>
-                        </div>
-                        <div class="array-element" data-index="4" onclick="highlightElement(4)">
-                            <div class="array-index">4</div>
-                            <div>50</div>
-                        </div>
-                    </div>
+            <div class="animation-area" id="array-methods-animation">
+                <div class="array-container" id="original-array" style="top: 50px; left: 50px;">
+                    <div style="color: white; font-weight: bold; margin-bottom: 0.5rem;">Array Original</div>
+                    <div class="array-item" data-value="1">1</div>
+                    <div class="array-item" data-value="2">2</div>
+                    <div class="array-item" data-value="3">3</div>
+                    <div class="array-item" data-value="4">4</div>
+                    <div class="array-item" data-value="5">5</div>
                 </div>
-
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="showArrayInfo()">
-                        <i class="fas fa-info-circle"></i> Ver Información
-                    </button>
-                    <button class="control-btn" onclick="resetArray()">
-                        <i class="fas fa-redo"></i> Reiniciar
-                    </button>
+                <div class="method-block" id="map-method" style="top: 150px; left: 300px;">
+                    <i class="fas fa-arrow-right"></i> map(n => n * 2)
+                </div>
+                <div class="array-container" id="doubled-array" style="top: 250px; left: 50px;">
+                    <div style="color: white; font-weight: bold; margin-bottom: 0.5rem;">Array Transformado</div>
+                    <div class="array-item" data-value="2">2</div>
+                    <div class="array-item" data-value="4">4</div>
+                    <div class="array-item" data-value="6">6</div>
+                    <div class="array-item" data-value="8">8</div>
+                    <div class="array-item" data-value="10">10</div>
+                </div>
+                <div class="arrow" id="map-arrow" style="top: 200px; left: 200px; transform: rotate(45deg);"></div>
+                <div class="data-flow" id="map-flow" style="top: 100px; left: 400px;">
+                    map() aplica una función a cada elemento
                 </div>
             </div>
-
-            <!-- Sección 2: Métodos de Array -->
-            <div class="concept-section animate-in">
-                <h2 class="concept-title">🔧 Métodos de Array</h2>
-                <p class="concept-description">Explora los métodos más importantes</p>
-                
-                <div class="methods-grid">
-                    <div class="method-card push" onclick="animateMethod('push')">
-                        <div class="method-icon">➕</div>
-                        <div class="method-name">push()</div>
-                        <div class="method-description">Agrega al final</div>
-                    </div>
-                    
-                    <div class="method-card pop" onclick="animateMethod('pop')">
-                        <div class="method-icon">➖</div>
-                        <div class="method-name">pop()</div>
-                        <div class="method-description">Quita del final</div>
-                    </div>
-                    
-                    <div class="method-card map" onclick="animateMethod('map')">
-                        <div class="method-icon">🔄</div>
-                        <div class="method-name">map()</div>
-                        <div class="method-description">Transforma elementos</div>
-                    </div>
-                    
-                    <div class="method-card filter" onclick="animateMethod('filter')">
-                        <div class="method-icon">🔍</div>
-                        <div class="method-name">filter()</div>
-                        <div class="method-description">Filtra elementos</div>
-                    </div>
-                    
-                    <div class="method-card reduce" onclick="animateMethod('reduce')">
-                        <div class="method-icon">📊</div>
-                        <div class="method-name">reduce()</div>
-                        <div class="method-description">Reduce a un valor</div>
-                    </div>
-                </div>
-
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="showMethodExamples()">
-                        <i class="fas fa-code"></i> Ver Ejemplos
-                    </button>
-                    <button class="control-btn" onclick="interactiveArray()">
-                        <i class="fas fa-play"></i> Probar Array
-                    </button>
-                </div>
+            <div class="step-indicator">
+                <div class="step" id="array-step-1"></div>
+                <div class="step" id="array-step-2"></div>
+                <div class="step" id="array-step-3"></div>
             </div>
-
-            <!-- Sección 3: Transformaciones -->
-            <div class="concept-section animate-in">
-                <h2 class="concept-title">🔄 Transformaciones de Array</h2>
-                <p class="concept-description">Ve cómo se transforman los arrays paso a paso</p>
-                
-                <div class="transformation-demo">
-                    <div class="transformation-steps">
-                        <div class="transformation-step" id="step1">
-                            <h4>Array Original</h4>
-                            <div>[1, 2, 3, 4, 5]</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="transformation-step" id="step2">
-                            <h4>map(x => x * 2)</h4>
-                            <div>[2, 4, 6, 8, 10]</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="transformation-step" id="step3">
-                            <h4>filter(x => x > 5)</h4>
-                            <div>[6, 8, 10]</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="transformation-step" id="step4">
-                            <h4>reduce((a, b) => a + b)</h4>
-                            <div>24</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="animateTransformation()">
-                        <i class="fas fa-play"></i> Ver Transformación
-                    </button>
-                    <button class="control-btn" onclick="showChainExample()">
-                        <i class="fas fa-link"></i> Ver Encadenamiento
-                    </button>
-                </div>
-            </div>
-
-            <!-- Navegación -->
-            <div class="control-buttons">
-                <button class="control-btn" onclick="window.location.href='ModulAnimation2.html'">
-                    <i class="fas fa-arrow-left"></i> Anterior: Funciones
+            <div class="control-panel">
+                <button class="btn" onclick="animateArrayMethods()">
+                    <i class="fas fa-play"></i> Ejecutar map()
                 </button>
-                <button class="control-btn" onclick="window.location.href='ModulAnimation4.html'">
-                    <i class="fas fa-arrow-right"></i> Siguiente: Objetos
+                <button class="btn secondary" onclick="resetArrayMethods()">
+                    <i class="fas fa-redo"></i> Reiniciar
                 </button>
+            </div>
+            <div class="explanation" id="array-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de map()</h3>
+                <p>El método map() crea un nuevo array aplicando una función a cada elemento:</p>
+                <ul>
+                    <li><strong>Entrada:</strong> Array original [1, 2, 3, 4, 5]</li>
+                    <li><strong>Función:</strong> n => n * 2 (multiplicar por 2)</li>
+                    <li><strong>Salida:</strong> Nuevo array [2, 4, 6, 8, 10]</li>
+                    <li><strong>No modifica:</strong> El array original permanece igual</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Animación 2: Objetos y Propiedades -->
+        <div class="animation-section">
+            <h2 class="section-title">Objetos - Estructura de Datos</h2>
+            <div class="code-block">
+                <div class="code-line">let persona = {</div>
+                <div class="code-line">    nombre: "Ana",</div>
+                <div class="code-line">    edad: 25,</div>
+                <div class="code-line">    ciudad: "Madrid"</div>
+                <div class="code-line">};</div>
+                <div class="code-line"></div>
+                <div class="code-line">// Acceder a propiedades</div>
+                <div class="code-line">console.log(persona.nombre); // "Ana"</div>
+            </div>
+            <div class="animation-area" id="object-animation">
+                <div class="object-container" id="persona-object" style="top: 50px; left: 50px;">
+                    <div style="color: white; font-weight: bold; margin-bottom: 0.5rem;">Objeto persona</div>
+                    <div class="object-property" data-key="nombre" data-value="Ana">
+                        <i class="fas fa-tag"></i> nombre: "Ana"
+                    </div>
+                    <div class="object-property" data-key="edad" data-value="25">
+                        <i class="fas fa-calculator"></i> edad: 25
+                    </div>
+                    <div class="object-property" data-key="ciudad" data-value="Madrid">
+                        <i class="fas fa-map-marker-alt"></i> ciudad: "Madrid"
+                    </div>
+                </div>
+                <div class="method-block" id="access-method" style="top: 200px; left: 300px;">
+                    <i class="fas fa-hand-point-right"></i> persona.nombre
+                </div>
+                <div class="data-flow" id="object-result" style="top: 250px; left: 100px;">
+                    Resultado: "Ana"
+                </div>
+                <div class="arrow" id="object-arrow" style="top: 150px; left: 200px; transform: rotate(45deg);"></div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="object-step-1"></div>
+                <div class="step" id="object-step-2"></div>
+                <div class="step" id="object-step-3"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateObjectAccess()">
+                    <i class="fas fa-play"></i> Acceder a Propiedad
+                </button>
+                <button class="btn secondary" onclick="resetObject()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="object-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de Objetos</h3>
+                <p>Los objetos almacenan datos en pares clave-valor:</p>
+                <ul>
+                    <li><strong>Propiedades:</strong> nombre, edad, ciudad</li>
+                    <li><strong>Valores:</strong> "Ana", 25, "Madrid"</li>
+                    <li><strong>Acceso:</strong> persona.nombre o persona["nombre"]</li>
+                    <li><strong>Estructura:</strong> { clave: valor, clave: valor }</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Animación 3: Destructuring -->
+        <div class="animation-section">
+            <h2 class="section-title">Destructuring - Extraer Valores</h2>
+            <div class="code-block">
+                <div class="code-line">let persona = { nombre: "Carlos", edad: 30 };</div>
+                <div class="code-line"></div>
+                <div class="code-line">// Destructuring tradicional</div>
+                <div class="code-line">let nombre = persona.nombre;</div>
+                <div class="code-line">let edad = persona.edad;</div>
+                <div class="code-line"></div>
+                <div class="code-line">// Destructuring moderno</div>
+                <div class="code-line">let { nombre, edad } = persona;</div>
+            </div>
+            <div class="animation-area" id="destructuring-animation">
+                <div class="object-container" id="source-object" style="top: 50px; left: 50px;">
+                    <div style="color: white; font-weight: bold; margin-bottom: 0.5rem;">Objeto Original</div>
+                    <div class="object-property" data-key="nombre" data-value="Carlos">
+                        <i class="fas fa-tag"></i> nombre: "Carlos"
+                    </div>
+                    <div class="object-property" data-key="edad" data-value="30">
+                        <i class="fas fa-calculator"></i> edad: 30
+                    </div>
+                </div>
+                <div class="arrow" id="destruct-arrow" style="top: 150px; left: 200px; transform: rotate(90deg);"></div>
+                <div class="scope-block" id="destruct-vars" style="top: 200px; left: 50px;">
+                    <div style="color: white; font-weight: bold; margin-bottom: 0.5rem;">Variables Extraídas</div>
+                    <div class="array-item" data-value="Carlos">nombre = "Carlos"</div>
+                    <div class="array-item" data-value="30">edad = 30</div>
+                </div>
+                <div class="data-flow" id="destruct-flow" style="top: 100px; left: 400px;">
+                    Destructuring: extrae propiedades automáticamente
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="destruct-step-1"></div>
+                <div class="step" id="destruct-step-2"></div>
+                <div class="step" id="destruct-step-3"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateDestructuring()">
+                    <i class="fas fa-play"></i> Extraer Propiedades
+                </button>
+                <button class="btn secondary" onclick="resetDestructuring()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="destruct-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de Destructuring</h3>
+                <p>El destructuring permite extraer valores de objetos y arrays de forma concisa:</p>
+                <ul>
+                    <li><strong>Tradicional:</strong> let nombre = persona.nombre;</li>
+                    <li><strong>Moderno:</strong> let { nombre, edad } = persona;</li>
+                    <li><strong>Ventajas:</strong> Más corto, más legible, menos repetición</li>
+                    <li><strong>Uso:</strong> Ideal para extraer múltiples propiedades</li>
+                </ul>
             </div>
         </div>
     </div>
 
+    <!-- Modal de información -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <div class="info-modal-header">
+                <h3 id="infoModalTitle">Información</h3>
+            </div>
+            <div class="info-modal-body" id="infoModalBody"></div>
+            <button class="info-modal-close" onclick="closeInfoModal()">Aceptar</button>
+        </div>
+    </div>
+
     <script>
-        // Animación de elementos de array
-        function highlightElement(index) {
-            const elements = document.querySelectorAll('.array-element');
-            elements.forEach(el => el.classList.remove('highlighted'));
+        function showInfoModal(title, message) {
+            document.getElementById('infoModalTitle').textContent = title;
+            document.getElementById('infoModalBody').textContent = message;
+            document.getElementById('infoModal').style.display = 'block';
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        // Animación de métodos de array
+        function animateArrayMethods() {
+            const steps = document.querySelectorAll('#array-methods-animation .step');
+            const items = document.querySelectorAll('#original-array .array-item');
             
-            const targetElement = document.querySelector(`[data-index="${index}"]`);
-            targetElement.classList.add('highlighted');
-            
+            // Paso 1: Mostrar array original
             setTimeout(() => {
-                targetElement.classList.remove('highlighted');
-            }, 1000);
-            
-            alert(`Elemento en índice ${index}: ${targetElement.textContent.trim()}`);
-        }
-
-        function showArrayInfo() {
-            alert(`INFORMACIÓN DE ARRAYS:
-
-• Los arrays son listas ordenadas de elementos
-• Los índices empiezan en 0 (no en 1)
-• Se pueden acceder con: array[índice]
-• La longitud es: array.length
-• Los elementos pueden ser de cualquier tipo
-
-Ejemplo:
-let frutas = ["manzana", "banana", "naranja"];
-console.log(frutas[0]); // "manzana"
-console.log(frutas.length); // 3`);
-        }
-
-        function resetArray() {
-            const elements = document.querySelectorAll('.array-element');
-            elements.forEach(el => el.classList.remove('highlighted'));
-        }
-
-        // Animación de métodos
-        function animateMethod(method) {
-            const cards = document.querySelectorAll('.method-card');
-            cards.forEach(card => {
-                card.style.transform = 'translateY(0) scale(1)';
-                card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
-            });
-            
-            const targetCard = document.querySelector(`.method-card.${method}`);
-            targetCard.style.transform = 'translateY(-15px) scale(1.05)';
-            targetCard.style.boxShadow = '0 25px 50px rgba(0,0,0,0.4)';
-            
-            setTimeout(() => {
-                targetCard.style.transform = 'translateY(-10px) scale(1.02)';
-                targetCard.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
-            }, 500);
-            
-            showMethodExplanation(method);
-        }
-
-        function showMethodExplanation(method) {
-            const explanations = {
-                'push': 'PUSH(): Agrega uno o más elementos al final del array y devuelve la nueva longitud.\n\nlet numeros = [1, 2, 3];\nnumeros.push(4); // [1, 2, 3, 4]',
-                'pop': 'POP(): Elimina el último elemento del array y lo devuelve.\n\nlet numeros = [1, 2, 3];\nlet ultimo = numeros.pop(); // ultimo = 3, numeros = [1, 2]',
-                'map': 'MAP(): Crea un nuevo array con los resultados de aplicar una función a cada elemento.\n\nlet numeros = [1, 2, 3];\nlet dobles = numeros.map(x => x * 2); // [2, 4, 6]',
-                'filter': 'FILTER(): Crea un nuevo array con elementos que pasan una prueba.\n\nlet numeros = [1, 2, 3, 4, 5];\nlet pares = numeros.filter(x => x % 2 === 0); // [2, 4]',
-                'reduce': 'REDUCE(): Reduce el array a un solo valor aplicando una función acumuladora.\n\nlet numeros = [1, 2, 3, 4];\nlet suma = numeros.reduce((a, b) => a + b); // 10'
-            };
-            
-            alert(explanations[method]);
-        }
-
-        function showMethodExamples() {
-            alert(`EJEMPLOS PRÁCTICOS:
-
-// Crear array
-let productos = ["laptop", "mouse", "teclado"];
-
-// Agregar elemento
-productos.push("monitor"); // ["laptop", "mouse", "teclado", "monitor"]
-
-// Quitar último
-let ultimo = productos.pop(); // ultimo = "monitor"
-
-// Transformar
-let mayusculas = productos.map(p => p.toUpperCase());
-// ["LAPTOP", "MOUSE", "TECLADO"]
-
-// Filtrar
-let largos = productos.filter(p => p.length > 5);
-// ["teclado"]
-
-// Reducir
-let total = productos.reduce((acc, p) => acc + p.length, 0);
-// 18 (suma de longitudes)`);
-        }
-
-        function interactiveArray() {
-            const input = prompt('Escribe elementos separados por comas (ej: manzana, banana, naranja):');
-            if (input) {
-                const array = input.split(',').map(item => item.trim());
-                alert(`Array creado: [${array.join(', ')}]\nLongitud: ${array.length}\nPrimer elemento: ${array[0]}\nÚltimo elemento: ${array[array.length - 1]}`);
-            }
-        }
-
-        // Animación de transformaciones
-        function animateTransformation() {
-            const steps = document.querySelectorAll('.transformation-step');
-            steps.forEach((step, index) => {
-                setTimeout(() => {
-                    step.classList.add('active');
+                items.forEach((item, index) => {
                     setTimeout(() => {
-                        step.classList.remove('active');
-                    }, 1000);
-                }, index * 800);
+                        item.classList.add('highlight');
+                    }, index * 200);
+                });
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Array original: [1, 2, 3, 4, 5]\n\nCada elemento será procesado por la función map()');
+            }, 500);
+
+            // Paso 2: Mostrar método map
+            setTimeout(() => {
+                document.getElementById('map-method').style.animation = 'pulse 0.5s ease-in-out';
+                document.getElementById('map-arrow').classList.add('animated');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'Aplicando map(n => n * 2):\n\n1 * 2 = 2\n2 * 2 = 4\n3 * 2 = 6\n4 * 2 = 8\n5 * 2 = 10');
+            }, 2000);
+
+            // Paso 3: Mostrar resultado
+            setTimeout(() => {
+                const resultItems = document.querySelectorAll('#doubled-array .array-item');
+                resultItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('highlight');
+                    }, index * 200);
+                });
+                document.getElementById('map-flow').classList.add('show');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'Resultado: [2, 4, 6, 8, 10]\n\nmap() crea un nuevo array sin modificar el original');
+            }, 3500);
+
+            setTimeout(() => {
+                document.getElementById('array-explanation').classList.add('show');
+            }, 4500);
+        }
+
+        function resetArrayMethods() {
+            const elements = document.querySelectorAll('#array-methods-animation .step, #array-methods-animation .array-item, #array-methods-animation .arrow, #array-methods-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'highlight', 'animated', 'show');
+                el.style.animation = 'none';
             });
+            document.getElementById('array-explanation').classList.remove('show');
         }
 
-        function showChainExample() {
-            alert(`ENCADENAMIENTO DE MÉTODOS:
+        // Animación de acceso a objetos
+        function animateObjectAccess() {
+            const steps = document.querySelectorAll('#object-animation .step');
+            
+            // Paso 1: Mostrar objeto
+            setTimeout(() => {
+                document.getElementById('persona-object').style.animation = 'pulse 0.5s ease-in-out';
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Objeto persona con propiedades:\n- nombre: "Ana"\n- edad: 25\n- ciudad: "Madrid"');
+            }, 500);
 
-let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            // Paso 2: Mostrar acceso
+            setTimeout(() => {
+                document.getElementById('access-method').style.animation = 'pulse 0.5s ease-in-out';
+                document.getElementById('object-arrow').classList.add('animated');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'Accediendo a persona.nombre:\n\nJavaScript busca la propiedad "nombre" en el objeto persona');
+            }, 1500);
 
-let resultado = numeros
-    .filter(x => x % 2 === 0)    // [2, 4, 6, 8, 10]
-    .map(x => x * 2)              // [4, 8, 12, 16, 20]
-    .reduce((a, b) => a + b);     // 60
+            // Paso 3: Mostrar resultado
+            setTimeout(() => {
+                document.querySelector('[data-key="nombre"]').classList.add('highlight');
+                document.getElementById('object-result').classList.add('show');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'Resultado: "Ana"\n\nLa propiedad "nombre" contiene el valor "Ana"');
+            }, 2500);
 
-Paso a paso:
-1. Filtrar números pares
-2. Multiplicar por 2
-3. Sumar todos los resultados`);
+            setTimeout(() => {
+                document.getElementById('object-explanation').classList.add('show');
+            }, 3500);
         }
+
+        function resetObject() {
+            const elements = document.querySelectorAll('#object-animation .step, #object-animation .object-property, #object-animation .arrow, #object-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'highlight', 'animated', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('object-explanation').classList.remove('show');
+        }
+
+        // Animación de destructuring
+        function animateDestructuring() {
+            const steps = document.querySelectorAll('#destructuring-animation .step');
+            
+            // Paso 1: Mostrar objeto original
+            setTimeout(() => {
+                document.getElementById('source-object').style.animation = 'pulse 0.5s ease-in-out';
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Objeto original:\n{ nombre: "Carlos", edad: 30 }');
+            }, 500);
+
+            // Paso 2: Mostrar destructuring
+            setTimeout(() => {
+                document.getElementById('destruct-arrow').classList.add('animated');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'Aplicando destructuring:\nlet { nombre, edad } = persona;\n\nJavaScript extrae automáticamente las propiedades');
+            }, 1500);
+
+            // Paso 3: Mostrar variables extraídas
+            setTimeout(() => {
+                const extractedVars = document.querySelectorAll('#destruct-vars .array-item');
+                extractedVars.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('highlight');
+                    }, index * 300);
+                });
+                document.getElementById('destruct-flow').classList.add('show');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'Variables extraídas:\n- nombre = "Carlos"\n- edad = 30\n\n¡Mucho más conciso que el método tradicional!');
+            }, 2500);
+
+            setTimeout(() => {
+                document.getElementById('destruct-explanation').classList.add('show');
+            }, 3500);
+        }
+
+        function resetDestructuring() {
+            const elements = document.querySelectorAll('#destructuring-animation .step, #destructuring-animation .array-item, #destructuring-animation .arrow, #destructuring-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'highlight', 'animated', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('destruct-explanation').classList.remove('show');
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                closeInfoModal();
+            }
+        });
 
         // Animaciones de entrada
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.concept-section');
+        window.addEventListener('load', function() {
+            const sections = document.querySelectorAll('.animation-section');
             sections.forEach((section, index) => {
                 setTimeout(() => {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(30px)';
+                    section.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }, 100);
                 }, index * 200);
             });
         });

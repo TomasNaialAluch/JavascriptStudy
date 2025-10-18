@@ -3,130 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModulAnimation 4 - Objetos</title>
+    <title>Animaciones Interactivas - Módulo 4: Asincronía</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
     <style>
-        .animation-page {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 2rem 0;
+            overflow-x: hidden;
         }
 
-        .animation-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .animation-header {
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
             text-align: center;
             color: white;
-            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .animation-header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .concept-section {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .concept-title {
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        /* Visualización de objeto */
-        .object-visualization {
-            background: #2c2c54;
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-        }
-
-        .object-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .object-box {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            min-width: 200px;
-            margin: 1rem;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .object-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .property-item {
-            background: rgba(255,255,255,0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            margin: 0.5rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .property-key {
-            font-weight: bold;
-        }
-
-        .property-value {
+        .header p {
+            font-size: 1.2rem;
             opacity: 0.9;
         }
 
-        /* Métodos de objeto */
-        .methods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .animation-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .animation-area {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #dee2e6;
             margin: 2rem 0;
         }
 
-        .method-card {
-            background: linear-gradient(135deg, #4834d4, #686de0);
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline {
+            position: absolute;
+            width: 4px;
+            height: 300px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            left: 50px;
+            top: 50px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: absolute;
+            left: 30px;
+            width: 200px;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
             color: white;
-            padding: 1.5rem;
+            padding: 1rem;
             border-radius: 15px;
-            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            user-select: none;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(79, 172, 254, 0.6);
+        }
+
+        .timeline-item.highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            border: 3px solid #ff6b6b;
+        }
+
+        .promise-block {
+            position: absolute;
+            background: linear-gradient(45deg, #fa709a, #fee140);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(250, 112, 154, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .promise-block:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(250, 112, 154, 0.6);
+        }
+
+        .promise-block.pending {
+            background: linear-gradient(45deg, #ffa726, #ff7043);
+        }
+
+        .promise-block.resolved {
+            background: linear-gradient(45deg, #66bb6a, #4caf50);
+        }
+
+        .promise-block.rejected {
+            background: linear-gradient(45deg, #ef5350, #f44336);
+        }
+
+        .arrow {
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border-radius: 2px;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: -6px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid #ee5a24;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .arrow.animated {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .data-flow {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
-        .method-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        .data-flow.show {
+            animation: dataFlow 2s ease-in-out;
         }
 
-        .method-card.access { background: linear-gradient(135deg, #00d2d3, #54a0ff); }
-        .method-card.methods { background: linear-gradient(135deg, #ff9ff3, #f368e0); }
-        .method-card.destructuring { background: linear-gradient(135deg, #96ceb4, #6c5ce7); }
+        @keyframes dataFlow {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
 
-        .control-buttons {
+        .control-panel {
             display: flex;
             justify-content: center;
             gap: 1rem;
@@ -134,254 +238,573 @@
             flex-wrap: wrap;
         }
 
-        .control-btn {
+        .btn {
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
             border: none;
             padding: 1rem 2rem;
             border-radius: 25px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
-        .control-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
-        .animate-in {
-            animation: slideIn 0.6s ease-out;
+        .btn:active {
+            transform: translateY(0);
         }
 
-        .animate-up {
-            animation: fadeInUp 0.6s ease-out;
+        .btn.secondary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
         }
 
-        @keyframes slideIn {
-            from { transform: translateX(-100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .btn.secondary:hover {
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
 
-        @keyframes fadeInUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .explanation {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .step {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transform: scale(1.2);
+        }
+
+        .step.completed {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .info-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .info-modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+            position: relative;
+        }
+
+        .info-modal-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+
+        .info-modal-body {
+            padding: 2rem;
+            color: #333;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .info-modal-close {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 2rem 2rem 2rem;
+            width: calc(100% - 4rem);
+            transition: all 0.3s ease;
+        }
+
+        .info-modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @media (max-width: 768px) {
-            .animation-header h1 { font-size: 2rem; }
-            .methods-grid { grid-template-columns: 1fr; }
+            .container {
+                padding: 1rem;
+            }
+            
+            .animation-area {
+                height: 300px;
+            }
+            
+            .timeline-item, .promise-block {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .control-panel {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="animation-page">
-        <div class="animation-container">
-            <div class="animation-header animate-up">
-                <h1><i class="fas fa-cube"></i> ModulAnimation 4</h1>
-                <p>Objetos - Aprende con Animaciones Interactivas</p>
+    <div class="header">
+        <h1><i class="fas fa-magic"></i> Animaciones Interactivas</h1>
+        <p>Módulo 4: Programación Asíncrona - Aprende con Visualizaciones</p>
+    </div>
+
+    <div class="container">
+        <!-- Animación 1: setTimeout y Callbacks -->
+        <div class="animation-section">
+            <h2 class="section-title">setTimeout - Ejecución Diferida</h2>
+            <div class="code-block">
+                <div class="code-line">console.log("1. Inicio");</div>
+                <div class="code-line"></div>
+                <div class="code-line">setTimeout(() => {</div>
+                <div class="code-line">    console.log("3. Después de 2 segundos");</div>
+                <div class="code-line">}, 2000);</div>
+                <div class="code-line"></div>
+                <div class="code-line">console.log("2. Fin");</div>
             </div>
-
-            <div class="concept-section animate-in">
-                <h2 class="concept-title">📦 Estructura de Objetos</h2>
-                <p class="concept-description">Haz clic en las propiedades para ver sus valores</p>
-                
-                <div class="object-visualization">
-                    <h3>Objeto: persona</h3>
-                    <div class="object-container">
-                        <div class="object-box" onclick="showObjectInfo()">
-                            <h4>👤 persona</h4>
-                            <div class="property-item">
-                                <span class="property-key">nombre:</span>
-                                <span class="property-value">"Ana"</span>
-                            </div>
-                            <div class="property-item">
-                                <span class="property-key">edad:</span>
-                                <span class="property-value">25</span>
-                            </div>
-                            <div class="property-item">
-                                <span class="property-key">ciudad:</span>
-                                <span class="property-value">"Madrid"</span>
-                            </div>
-                            <div class="property-item">
-                                <span class="property-key">profesion:</span>
-                                <span class="property-value">"Desarrolladora"</span>
-                            </div>
-                        </div>
-                    </div>
+            <div class="animation-area" id="settimeout-animation">
+                <div class="timeline"></div>
+                <div class="timeline-item" id="step1" style="top: 20px;">
+                    <i class="fas fa-play"></i> 1. Inicio
                 </div>
-
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="showObjectInfo()">
-                        <i class="fas fa-info-circle"></i> Ver Información
-                    </button>
-                    <button class="control-btn" onclick="interactiveObject()">
-                        <i class="fas fa-play"></i> Crear Objeto
-                    </button>
+                <div class="timeline-item" id="step2" style="top: 80px;">
+                    <i class="fas fa-clock"></i> setTimeout() programado
+                </div>
+                <div class="timeline-item" id="step3" style="top: 140px;">
+                    <i class="fas fa-stop"></i> 2. Fin
+                </div>
+                <div class="timeline-item" id="step4" style="top: 200px;">
+                    <i class="fas fa-check"></i> 3. Después de 2 segundos
+                </div>
+                <div class="data-flow" id="settimeout-flow" style="top: 50px; left: 300px;">
+                    JavaScript no espera - continúa ejecutando
                 </div>
             </div>
-
-            <div class="concept-section animate-in">
-                <h2 class="concept-title">🔧 Métodos de Objetos</h2>
-                <p class="concept-description">Explora las diferentes formas de trabajar con objetos</p>
-                
-                <div class="methods-grid">
-                    <div class="method-card access" onclick="animateMethod('access')">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔑</div>
-                        <div style="font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">Acceso a Propiedades</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">objeto.propiedad o objeto["propiedad"]</div>
-                    </div>
-                    
-                    <div class="method-card methods" onclick="animateMethod('methods')">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚙️</div>
-                        <div style="font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">Métodos</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">Funciones dentro de objetos</div>
-                    </div>
-                    
-                    <div class="method-card destructuring" onclick="animateMethod('destructuring')">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📤</div>
-                        <div style="font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">Destructuring</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">Extraer propiedades fácilmente</div>
-                    </div>
-                </div>
-
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="showMethodExamples()">
-                        <i class="fas fa-code"></i> Ver Ejemplos
-                    </button>
-                    <button class="control-btn" onclick="showObjectMethods()">
-                        <i class="fas fa-tools"></i> Métodos de Object
-                    </button>
-                </div>
+            <div class="step-indicator">
+                <div class="step" id="settimeout-step-1"></div>
+                <div class="step" id="settimeout-step-2"></div>
+                <div class="step" id="settimeout-step-3"></div>
+                <div class="step" id="settimeout-step-4"></div>
             </div>
-
-            <div class="control-buttons">
-                <button class="control-btn" onclick="window.location.href='ModulAnimation3.html'">
-                    <i class="fas fa-arrow-left"></i> Anterior: Arrays
+            <div class="control-panel">
+                <button class="btn" onclick="animateSetTimeout()">
+                    <i class="fas fa-play"></i> Ejecutar setTimeout
                 </button>
-                <button class="control-btn" onclick="window.location.href='ModulAnimation5.html'">
-                    <i class="fas fa-arrow-right"></i> Siguiente: Asíncrono
+                <button class="btn secondary" onclick="resetSetTimeout()">
+                    <i class="fas fa-redo"></i> Reiniciar
                 </button>
+            </div>
+            <div class="explanation" id="settimeout-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de setTimeout</h3>
+                <p>setTimeout programa una función para ejecutarse después de un tiempo específico:</p>
+                <ul>
+                    <li><strong>No bloquea:</strong> JavaScript continúa ejecutando el resto del código</li>
+                    <li><strong>Asíncrono:</strong> La función se ejecuta cuando termina el tiempo</li>
+                    <li><strong>Callback:</strong> La función es un callback que se ejecuta después</li>
+                    <li><strong>Orden:</strong> "Fin" se ejecuta antes que el callback</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Animación 2: Promises -->
+        <div class="animation-section">
+            <h2 class="section-title">Promises - Manejo de Asincronía</h2>
+            <div class="code-block">
+                <div class="code-line">let promesa = new Promise((resolve, reject) => {</div>
+                <div class="code-line">    setTimeout(() => {</div>
+                <div class="code-line">        resolve("¡Éxito!");</div>
+                <div class="code-line">    }, 1000);</div>
+                <div class="code-line">});</div>
+                <div class="code-line"></div>
+                <div class="code-line">promesa.then(resultado => {</div>
+                <div class="code-line">    console.log(resultado);</div>
+                <div class="code-line">});</div>
+            </div>
+            <div class="animation-area" id="promise-animation">
+                <div class="promise-block" id="promise-creation" style="top: 50px; left: 50px;">
+                    <i class="fas fa-plus-circle"></i> new Promise()
+                </div>
+                <div class="promise-block pending" id="promise-pending" style="top: 50px; left: 300px;">
+                    <i class="fas fa-hourglass-half"></i> Pending
+                </div>
+                <div class="arrow" id="promise-arrow1" style="top: 100px; left: 200px; transform: rotate(0deg);"></div>
+                <div class="promise-block resolved" id="promise-resolved" style="top: 200px; left: 50px;">
+                    <i class="fas fa-check-circle"></i> Resolved: "¡Éxito!"
+                </div>
+                <div class="arrow" id="promise-arrow2" style="top: 250px; left: 200px; transform: rotate(0deg);"></div>
+                <div class="promise-block" id="promise-then" style="top: 300px; left: 300px;">
+                    <i class="fas fa-hand-point-right"></i> .then() ejecutado
+                </div>
+                <div class="data-flow" id="promise-flow" style="top: 150px; left: 400px;">
+                    Promise resuelta → .then() se ejecuta
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="promise-step-1"></div>
+                <div class="step" id="promise-step-2"></div>
+                <div class="step" id="promise-step-3"></div>
+                <div class="step" id="promise-step-4"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animatePromise()">
+                    <i class="fas fa-play"></i> Ejecutar Promise
+                </button>
+                <button class="btn secondary" onclick="resetPromise()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="promise-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de Promises</h3>
+                <p>Las Promises representan una operación asíncrona que puede completarse en el futuro:</p>
+                <ul>
+                    <li><strong>Estados:</strong> Pending → Resolved/Rejected</li>
+                    <li><strong>resolve():</strong> Marca la promise como exitosa</li>
+                    <li><strong>.then():</strong> Se ejecuta cuando la promise se resuelve</li>
+                    <li><strong>Ventaja:</strong> Evita el "callback hell"</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Animación 3: Async/Await -->
+        <div class="animation-section">
+            <h2 class="section-title">Async/Await - Sintaxis Moderna</h2>
+            <div class="code-block">
+                <div class="code-line">async function obtenerDatos() {</div>
+                <div class="code-line">    console.log("1. Iniciando...");</div>
+                <div class="code-line">    </div>
+                <div class="code-line">    let resultado = await fetch('/api/datos');</div>
+                <div class="code-line">    console.log("2. Datos obtenidos");</div>
+                <div class="code-line">    </div>
+                <div class="code-line">    return resultado;</div>
+                <div class="code-line">}</div>
+            </div>
+            <div class="animation-area" id="async-animation">
+                <div class="timeline-item" id="async-step1" style="top: 20px;">
+                    <i class="fas fa-play"></i> 1. Iniciando...
+                </div>
+                <div class="timeline-item" id="async-step2" style="top: 80px;">
+                    <i class="fas fa-pause"></i> await fetch() - Esperando
+                </div>
+                <div class="timeline-item" id="async-step3" style="top: 140px;">
+                    <i class="fas fa-check"></i> 2. Datos obtenidos
+                </div>
+                <div class="timeline-item" id="async-step4" style="top: 200px;">
+                    <i class="fas fa-arrow-up"></i> return resultado
+                </div>
+                <div class="data-flow" id="async-flow" style="top: 50px; left: 300px;">
+                    async/await hace que el código asíncrono se vea síncrono
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="async-step-1"></div>
+                <div class="step" id="async-step-2"></div>
+                <div class="step" id="async-step-3"></div>
+                <div class="step" id="async-step-4"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateAsync()">
+                    <i class="fas fa-play"></i> Ejecutar Async/Await
+                </button>
+                <button class="btn secondary" onclick="resetAsync()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="async-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de Async/Await</h3>
+                <p>async/await es una forma más limpia de trabajar con Promises:</p>
+                <ul>
+                    <li><strong>async:</strong> Marca la función como asíncrona</li>
+                    <li><strong>await:</strong> Espera a que la Promise se resuelva</li>
+                    <li><strong>Ventaja:</strong> Código más legible y fácil de debuggear</li>
+                    <li><strong>Uso:</strong> Ideal para operaciones secuenciales</li>
+                </ul>
             </div>
         </div>
     </div>
 
+    <!-- Modal de información -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <div class="info-modal-header">
+                <h3 id="infoModalTitle">Información</h3>
+            </div>
+            <div class="info-modal-body" id="infoModalBody"></div>
+            <button class="info-modal-close" onclick="closeInfoModal()">Aceptar</button>
+        </div>
+    </div>
+
     <script>
-        function showObjectInfo() {
-            alert(`INFORMACIÓN DE OBJETOS:
-
-• Los objetos son colecciones de propiedades clave-valor
-• Las claves son strings (pueden omitir las comillas)
-• Los valores pueden ser cualquier tipo de dato
-• Se accede con: objeto.propiedad o objeto["propiedad"]
-
-Ejemplo:
-let persona = {
-    nombre: "Ana",
-    edad: 25,
-    ciudad: "Madrid"
-};
-
-console.log(persona.nombre); // "Ana"
-console.log(persona["edad"]); // 25`);
+        function showInfoModal(title, message) {
+            document.getElementById('infoModalTitle').textContent = title;
+            document.getElementById('infoModalBody').textContent = message;
+            document.getElementById('infoModal').style.display = 'block';
         }
 
-        function interactiveObject() {
-            const nombre = prompt('Nombre:');
-            const edad = prompt('Edad:');
-            const ciudad = prompt('Ciudad:');
-            
-            if (nombre && edad && ciudad) {
-                const objeto = { nombre, edad, ciudad };
-                alert(`Objeto creado:
-{
-  nombre: "${objeto.nombre}",
-  edad: ${objeto.edad},
-  ciudad: "${objeto.ciudad}"
-}
-
-Acceso:
-objeto.nombre = "${objeto.nombre}"
-objeto["edad"] = ${objeto["edad"]}`);
-            }
+        function closeInfoModal() {
+            document.getElementById('infoModal').style.display = 'none';
         }
 
-        function animateMethod(method) {
-            const cards = document.querySelectorAll('.method-card');
-            cards.forEach(card => {
-                card.style.transform = 'translateY(0) scale(1)';
-                card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
-            });
+        // Animación de setTimeout
+        function animateSetTimeout() {
+            const steps = document.querySelectorAll('#settimeout-animation .step');
+            const timelineItems = document.querySelectorAll('#settimeout-animation .timeline-item');
             
-            const targetCard = document.querySelector(`.method-card.${method}`);
-            targetCard.style.transform = 'translateY(-15px) scale(1.05)';
-            targetCard.style.boxShadow = '0 25px 50px rgba(0,0,0,0.4)';
-            
+            // Paso 1: Inicio
             setTimeout(() => {
-                targetCard.style.transform = 'translateY(-10px) scale(1.02)';
-                targetCard.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+                document.getElementById('step1').classList.add('highlight');
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Se ejecuta: console.log("1. Inicio")\n\nEsto se ejecuta inmediatamente');
             }, 500);
+
+            // Paso 2: setTimeout programado
+            setTimeout(() => {
+                document.getElementById('step2').classList.add('highlight');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'setTimeout() se programa para ejecutarse en 2 segundos\n\nJavaScript NO espera, continúa con el siguiente código');
+            }, 1500);
+
+            // Paso 3: Fin
+            setTimeout(() => {
+                document.getElementById('step3').classList.add('highlight');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'Se ejecuta: console.log("2. Fin")\n\nEsto se ejecuta ANTES que el callback de setTimeout');
+            }, 2500);
+
+            // Paso 4: Callback de setTimeout
+            setTimeout(() => {
+                document.getElementById('step4').classList.add('highlight');
+                document.getElementById('settimeout-flow').classList.add('show');
+                steps[2].classList.remove('active');
+                steps[2].classList.add('completed');
+                steps[3].classList.add('active');
+                showInfoModal('Paso 4', 'Después de 2 segundos se ejecuta el callback:\nconsole.log("3. Después de 2 segundos")\n\nOrden final: 1, 2, 3');
+            }, 3500);
+
+            setTimeout(() => {
+                document.getElementById('settimeout-explanation').classList.add('show');
+            }, 4500);
+        }
+
+        function resetSetTimeout() {
+            const elements = document.querySelectorAll('#settimeout-animation .step, #settimeout-animation .timeline-item, #settimeout-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'highlight', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('settimeout-explanation').classList.remove('show');
+        }
+
+        // Animación de Promise
+        function animatePromise() {
+            const steps = document.querySelectorAll('#promise-animation .step');
             
-            showMethodExplanation(method);
+            // Paso 1: Crear Promise
+            setTimeout(() => {
+                document.getElementById('promise-creation').style.animation = 'pulse 0.5s ease-in-out';
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Se crea una nueva Promise:\nnew Promise((resolve, reject) => { ... })\n\nLa Promise inicia en estado "pending"');
+            }, 500);
+
+            // Paso 2: Promise pendiente
+            setTimeout(() => {
+                document.getElementById('promise-pending').style.animation = 'pulse 0.5s ease-in-out';
+                document.getElementById('promise-arrow1').classList.add('animated');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'La Promise está en estado "pending"\n\nsetTimeout() está programado para ejecutarse en 1 segundo');
+            }, 1500);
+
+            // Paso 3: Promise resuelta
+            setTimeout(() => {
+                document.getElementById('promise-resolved').style.animation = 'pulse 0.5s ease-in-out';
+                document.getElementById('promise-arrow2').classList.add('animated');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'setTimeout() se ejecuta y llama a resolve("¡Éxito!")\n\nLa Promise cambia de "pending" a "resolved"');
+            }, 2500);
+
+            // Paso 4: .then() ejecutado
+            setTimeout(() => {
+                document.getElementById('promise-then').style.animation = 'pulse 0.5s ease-in-out';
+                document.getElementById('promise-flow').classList.add('show');
+                steps[2].classList.remove('active');
+                steps[2].classList.add('completed');
+                steps[3].classList.add('active');
+                showInfoModal('Paso 4', 'Se ejecuta .then() con el resultado:\nconsole.log("¡Éxito!")\n\nLa Promise está completa');
+            }, 3500);
+
+            setTimeout(() => {
+                document.getElementById('promise-explanation').classList.add('show');
+            }, 4500);
         }
 
-        function showMethodExplanation(method) {
-            const explanations = {
-                'access': 'ACCESO A PROPIEDADES:\n\nNotación de punto: objeto.propiedad\nNotación de corchetes: objeto["propiedad"]\n\nlet persona = { nombre: "Ana" };\nconsole.log(persona.nombre); // "Ana"\nconsole.log(persona["nombre"]); // "Ana"',
-                'methods': 'MÉTODOS DE OBJETO:\n\nLos métodos son funciones dentro de objetos:\n\nlet calculadora = {\n  sumar: function(a, b) {\n    return a + b;\n  }\n};\n\ncalculadora.sumar(5, 3); // 8',
-                'destructuring': 'DESTRUCTURING:\n\nExtrae propiedades de objetos:\n\nlet persona = { nombre: "Ana", edad: 25 };\nlet { nombre, edad } = persona;\nconsole.log(nombre); // "Ana"\nconsole.log(edad); // 25'
-            };
+        function resetPromise() {
+            const elements = document.querySelectorAll('#promise-animation .step, #promise-animation .arrow, #promise-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'animated', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('promise-explanation').classList.remove('show');
+        }
+
+        // Animación de Async/Await
+        function animateAsync() {
+            const steps = document.querySelectorAll('#async-animation .step');
             
-            alert(explanations[method]);
+            // Paso 1: Iniciando
+            setTimeout(() => {
+                document.getElementById('async-step1').classList.add('highlight');
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Se ejecuta: console.log("1. Iniciando...")\n\nLa función async comienza su ejecución');
+            }, 500);
+
+            // Paso 2: await fetch
+            setTimeout(() => {
+                document.getElementById('async-step2').classList.add('highlight');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'Se ejecuta: await fetch(\'/api/datos\')\n\nLa función se PAUSA aquí hasta que fetch() se complete\n\nJavaScript puede ejecutar otras cosas mientras espera');
+            }, 1500);
+
+            // Paso 3: Datos obtenidos
+            setTimeout(() => {
+                document.getElementById('async-step3').classList.add('highlight');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'fetch() se completa y devuelve los datos\n\nSe ejecuta: console.log("2. Datos obtenidos")\n\nLa función continúa desde donde se pausó');
+            }, 2500);
+
+            // Paso 4: return
+            setTimeout(() => {
+                document.getElementById('async-step4').classList.add('highlight');
+                document.getElementById('async-flow').classList.add('show');
+                steps[2].classList.remove('active');
+                steps[2].classList.add('completed');
+                steps[3].classList.add('active');
+                showInfoModal('Paso 4', 'Se ejecuta: return resultado\n\nLa función async devuelve una Promise\n\nasync/await hace que el código asíncrono se vea síncrono');
+            }, 3500);
+
+            setTimeout(() => {
+                document.getElementById('async-explanation').classList.add('show');
+            }, 4500);
         }
 
-        function showMethodExamples() {
-            alert(`EJEMPLOS PRÁCTICOS:
-
-// Crear objeto
-let producto = {
-    nombre: "Laptop",
-    precio: 999,
-    stock: 5,
-    calcularTotal: function(cantidad) {
-        return this.precio * cantidad;
-    }
-};
-
-// Acceder a propiedades
-console.log(producto.nombre); // "Laptop"
-console.log(producto["precio"]); // 999
-
-// Usar método
-let total = producto.calcularTotal(2); // 1998
-
-// Destructuring
-let { nombre, precio } = producto;
-console.log(nombre, precio); // "Laptop" 999`);
+        function resetAsync() {
+            const elements = document.querySelectorAll('#async-animation .step, #async-animation .timeline-item, #async-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'highlight', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('async-explanation').classList.remove('show');
         }
 
-        function showObjectMethods() {
-            alert(`MÉTODOS DE OBJECT:
+        // Cerrar modal al hacer clic fuera
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                closeInfoModal();
+            }
+        });
 
-Object.keys(objeto) - Obtiene las claves
-Object.values(objeto) - Obtiene los valores
-Object.entries(objeto) - Obtiene pares clave-valor
-
-let persona = { nombre: "Ana", edad: 25 };
-
-Object.keys(persona); // ["nombre", "edad"]
-Object.values(persona); // ["Ana", 25]
-Object.entries(persona); // [["nombre", "Ana"], ["edad", 25]]`);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.concept-section');
+        // Animaciones de entrada
+        window.addEventListener('load', function() {
+            const sections = document.querySelectorAll('.animation-section');
             sections.forEach((section, index) => {
                 setTimeout(() => {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(30px)';
+                    section.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }, 100);
                 }, index * 200);
             });
         });

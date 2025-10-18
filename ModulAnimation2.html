@@ -3,221 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModulAnimation 2 - Funciones</title>
+    <title>Animaciones Interactivas - Módulo 2: JavaScript Moderno</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
     <style>
-        .animation-page {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 2rem 0;
+            overflow-x: hidden;
         }
 
-        .animation-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .animation-header {
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
             text-align: center;
             color: white;
-            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .animation-header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .concept-section {
-            background: white;
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .animation-section {
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
         }
 
-        .concept-title {
-            font-size: 2rem;
+        .section-title {
             color: #333;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
             text-align: center;
+            position: relative;
         }
 
-        /* Animación de tipos de funciones */
-        .function-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .animation-area {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #dee2e6;
             margin: 2rem 0;
         }
 
-        .function-card {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .function-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .function-card.declared {
-            background: linear-gradient(135deg, #4834d4, #686de0);
-        }
-
-        .function-card.expressed {
-            background: linear-gradient(135deg, #00d2d3, #54a0ff);
-        }
-
-        .function-card.arrow {
-            background: linear-gradient(135deg, #ff9ff3, #f368e0);
-        }
-
-        .function-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .function-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .function-code {
-            background: rgba(0,0,0,0.2);
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
             padding: 1rem;
             border-radius: 10px;
             font-family: 'Courier New', monospace;
             font-size: 0.9rem;
             margin: 1rem 0;
+            overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Animación de parámetros */
-        .parameters-demo {
-            background: #2c2c54;
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-        }
-
-        .parameter-flow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .parameter-box {
-            background: #ff6b6b;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            text-align: center;
-            min-width: 120px;
-            position: relative;
-            animation: pulse 2s infinite;
-        }
-
-        .parameter-box.argument {
-            background: #4ecdc4;
-        }
-
-        .parameter-box.result {
-            background: #feca57;
-            color: #333;
-        }
-
-        .flow-arrow {
-            font-size: 2rem;
-            color: white;
-            animation: bounce 1s infinite;
-        }
-
-        /* Animación de scope */
-        .scope-visualization {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .scope-box {
-            background: #40407a;
-            color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            min-width: 200px;
-            margin: 1rem;
-            position: relative;
-        }
-
-        .scope-box.global {
-            border: 3px solid #4ecdc4;
-        }
-
-        .scope-box.local {
-            border: 3px solid #feca57;
-        }
-
-        .variable-item {
-            background: #ff6b6b;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+        .code-line {
             margin: 0.5rem 0;
-            display: inline-block;
-        }
-
-        /* Animación de callbacks */
-        .callback-demo {
-            background: #96ceb4;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-            color: #333;
-        }
-
-        .callback-chain {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
-        }
-
-        .callback-step {
-            background: white;
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-            min-width: 100px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 0.3rem 0;
             transition: all 0.3s ease;
         }
 
-        .callback-step.active {
-            transform: scale(1.1);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        .code-line.highlight {
+            background: rgba(102, 126, 234, 0.3);
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
         }
 
-        .control-buttons {
+        .scope-block {
+            position: absolute;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .scope-block:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(79, 172, 254, 0.6);
+        }
+
+        .arrow-function {
+            position: absolute;
+            background: linear-gradient(45deg, #fa709a, #fee140);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(250, 112, 154, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .arrow-function:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(250, 112, 154, 0.6);
+        }
+
+        .template-literal {
+            position: absolute;
+            background: linear-gradient(45deg, #a8edea, #fed6e3);
+            color: #333;
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(168, 237, 234, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .template-literal:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(168, 237, 234, 0.6);
+        }
+
+        .arrow {
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border-radius: 2px;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: -6px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid #ee5a24;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .arrow.animated {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .data-flow {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .data-flow.show {
+            animation: dataFlow 2s ease-in-out;
+        }
+
+        @keyframes dataFlow {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+
+        .control-panel {
             display: flex;
             justify-content: center;
             gap: 1rem;
@@ -225,56 +229,106 @@
             flex-wrap: wrap;
         }
 
-        .control-btn {
+        .btn {
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
             border: none;
             padding: 1rem 2rem;
             border-radius: 25px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
-        .control-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
-        /* Animaciones CSS */
-        @keyframes pulse {
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn.secondary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn.secondary:hover {
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .explanation {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .step {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transform: scale(1.2);
+        }
+
+        .step.completed {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .scope-visualization {
+            position: absolute;
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            background: rgba(102, 126, 234, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .scope-visualization.highlight {
+            background: rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+            animation: scopePulse 1s infinite;
+        }
+
+        @keyframes scopePulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.02); }
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(-100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .animate-in {
-            animation: slideIn 0.6s ease-out;
-        }
-
-        .animate-up {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        /* Responsive */
-        /* Modal informativo personalizado */
         .info-modal {
             display: none;
             position: fixed;
@@ -309,11 +363,6 @@
             text-align: center;
         }
 
-        .info-modal-header h3 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
         .info-modal-body {
             padding: 2rem;
             color: #333;
@@ -337,198 +386,225 @@
 
         .info-modal-close:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         @keyframes modalSlideIn {
             from {
-                transform: translateY(-50px);
                 opacity: 0;
+                transform: translateY(-50px) scale(0.9);
             }
             to {
-                transform: translateY(0);
                 opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
 
-        @media (max-width: 768px) {
-            .animation-header h1 {
-                font-size: 2rem;
-            }
-            
-            .function-types {
-                grid-template-columns: 1fr;
-            }
-            
-            .parameter-flow {
-                flex-direction: column;
-            }
-            
-            .scope-visualization {
-                flex-direction: column;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-            .info-modal-content {
-                margin: 10% 1rem;
-                max-width: calc(100% - 2rem);
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .animation-area {
+                height: 300px;
+            }
+            
+            .scope-block, .arrow-function, .template-literal {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .control-panel {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="animation-page">
-        <div class="animation-container">
-            <!-- Header -->
-            <div class="animation-header animate-up">
-                <h1><i class="fas fa-cogs"></i> ModulAnimation 2</h1>
-                <p>Funciones - Aprende con Animaciones Interactivas</p>
-            </div>
+    <div class="header">
+        <h1><i class="fas fa-magic"></i> Animaciones Interactivas</h1>
+        <p>Módulo 2: JavaScript Moderno - Aprende con Visualizaciones</p>
+    </div>
 
-            <!-- Sección 1: Tipos de Funciones -->
-            <div class="concept-section animate-in">
-                <h2 class="concept-title">🔧 Tipos de Funciones</h2>
-                <p class="concept-description">Haz clic en cada tipo para ver cómo funciona</p>
-                
-                <div class="function-types">
-                    <div class="function-card declared" onclick="animateFunction('declared')">
-                        <div class="function-icon">📝</div>
-                        <div class="function-name">Función Declarada</div>
-                        <div class="function-code">function saludar() {<br>&nbsp;&nbsp;return "Hola";<br>}</div>
+    <div class="container">
+        <!-- Animación 1: Let, Const y Scope -->
+        <div class="animation-section">
+            <h2 class="section-title">Let, Const y Block Scope</h2>
+            <div class="code-block">
+                <div class="code-line">if (true) {</div>
+                <div class="code-line">    let variableLet = "Solo en este bloque";</div>
+                <div class="code-line">    const variableConst = "Constante en bloque";</div>
+                <div class="code-line">    var variableVar = "Accesible fuera del bloque";</div>
+                <div class="code-line">}</div>
+                <div class="code-line">console.log(variableVar); // ✅ Funciona</div>
+                <div class="code-line">console.log(variableLet); // ❌ Error</div>
+            </div>
+            <div class="animation-area" id="scope-animation">
+                <div class="scope-visualization" id="block-scope" style="top: 50px; left: 50px; width: 300px; height: 200px;">
+                    <div class="scope-block" id="let-var" style="top: 20px; left: 20px;">
+                        <i class="fas fa-lock"></i> let variableLet
                     </div>
-                    
-                    <div class="function-card expressed" onclick="animateFunction('expressed')">
-                        <div class="function-icon">⚡</div>
-                        <div class="function-name">Función Expresada</div>
-                        <div class="function-code">let saludar = function() {<br>&nbsp;&nbsp;return "Hola";<br>};</div>
+                    <div class="scope-block" id="const-var" style="top: 20px; left: 150px;">
+                        <i class="fas fa-lock"></i> const variableConst
                     </div>
-                    
-                    <div class="function-card arrow" onclick="animateFunction('arrow')">
-                        <div class="function-icon">🏹</div>
-                        <div class="function-name">Arrow Function</div>
-                        <div class="function-code">let saludar = () => "Hola";</div>
+                    <div class="scope-block" id="var-var" style="top: 100px; left: 20px;">
+                        <i class="fas fa-unlock"></i> var variableVar
                     </div>
                 </div>
-
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="showFunctionComparison()">
-                        <i class="fas fa-balance-scale"></i> Comparar Tipos
-                    </button>
-                    <button class="control-btn" onclick="resetFunctions()">
-                        <i class="fas fa-redo"></i> Reiniciar
-                    </button>
+                <div class="scope-block" id="global-let" style="top: 300px; left: 50px; opacity: 0.3;">
+                    <i class="fas fa-times"></i> variableLet (no existe)
+                </div>
+                <div class="scope-block" id="global-var" style="top: 300px; left: 300px;">
+                    <i class="fas fa-check"></i> variableVar (accesible)
+                </div>
+                <div class="data-flow" id="scope-flow" style="top: 250px; left: 100px;">
+                    Block Scope: let y const solo existen dentro del bloque
                 </div>
             </div>
-
-            <!-- Sección 2: Parámetros y Argumentos -->
-            <div class="concept-section animate-in">
-                <h2 class="concept-title">📥 Parámetros y Argumentos</h2>
-                <p class="concept-description">Ve cómo fluyen los datos a través de las funciones</p>
-                
-                <div class="parameters-demo">
-                    <div class="parameter-flow">
-                        <div class="parameter-box">
-                            <div>Argumento</div>
-                            <div>"Juan"</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="parameter-box parameter">
-                            <div>Parámetro</div>
-                            <div>nombre</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="parameter-box result">
-                            <div>Resultado</div>
-                            <div>"Hola Juan"</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="animateParameterFlow()">
-                        <i class="fas fa-play"></i> Ver Flujo
-                    </button>
-                    <button class="control-btn" onclick="interactiveFunction()">
-                        <i class="fas fa-keyboard"></i> Probar Función
-                    </button>
-                </div>
+            <div class="step-indicator">
+                <div class="step" id="scope-step-1"></div>
+                <div class="step" id="scope-step-2"></div>
+                <div class="step" id="scope-step-3"></div>
             </div>
-
-            <!-- Sección 3: Scope y Closures -->
-            <div class="concept-section animate-in">
-                <h2 class="concept-title">🌐 Scope y Closures</h2>
-                <p class="concept-description">Entiende cómo las funciones crean su propio mundo</p>
-                
-                <div class="scope-visualization">
-                    <div class="scope-box global">
-                        <h3>🌍 Scope Global</h3>
-                        <div class="variable-item">let global = "Soy global"</div>
-                        <div class="variable-item">function ejemplo() { ... }</div>
-                    </div>
-                    
-                    <div class="scope-box local">
-                        <h3>🏠 Scope Local</h3>
-                        <div class="variable-item">let local = "Soy local"</div>
-                        <div class="variable-item">return local + global</div>
-                    </div>
-                </div>
-
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="animateScope()">
-                        <i class="fas fa-eye"></i> Ver Scope
-                    </button>
-                    <button class="control-btn" onclick="showClosure()">
-                        <i class="fas fa-lock"></i> Ver Closure
-                    </button>
-                </div>
-            </div>
-
-            <!-- Sección 4: Callbacks -->
-            <div class="concept-section animate-in">
-                <h2 class="concept-title">🔄 Callbacks</h2>
-                <p class="concept-description">Funciones que se pasan como parámetros</p>
-                
-                <div class="callback-demo">
-                    <div class="callback-chain">
-                        <div class="callback-step" id="step1">
-                            <div>1. Función Principal</div>
-                            <div>procesarDatos()</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="callback-step" id="step2">
-                            <div>2. Callback</div>
-                            <div>mostrarResultado()</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="callback-step" id="step3">
-                            <div>3. Resultado</div>
-                            <div>Datos procesados</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="animateCallback()">
-                        <i class="fas fa-play"></i> Ejecutar Callback
-                    </button>
-                    <button class="control-btn" onclick="showCallbackExamples()">
-                        <i class="fas fa-code"></i> Ver Ejemplos
-                    </button>
-                </div>
-            </div>
-
-            <!-- Navegación -->
-            <div class="control-buttons">
-                <button class="control-btn" onclick="window.location.href='ModulAnimation1.html'">
-                    <i class="fas fa-arrow-left"></i> Anterior: Variables
+            <div class="control-panel">
+                <button class="btn" onclick="animateScope()">
+                    <i class="fas fa-play"></i> Mostrar Scope
                 </button>
-                <button class="control-btn" onclick="window.location.href='ModulAnimation3.html'">
-                    <i class="fas fa-arrow-right"></i> Siguiente: Arrays
+                <button class="btn secondary" onclick="resetScope()">
+                    <i class="fas fa-redo"></i> Reiniciar
                 </button>
+            </div>
+            <div class="explanation" id="scope-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación del Scope</h3>
+                <p>El scope (alcance) determina dónde se puede acceder a una variable:</p>
+                <ul>
+                    <li><strong>var:</strong> Function scope - accesible en toda la función</li>
+                    <li><strong>let/const:</strong> Block scope - solo accesible dentro del bloque {}</li>
+                    <li><strong>Bloque:</strong> Cualquier código entre llaves {}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Animación 2: Arrow Functions -->
+        <div class="animation-section">
+            <h2 class="section-title">Arrow Functions - Sintaxis Moderna</h2>
+            <div class="code-block">
+                <div class="code-line">// Función tradicional</div>
+                <div class="code-line">function sumar(a, b) {</div>
+                <div class="code-line">    return a + b;</div>
+                <div class="code-line">}</div>
+                <div class="code-line"></div>
+                <div class="code-line">// Arrow function</div>
+                <div class="code-line">const sumar = (a, b) => a + b;</div>
+            </div>
+            <div class="animation-area" id="arrow-animation">
+                <div class="arrow-function" id="traditional-func" style="top: 50px; left: 50px;">
+                    <i class="fas fa-function"></i> function sumar(a, b) { return a + b; }
+                </div>
+                <div class="arrow" id="arrow-transform" style="top: 150px; left: 200px; transform: rotate(90deg);"></div>
+                <div class="arrow-function" id="arrow-func" style="top: 200px; left: 50px;">
+                    <i class="fas fa-arrow-right"></i> const sumar = (a, b) => a + b
+                </div>
+                <div class="data-flow" id="arrow-benefits" style="top: 100px; left: 400px;">
+                    <div style="margin-bottom: 0.5rem;">✅ Más corta</div>
+                    <div style="margin-bottom: 0.5rem;">✅ Sin this propio</div>
+                    <div>✅ Return implícito</div>
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="arrow-step-1"></div>
+                <div class="step" id="arrow-step-2"></div>
+                <div class="step" id="arrow-step-3"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateArrow()">
+                    <i class="fas fa-play"></i> Transformar Función
+                </button>
+                <button class="btn secondary" onclick="resetArrow()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="arrow-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de Arrow Functions</h3>
+                <p>Las arrow functions son una sintaxis más corta para escribir funciones:</p>
+                <ul>
+                    <li><strong>Sintaxis:</strong> (parámetros) => expresión</li>
+                    <li><strong>Return implícito:</strong> Si es una expresión, no necesita return</li>
+                    <li><strong>Sin this:</strong> Hereda el this del contexto padre</li>
+                    <li><strong>Ideal para:</strong> Callbacks, funciones simples, métodos de array</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Animación 3: Template Literals -->
+        <div class="animation-section">
+            <h2 class="section-title">Template Literals - Strings Inteligentes</h2>
+            <div class="code-block">
+                <div class="code-line">let nombre = "Ana";</div>
+                <div class="code-line">let edad = 25;</div>
+                <div class="code-line"></div>
+                <div class="code-line">// Concatenación tradicional</div>
+                <div class="code-line">let mensaje1 = "Hola " + nombre + ", tienes " + edad + " años";</div>
+                <div class="code-line"></div>
+                <div class="code-line">// Template literal</div>
+                <div class="code-line">let mensaje2 = `Hola ${nombre}, tienes ${edad} años`;</div>
+            </div>
+            <div class="animation-area" id="template-animation">
+                <div class="scope-block" id="nombre-template" style="top: 50px; left: 50px;">
+                    <i class="fas fa-tag"></i> nombre = "Ana"
+                </div>
+                <div class="scope-block" id="edad-template" style="top: 50px; left: 250px;">
+                    <i class="fas fa-calculator"></i> edad = 25
+                </div>
+                <div class="template-literal" id="traditional-string" style="top: 150px; left: 50px;">
+                    <i class="fas fa-quote-left"></i> "Hola " + nombre + ", tienes " + edad + " años"
+                </div>
+                <div class="arrow" id="template-arrow" style="top: 200px; left: 200px; transform: rotate(90deg);"></div>
+                <div class="template-literal" id="template-string" style="top: 250px; left: 50px;">
+                    <i class="fas fa-code"></i> `Hola ${nombre}, tienes ${edad} años`
+                </div>
+                <div class="data-flow" id="template-result" style="top: 100px; left: 400px;">
+                    Resultado: "Hola Ana, tienes 25 años"
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="template-step-1"></div>
+                <div class="step" id="template-step-2"></div>
+                <div class="step" id="template-step-3"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateTemplate()">
+                    <i class="fas fa-play"></i> Mostrar Interpolación
+                </button>
+                <button class="btn secondary" onclick="resetTemplate()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="template-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de Template Literals</h3>
+                <p>Los template literals permiten crear strings de forma más elegante:</p>
+                <ul>
+                    <li><strong>Backticks:</strong> Usa ` en lugar de comillas</li>
+                    <li><strong>Interpolación:</strong> ${variable} inserta el valor</li>
+                    <li><strong>Multilínea:</strong> Pueden contener saltos de línea</li>
+                    <li><strong>Expresiones:</strong> ${2 + 3} evalúa la expresión</li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <!-- Modal informativo personalizado -->
+    <!-- Modal de información -->
     <div id="infoModal" class="info-modal">
         <div class="info-modal-content">
             <div class="info-modal-header">
@@ -540,7 +616,6 @@
     </div>
 
     <script>
-        // Funciones para modal informativo personalizado
         function showInfoModal(title, message) {
             document.getElementById('infoModalTitle').textContent = title;
             document.getElementById('infoModalBody').textContent = message;
@@ -551,6 +626,146 @@
             document.getElementById('infoModal').style.display = 'none';
         }
 
+        // Animación de scope
+        function animateScope() {
+            const steps = document.querySelectorAll('#scope-animation .step');
+            
+            // Paso 1: Mostrar bloque
+            setTimeout(() => {
+                document.getElementById('block-scope').classList.add('highlight');
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Se ejecuta el bloque if (true) { ... }');
+            }, 500);
+
+            // Paso 2: Crear variables
+            setTimeout(() => {
+                const variables = ['let-var', 'const-var', 'var-var'];
+                variables.forEach((id, index) => {
+                    setTimeout(() => {
+                        document.getElementById(id).style.animation = 'pulse 0.5s ease-in-out';
+                    }, index * 300);
+                });
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'Se crean las variables dentro del bloque:\n- let variableLet\n- const variableConst\n- var variableVar');
+            }, 1500);
+
+            // Paso 3: Mostrar acceso fuera del bloque
+            setTimeout(() => {
+                document.getElementById('global-var').style.animation = 'pulse 0.5s ease-in-out';
+                document.getElementById('global-let').style.animation = 'pulse 0.5s ease-in-out';
+                document.getElementById('scope-flow').classList.add('show');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'Fuera del bloque:\n- variableVar es accesible (function scope)\n- variableLet NO es accesible (block scope)\n- variableConst NO es accesible (block scope)');
+            }, 3000);
+
+            setTimeout(() => {
+                document.getElementById('scope-explanation').classList.add('show');
+            }, 4000);
+        }
+
+        function resetScope() {
+            const elements = document.querySelectorAll('#scope-animation .step, #scope-animation .scope-visualization, #scope-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'highlight', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('scope-explanation').classList.remove('show');
+        }
+
+        // Animación de arrow functions
+        function animateArrow() {
+            const steps = document.querySelectorAll('#arrow-animation .step');
+            
+            // Paso 1: Mostrar función tradicional
+            setTimeout(() => {
+                document.getElementById('traditional-func').style.animation = 'pulse 0.5s ease-in-out';
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Función tradicional:\nfunction sumar(a, b) {\n    return a + b;\n}');
+            }, 500);
+
+            // Paso 2: Mostrar transformación
+            setTimeout(() => {
+                document.getElementById('arrow-transform').classList.add('animated');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'Transformación a arrow function:\n- Eliminar "function"\n- Agregar "=>" después de parámetros\n- Si es una expresión, eliminar "return"');
+            }, 1500);
+
+            // Paso 3: Mostrar resultado
+            setTimeout(() => {
+                document.getElementById('arrow-func').style.animation = 'pulse 0.5s ease-in-out';
+                document.getElementById('arrow-benefits').classList.add('show');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'Resultado: const sumar = (a, b) => a + b\n\nBeneficios:\n- Más corta y legible\n- Sin this propio\n- Return implícito');
+            }, 2500);
+
+            setTimeout(() => {
+                document.getElementById('arrow-explanation').classList.add('show');
+            }, 3500);
+        }
+
+        function resetArrow() {
+            const elements = document.querySelectorAll('#arrow-animation .step, #arrow-animation .arrow, #arrow-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'animated', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('arrow-explanation').classList.remove('show');
+        }
+
+        // Animación de template literals
+        function animateTemplate() {
+            const steps = document.querySelectorAll('#template-animation .step');
+            
+            // Paso 1: Mostrar variables
+            setTimeout(() => {
+                document.getElementById('nombre-template').style.animation = 'pulse 0.5s ease-in-out';
+                document.getElementById('edad-template').style.animation = 'pulse 0.5s ease-in-out';
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Variables disponibles:\nnombre = "Ana"\nedad = 25');
+            }, 500);
+
+            // Paso 2: Mostrar concatenación tradicional
+            setTimeout(() => {
+                document.getElementById('traditional-string').style.animation = 'pulse 0.5s ease-in-out';
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'Concatenación tradicional:\n"Hola " + nombre + ", tienes " + edad + " años"\n\nProblemas:\n- Difícil de leer\n- Fácil cometer errores\n- Muchos operadores +');
+            }, 1500);
+
+            // Paso 3: Mostrar template literal
+            setTimeout(() => {
+                document.getElementById('template-arrow').classList.add('animated');
+                document.getElementById('template-string').style.animation = 'pulse 0.5s ease-in-out';
+                document.getElementById('template-result').classList.add('show');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'Template literal:\n`Hola ${nombre}, tienes ${edad} años`\n\nResultado: "Hola Ana, tienes 25 años"\n\nVentajas:\n- Más legible\n- Interpolación automática\n- Soporte multilínea');
+            }, 2500);
+
+            setTimeout(() => {
+                document.getElementById('template-explanation').classList.add('show');
+            }, 3500);
+        }
+
+        function resetTemplate() {
+            const elements = document.querySelectorAll('#template-animation .step, #template-animation .arrow, #template-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'animated', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('template-explanation').classList.remove('show');
+        }
+
         // Cerrar modal al hacer clic fuera
         window.addEventListener('click', function(event) {
             const modal = document.getElementById('infoModal');
@@ -559,170 +774,19 @@
             }
         });
 
-        // Animaciones de funciones
-        function animateFunction(type) {
-            const cards = document.querySelectorAll('.function-card');
-            cards.forEach(card => {
-                card.style.transform = 'translateY(0) scale(1)';
-                card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
-            });
-            
-            const targetCard = document.querySelector(`.function-card.${type}`);
-            targetCard.style.transform = 'translateY(-15px) scale(1.05)';
-            targetCard.style.boxShadow = '0 25px 50px rgba(0,0,0,0.4)';
-            
-            setTimeout(() => {
-                targetCard.style.transform = 'translateY(-10px) scale(1.02)';
-                targetCard.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
-            }, 500);
-            
-            showFunctionExplanation(type);
-        }
-
-        function showFunctionExplanation(type) {
-            const explanations = {
-                'declared': 'FUNCIÓN DECLARADA:\n• Se puede usar antes de declararla (hoisting)\n• Tiene nombre propio\n• Scope de función\n• Sintaxis: function nombre() {}',
-                'expressed': 'FUNCIÓN EXPRESADA:\n• Se asigna a una variable\n• No se puede usar antes de declararla\n• Anónima (sin nombre propio)\n• Sintaxis: let nombre = function() {}',
-                'arrow': 'ARROW FUNCTION:\n• Sintaxis más corta\n• Sin this propio\n• Return implícito\n• Sintaxis: let nombre = () => {}'
-            };
-            
-            const titles = {
-                'declared': 'Función Declarada',
-                'expressed': 'Función Expresada',
-                'arrow': 'Arrow Function'
-            };
-            
-            showInfoModal(titles[type], explanations[type]);
-        }
-
-        function showFunctionComparison() {
-            const mensaje = `COMPARACIÓN DE FUNCIONES:
-
-DECLARADA:
-✅ Hoisting completo
-✅ Tiene nombre
-❌ Más verbosa
-
-EXPRESADA:
-❌ Sin hoisting
-❌ Anónima
-✅ Más flexible
-
-ARROW:
-❌ Sin hoisting
-❌ Anónima
-✅ Más corta
-✅ Sin this propio`;
-            showInfoModal('Comparación de Funciones', mensaje);
-        }
-
-        function resetFunctions() {
-            const cards = document.querySelectorAll('.function-card');
-            cards.forEach(card => {
-                card.style.transform = 'translateY(0) scale(1)';
-                card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
-            });
-        }
-
-        // Animación de parámetros
-        function animateParameterFlow() {
-            const boxes = document.querySelectorAll('.parameter-box');
-            boxes.forEach((box, index) => {
-                setTimeout(() => {
-                    box.style.transform = 'scale(1.2)';
-                    box.style.boxShadow = '0 15px 30px rgba(0,0,0,0.3)';
-                    setTimeout(() => {
-                        box.style.transform = 'scale(1)';
-                        box.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
-                    }, 500);
-                }, index * 300);
-            });
-        }
-
-        function interactiveFunction() {
-            const nombre = prompt('Escribe tu nombre para probar la función:');
-            if (nombre) {
-                const resultado = `Hola, ${nombre}! Bienvenido a JavaScript.`;
-                const mensaje = `Resultado de la función:\n"${resultado}"`;
-                showInfoModal('Resultado de la Función', mensaje);
-            }
-        }
-
-        // Animación de scope
-        function animateScope() {
-            const boxes = document.querySelectorAll('.scope-box');
-            boxes.forEach((box, index) => {
-                setTimeout(() => {
-                    box.style.borderWidth = '5px';
-                    box.style.backgroundColor = '#ff6b6b20';
-                    setTimeout(() => {
-                        box.style.borderWidth = '3px';
-                        box.style.backgroundColor = '#40407a';
-                    }, 1000);
-                }, index * 500);
-            });
-        }
-
-        function showClosure() {
-            const mensaje = `CLOSURE (Cierre):
-
-Una función que "recuerda" su entorno:
-
-function crearContador() {
-    let contador = 0;
-    return function() {
-        contador++;
-        return contador;
-    };
-}
-
-let miContador = crearContador();
-miContador(); // 1
-miContador(); // 2
-
-La función interna "recuerda" la variable contador.`;
-            showInfoModal('Closure (Cierre)', mensaje);
-        }
-
-        // Animación de callbacks
-        function animateCallback() {
-            const steps = document.querySelectorAll('.callback-step');
-            steps.forEach((step, index) => {
-                setTimeout(() => {
-                    step.classList.add('active');
-                    setTimeout(() => {
-                        step.classList.remove('active');
-                    }, 1000);
-                }, index * 800);
-            });
-        }
-
-        function showCallbackExamples() {
-            const mensaje = `EJEMPLOS DE CALLBACKS:
-
-1. Con setTimeout:
-setTimeout(() => {
-    console.log('Se ejecutó después de 2 segundos');
-}, 2000);
-
-2. Con arrays:
-let numeros = [1, 2, 3, 4, 5];
-let dobles = numeros.map(num => num * 2);
-
-3. Con eventos:
-boton.addEventListener('click', function() {
-    console.log('Botón presionado');
-});`;
-            showInfoModal('Ejemplos de Callbacks', mensaje);
-        }
-
         // Animaciones de entrada
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.concept-section');
+        window.addEventListener('load', function() {
+            const sections = document.querySelectorAll('.animation-section');
             sections.forEach((section, index) => {
                 setTimeout(() => {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(30px)';
+                    section.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }, 100);
                 }, index * 200);
             });
         });
