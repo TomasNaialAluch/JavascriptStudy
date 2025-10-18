@@ -764,16 +764,17 @@ body {
 .modal-content {
     background-color: var(--white);
     margin: 2% auto;
-    padding: 0;
+    padding: 2rem !important; /* CRITICAL: Force padding for all modals */
     border-radius: var(--border-radius);
     width: fit-content;
     min-width: 400px;
-    max-width: 70%;
+    max-width: 60%; /* Reduced max-width for better readability */
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
     animation: slideIn 0.3s ease;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    line-height: 1.6 !important; /* Better line spacing */
 }
 
 .modal-header {
@@ -834,86 +835,86 @@ body {
 
 /* Estilos para modales con estructura antigua (contenido directo en modal-content) */
 .modal-content > h2 + * {
-    margin-top: 2rem;
+    margin-top: 2rem !important;
 }
 
 .modal-content > h3 {
-    color: var(--secondary-color);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-    font-weight: 600;
+    color: var(--secondary-color) !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
 }
 
 .modal-content > h3:first-of-type {
-    margin-top: 2rem;
+    margin-top: 2rem !important;
 }
 
 .modal-content > h4 {
-    color: var(--primary-color);
-    margin-top: 1.5rem;
-    margin-bottom: 0.8rem;
-    font-size: 1.1rem;
-    font-weight: 600;
+    color: var(--primary-color) !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0.8rem !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
 }
 
 .modal-content > h5 {
-    color: var(--text-color);
-    margin-top: 1.2rem;
-    margin-bottom: 0.6rem;
-    font-size: 1rem;
-    font-weight: 600;
+    color: var(--text-color) !important;
+    margin-top: 1.2rem !important;
+    margin-bottom: 0.6rem !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
 }
 
 .modal-content > p {
-    margin-bottom: 1.2rem;
-    line-height: 1.7;
+    margin-bottom: 1.2rem !important;
+    line-height: 1.7 !important;
 }
 
 .modal-content > ul, .modal-content > ol {
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
+    margin-bottom: 1.5rem !important;
+    padding-left: 1.5rem !important;
 }
 
 .modal-content > li {
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.6 !important;
 }
 
 .modal-content > pre {
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
-    padding: 1.5rem;
-    overflow-x: auto;
-    margin: 1.5rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    padding: 1.5rem !important;
+    overflow-x: auto !important;
+    margin: 1.5rem 0 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
 }
 
 .modal-content > code {
-    background: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 0.9rem;
+    background: var(--primary-color) !important;
+    color: var(--secondary-color) !important;
+    padding: 0.3rem 0.6rem !important;
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
 }
 
 .modal-content > table {
-    margin: 1.5rem 0;
-    border-collapse: collapse;
-    width: 100%;
+    margin: 1.5rem 0 !important;
+    border-collapse: collapse !important;
+    width: 100% !important;
 }
 
 .modal-content > th, .modal-content > td {
-    padding: 0.8rem;
-    text-align: left;
-    border-bottom: 1px solid #e9ecef;
+    padding: 0.8rem !important;
+    text-align: left !important;
+    border-bottom: 1px solid #e9ecef !important;
 }
 
 .modal-content > th {
-    background-color: #f8f9fa;
-    font-weight: 600;
+    background-color: #f8f9fa !important;
+    font-weight: 600 !important;
 }
 
 /* Ajustar padding cuando tiene modal-body */
@@ -1330,11 +1331,7 @@ body {
     }
 }
 
-/* CRITICAL: Ensure modal padding is applied with maximum specificity */
-.modal-content {
-    padding: 2rem !important;
-    line-height: 1.6 !important;
-}
+/* Modal padding is now applied in the main .modal-content rule above */
 
 /* Animaciones adicionales */
 .knowledge-card,
