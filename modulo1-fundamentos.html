@@ -173,6 +173,18 @@
                                 <i class="fas fa-circle"></i>
                             </div>
                         </a>
+                        <a href="#callbacks" class="nav-item" data-section="callbacks">
+                            <div class="nav-item-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="nav-item-content">
+                                <span class="nav-item-title">Callbacks y Asincronía</span>
+                                <span class="nav-item-desc">Funciones que se ejecutan más tarde</span>
+                            </div>
+                            <div class="nav-item-status">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1884,6 +1896,260 @@ analizarTexto(miTexto);</code></pre>
                 </div>
             </div>
         </section>
+
+        <!-- Lección 7: Callbacks y Programación Asíncrona -->
+        <section id="callbacks" class="lesson-section" data-lesson="callbacks">
+            <div class="container">
+                <div class="lesson-header">
+                    <div class="lesson-badge">
+                        <i class="fas fa-clock"></i>
+                        <span>Lección 7</span>
+                    </div>
+                    <h2>Callbacks y Programación Asíncrona</h2>
+                    <p class="lesson-intro">Los callbacks son funciones que se pasan como argumentos a otras funciones. Son fundamentales para la programación asíncrona en JavaScript y se usan en casi todas las aplicaciones modernas.</p>
+                    
+                    <div class="key-points">
+                        <h4>🎯 Puntos Clave</h4>
+                        <div class="key-points-grid">
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>¿Qué es un callback?</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Callbacks síncronos vs asíncronos</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>setTimeout y setInterval</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Event listeners</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Callbacks en arrays</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-content">
+                    <!-- Teoría colapsable -->
+                    <div class="theory-section">
+                        <div class="section-toggle" onclick="toggleSection('callbacks-theory')">
+                            <h3><i class="fas fa-book"></i> Teoría</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div id="callbacks-theory" class="theory-content collapsed">
+                            <div class="theory-grid">
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-question-circle"></i> ¿Qué es un Callback?</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item clickable" onclick="openModal('callback-definition-modal')">
+                                            <code>Callback</code>
+                                            <span>Función pasada como argumento</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('callback-example-modal')">
+                                            <code>Ejemplo básico</code>
+                                            <span>Ver cómo funciona un callback</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('callback-purpose-modal')">
+                                            <code>¿Para qué sirven?</code>
+                                            <span>Usos prácticos de callbacks</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-clock"></i> Callbacks Asíncronos</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item clickable" onclick="openModal('settimeout-modal')">
+                                            <code>setTimeout()</code>
+                                            <span>Ejecutar después de un delay</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('setinterval-modal')">
+                                            <code>setInterval()</code>
+                                            <span>Ejecutar repetidamente</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('async-difference-modal')">
+                                            <code>Síncrono vs Asíncrono</code>
+                                            <span>Diferencias clave</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-mouse-pointer"></i> Event Listeners</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item clickable" onclick="openModal('event-listener-modal')">
+                                            <code>addEventListener()</code>
+                                            <span>Escuchar eventos del DOM</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('event-types-modal')">
+                                            <code>Tipos de eventos</code>
+                                            <span>click, change, submit, etc.</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('event-object-modal')">
+                                            <code>Objeto event</code>
+                                            <span>Información del evento</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-list"></i> Callbacks en Arrays</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item clickable" onclick="openModal('foreach-modal')">
+                                            <code>forEach()</code>
+                                            <span>Recorrer arrays con callback</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('map-callback-modal')">
+                                            <code>map()</code>
+                                            <span>Transformar arrays</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('filter-callback-modal')">
+                                            <code>filter()</code>
+                                            <span>Filtrar arrays</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-exclamation-triangle"></i> Problemas Comunes</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item clickable" onclick="openModal('callback-hell-modal')">
+                                            <code>Callback Hell</code>
+                                            <span>Problema de callbacks anidados</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('this-in-callbacks-modal')">
+                                            <code>this en callbacks</code>
+                                            <span>Problema con el contexto</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('arrow-callbacks-modal')">
+                                            <code>Arrow functions</code>
+                                            <span>Solución moderna</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ejemplos con pestañas -->
+                    <div class="examples-section">
+                        <h3><i class="fas fa-code"></i> Ejemplos de Código</h3>
+                        <div class="example-tabs">
+                            <button class="tab-button active" onclick="showExampleTab('callbacks', 'basic')">Básico</button>
+                            <button class="tab-button" onclick="showExampleTab('callbacks', 'advanced')">Avanzado</button>
+                            <button class="tab-button" onclick="showExampleTab('callbacks', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="callbacks-basic" class="example-content active">
+                            <h4>Ejemplo Básico: Callbacks Síncronos</h4>
+                            <pre><code class="language-javascript">// Callback simple
+function saludar(nombre) {
+    console.log(`Hola, ${nombre}!`);
+}
+
+function procesarUsuario(callback) {
+    let nombre = "Ana";
+    callback(nombre); // Llamar al callback
+}
+
+procesarUsuario(saludar); // "Hola, Ana!"
+
+// Callback con setTimeout
+setTimeout(function() {
+    console.log("Esto se ejecuta después de 2 segundos");
+}, 2000);
+
+// Callback en arrays
+let numeros = [1, 2, 3, 4, 5];
+numeros.forEach(function(numero) {
+    console.log(numero * 2);
+});</code></pre>
+                        </div>
+
+                        <div id="callbacks-advanced" class="example-content">
+                            <h4>Ejemplo Avanzado: Event Listeners y Callbacks Anidados</h4>
+                            <pre><code class="language-javascript">// Event listener con callback
+document.getElementById('miBoton').addEventListener('click', function(event) {
+    console.log('Botón presionado!');
+    console.log('Coordenadas:', event.clientX, event.clientY);
+});
+
+// Callbacks en métodos de arrays
+let productos = [
+    {nombre: "Laptop", precio: 999},
+    {nombre: "Mouse", precio: 25},
+    {nombre: "Teclado", precio: 75}
+];
+
+// Filtrar productos caros
+let productosCaros = productos.filter(function(producto) {
+    return producto.precio > 50;
+});
+
+// Transformar precios con IVA
+let preciosConIva = productos.map(function(producto) {
+    return {
+        nombre: producto.nombre,
+        precioFinal: producto.precio * 1.21
+    };
+});
+
+console.log(preciosConIva);</code></pre>
+                        </div>
+
+                        <div id="callbacks-interactive" class="example-content">
+                            <h4>Ejemplo Interactivo: Simulador de Temporizador</h4>
+                            <div class="interactive-demo">
+                                <p>Prueba este temporizador interactivo:</p>
+                                <button class="btn btn-primary" onclick="runCallbackDemo()">
+                                    <i class="fas fa-play"></i> Iniciar Temporizador
+                                </button>
+                                <div id="callback-output" style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; min-height: 100px;">
+                                    <p>Haz clic en el botón para ver el callback en acción...</p>
+                                </div>
+                            </div>
+                            <pre><code class="language-javascript">function runCallbackDemo() {
+    let output = document.getElementById('callback-output');
+    output.innerHTML = '<p>⏳ Iniciando temporizador...</p>';
+    
+    setTimeout(function() {
+        output.innerHTML += '<p>✅ ¡1 segundo transcurrido!</p>';
+    }, 1000);
+    
+    setTimeout(function() {
+        output.innerHTML += '<p>✅ ¡2 segundos transcurridos!</p>';
+    }, 2000);
+    
+    setTimeout(function() {
+        output.innerHTML += '<p>✅ ¡3 segundos! Callback completado</p>';
+    }, 3000);
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -2339,7 +2605,7 @@ if (a > b) {
 
         // Funciones de progreso
         function updateProgress() {
-            const totalLessons = 6;
+            const totalLessons = 7;
             const progress = (completedLessons.size / totalLessons) * 100;
             moduleProgress = Math.round(progress);
             
@@ -2658,6 +2924,24 @@ if (a > b) {
             } else {
                 codeBlock.style.display = 'none';
             }
+        };
+
+        // Función para el ejemplo interactivo de callbacks
+        window.runCallbackDemo = function() {
+            let output = document.getElementById('callback-output');
+            output.innerHTML = '<p style="color: #ffa500; font-weight: bold;">⏳ Iniciando temporizador...</p>';
+            
+            setTimeout(function() {
+                output.innerHTML += '<p style="color: #28a745; font-weight: bold;">✅ ¡1 segundo transcurrido!</p>';
+            }, 1000);
+            
+            setTimeout(function() {
+                output.innerHTML += '<p style="color: #28a745; font-weight: bold;">✅ ¡2 segundos transcurridos!</p>';
+            }, 2000);
+            
+            setTimeout(function() {
+                output.innerHTML += '<p style="color: #28a745; font-weight: bold;">✅ ¡3 segundos! Callback completado 🎉</p>';
+            }, 3000);
         };
 
         // Funciones para modales
@@ -3547,6 +3831,1676 @@ analizarTexto(miTexto);</code></pre>
                     <li><strong>length:</strong> Propiedad que devuelve la longitud de strings y arrays</li>
                     <li><strong>Bucles:</strong> for...of para recorrer arrays fácilmente</li>
                 </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales para Lección 7: Callbacks -->
+    <div id="callback-definition-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('callback-definition-modal')">&times;</span>
+            <h2><i class="fas fa-question-circle"></i> ¿Qué es un Callback?</h2>
+            <div class="modal-body">
+                <h3>Definición:</h3>
+                <p>Un <strong>callback</strong> es una función que se pasa como argumento a otra función para ser ejecutada más tarde.</p>
+                
+                <h3>Concepto Básico:</h3>
+                <pre><code class="language-javascript">// Función que recibe un callback
+function hacerAlgo(callback) {
+    console.log("Haciendo algo...");
+    callback(); // Ejecutar el callback
+}
+
+// Función que usaremos como callback
+function terminado() {
+    console.log("¡Terminado!");
+}
+
+// Pasar la función como argumento
+hacerAlgo(terminado);
+// Output:
+// Haciendo algo...
+// ¡Terminado!</code></pre>
+                
+                <h3>Por qué se llama "callback":</h3>
+                <p>"Call back" significa "llamar de vuelta". La función principal "llama de vuelta" a la función que le pasaste cuando está lista para ejecutarla.</p>
+                
+                <h3>Puntos Clave:</h3>
+                <ul>
+                    <li><strong>Función como valor:</strong> En JavaScript, las funciones son valores que se pueden pasar</li>
+                    <li><strong>Ejecución diferida:</strong> El callback se ejecuta cuando la función que lo recibe decide</li>
+                    <li><strong>Muy común:</strong> Se usa en eventos, arrays, operaciones asíncronas, etc.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="callback-example-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('callback-example-modal')">&times;</span>
+            <h2><i class="fas fa-code"></i> Ejemplo Básico de Callback</h2>
+            <div class="modal-body">
+                <h3>Ejemplo 1: Callback Simple</h3>
+                <pre><code class="language-javascript">function saludar(nombre) {
+    console.log(`Hola, ${nombre}!`);
+}
+
+function procesarEntrada(callback) {
+    let nombre = "María";
+    callback(nombre);
+}
+
+procesarEntrada(saludar); // "Hola, María!"</code></pre>
+                
+                <h3>Ejemplo 2: Callback con Parámetros</h3>
+                <pre><code class="language-javascript">function operar(a, b, operacion) {
+    let resultado = operacion(a, b);
+    console.log("Resultado:", resultado);
+}
+
+// Callbacks diferentes
+function sumar(x, y) {
+    return x + y;
+}
+
+function multiplicar(x, y) {
+    return x * y;
+}
+
+operar(5, 3, sumar);        // Resultado: 8
+operar(5, 3, multiplicar);  // Resultado: 15</code></pre>
+                
+                <h3>Ejemplo 3: Callback Anónimo</h3>
+                <pre><code class="language-javascript">function procesarArray(arr, callback) {
+    for (let i = 0; i < arr.length; i++) {
+        callback(arr[i], i);
+    }
+}
+
+let numeros = [1, 2, 3, 4, 5];
+
+// Callback anónimo
+procesarArray(numeros, function(numero, indice) {
+    console.log(`Índice ${indice}: ${numero * 2}`);
+});</code></pre>
+                
+                <h3>¿Cuándo usar callbacks?</h3>
+                <ul>
+                    <li>Cuando quieres que una función haga algo después de terminar</li>
+                    <li>Para personalizar el comportamiento de una función</li>
+                    <li>Para operaciones asíncronas (que toman tiempo)</li>
+                    <li>Para eventos del navegador (clicks, teclas, etc.)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="callback-purpose-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('callback-purpose-modal')">&times;</span>
+            <h2><i class="fas fa-lightbulb"></i> ¿Para qué sirven los Callbacks?</h2>
+            <div class="modal-body">
+                <h3>Usos Principales:</h3>
+                
+                <h4>1. Operaciones Asíncronas</h4>
+                <p>Ejecutar código después de que algo tome tiempo (cargar datos, temporizadores, etc.)</p>
+                <pre><code class="language-javascript">setTimeout(function() {
+    console.log("Esto se ejecuta después de 2 segundos");
+}, 2000);</code></pre>
+                
+                <h4>2. Eventos del Usuario</h4>
+                <p>Responder a acciones del usuario (clicks, teclas, movimientos del mouse)</p>
+                <pre><code class="language-javascript">document.getElementById('boton').addEventListener('click', function() {
+    console.log("¡Botón presionado!");
+});</code></pre>
+                
+                <h4>3. Procesar Arrays</h4>
+                <p>Aplicar una función a cada elemento de un array</p>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+numeros.forEach(function(numero) {
+    console.log(numero * 2);
+});</code></pre>
+                
+                <h4>4. Personalizar Comportamiento</h4>
+                <p>Hacer que una función sea más flexible</p>
+                <pre><code class="language-javascript">function filtrar(array, condicion) {
+    let resultado = [];
+    for (let item of array) {
+        if (condicion(item)) {
+            resultado.push(item);
+        }
+    }
+    return resultado;
+}
+
+let numeros = [1, 2, 3, 4, 5, 6];
+let pares = filtrar(numeros, function(n) {
+    return n % 2 === 0;
+});
+console.log(pares); // [2, 4, 6]</code></pre>
+                
+                <h3>Ventajas de los Callbacks:</h3>
+                <ul>
+                    <li><strong>Código reutilizable:</strong> Una función puede tener diferentes comportamientos</li>
+                    <li><strong>Flexibilidad:</strong> Puedes decidir qué hacer en cada situación</li>
+                    <li><strong>Asincronía:</strong> Manejar operaciones que toman tiempo</li>
+                    <li><strong>Separación de conceptos:</strong> Divide el código en partes más manejables</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="settimeout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('settimeout-modal')">&times;</span>
+            <h2><i class="fas fa-clock"></i> setTimeout()</h2>
+            <div class="modal-body">
+                <h3>¿Qué es setTimeout?</h3>
+                <p><code>setTimeout()</code> ejecuta una función después de un tiempo específico (en milisegundos).</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">setTimeout(callback, tiempoEnMilisegundos);</code></pre>
+                
+                <h3>Ejemplo Básico:</h3>
+                <pre><code class="language-javascript">console.log("Inicio");
+
+setTimeout(function() {
+    console.log("Esto se ejecuta después de 2 segundos");
+}, 2000);
+
+console.log("Fin");
+
+// Output:
+// Inicio
+// Fin
+// Esto se ejecuta después de 2 segundos (2 segundos más tarde)</code></pre>
+                
+                <h3>Con Arrow Function:</h3>
+                <pre><code class="language-javascript">setTimeout(() => {
+    console.log("¡Hola desde el futuro!");
+}, 3000);</code></pre>
+                
+                <h3>Pasar Parámetros:</h3>
+                <pre><code class="language-javascript">function saludar(nombre, edad) {
+    console.log(`Hola ${nombre}, tienes ${edad} años`);
+}
+
+// Los parámetros adicionales se pasan después del tiempo
+setTimeout(saludar, 1000, "Juan", 25);
+// Output (después de 1 segundo): Hola Juan, tienes 25 años</code></pre>
+                
+                <h3>Cancelar un setTimeout:</h3>
+                <pre><code class="language-javascript">// Guardar el ID del timeout
+let timeoutId = setTimeout(() => {
+    console.log("Esto no se ejecutará");
+}, 5000);
+
+// Cancelar antes de que se ejecute
+clearTimeout(timeoutId);
+console.log("Timeout cancelado");</code></pre>
+                
+                <h3>Casos de Uso Reales:</h3>
+                <ul>
+                    <li><strong>Notificaciones:</strong> Mostrar un mensaje después de cierto tiempo</li>
+                    <li><strong>Animaciones:</strong> Ejecutar animaciones con delay</li>
+                    <li><strong>Polling:</strong> Verificar algo periódicamente</li>
+                    <li><strong>Debouncing:</strong> Esperar a que el usuario termine de escribir</li>
+                </ul>
+                
+                <h3>⚠️ Importante:</h3>
+                <p>El código después de <code>setTimeout</code> se ejecuta inmediatamente, NO espera. Es asíncrono.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="setinterval-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('setinterval-modal')">&times;</span>
+            <h2><i class="fas fa-redo"></i> setInterval()</h2>
+            <div class="modal-body">
+                <h3>¿Qué es setInterval?</h3>
+                <p><code>setInterval()</code> ejecuta una función repetidamente cada cierto tiempo.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">setInterval(callback, tiempoEnMilisegundos);</code></pre>
+                
+                <h3>Ejemplo Básico:</h3>
+                <pre><code class="language-javascript">let contador = 0;
+
+setInterval(function() {
+    contador++;
+    console.log(`Contador: ${contador}`);
+}, 1000);
+
+// Output (cada segundo):
+// Contador: 1
+// Contador: 2
+// Contador: 3
+// ... (continúa indefinidamente)</code></pre>
+                
+                <h3>Detener un Interval:</h3>
+                <pre><code class="language-javascript">let contador = 0;
+
+let intervalId = setInterval(() => {
+    contador++;
+    console.log(`Contador: ${contador}`);
+    
+    // Detener después de 5 veces
+    if (contador >= 5) {
+        clearInterval(intervalId);
+        console.log("Interval detenido");
+    }
+}, 1000);</code></pre>
+                
+                <h3>Ejemplo: Reloj Digital</h3>
+                <pre><code class="language-javascript">function actualizarReloj() {
+    let ahora = new Date();
+    let horas = ahora.getHours();
+    let minutos = ahora.getMinutes();
+    let segundos = ahora.getSeconds();
+    
+    // Formatear con ceros a la izquierda
+    horas = horas < 10 ? '0' + horas : horas;
+    minutos = minutos < 10 ? '0' + minutos : minutos;
+    segundos = segundos < 10 ? '0' + segundos : segundos;
+    
+    console.log(`${horas}:${minutos}:${segundos}`);
+}
+
+// Actualizar cada segundo
+setInterval(actualizarReloj, 1000);</code></pre>
+                
+                <h3>Ejemplo: Temporizador de Cuenta Regresiva</h3>
+                <pre><code class="language-javascript">let tiempoRestante = 10;
+
+let intervalId = setInterval(() => {
+    console.log(`${tiempoRestante} segundos restantes...`);
+    tiempoRestante--;
+    
+    if (tiempoRestante < 0) {
+        clearInterval(intervalId);
+        console.log("¡Tiempo agotado!");
+    }
+}, 1000);</code></pre>
+                
+                <h3>Casos de Uso Reales:</h3>
+                <ul>
+                    <li><strong>Relojes:</strong> Actualizar la hora cada segundo</li>
+                    <li><strong>Animaciones:</strong> Actualizar posiciones periódicamente</li>
+                    <li><strong>Actualizaciones:</strong> Verificar nuevos datos del servidor</li>
+                    <li><strong>Juegos:</strong> Actualizar el estado del juego</li>
+                </ul>
+                
+                <h3>⚠️ Importante:</h3>
+                <ul>
+                    <li>Siempre usa <code>clearInterval()</code> cuando ya no lo necesites</li>
+                    <li>No crear intervals dentro de loops (puede causar problemas de memoria)</li>
+                    <li>Para una sola ejecución, usa <code>setTimeout</code>, no <code>setInterval</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="async-difference-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('async-difference-modal')">&times;</span>
+            <h2><i class="fas fa-exchange-alt"></i> Síncrono vs Asíncrono</h2>
+            <div class="modal-body">
+                <h3>Código Síncrono:</h3>
+                <p>Se ejecuta línea por línea, esperando que cada operación termine antes de continuar.</p>
+                <pre><code class="language-javascript">console.log("1. Primero");
+console.log("2. Segundo");
+console.log("3. Tercero");
+
+// Output (en orden):
+// 1. Primero
+// 2. Segundo
+// 3. Tercero</code></pre>
+                
+                <h3>Código Asíncrono:</h3>
+                <p>No espera a que una operación termine. Continúa ejecutando el siguiente código.</p>
+                <pre><code class="language-javascript">console.log("1. Primero");
+
+setTimeout(() => {
+    console.log("2. Segundo (asíncrono)");
+}, 1000);
+
+console.log("3. Tercero");
+
+// Output:
+// 1. Primero
+// 3. Tercero
+// 2. Segundo (asíncrono) ← Aparece 1 segundo después</code></pre>
+                
+                <h3>Comparación Visual:</h3>
+                <pre><code class="language-javascript">// SÍNCRONO: Espera en cada paso
+function tarea1() {
+    console.log("Tarea 1 iniciada");
+    // Código que toma 2 segundos
+    console.log("Tarea 1 completada");
+}
+
+function tarea2() {
+    console.log("Tarea 2 iniciada");
+    console.log("Tarea 2 completada");
+}
+
+tarea1(); // Espera que termine
+tarea2(); // Luego ejecuta esto
+
+// VS
+
+// ASÍNCRONO: No espera
+function tarea1Async() {
+    console.log("Tarea 1 iniciada");
+    setTimeout(() => {
+        console.log("Tarea 1 completada");
+    }, 2000);
+}
+
+function tarea2() {
+    console.log("Tarea 2 iniciada");
+    console.log("Tarea 2 completada");
+}
+
+tarea1Async(); // No espera, continúa inmediatamente
+tarea2(); // Se ejecuta mientras tarea1 está en proceso</code></pre>
+                
+                <h3>Operaciones Asíncronas Comunes:</h3>
+                <ul>
+                    <li><strong>setTimeout / setInterval:</strong> Temporizadores</li>
+                    <li><strong>Eventos:</strong> Clicks, teclas, etc.</li>
+                    <li><strong>Solicitudes HTTP:</strong> Obtener datos de un servidor</li>
+                    <li><strong>Lectura de archivos:</strong> Cargar archivos</li>
+                    <li><strong>Animaciones:</strong> requestAnimationFrame</li>
+                </ul>
+                
+                <h3>¿Por qué necesitamos código asíncrono?</h3>
+                <ul>
+                    <li><strong>No bloquear:</strong> El navegador puede seguir respondiendo</li>
+                    <li><strong>Múltiples tareas:</strong> Hacer varias cosas a la vez</li>
+                    <li><strong>Mejor experiencia:</strong> La aplicación no se congela</li>
+                    <li><strong>Eficiencia:</strong> No esperar innecesariamente</li>
+                </ul>
+                
+                <h3>Ejemplo Práctico:</h3>
+                <pre><code class="language-javascript">console.log("Pidiendo pizza...");
+
+setTimeout(() => {
+    console.log("¡Pizza lista!");
+}, 5000); // 5 segundos de espera
+
+console.log("Mientras tanto, veo TV");
+console.log("Y reviso el teléfono");
+
+// Output:
+// Pidiendo pizza...
+// Mientras tanto, veo TV
+// Y reviso el teléfono
+// (5 segundos después)
+// ¡Pizza lista!</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="event-listener-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('event-listener-modal')">&times;</span>
+            <h2><i class="fas fa-mouse-pointer"></i> addEventListener()</h2>
+            <div class="modal-body">
+                <h3>¿Qué es addEventListener?</h3>
+                <p>Permite "escuchar" eventos del DOM (clicks, teclas, etc.) y ejecutar un callback cuando ocurren.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">elemento.addEventListener(tipoDeEvento, callback);</code></pre>
+                
+                <h3>Ejemplo Básico:</h3>
+                <pre><code class="language-javascript">// HTML: &lt;button id="miBoton"&gt;Click Me&lt;/button&gt;
+
+let boton = document.getElementById('miBoton');
+
+boton.addEventListener('click', function() {
+    console.log("¡Botón presionado!");
+});</code></pre>
+                
+                <h3>Con Arrow Function:</h3>
+                <pre><code class="language-javascript">boton.addEventListener('click', () => {
+    console.log("¡Botón presionado!");
+});</code></pre>
+                
+                <h3>Obtener Información del Evento:</h3>
+                <pre><code class="language-javascript">boton.addEventListener('click', function(event) {
+    console.log("Tipo de evento:", event.type);
+    console.log("Elemento que lo disparó:", event.target);
+    console.log("Coordenadas X:", event.clientX);
+    console.log("Coordenadas Y:", event.clientY);
+});</code></pre>
+                
+                <h3>Múltiples Event Listeners:</h3>
+                <pre><code class="language-javascript">boton.addEventListener('click', function() {
+    console.log("Primer listener");
+});
+
+boton.addEventListener('click', function() {
+    console.log("Segundo listener");
+});
+
+// Ambos se ejecutan cuando haces click</code></pre>
+                
+                <h3>Remover un Event Listener:</h3>
+                <pre><code class="language-javascript">function manejarClick() {
+    console.log("Click!");
+}
+
+// Agregar
+boton.addEventListener('click', manejarClick);
+
+// Remover (debe ser la misma función)
+boton.removeEventListener('click', manejarClick);</code></pre>
+                
+                <h3>Ejemplo Práctico: Contador de Clicks</h3>
+                <pre><code class="language-javascript">// HTML:
+// &lt;button id="boton"&gt;Click Me&lt;/button&gt;
+// &lt;p id="contador"&gt;Clicks: 0&lt;/p&gt;
+
+let boton = document.getElementById('boton');
+let contador = document.getElementById('contador');
+let clicks = 0;
+
+boton.addEventListener('click', function() {
+    clicks++;
+    contador.textContent = `Clicks: ${clicks}`;
+});</code></pre>
+                
+                <h3>Ejemplo: Cambiar Color al Hacer Hover</h3>
+                <pre><code class="language-javascript">let caja = document.getElementById('caja');
+
+caja.addEventListener('mouseenter', function() {
+    caja.style.backgroundColor = 'blue';
+});
+
+caja.addEventListener('mouseleave', function() {
+    caja.style.backgroundColor = 'red';
+});</code></pre>
+                
+                <h3>Ventajas de addEventListener:</h3>
+                <ul>
+                    <li>Puedes agregar múltiples listeners al mismo evento</li>
+                    <li>Puedes remover listeners específicos</li>
+                    <li>Mejor separación del código JavaScript y HTML</li>
+                    <li>Más control sobre el comportamiento del evento</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="event-types-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('event-types-modal')">&times;</span>
+            <h2><i class="fas fa-list"></i> Tipos de Eventos</h2>
+            <div class="modal-body">
+                <h3>Eventos del Mouse:</h3>
+                <pre><code class="language-javascript">// click: Cuando haces click
+elemento.addEventListener('click', callback);
+
+// dblclick: Doble click
+elemento.addEventListener('dblclick', callback);
+
+// mouseenter: Cuando el mouse entra al elemento
+elemento.addEventListener('mouseenter', callback);
+
+// mouseleave: Cuando el mouse sale del elemento
+elemento.addEventListener('mouseleave', callback);
+
+// mousemove: Cuando el mouse se mueve sobre el elemento
+elemento.addEventListener('mousemove', callback);
+
+// mousedown: Cuando presionas el botón del mouse
+elemento.addEventListener('mousedown', callback);
+
+// mouseup: Cuando sueltas el botón del mouse
+elemento.addEventListener('mouseup', callback);</code></pre>
+                
+                <h3>Eventos del Teclado:</h3>
+                <pre><code class="language-javascript">// keydown: Cuando presionas una tecla
+document.addEventListener('keydown', function(e) {
+    console.log("Tecla presionada:", e.key);
+});
+
+// keyup: Cuando sueltas una tecla
+document.addEventListener('keyup', callback);
+
+// keypress: Cuando mantienes presionada una tecla (obsoleto)
+document.addEventListener('keypress', callback);</code></pre>
+                
+                <h3>Eventos de Formularios:</h3>
+                <pre><code class="language-javascript">// submit: Cuando se envía un formulario
+formulario.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevenir envío
+    console.log("Formulario enviado");
+});
+
+// change: Cuando cambia el valor de un input
+input.addEventListener('change', callback);
+
+// input: Cada vez que escribes en un input
+input.addEventListener('input', function(e) {
+    console.log("Valor actual:", e.target.value);
+});
+
+// focus: Cuando un input recibe foco
+input.addEventListener('focus', callback);
+
+// blur: Cuando un input pierde foco
+input.addEventListener('blur', callback);</code></pre>
+                
+                <h3>Eventos de la Ventana:</h3>
+                <pre><code class="language-javascript">// load: Cuando la página termina de cargar
+window.addEventListener('load', function() {
+    console.log("Página cargada completamente");
+});
+
+// resize: Cuando cambias el tamaño de la ventana
+window.addEventListener('resize', function() {
+    console.log("Ancho:", window.innerWidth);
+    console.log("Alto:", window.innerHeight);
+});
+
+// scroll: Cuando haces scroll
+window.addEventListener('scroll', function() {
+    console.log("Scroll Y:", window.scrollY);
+});</code></pre>
+                
+                <h3>Ejemplo Práctico Completo:</h3>
+                <pre><code class="language-javascript">// HTML:
+// &lt;input type="text" id="nombre" placeholder="Tu nombre"&gt;
+// &lt;button id="enviar"&gt;Enviar&lt;/button&gt;
+// &lt;div id="resultado"&gt;&lt;/div&gt;
+
+let input = document.getElementById('nombre');
+let boton = document.getElementById('enviar');
+let resultado = document.getElementById('resultado');
+
+// Mostrar lo que escribes
+input.addEventListener('input', function(e) {
+    resultado.textContent = `Escribiendo: ${e.target.value}`;
+});
+
+// Cuando el input recibe foco
+input.addEventListener('focus', function() {
+    input.style.borderColor = 'blue';
+});
+
+// Cuando el input pierde foco
+input.addEventListener('blur', function() {
+    input.style.borderColor = 'gray';
+});
+
+// Cuando presionas Enter
+input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        boton.click();
+    }
+});
+
+// Cuando haces click en el botón
+boton.addEventListener('click', function() {
+    let nombre = input.value;
+    if (nombre) {
+        resultado.textContent = `¡Hola, ${nombre}!`;
+        input.value = '';
+    } else {
+        resultado.textContent = 'Por favor escribe tu nombre';
+    }
+});</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="event-object-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('event-object-modal')">&times;</span>
+            <h2><i class="fas fa-info-circle"></i> Objeto Event</h2>
+            <div class="modal-body">
+                <h3>¿Qué es el objeto event?</h3>
+                <p>Cuando un evento ocurre, JavaScript automáticamente crea un objeto con información sobre ese evento.</p>
+                
+                <h3>Acceder al Objeto Event:</h3>
+                <pre><code class="language-javascript">elemento.addEventListener('click', function(event) {
+    // 'event' contiene toda la información
+    console.log(event);
+});</code></pre>
+                
+                <h3>Propiedades Comunes:</h3>
+                <pre><code class="language-javascript">elemento.addEventListener('click', function(e) {
+    // Tipo de evento
+    console.log(e.type); // "click"
+    
+    // Elemento que disparó el evento
+    console.log(e.target); // El elemento clickeado
+    
+    // Elemento al que está adjunto el listener
+    console.log(e.currentTarget); // El elemento con addEventListener
+    
+    // Coordenadas del mouse
+    console.log(e.clientX, e.clientY); // Posición en la ventana
+    console.log(e.pageX, e.pageY); // Posición en la página
+    
+    // Timestamp (cuándo ocurrió)
+    console.log(e.timeStamp);
+});</code></pre>
+                
+                <h3>Propiedades para Eventos de Teclado:</h3>
+                <pre><code class="language-javascript">document.addEventListener('keydown', function(e) {
+    console.log("Tecla:", e.key); // La tecla presionada
+    console.log("Código:", e.code); // Código físico de la tecla
+    console.log("Shift presionado:", e.shiftKey); // true/false
+    console.log("Ctrl presionado:", e.ctrlKey); // true/false
+    console.log("Alt presionado:", e.altKey); // true/false
+});</code></pre>
+                
+                <h3>Métodos Útiles:</h3>
+                <pre><code class="language-javascript">// preventDefault(): Prevenir comportamiento por defecto
+formulario.addEventListener('submit', function(e) {
+    e.preventDefault(); // No recarga la página
+    console.log("Formulario procesado con JavaScript");
+});
+
+// stopPropagation(): Detener propagación del evento
+hijo.addEventListener('click', function(e) {
+    e.stopPropagation(); // No se propaga al padre
+    console.log("Solo el hijo maneja esto");
+});</code></pre>
+                
+                <h3>Ejemplo: Tracking del Mouse</h3>
+                <pre><code class="language-javascript">document.addEventListener('mousemove', function(e) {
+    console.log(`
+        Posición del mouse:
+        - Ventana: (${e.clientX}, ${e.clientY})
+        - Página: (${e.pageX}, ${e.pageY})
+        - Pantalla: (${e.screenX}, ${e.screenY})
+    `);
+});</code></pre>
+                
+                <h3>Ejemplo: Detectar Teclas Especiales</h3>
+                <pre><code class="language-javascript">document.addEventListener('keydown', function(e) {
+    // Ctrl + S para guardar
+    if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        console.log("Guardando...");
+    }
+    
+    // Escape para cerrar
+    if (e.key === 'Escape') {
+        console.log("Cerrando...");
+    }
+    
+    // Enter para enviar
+    if (e.key === 'Enter') {
+        console.log("Enviando...");
+    }
+});</code></pre>
+                
+                <h3>Ejemplo Práctico: Arrastrar y Soltar</h3>
+                <pre><code class="language-javascript">let caja = document.getElementById('caja');
+let arrastrando = false;
+
+caja.addEventListener('mousedown', function(e) {
+    arrastrando = true;
+    caja.style.cursor = 'grabbing';
+});
+
+document.addEventListener('mousemove', function(e) {
+    if (arrastrando) {
+        caja.style.left = e.clientX + 'px';
+        caja.style.top = e.clientY + 'px';
+    }
+});
+
+document.addEventListener('mouseup', function() {
+    arrastrando = false;
+    caja.style.cursor = 'grab';
+});</code></pre>
+                
+                <h3>Propiedades Importantes:</h3>
+                <ul>
+                    <li><strong>target:</strong> El elemento que disparó el evento</li>
+                    <li><strong>currentTarget:</strong> El elemento con el listener</li>
+                    <li><strong>type:</strong> Tipo de evento ("click", "keydown", etc.)</li>
+                    <li><strong>key/code:</strong> Para eventos de teclado</li>
+                    <li><strong>clientX/clientY:</strong> Coordenadas del mouse</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="foreach-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('foreach-modal')">&times;</span>
+            <h2><i class="fas fa-list"></i> forEach()</h2>
+            <div class="modal-body">
+                <h3>¿Qué es forEach?</h3>
+                <p><code>forEach()</code> es un método de arrays que ejecuta un callback para cada elemento.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">array.forEach(function(elemento, indice, arrayCompleto) {
+    // Código a ejecutar por cada elemento
+});</code></pre>
+                
+                <h3>Ejemplo Básico:</h3>
+                <pre><code class="language-javascript">let frutas = ['manzana', 'banana', 'naranja'];
+
+frutas.forEach(function(fruta) {
+    console.log(fruta);
+});
+
+// Output:
+// manzana
+// banana
+// naranja</code></pre>
+                
+                <h3>Con Índice:</h3>
+                <pre><code class="language-javascript">let colores = ['rojo', 'verde', 'azul'];
+
+colores.forEach(function(color, indice) {
+    console.log(`${indice}: ${color}`);
+});
+
+// Output:
+// 0: rojo
+// 1: verde
+// 2: azul</code></pre>
+                
+                <h3>Con Arrow Function:</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+
+numeros.forEach(numero => {
+    console.log(numero * 2);
+});
+
+// Output: 2, 4, 6, 8, 10</code></pre>
+                
+                <h3>Modificar Elementos del DOM:</h3>
+                <pre><code class="language-javascript">// HTML: 
+// &lt;ul id="lista"&gt;&lt;/ul&gt;
+
+let tareas = ['Estudiar', 'Ejercicio', 'Leer'];
+let lista = document.getElementById('lista');
+
+tareas.forEach(function(tarea) {
+    let li = document.createElement('li');
+    li.textContent = tarea;
+    lista.appendChild(li);
+});
+
+// Crea:
+// - Estudiar
+// - Ejercicio
+// - Leer</code></pre>
+                
+                <h3>Ejemplo con Objetos:</h3>
+                <pre><code class="language-javascript">let estudiantes = [
+    { nombre: 'Ana', edad: 20 },
+    { nombre: 'Carlos', edad: 22 },
+    { nombre: 'María', edad: 21 }
+];
+
+estudiantes.forEach(function(estudiante) {
+    console.log(`${estudiante.nombre} tiene ${estudiante.edad} años`);
+});
+
+// Output:
+// Ana tiene 20 años
+// Carlos tiene 22 años
+// María tiene 21 años</code></pre>
+                
+                <h3>Diferencia con map():</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3];
+
+// forEach no retorna nada
+let resultado1 = numeros.forEach(n => n * 2);
+console.log(resultado1); // undefined
+
+// map retorna un nuevo array
+let resultado2 = numeros.map(n => n * 2);
+console.log(resultado2); // [2, 4, 6]</code></pre>
+                
+                <h3>No puedes detener forEach:</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+
+// break y continue NO funcionan en forEach
+numeros.forEach(function(numero) {
+    if (numero === 3) {
+        return; // Solo salta esta iteración, no detiene el loop
+    }
+    console.log(numero);
+});
+
+// Output: 1, 2, 4, 5 (salta el 3, pero continúa)</code></pre>
+                
+                <h3>Casos de Uso:</h3>
+                <ul>
+                    <li><strong>Mostrar datos:</strong> Recorrer arrays para mostrar información</li>
+                    <li><strong>Ejecutar acciones:</strong> Hacer algo con cada elemento</li>
+                    <li><strong>Modificar el DOM:</strong> Crear elementos para cada item</li>
+                    <li><strong>Procesamiento simple:</strong> Cuando no necesitas un nuevo array</li>
+                </ul>
+                
+                <h3>⚠️ Cuándo NO usar forEach:</h3>
+                <ul>
+                    <li>Si necesitas un nuevo array modificado → usa <code>map()</code></li>
+                    <li>Si necesitas filtrar → usa <code>filter()</code></li>
+                    <li>Si necesitas detener el loop → usa <code>for</code> tradicional</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="map-callback-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('map-callback-modal')">&times;</span>
+            <h2><i class="fas fa-map"></i> map() con Callbacks</h2>
+            <div class="modal-body">
+                <h3>¿Qué es map?</h3>
+                <p><code>map()</code> crea un nuevo array transformando cada elemento con un callback.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">let nuevoArray = array.map(function(elemento) {
+    return elementoTransformado;
+});</code></pre>
+                
+                <h3>Ejemplo Básico:</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+
+let dobles = numeros.map(function(numero) {
+    return numero * 2;
+});
+
+console.log(dobles); // [2, 4, 6, 8, 10]
+console.log(numeros); // [1, 2, 3, 4, 5] (sin cambios)</code></pre>
+                
+                <h3>Con Arrow Function:</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+
+// Versión más corta
+let cuadrados = numeros.map(n => n * n);
+console.log(cuadrados); // [1, 4, 9, 16, 25]</code></pre>
+                
+                <h3>Transformar Objetos:</h3>
+                <pre><code class="language-javascript">let productos = [
+    { nombre: 'Laptop', precio: 1000 },
+    { nombre: 'Mouse', precio: 25 },
+    { nombre: 'Teclado', precio: 75 }
+];
+
+// Agregar IVA a todos los precios
+let productosConIva = productos.map(function(producto) {
+    return {
+        nombre: producto.nombre,
+        precioFinal: producto.precio * 1.21
+    };
+});
+
+console.log(productosConIva);
+// [
+//   { nombre: 'Laptop', precioFinal: 1210 },
+//   { nombre: 'Mouse', precioFinal: 30.25 },
+//   { nombre: 'Teclado', precioFinal: 90.75 }
+// ]</code></pre>
+                
+                <h3>Extraer Propiedades:</h3>
+                <pre><code class="language-javascript">let usuarios = [
+    { id: 1, nombre: 'Ana', edad: 25 },
+    { id: 2, nombre: 'Carlos', edad: 30 },
+    { id: 3, nombre: 'María', edad: 28 }
+];
+
+// Extraer solo los nombres
+let nombres = usuarios.map(usuario => usuario.nombre);
+console.log(nombres); // ['Ana', 'Carlos', 'María']
+
+// Extraer solo las edades
+let edades = usuarios.map(usuario => usuario.edad);
+console.log(edades); // [25, 30, 28]</code></pre>
+                
+                <h3>Con Índice:</h3>
+                <pre><code class="language-javascript">let letras = ['a', 'b', 'c'];
+
+let resultado = letras.map(function(letra, indice) {
+    return `${indice}: ${letra.toUpperCase()}`;
+});
+
+console.log(resultado); // ['0: A', '1: B', '2: C']</code></pre>
+                
+                <h3>Ejemplo Práctico: Crear HTML</h3>
+                <pre><code class="language-javascript">let tareas = [
+    { id: 1, texto: 'Estudiar JavaScript', completada: false },
+    { id: 2, texto: 'Hacer ejercicio', completada: true },
+    { id: 3, texto: 'Leer un libro', completada: false }
+];
+
+let htmlItems = tareas.map(function(tarea) {
+    let completada = tarea.completada ? 'checked' : '';
+    return `
+        <li>
+            <input type="checkbox" ${completada}>
+            <span>${tarea.texto}</span>
+        </li>
+    `;
+});
+
+// Unir todos los items en un string
+let htmlFinal = htmlItems.join('');
+document.getElementById('lista').innerHTML = htmlFinal;</code></pre>
+                
+                <h3>Encadenar map():</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+
+let resultado = numeros
+    .map(n => n * 2)      // [2, 4, 6, 8, 10]
+    .map(n => n + 1)      // [3, 5, 7, 9, 11]
+    .map(n => `Número: ${n}`); // ['Número: 3', 'Número: 5', ...]
+
+console.log(resultado);</code></pre>
+                
+                <h3>Diferencia con forEach:</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3];
+
+// map retorna un nuevo array
+let dobles = numeros.map(n => n * 2);
+console.log(dobles); // [2, 4, 6]
+
+// forEach no retorna nada
+let nada = numeros.forEach(n => n * 2);
+console.log(nada); // undefined</code></pre>
+                
+                <h3>Cuándo usar map:</h3>
+                <ul>
+                    <li><strong>Transformar datos:</strong> Cuando necesitas modificar cada elemento</li>
+                    <li><strong>Extraer propiedades:</strong> Obtener un array de una propiedad específica</li>
+                    <li><strong>Generar HTML:</strong> Crear elementos del DOM</li>
+                    <li><strong>Formato de datos:</strong> Convertir datos a otro formato</li>
+                </ul>
+                
+                <h3>⚠️ Importante:</h3>
+                <ul>
+                    <li>Siempre debes <code>return</code> algo en el callback</li>
+                    <li><code>map()</code> NO modifica el array original</li>
+                    <li>El nuevo array siempre tiene la misma longitud que el original</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="filter-callback-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('filter-callback-modal')">&times;</span>
+            <h2><i class="fas fa-filter"></i> filter() con Callbacks</h2>
+            <div class="modal-body">
+                <h3>¿Qué es filter?</h3>
+                <p><code>filter()</code> crea un nuevo array con los elementos que pasan una condición.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">let nuevoArray = array.filter(function(elemento) {
+    return condicion; // true o false
+});</code></pre>
+                
+                <h3>Ejemplo Básico:</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// Filtrar solo números pares
+let pares = numeros.filter(function(numero) {
+    return numero % 2 === 0;
+});
+
+console.log(pares); // [2, 4, 6, 8, 10]</code></pre>
+                
+                <h3>Con Arrow Function:</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// Números mayores a 5
+let mayores = numeros.filter(n => n > 5);
+console.log(mayores); // [6, 7, 8, 9, 10]</code></pre>
+                
+                <h3>Filtrar Objetos:</h3>
+                <pre><code class="language-javascript">let productos = [
+    { nombre: 'Laptop', precio: 1000, enStock: true },
+    { nombre: 'Mouse', precio: 25, enStock: false },
+    { nombre: 'Teclado', precio: 75, enStock: true },
+    { nombre: 'Monitor', precio: 300, enStock: false }
+];
+
+// Solo productos en stock
+let disponibles = productos.filter(function(producto) {
+    return producto.enStock === true;
+});
+
+console.log(disponibles);
+// [
+//   { nombre: 'Laptop', precio: 1000, enStock: true },
+//   { nombre: 'Teclado', precio: 75, enStock: true }
+// ]</code></pre>
+                
+                <h3>Múltiples Condiciones:</h3>
+                <pre><code class="language-javascript">let productos = [
+    { nombre: 'Laptop', precio: 1000, categoria: 'electrónica' },
+    { nombre: 'Camisa', precio: 30, categoria: 'ropa' },
+    { nombre: 'Mouse', precio: 25, categoria: 'electrónica' },
+    { nombre: 'Pantalón', precio: 50, categoria: 'ropa' }
+];
+
+// Electrónicos baratos (menos de 100)
+let electronicosBaratos = productos.filter(function(producto) {
+    return producto.categoria === 'electrónica' && producto.precio < 100;
+});
+
+console.log(electronicosBaratos);
+// [{ nombre: 'Mouse', precio: 25, categoria: 'electrónica' }]</code></pre>
+                
+                <h3>Filtrar Strings:</h3>
+                <pre><code class="language-javascript">let palabras = ['hola', 'javascript', 'mundo', 'programación', 'código'];
+
+// Palabras con más de 5 letras
+let palabrasLargas = palabras.filter(palabra => palabra.length > 5);
+console.log(palabrasLargas); // ['javascript', 'programación', 'código']
+
+// Palabras que empiezan con 'c'
+let conC = palabras.filter(palabra => palabra.startsWith('c'));
+console.log(conC); // ['código']</code></pre>
+                
+                <h3>Con Índice:</h3>
+                <pre><code class="language-javascript">let numeros = [10, 20, 30, 40, 50];
+
+// Elementos en posiciones pares
+let posicionesPares = numeros.filter(function(numero, indice) {
+    return indice % 2 === 0;
+});
+
+console.log(posicionesPares); // [10, 30, 50] (índices 0, 2, 4)</code></pre>
+                
+                <h3>Remover Valores Falsy:</h3>
+                <pre><code class="language-javascript">let valores = [0, 1, false, 2, '', 3, null, undefined, 4, NaN];
+
+// Remover todos los valores falsy
+let valoresReales = valores.filter(Boolean);
+console.log(valoresReales); // [1, 2, 3, 4]</code></pre>
+                
+                <h3>Ejemplo Práctico: Búsqueda</h3>
+                <pre><code class="language-javascript">let usuarios = [
+    { id: 1, nombre: 'Ana García', edad: 25 },
+    { id: 2, nombre: 'Carlos López', edad: 30 },
+    { id: 3, nombre: 'María García', edad: 28 }
+];
+
+function buscarPorNombre(termino) {
+    return usuarios.filter(function(usuario) {
+        return usuario.nombre.toLowerCase().includes(termino.toLowerCase());
+    });
+}
+
+console.log(buscarPorNombre('garcía'));
+// [
+//   { id: 1, nombre: 'Ana García', edad: 25 },
+//   { id: 3, nombre: 'María García', edad: 28 }
+// ]</code></pre>
+                
+                <h3>Combinar con map:</h3>
+                <pre><code class="language-javascript">let productos = [
+    { nombre: 'Laptop', precio: 1000 },
+    { nombre: 'Mouse', precio: 25 },
+    { nombre: 'Teclado', precio: 75 }
+];
+
+// Obtener nombres de productos caros (>50)
+let nombresCaros = productos
+    .filter(p => p.precio > 50)    // Filtrar primero
+    .map(p => p.nombre);            // Luego transformar
+
+console.log(nombresCaros); // ['Laptop', 'Teclado']</code></pre>
+                
+                <h3>Cuándo usar filter:</h3>
+                <ul>
+                    <li><strong>Búsquedas:</strong> Encontrar elementos que coincidan con criterios</li>
+                    <li><strong>Validaciones:</strong> Obtener solo elementos válidos</li>
+                    <li><strong>Categorizar:</strong> Separar elementos por categoría</li>
+                    <li><strong>Remover:</strong> Excluir elementos no deseados</li>
+                </ul>
+                
+                <h3>⚠️ Importante:</h3>
+                <ul>
+                    <li>El callback debe retornar <code>true</code> o <code>false</code></li>
+                    <li><code>filter()</code> NO modifica el array original</li>
+                    <li>El nuevo array puede tener menos elementos (o ninguno)</li>
+                    <li>Si ningún elemento pasa la condición, retorna un array vacío <code>[]</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="callback-hell-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('callback-hell-modal')">&times;</span>
+            <h2><i class="fas fa-exclamation-triangle"></i> Callback Hell</h2>
+            <div class="modal-body">
+                <h3>¿Qué es Callback Hell?</h3>
+                <p>Es cuando tienes callbacks anidados dentro de otros callbacks, creando un código difícil de leer y mantener.</p>
+                
+                <h3>Ejemplo de Callback Hell:</h3>
+                <pre><code class="language-javascript">// ❌ Código difícil de leer (Callback Hell)
+obtenerUsuario(userId, function(usuario) {
+    obtenerPerfil(usuario.id, function(perfil) {
+        obtenerPosts(perfil.id, function(posts) {
+            obtenerComentarios(posts[0].id, function(comentarios) {
+                console.log("Todo listo:", comentarios);
+            });
+        });
+    });
+});
+
+// Forma de "pirámide de la perdición"</code></pre>
+                
+                <h3>Problemas del Callback Hell:</h3>
+                <ul>
+                    <li><strong>Difícil de leer:</strong> El código se vuelve ilegible</li>
+                    <li><strong>Difícil de mantener:</strong> Hacer cambios es complicado</li>
+                    <li><strong>Manejo de errores:</strong> Difícil manejar errores en cada nivel</li>
+                    <li><strong>Anidación profunda:</strong> Se vuelve confuso rápidamente</li>
+                </ul>
+                
+                <h3>Solución 1: Funciones Nombradas</h3>
+                <pre><code class="language-javascript">// ✅ Mejor: Usar funciones nombradas
+function manejarComentarios(comentarios) {
+    console.log("Todo listo:", comentarios);
+}
+
+function manejarPosts(posts) {
+    obtenerComentarios(posts[0].id, manejarComentarios);
+}
+
+function manejarPerfil(perfil) {
+    obtenerPosts(perfil.id, manejarPosts);
+}
+
+function manejarUsuario(usuario) {
+    obtenerPerfil(usuario.id, manejarPerfil);
+}
+
+obtenerUsuario(userId, manejarUsuario);</code></pre>
+                
+                <h3>Solución 2: Promises (Más Moderno)</h3>
+                <pre><code class="language-javascript">// ✅ Mucho mejor: Usar Promises
+obtenerUsuario(userId)
+    .then(usuario => obtenerPerfil(usuario.id))
+    .then(perfil => obtenerPosts(perfil.id))
+    .then(posts => obtenerComentarios(posts[0].id))
+    .then(comentarios => {
+        console.log("Todo listo:", comentarios);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });</code></pre>
+                
+                <h3>Solución 3: Async/Await (El Más Moderno)</h3>
+                <pre><code class="language-javascript">// ✅ La mejor forma: Async/Await
+async function obtenerTodo() {
+    try {
+        let usuario = await obtenerUsuario(userId);
+        let perfil = await obtenerPerfil(usuario.id);
+        let posts = await obtenerPosts(perfil.id);
+        let comentarios = await obtenerComentarios(posts[0].id);
+        
+        console.log("Todo listo:", comentarios);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+obtenerTodo();</code></pre>
+                
+                <h3>Ejemplo Real: setTimeout Anidado (Callback Hell)</h3>
+                <pre><code class="language-javascript">// ❌ Callback Hell
+console.log("Inicio");
+
+setTimeout(() => {
+    console.log("1 segundo");
+    
+    setTimeout(() => {
+        console.log("2 segundos");
+        
+        setTimeout(() => {
+            console.log("3 segundos");
+            
+            setTimeout(() => {
+                console.log("4 segundos");
+                console.log("¡Terminado!");
+            }, 1000);
+        }, 1000);
+    }, 1000);
+}, 1000);</code></pre>
+                
+                <h3>Mejor con Promises:</h3>
+                <pre><code class="language-javascript">// ✅ Con Promises
+function esperar(segundos) {
+    return new Promise(resolve => {
+        setTimeout(resolve, segundos * 1000);
+    });
+}
+
+console.log("Inicio");
+
+esperar(1)
+    .then(() => {
+        console.log("1 segundo");
+        return esperar(1);
+    })
+    .then(() => {
+        console.log("2 segundos");
+        return esperar(1);
+    })
+    .then(() => {
+        console.log("3 segundos");
+        return esperar(1);
+    })
+    .then(() => {
+        console.log("4 segundos");
+        console.log("¡Terminado!");
+    });</code></pre>
+                
+                <h3>Aún Mejor con Async/Await:</h3>
+                <pre><code class="language-javascript">// ✅ Con Async/Await (el más limpio)
+async function contarSegundos() {
+    console.log("Inicio");
+    
+    await esperar(1);
+    console.log("1 segundo");
+    
+    await esperar(1);
+    console.log("2 segundos");
+    
+    await esperar(1);
+    console.log("3 segundos");
+    
+    await esperar(1);
+    console.log("4 segundos");
+    console.log("¡Terminado!");
+}
+
+contarSegundos();</code></pre>
+                
+                <h3>Cómo Evitar Callback Hell:</h3>
+                <ul>
+                    <li><strong>Usa Promises:</strong> En lugar de callbacks anidados</li>
+                    <li><strong>Usa Async/Await:</strong> La forma más limpia para código asíncrono</li>
+                    <li><strong>Funciones pequeñas:</strong> Divide el código en funciones con nombres descriptivos</li>
+                    <li><strong>Manejo de errores:</strong> Usa try/catch o .catch() para errores</li>
+                </ul>
+                
+                <h3>⚠️ Recuerda:</h3>
+                <p>Si tu código empieza a parecerse a una pirámide, es momento de refactorizar usando Promises o Async/Await.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="this-in-callbacks-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('this-in-callbacks-modal')">&times;</span>
+            <h2><i class="fas fa-question"></i> this en Callbacks</h2>
+            <div class="modal-body">
+                <h3>El Problema de this:</h3>
+                <p>En JavaScript, <code>this</code> puede cambiar dependiendo de cómo se llama una función, lo que causa confusión en callbacks.</p>
+                
+                <h3>Ejemplo del Problema:</h3>
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Ana",
+    edad: 25,
+    saludar: function() {
+        console.log(`Hola, soy ${this.nombre}`);
+    },
+    saludarDespues: function() {
+        setTimeout(function() {
+            // ❌ this aquí NO es 'persona'
+            console.log(`Hola, soy ${this.nombre}`);
+        }, 1000);
+    }
+};
+
+persona.saludar();         // ✅ "Hola, soy Ana"
+persona.saludarDespues();  // ❌ "Hola, soy undefined"</code></pre>
+                
+                <h3>¿Por qué pasa esto?</h3>
+                <p>Cuando pasas una función como callback, pierde su contexto original (<code>this</code>). El <code>this</code> dentro del callback apunta a otra cosa (usualmente <code>window</code> o <code>undefined</code>).</p>
+                
+                <h3>Solución 1: Guardar this en una Variable</h3>
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Ana",
+    saludarDespues: function() {
+        // Guardar this en una variable
+        let self = this; // o 'that', '_this', etc.
+        
+        setTimeout(function() {
+            // ✅ Usar self en lugar de this
+            console.log(`Hola, soy ${self.nombre}`);
+        }, 1000);
+    }
+};
+
+persona.saludarDespues(); // ✅ "Hola, soy Ana"</code></pre>
+                
+                <h3>Solución 2: Arrow Functions (Mejor)</h3>
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Ana",
+    saludarDespues: function() {
+        setTimeout(() => {
+            // ✅ Arrow function mantiene el this del scope padre
+            console.log(`Hola, soy ${this.nombre}`);
+        }, 1000);
+    }
+};
+
+persona.saludarDespues(); // ✅ "Hola, soy Ana"</code></pre>
+                
+                <h3>Solución 3: bind()</h3>
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Ana",
+    saludarDespues: function() {
+        setTimeout(function() {
+            console.log(`Hola, soy ${this.nombre}`);
+        }.bind(this), 1000); // ✅ bind() fuerza el this correcto
+    }
+};
+
+persona.saludarDespues(); // ✅ "Hola, soy Ana"</code></pre>
+                
+                <h3>Ejemplo con Event Listeners:</h3>
+                <pre><code class="language-javascript">class Contador {
+    constructor() {
+        this.cuenta = 0;
+        this.boton = document.getElementById('boton');
+        
+        // ❌ Problema: this se pierde
+        this.boton.addEventListener('click', function() {
+            this.cuenta++; // ❌ this es el botón, no Contador
+            console.log(this.cuenta);
+        });
+        
+        // ✅ Solución 1: Arrow function
+        this.boton.addEventListener('click', () => {
+            this.cuenta++; // ✅ this es Contador
+            console.log(this.cuenta);
+        });
+        
+        // ✅ Solución 2: bind()
+        this.boton.addEventListener('click', function() {
+            this.cuenta++;
+            console.log(this.cuenta);
+        }.bind(this));
+    }
+}</code></pre>
+                
+                <h3>Ejemplo con Métodos de Arrays:</h3>
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Ana",
+    amigos: ["Carlos", "María", "Juan"],
+    
+    saludarAmigos: function() {
+        // ❌ Problema
+        this.amigos.forEach(function(amigo) {
+            console.log(`${this.nombre} saluda a ${amigo}`);
+            // this.nombre es undefined aquí
+        });
+        
+        // ✅ Solución 1: Arrow function
+        this.amigos.forEach(amigo => {
+            console.log(`${this.nombre} saluda a ${amigo}`);
+        });
+        
+        // ✅ Solución 2: Segundo parámetro de forEach
+        this.amigos.forEach(function(amigo) {
+            console.log(`${this.nombre} saluda a ${amigo}`);
+        }, this); // Pasar this como segundo argumento
+    }
+};
+
+persona.saludarAmigos();</code></pre>
+                
+                <h3>Regla General:</h3>
+                <ul>
+                    <li><strong>Funciones normales:</strong> <code>this</code> depende de cómo se llama</li>
+                    <li><strong>Arrow functions:</strong> Heredan <code>this</code> del scope padre</li>
+                    <li><strong>En callbacks:</strong> Preferir arrow functions para mantener <code>this</code></li>
+                </ul>
+                
+                <h3>Comparación:</h3>
+                <pre><code class="language-javascript">let objeto = {
+    valor: 42,
+    
+    // Función normal - this puede cambiar
+    metodo1: function() {
+        console.log(this.valor); // 42
+        
+        setTimeout(function() {
+            console.log(this.valor); // undefined
+        }, 1000);
+    },
+    
+    // Arrow function - this se mantiene
+    metodo2: function() {
+        console.log(this.valor); // 42
+        
+        setTimeout(() => {
+            console.log(this.valor); // 42
+        }, 1000);
+    }
+};</code></pre>
+                
+                <h3>⚠️ Recomendación:</h3>
+                <p>En callbacks modernos, usa <strong>arrow functions</strong> para evitar problemas con <code>this</code>. Es la solución más simple y clara.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="arrow-callbacks-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('arrow-callbacks-modal')">&times;</span>
+            <h2><i class="fas fa-arrow-right"></i> Arrow Functions en Callbacks</h2>
+            <div class="modal-body">
+                <h3>¿Por qué Arrow Functions para Callbacks?</h3>
+                <p>Las arrow functions son perfectas para callbacks porque:</p>
+                <ul>
+                    <li>Sintaxis más corta y clara</li>
+                    <li>Mantienen el <code>this</code> del scope padre</li>
+                    <li>Return implícito para expresiones simples</li>
+                </ul>
+                
+                <h3>Comparación: Función Normal vs Arrow:</h3>
+                <pre><code class="language-javascript">// Función normal
+let numeros = [1, 2, 3, 4, 5];
+
+let dobles1 = numeros.map(function(n) {
+    return n * 2;
+});
+
+// Arrow function
+let dobles2 = numeros.map(n => n * 2);
+
+console.log(dobles1); // [2, 4, 6, 8, 10]
+console.log(dobles2); // [2, 4, 6, 8, 10]</code></pre>
+                
+                <h3>setTimeout con Arrow Function:</h3>
+                <pre><code class="language-javascript">// ❌ Función normal
+setTimeout(function() {
+    console.log("Hola desde el futuro");
+}, 1000);
+
+// ✅ Arrow function (más corto)
+setTimeout(() => {
+    console.log("Hola desde el futuro");
+}, 1000);
+
+// ✅ Aún más corto (una línea)
+setTimeout(() => console.log("Hola desde el futuro"), 1000);</code></pre>
+                
+                <h3>Event Listeners con Arrow Function:</h3>
+                <pre><code class="language-javascript">let boton = document.getElementById('miBoton');
+
+// Función normal
+boton.addEventListener('click', function(event) {
+    console.log("Click en:", event.target);
+});
+
+// Arrow function
+boton.addEventListener('click', (event) => {
+    console.log("Click en:", event.target);
+});
+
+// Si solo hay un parámetro, puedes omitir los paréntesis
+boton.addEventListener('click', event => {
+    console.log("Click en:", event.target);
+});</code></pre>
+                
+                <h3>Métodos de Arrays con Arrow Functions:</h3>
+                <pre><code class="language-javascript">let productos = [
+    { nombre: 'Laptop', precio: 1000 },
+    { nombre: 'Mouse', precio: 25 },
+    { nombre: 'Teclado', precio: 75 }
+];
+
+// map
+let nombres = productos.map(p => p.nombre);
+console.log(nombres); // ['Laptop', 'Mouse', 'Teclado']
+
+// filter
+let caros = productos.filter(p => p.precio > 50);
+console.log(caros);
+
+// forEach
+productos.forEach(p => {
+    console.log(`${p.nombre}: $${p.precio}`);
+});
+
+// find
+let laptop = productos.find(p => p.nombre === 'Laptop');
+console.log(laptop);</code></pre>
+                
+                <h3>Mantener this con Arrow Functions:</h3>
+                <pre><code class="language-javascript">class ContadorClicks {
+    constructor() {
+        this.clicks = 0;
+        this.boton = document.getElementById('boton');
+        
+        // ✅ Arrow function mantiene this
+        this.boton.addEventListener('click', () => {
+            this.clicks++;
+            console.log(`Clicks: ${this.clicks}`);
+        });
+        
+        // ❌ Función normal perdería this
+        // this.boton.addEventListener('click', function() {
+        //     this.clicks++; // Error: this no es ContadorClicks
+        // });
+    }
+}</code></pre>
+                
+                <h3>Return Implícito:</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+
+// Con return explícito
+let cuadrados1 = numeros.map(n => {
+    return n * n;
+});
+
+// Con return implícito (más corto)
+let cuadrados2 = numeros.map(n => n * n);
+
+// Return implícito de objeto (necesita paréntesis)
+let objetos = numeros.map(n => ({ valor: n, doble: n * 2 }));
+
+console.log(objetos);
+// [
+//   { valor: 1, doble: 2 },
+//   { valor: 2, doble: 4 },
+//   ...
+// ]</code></pre>
+                
+                <h3>Ejemplo Completo: Sistema de Tareas</h3>
+                <pre><code class="language-javascript">let tareas = [
+    { id: 1, texto: 'Estudiar', completada: false },
+    { id: 2, texto: 'Ejercicio', completada: true },
+    { id: 3, texto: 'Leer', completada: false }
+];
+
+// Obtener tareas pendientes
+let pendientes = tareas.filter(t => !t.completada);
+
+// Marcar todas como completadas
+let todasCompletadas = tareas.map(t => ({ ...t, completada: true }));
+
+// Mostrar solo el texto
+let textos = tareas.map(t => t.texto);
+
+// Contar completadas
+let numCompletadas = tareas.filter(t => t.completada).length;
+
+// Buscar por id
+let tarea = tareas.find(t => t.id === 2);
+
+console.log("Pendientes:", pendientes);
+console.log("Todas completadas:", todasCompletadas);
+console.log("Textos:", textos);
+console.log("Número completadas:", numCompletadas);
+console.log("Tarea encontrada:", tarea);</code></pre>
+                
+                <h3>Promesas con Arrow Functions:</h3>
+                <pre><code class="language-javascript">// Tradicional
+fetch('https://api.example.com/data')
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+    });
+
+// Con arrow functions (mucho más limpio)
+fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));</code></pre>
+                
+                <h3>Cuándo usar Arrow Functions:</h3>
+                <ul>
+                    <li><strong>Callbacks de arrays:</strong> map, filter, forEach, etc.</li>
+                    <li><strong>Promesas:</strong> then(), catch()</li>
+                    <li><strong>Temporizadores:</strong> setTimeout, setInterval</li>
+                    <li><strong>Event listeners:</strong> Cuando necesitas acceder a this del scope padre</li>
+                    <li><strong>Funciones cortas:</strong> Cuando la lógica es simple</li>
+                </ul>
+                
+                <h3>Cuándo NO usar Arrow Functions:</h3>
+                <ul>
+                    <li><strong>Métodos de objetos:</strong> Si necesitas acceder a <code>this</code> del objeto</li>
+                    <li><strong>Constructores:</strong> No pueden usarse con <code>new</code></li>
+                    <li><strong>prototype methods:</strong> Cuando defines métodos en prototipos</li>
+                </ul>
+                
+                <h3>Sintaxis Resumida:</h3>
+                <pre><code class="language-javascript">// Sin parámetros
+() => console.log("Hola")
+
+// Un parámetro (paréntesis opcionales)
+n => n * 2
+(n) => n * 2
+
+// Múltiples parámetros
+(a, b) => a + b
+
+// Cuerpo con múltiples líneas
+(a, b) => {
+    let suma = a + b;
+    return suma;
+}
+
+// Return implícito de objeto
+n => ({ valor: n })</code></pre>
             </div>
         </div>
     </div>
