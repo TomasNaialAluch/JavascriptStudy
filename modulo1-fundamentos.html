@@ -692,17 +692,20 @@ console.log('Valor final:', contador);       // 7</code></pre>
                                 <div class="theory-card">
                                     <h4><i class="fas fa-question-circle"></i> Condicionales</h4>
                                     <div class="theory-list">
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('if-else-modal')">
                                             <code>if/else</code>
                                             <span>Ejecuta código basado en condición</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('switch-modal')">
                                             <code>switch</code>
-                                            <span>Evalúa múltiples casos</span>
+                                            <span>Evalúa múltiples casos con case</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('ternary-modal')">
                                             <code>? :</code>
                                             <span>Operador ternario (una línea)</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -710,21 +713,25 @@ console.log('Valor final:', contador);       // 7</code></pre>
                                 <div class="theory-card">
                                     <h4><i class="fas fa-sync-alt"></i> Bucles (Loops)</h4>
                                     <div class="theory-list">
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('for-loop-modal')">
                                             <code>for</code>
-                                            <span>Bucle con contador</span>
+                                            <span>Bucle con contador (índices)</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('while-loop-modal')">
                                             <code>while</code>
                                             <span>Mientras se cumple condición</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('for-of-modal')">
                                             <code>for...of</code>
-                                            <span>Iterar sobre arrays</span>
+                                            <span>Iterar sobre VALORES de arrays</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('for-in-modal')">
                                             <code>for...in</code>
-                                            <span>Iterar sobre propiedades</span>
+                                            <span>Iterar sobre PROPIEDADES de objetos</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -1396,6 +1403,405 @@ console.log(gestor.obtenerTareas());</code></pre>
         </div>
     </footer>
 
+    <!-- Modales Interactivos para Conceptos -->
+    <div id="if-else-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('if-else-modal')">&times;</span>
+            <h2><i class="fas fa-question-circle"></i> if/else - Condicionales</h2>
+            <div class="modal-body">
+                <h3>¿Qué es if/else?</h3>
+                <p>Es la estructura de control más básica que permite que tu código tome decisiones. Evalúa una condición y ejecuta diferentes bloques de código según el resultado.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">if (condición) {
+    // Código si la condición es verdadera
+} else if (otra_condición) {
+    // Código si la segunda condición es verdadera
+} else {
+    // Código si ninguna condición es verdadera
+}</code></pre>
+
+                <h3>Ejemplo Práctico:</h3>
+                <pre><code class="language-javascript">let edad = 18;
+
+if (edad >= 18) {
+    console.log("Eres mayor de edad");
+} else if (edad >= 13) {
+    console.log("Eres adolescente");
+} else {
+    console.log("Eres menor de edad");
+}</code></pre>
+
+                <h3>Puntos Clave:</h3>
+                <ul>
+                    <li>La condición debe evaluar a <code>true</code> o <code>false</code></li>
+                    <li>Puedes tener múltiples <code>else if</code></li>
+                    <li>El <code>else</code> es opcional</li>
+                    <li>Usa <code>{}</code> para bloques de múltiples líneas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="switch-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('switch-modal')">&times;</span>
+            <h2><i class="fas fa-sitemap"></i> switch/case - Múltiples Casos</h2>
+            <div class="modal-body">
+                <h3>¿Qué es switch y case?</h3>
+                <p><strong>switch</strong> es una estructura que evalúa una expresión y ejecuta diferentes bloques de código según el valor. <strong>case</strong> define cada posible valor y qué hacer en cada caso.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">switch (expresión) {
+    case valor1:
+        // Código para valor1
+        break;
+    case valor2:
+        // Código para valor2
+        break;
+    default:
+        // Código si no coincide con ningún caso
+        break;
+}</code></pre>
+
+                <h3>¿Qué hace cada parte?</h3>
+                <ul>
+                    <li><strong>switch (expresión):</strong> Evalúa la expresión una sola vez</li>
+                    <li><strong>case valor:</strong> Compara el valor con la expresión</li>
+                    <li><strong>break:</strong> Sale del switch (¡MUY IMPORTANTE!)</li>
+                    <li><strong>default:</strong> Se ejecuta si ningún case coincide</li>
+                </ul>
+
+                <h3>Ejemplo Práctico:</h3>
+                <pre><code class="language-javascript">let dia = "lunes";
+
+switch (dia) {
+    case "lunes":
+        console.log("Inicio de semana");
+        break;
+    case "viernes":
+        console.log("¡Fin de semana!");
+        break;
+    case "sábado":
+    case "domingo":
+        console.log("Día de descanso");
+        break;
+    default:
+        console.log("Día laboral");
+}</code></pre>
+
+                <h3>⚠️ ¡Cuidado con el break!</h3>
+                <p>Sin <code>break</code>, el código "cae" al siguiente case (fall-through). Esto puede ser útil o causar errores.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="for-loop-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('for-loop-modal')">&times;</span>
+            <h2><i class="fas fa-sync-alt"></i> for - Bucle con Contador</h2>
+            <div class="modal-body">
+                <h3>¿Qué es el bucle for?</h3>
+                <p>Es un bucle que se repite un número específico de veces usando un contador. Es perfecto cuando sabes exactamente cuántas veces quieres que se ejecute el código.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">for (inicialización; condición; actualización) {
+    // Código que se repite
+}</code></pre>
+
+                <h3>¿Qué hace cada parte?</h3>
+                <ul>
+                    <li><strong>inicialización:</strong> Se ejecuta UNA VEZ al inicio (ej: <code>let i = 0</code>)</li>
+                    <li><strong>condición:</strong> Se evalúa ANTES de cada iteración (ej: <code>i < 5</code>)</li>
+                    <li><strong>actualización:</strong> Se ejecuta DESPUÉS de cada iteración (ej: <code>i++</code>)</li>
+                </ul>
+
+                <h3>Ejemplo Paso a Paso:</h3>
+                <pre><code class="language-javascript">for (let i = 0; i < 3; i++) {
+    console.log(`Iteración ${i}`);
+}
+
+// Resultado:
+// Iteración 0
+// Iteración 1
+// Iteración 2</code></pre>
+
+                <h3>Proceso paso a paso:</h3>
+                <ol>
+                    <li><strong>Inicio:</strong> i = 0</li>
+                    <li><strong>¿i < 3?</strong> Sí (0 < 3) → Ejecuta código → i++ → i = 1</li>
+                    <li><strong>¿i < 3?</strong> Sí (1 < 3) → Ejecuta código → i++ → i = 2</li>
+                    <li><strong>¿i < 3?</strong> Sí (2 < 3) → Ejecuta código → i++ → i = 3</li>
+                    <li><strong>¿i < 3?</strong> No (3 < 3) → Termina el bucle</li>
+                </ol>
+
+                <h3>Usos Comunes:</h3>
+                <ul>
+                    <li>Iterar arrays con índices: <code>for (let i = 0; i < array.length; i++)</code></li>
+                    <li>Repetir código N veces</li>
+                    <li>Generar secuencias numéricas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="for-of-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('for-of-modal')">&times;</span>
+            <h2><i class="fas fa-list"></i> for...of - Iterar VALORES</h2>
+            <div class="modal-body">
+                <h3>¿Qué es for...of?</h3>
+                <p>Es un bucle que itera sobre los <strong>VALORES</strong> de elementos iterables (arrays, strings, etc.). Es más simple que el for tradicional cuando solo necesitas los valores, no los índices.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">for (let elemento of iterable) {
+    // Código que usa el elemento
+}</code></pre>
+
+                <h3>Ejemplo con Array:</h3>
+                <pre><code class="language-javascript">let frutas = ["manzana", "banana", "naranja"];
+
+for (let fruta of frutas) {
+    console.log(fruta);
+}
+
+// Resultado:
+// manzana
+// banana
+// naranja</code></pre>
+
+                <h3>Comparación: for vs for...of</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4>for tradicional (con índices):</h4>
+                        <pre><code class="language-javascript">for (let i = 0; i < frutas.length; i++) {
+    console.log(`${i}: ${frutas[i]}`);
+}
+// Resultado:
+// 0: manzana
+// 1: banana
+// 2: naranja</code></pre>
+                    </div>
+                    <div>
+                        <h4>for...of (solo valores):</h4>
+                        <pre><code class="language-javascript">for (let fruta of frutas) {
+    console.log(fruta);
+}
+// Resultado:
+// manzana
+// banana
+// naranja</code></pre>
+                    </div>
+                </div>
+
+                <h3>¿Cuándo usar for...of?</h3>
+                <ul>
+                    <li>✅ Cuando solo necesitas los valores</li>
+                    <li>✅ Código más limpio y legible</li>
+                    <li>✅ Menos propenso a errores</li>
+                    <li>❌ NO cuando necesitas el índice</li>
+                    <li>❌ NO para modificar el array original</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="for-in-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('for-in-modal')">&times;</span>
+            <h2><i class="fas fa-key"></i> for...in - Iterar PROPIEDADES</h2>
+            <div class="modal-body">
+                <h3>¿Qué es for...in?</h3>
+                <p>Es un bucle que itera sobre las <strong>PROPIEDADES</strong> (claves) de un objeto. Te da acceso a los nombres de las propiedades, no a sus valores.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">for (let propiedad in objeto) {
+    // Código que usa la propiedad
+}</code></pre>
+
+                <h3>Ejemplo con Objeto:</h3>
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Juan",
+    edad: 25,
+    ciudad: "Madrid"
+};
+
+for (let propiedad in persona) {
+    console.log(`${propiedad}: ${persona[propiedad]}`);
+}
+
+// Resultado:
+// nombre: Juan
+// edad: 25
+// ciudad: Madrid</code></pre>
+
+                <h3>¿Cómo acceder a los valores?</h3>
+                <p>Usa la notación de corchetes: <code>objeto[propiedad]</code></p>
+                <pre><code class="language-javascript">for (let prop in persona) {
+    console.log(prop);                    // nombre, edad, ciudad
+    console.log(persona[prop]);          // Juan, 25, Madrid
+    console.log(persona.prop);           // undefined (¡ERROR!)
+}</code></pre>
+
+                <h3>Diferencia clave: for...of vs for...in</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4>for...of (valores):</h4>
+                        <pre><code class="language-javascript">let array = [10, 20, 30];
+for (let valor of array) {
+    console.log(valor);  // 10, 20, 30
+}</code></pre>
+                    </div>
+                    <div>
+                        <h4>for...in (propiedades):</h4>
+                        <pre><code class="language-javascript">let array = [10, 20, 30];
+for (let indice in array) {
+    console.log(indice);  // 0, 1, 2
+    console.log(array[indice]); // 10, 20, 30
+}</code></pre>
+                    </div>
+                </div>
+
+                <h3>⚠️ Advertencias importantes:</h3>
+                <ul>
+                    <li>for...in también itera propiedades heredadas</li>
+                    <li>El orden no está garantizado en objetos</li>
+                    <li>Para arrays, usa for...of o for tradicional</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="while-loop-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('while-loop-modal')">&times;</span>
+            <h2><i class="fas fa-sync"></i> while - Mientras se cumple condición</h2>
+            <div class="modal-body">
+                <h3>¿Qué es el bucle while?</h3>
+                <p>Es un bucle que se repite <strong>mientras</strong> una condición sea verdadera. No sabes cuántas veces se ejecutará, solo sabes cuándo debe parar.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">while (condición) {
+    // Código que se repite
+    // ¡IMPORTANTE! Modificar la condición aquí
+}</code></pre>
+
+                <h3>Ejemplo Básico:</h3>
+                <pre><code class="language-javascript">let contador = 0;
+
+while (contador < 3) {
+    console.log(`Contador: ${contador}`);
+    contador++;  // ¡IMPORTANTE! Sin esto sería un bucle infinito
+}
+
+// Resultado:
+// Contador: 0
+// Contador: 1
+// Contador: 2</code></pre>
+
+                <h3>Proceso paso a paso:</h3>
+                <ol>
+                    <li><strong>¿contador < 3?</strong> Sí (0 < 3) → Ejecuta → contador = 1</li>
+                    <li><strong>¿contador < 3?</strong> Sí (1 < 3) → Ejecuta → contador = 2</li>
+                    <li><strong>¿contador < 3?</strong> Sí (2 < 3) → Ejecuta → contador = 3</li>
+                    <li><strong>¿contador < 3?</strong> No (3 < 3) → Termina</li>
+                </ol>
+
+                <h3>⚠️ ¡Cuidado con los bucles infinitos!</h3>
+                <pre><code class="language-javascript">// ❌ MAL - Bucle infinito
+let i = 0;
+while (i < 5) {
+    console.log("Hola");
+    // ¡Falta i++!
+}
+
+// ✅ BIEN - Condición que cambia
+let i = 0;
+while (i < 5) {
+    console.log("Hola");
+    i++;  // La condición cambia
+}</code></pre>
+
+                <h3>¿Cuándo usar while?</h3>
+                <ul>
+                    <li>✅ Cuando no sabes cuántas iteraciones necesitas</li>
+                    <li>✅ Validación de entrada del usuario</li>
+                    <li>✅ Procesar datos hasta encontrar un valor específico</li>
+                    <li>❌ NO cuando sabes exactamente cuántas veces iterar (usa for)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="ternary-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('ternary-modal')">&times;</span>
+            <h2><i class="fas fa-question"></i> Operador Ternario (? :)</h2>
+            <div class="modal-body">
+                <h3>¿Qué es el operador ternario?</h3>
+                <p>Es una forma <strong>abreviada</strong> de escribir un if/else simple en una sola línea. Es perfecto para asignaciones condicionales.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">condición ? valor_si_verdadero : valor_si_falso</code></pre>
+
+                <h3>Comparación: if/else vs Ternario</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4>if/else tradicional:</h4>
+                        <pre><code class="language-javascript">let edad = 18;
+let mensaje;
+
+if (edad >= 18) {
+    mensaje = "Mayor de edad";
+} else {
+    mensaje = "Menor de edad";
+}</code></pre>
+                    </div>
+                    <div>
+                        <h4>Operador ternario:</h4>
+                        <pre><code class="language-javascript">let edad = 18;
+let mensaje = edad >= 18 ? "Mayor de edad" : "Menor de edad";</code></pre>
+                    </div>
+                </div>
+
+                <h3>Ejemplos Prácticos:</h3>
+                <pre><code class="language-javascript">// Asignación condicional
+let precio = 100;
+let descuento = precio > 50 ? 10 : 0;
+
+// En template strings
+let nombre = "Juan";
+let saludo = `Hola ${nombre}, ${nombre.length > 3 ? "bienvenido" : "hola"}`;
+
+// Retorno de función
+function esPar(numero) {
+    return numero % 2 === 0 ? "par" : "impar";
+}</code></pre>
+
+                <h3>⚠️ No abuses del ternario:</h3>
+                <pre><code class="language-javascript">// ❌ MAL - Muy difícil de leer
+let resultado = a > b ? c > d ? "A" : "B" : c > d ? "C" : "D";
+
+// ✅ BIEN - Usa if/else para casos complejos
+let resultado;
+if (a > b) {
+    resultado = c > d ? "A" : "B";
+} else {
+    resultado = c > d ? "C" : "D";
+}</code></pre>
+
+                <h3>¿Cuándo usar ternario?</h3>
+                <ul>
+                    <li>✅ Asignaciones simples (una condición)</li>
+                    <li>✅ Valores por defecto</li>
+                    <li>✅ Template strings</li>
+                    <li>❌ NO para lógica compleja</li>
+                    <li>❌ NO para múltiples condiciones</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script>
         // Estado del módulo
@@ -1611,10 +2017,37 @@ console.log(gestor.obtenerTareas());</code></pre>
             }
         };
 
+        // Funciones para modales
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevenir scroll
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restaurar scroll
+            }
+        }
+
+        // Cerrar modal al hacer clic fuera de él
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
         window.toggleSection = toggleSection;
         window.showExampleTab = showExampleTab;
         window.runCode = runCode;
         window.createUserObject = createUserObject;
+        window.openModal = openModal;
+        window.closeModal = closeModal;
     </script>
 </body>
 </html>

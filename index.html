@@ -43,54 +43,96 @@
     <main class="main-content">
         <!-- Sección Hero -->
         <section id="inicio" class="hero">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Academia de Programación</span>
-                </div>
-                <h1 class="hero-title">JavaScript Junior Developer</h1>
-                <p class="hero-subtitle">Aprende JavaScript desde cero con nuestra metodología práctica. Teoría, ejemplos interactivos y proyectos reales para convertirte en un desarrollador profesional.</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">6</span>
-                        <span class="stat-label">Módulos</span>
+            <div class="hero-left">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Academia de Programación</span>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Ejemplos</span>
+                    <h1 class="hero-title">JavaScript Junior Developer</h1>
+                    <p class="hero-subtitle">Aprende JavaScript desde cero con nuestra metodología práctica. Teoría, ejemplos interactivos y proyectos reales para convertirte en un desarrollador profesional.</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">6</span>
+                            <span class="stat-label">Módulos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Ejemplos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Proyectos</span>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Proyectos</span>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="scrollToSection('modulos')">
+                            <i class="fas fa-play"></i> Comenzar Curso
+                        </button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('metodologia')">
+                            <i class="fas fa-graduation-cap"></i> Ver Metodología
+                        </button>
                     </div>
-                </div>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="scrollToSection('modulos')">
-                        <i class="fas fa-play"></i> Comenzar Curso
-                    </button>
-                    <button class="btn btn-secondary" onclick="scrollToSection('metodologia')">
-                        <i class="fas fa-graduation-cap"></i> Ver Metodología
-                    </button>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="code-window">
-                    <div class="window-header">
-                        <div class="window-controls">
-                            <span class="control red"></span>
-                            <span class="control yellow"></span>
-                            <span class="control green"></span>
-                        </div>
-                        <span class="window-title">main.js</span>
-                    </div>
-                    <div class="code-content">
-                        <div class="code-line"><span class="keyword">const</span> <span class="variable">developer</span> = {</div>
-                        <div class="code-line">  <span class="property">nombre</span>: <span class="string">'Tu Nombre'</span>,</div>
-                        <div class="code-line">  <span class="property">nivel</span>: <span class="string">'Junior'</span>,</div>
-                        <div class="code-line">  <span class="property">aprendiendo</span>: <span class="string">'JavaScript'</span></div>
-                        <div class="code-line">};</div>
-                        <div class="code-line"></div>
-                        <div class="code-line"><span class="function">console.log</span>(<span class="string">'¡Bienvenido a JS Academy!'</span>);</div>
+            <div class="hero-right">
+                <div class="hero-modules-panel">
+                    <h3 class="panel-title">Acceso Directo a Módulos</h3>
+                    <div class="modules-list">
+                        <a href="modulo1-fundamentos.html" class="module-link">
+                            <div class="module-link-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="module-link-content">
+                                <span class="module-link-number">Módulo 1</span>
+                                <span class="module-link-title">Fundamentos de JavaScript</span>
+                            </div>
+                        </a>
+                        <a href="modulo2-moderno.html" class="module-link">
+                            <div class="module-link-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="module-link-content">
+                                <span class="module-link-number">Módulo 2</span>
+                                <span class="module-link-title">JavaScript Moderno (ES6+)</span>
+                            </div>
+                        </a>
+                        <a href="modulo3-dom.html" class="module-link">
+                            <div class="module-link-icon">
+                                <i class="fas fa-window-maximize"></i>
+                            </div>
+                            <div class="module-link-content">
+                                <span class="module-link-number">Módulo 3</span>
+                                <span class="module-link-title">DOM Manipulation</span>
+                            </div>
+                        </a>
+                        <a href="modulo4-asincrono.html" class="module-link">
+                            <div class="module-link-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="module-link-content">
+                                <span class="module-link-number">Módulo 4</span>
+                                <span class="module-link-title">Programación Asíncrona</span>
+                            </div>
+                        </a>
+                        <a href="modulo5-frameworks.html" class="module-link">
+                            <div class="module-link-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="module-link-content">
+                                <span class="module-link-number">Módulo 5</span>
+                                <span class="module-link-title">Frameworks y Librerías</span>
+                            </div>
+                        </a>
+                        <a href="modulo6-herramientas.html" class="module-link">
+                            <div class="module-link-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="module-link-content">
+                                <span class="module-link-number">Módulo 6</span>
+                                <span class="module-link-title">Herramientas de Desarrollo</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
