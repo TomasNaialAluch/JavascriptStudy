@@ -1728,6 +1728,18 @@ renderizarTareas();</code></pre>
             });
         });
 
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                // Stop any playing speech
+                if (currentSpeech) {
+                    speechSynthesis.cancel();
+                    currentSpeech = null;
+                }
+            }
+        });
+
         // Text-to-Speech functionality
         let currentSpeech = null;
         
