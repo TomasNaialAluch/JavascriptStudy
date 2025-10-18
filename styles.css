@@ -827,7 +827,7 @@ body {
 }
 
 .modal-body {
-    padding: 0 1.5rem 1.5rem 1.5rem;
+    padding: 1.5rem; /* Added padding on all sides for better readability */
 }
 
 .modal-body h3 {

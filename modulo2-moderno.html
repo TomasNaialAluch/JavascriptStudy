@@ -2801,11 +2801,20 @@ console.log(admin.esAdmin); // true</code></pre>
             <span class="close" onclick="closeModal('template-backticks-modal')">&times;</span>
             <h2><i class="fas fa-quote-left"></i> Backticks (`) - La Nueva Sintaxis</h2>
             <div class="modal-body">
-                <h3>¿Qué son los Backticks?</h3>
-                <p>Los <strong>backticks</strong> (<code>`</code>) son caracteres especiales que se usan para crear <strong>template literals</strong> en JavaScript moderno (ES6+). A diferencia de las comillas simples (<code>'</code>) o dobles (<code>"</code>), los backticks permiten funcionalidades avanzadas.</p>
+                <h3>¿Qué son los Backticks? 🤔</h3>
+                <p>Imagina que las <strong>comillas normales</strong> (' y ") son como cajas simples donde solo puedes meter texto plano. Los <strong>backticks</strong> (<code>`</code>) son como cajas mágicas que pueden hacer cosas increíbles con el texto.</p>
                 
-                <h3>Ubicación del Backtick en el Teclado:</h3>
-                <p>📍 Usualmente está en la misma tecla que <code>~</code> (tilde), arriba de la tecla TAB, a la izquierda del número 1.</p>
+                <p>Los backticks son la forma <strong>moderna y inteligente</strong> de crear strings en JavaScript. Te permiten insertar variables, hacer cálculos y crear texto multilínea de forma súper fácil.</p>
+                
+                <h3>📍 ¿Dónde está el Backtick en mi Teclado?</h3>
+                <p>🔍 <strong>Busca la tecla que tiene:</strong></p>
+                <ul>
+                    <li>El símbolo <code>~</code> (tilde) en la parte superior</li>
+                    <li>Está arriba de la tecla TAB</li>
+                    <li>A la izquierda del número 1</li>
+                    <li>En teclados en español: <code>º</code> y <code>ª</code></li>
+                </ul>
+                <p><strong>💡 Tip:</strong> Si no lo encuentras, mantén presionada la tecla <code>Alt Gr</code> + la tecla que tiene <code>~</code></p>
                 
                 <h3>Diferencia con Comillas Tradicionales:</h3>
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
@@ -2830,6 +2839,48 @@ console.log(admin.esAdmin); // true</code></pre>
                         <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Evaluación ${}</td>
                     </tr>
                 </table>
+                
+                <h3>🎯 Ejemplos Reales: Antes vs Ahora</h3>
+                
+                <h4>📝 Ejemplo 1: Crear un saludo personalizado</h4>
+                <p><strong>Problema:</strong> Quieres crear un mensaje que incluya el nombre y edad de una persona.</p>
+                
+                <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <h5>❌ Método Antiguo (Complicado):</h5>
+                    <pre><code class="language-javascript">let nombre = "Ana";
+let edad = 25;
+// Tienes que usar + para unir todo... ¡Qué lío!
+let mensaje1 = "Hola, mi nombre es " + nombre + " y tengo " + edad + " años";</code></pre>
+                    <p><strong>Problemas:</strong> Muchos signos +, fácil olvidar espacios, difícil de leer</p>
+                </div>
+                
+                <div style="background: #d4edda; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <h5>✅ Método Moderno (Fácil):</h5>
+                    <pre><code class="language-javascript">let nombre = "Ana";
+let edad = 25;
+// ¡Súper fácil! Solo pones ${variable} donde quieras
+let mensaje2 = `Hola, mi nombre es ${nombre} y tengo ${edad} años`;</code></pre>
+                    <p><strong>Ventajas:</strong> Más claro, menos errores, más fácil de leer</p>
+                </div>
+                
+                <h4>📄 Ejemplo 2: Texto Multilínea</h4>
+                <p><strong>Problema:</strong> Quieres crear un párrafo de varias líneas.</p>
+                
+                <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <h5>❌ Método Antiguo (Feo):</h5>
+                    <pre><code class="language-javascript">// Tienes que usar \n para saltos de línea... ¡Qué feo!
+let texto1 = "Primera línea\n" +
+             "Segunda línea\n" +
+             "Tercera línea";</code></pre>
+                </div>
+                
+                <div style="background: #d4edda; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <h5>✅ Método Moderno (Elegante):</h5>
+                    <pre><code class="language-javascript">// ¡Simplemente escribes como en un documento!
+let texto2 = `Primera línea
+Segunda línea
+Tercera línea`;</code></pre>
+                </div>
                 
                 <h3>Ejemplos Comparativos:</h3>
                 <pre><code class="language-javascript">// ❌ Con comillas tradicionales
