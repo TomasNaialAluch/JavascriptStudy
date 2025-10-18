@@ -377,140 +377,401 @@ console.log("Primer hobby:", usuario.hobbies[0]);</code></pre>
             </div>
         </section>
 
-        <!-- Sección 2: Operadores -->
-        <section id="operadores" class="lesson-section bg-light">
+        <!-- Lección 2: Operadores -->
+        <section id="operadores" class="lesson-section bg-light" data-lesson="operadores">
             <div class="container">
                 <div class="lesson-header">
+                    <div class="lesson-badge">
+                        <i class="fas fa-calculator"></i>
+                        <span>Lección 2</span>
+                    </div>
                     <h2>Operadores</h2>
-                    <p>Los operadores permiten realizar operaciones con valores. JavaScript incluye operadores aritméticos, de comparación y lógicos.</p>
+                    <p class="lesson-intro">Los operadores permiten realizar operaciones con valores. JavaScript incluye operadores aritméticos, de comparación y lógicos para manipular datos.</p>
+                    
+                    <div class="key-points">
+                        <h4>🎯 Puntos Clave</h4>
+                        <div class="key-points-grid">
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>6 operadores aritméticos</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>8 operadores de comparación</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>3 operadores lógicos</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Precedencia de operadores</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Type coercion importante</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="lesson-content">
                     <div class="theory-section">
-                        <h3>Teoría</h3>
-                        <div class="theory-content">
-                            <h4>Operadores Aritméticos</h4>
-                            <ul>
-                                <li><code>+</code> Suma</li>
-                                <li><code>-</code> Resta</li>
-                                <li><code>*</code> Multiplicación</li>
-                                <li><code>/</code> División</li>
-                                <li><code>%</code> Módulo (resto)</li>
-                                <li><code>**</code> Exponenciación</li>
-                            </ul>
+                        <div class="section-toggle" onclick="toggleSection('operadores-theory')">
+                            <h3><i class="fas fa-book"></i> Teoría</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div id="operadores-theory" class="theory-content collapsed">
+                            <div class="theory-grid">
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-plus"></i> Operadores Aritméticos</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item">
+                                            <code>+</code>
+                                            <span>Suma</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>-</code>
+                                            <span>Resta</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>*</code>
+                                            <span>Multiplicación</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>/</code>
+                                            <span>División</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>%</code>
+                                            <span>Módulo (resto)</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>**</code>
+                                            <span>Exponenciación</span>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <h4>Operadores de Comparación</h4>
-                            <ul>
-                                <li><code>==</code> Igualdad débil</li>
-                                <li><code>===</code> Igualdad estricta</li>
-                                <li><code>!=</code> Desigualdad débil</li>
-                                <li><code>!==</code> Desigualdad estricta</li>
-                                <li><code>&gt;</code> Mayor que</li>
-                                <li><code>&lt;</code> Menor que</li>
-                                <li><code>&gt;=</code> Mayor o igual</li>
-                                <li><code>&lt;=</code> Menor o igual</li>
-                            </ul>
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-balance-scale"></i> Operadores de Comparación</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item">
+                                            <code>==</code>
+                                            <span>Igualdad débil</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>===</code>
+                                            <span>Igualdad estricta</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>!=</code>
+                                            <span>Desigualdad débil</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>!==</code>
+                                            <span>Desigualdad estricta</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>&gt; &lt; &gt;= &lt;=</code>
+                                            <span>Comparaciones numéricas</span>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <h4>Operadores Lógicos</h4>
-                            <ul>
-                                <li><code>&&</code> AND lógico</li>
-                                <li><code>||</code> OR lógico</li>
-                                <li><code>!</code> NOT lógico</li>
-                            </ul>
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-project-diagram"></i> Operadores Lógicos</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item">
+                                            <code>&&</code>
+                                            <span>AND lógico</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>||</code>
+                                            <span>OR lógico</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>!</code>
+                                            <span>NOT lógico</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="example-section">
-                        <h3>Ejemplo Práctico</h3>
-                        <div class="example-content">
-                            <div class="code-example">
-                                <div class="code-header">
-                                    <span class="code-title">Uso de Operadores</span>
-                                    <button class="btn btn-sm btn-outline" onclick="toggleCode('operadores-code')">
-                                        <i class="fas fa-code"></i> Ver Código
-                                    </button>
-                                </div>
-                                <div id="operadores-code" class="code-block" style="display: none;">
-                                    <pre><code class="language-javascript">// Operadores aritméticos
+                        <div class="section-toggle" onclick="toggleSection('operadores-example')">
+                            <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div id="operadores-example" class="example-content collapsed">
+                            <div class="example-tabs">
+                                <button class="tab-btn active" onclick="showExampleTab('operadores', 'basic')">Básico</button>
+                                <button class="tab-btn" onclick="showExampleTab('operadores', 'advanced')">Avanzado</button>
+                                <button class="tab-btn" onclick="showExampleTab('operadores', 'interactive')">Interactivo</button>
+                            </div>
+
+                            <div id="operadores-basic" class="example-tab-content active">
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-title">Operadores Básicos</span>
+                                        <button class="btn btn-sm btn-primary" onclick="runCode('operadores-basic-code')">
+                                            <i class="fas fa-play"></i> Ejecutar
+                                        </button>
+                                    </div>
+                                    <div class="code-block">
+                                        <pre><code class="language-javascript" id="operadores-basic-code">// Operadores aritméticos
 let a = 10;
 let b = 3;
 
-console.log(a + b);   // 13 (suma)
-console.log(a - b);   // 7 (resta)
-console.log(a * b);   // 30 (multiplicación)
-console.log(a / b);   // 3.33... (división)
-console.log(a % b);   // 1 (módulo/resto)
-console.log(a ** b);  // 1000 (exponenciación)
+console.log('Suma:', a + b);        // 13
+console.log('Resta:', a - b);       // 7
+console.log('Multiplicación:', a * b); // 30
+console.log('División:', a / b);    // 3.33...
+console.log('Módulo:', a % b);      // 1
+console.log('Exponenciación:', a ** b); // 1000
 
 // Operadores de comparación
 let x = 5;
 let y = "5";
 
-console.log(x == y);   // true (igualdad débil)
-console.log(x === y);  // false (igualdad estricta)
-console.log(x != y);   // false (desigualdad débil)
-console.log(x !== y);  // true (desigualdad estricta)
-console.log(x > 3);    // true
-console.log(x < 10);   // true
-console.log(x >= 5);   // true
-console.log(x <= 5);   // true
+console.log('Igualdad débil (==):', x == y);   // true
+console.log('Igualdad estricta (===):', x === y); // false
+console.log('Mayor que:', x > 3);    // true
+console.log('Menor que:', x < 10);   // true
 
 // Operadores lógicos
 let esAdulto = true;
 let tieneLicencia = false;
 
-console.log(esAdulto && tieneLicencia);  // false (AND)
-console.log(esAdulto || tieneLicencia);  // true (OR)
-console.log(!esAdulto);                  // false (NOT)</code></pre>
+console.log('AND (&&):', esAdulto && tieneLicencia);  // false
+console.log('OR (||):', esAdulto || tieneLicencia);   // true
+console.log('NOT (!):', !esAdulto);                   // false</code></pre>
+                                    </div>
+                                    <div class="code-output" id="operadores-basic-output"></div>
+                                </div>
+                            </div>
+
+                            <div id="operadores-advanced" class="example-tab-content">
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-title">Precedencia y Type Coercion</span>
+                                        <button class="btn btn-sm btn-primary" onclick="runCode('operadores-advanced-code')">
+                                            <i class="fas fa-play"></i> Ejecutar
+                                        </button>
+                                    </div>
+                                    <div class="code-block">
+                                        <pre><code class="language-javascript" id="operadores-advanced-code">// Precedencia de operadores
+console.log('Sin paréntesis:', 2 + 3 * 4);     // 14 (multiplicación primero)
+console.log('Con paréntesis:', (2 + 3) * 4);   // 20
+
+// Type coercion (conversión automática de tipos)
+console.log('String + Number:', "5" + 3);      // "53" (concatenación)
+console.log('Number + String:', 5 + "3");      // "53" (concatenación)
+console.log('String - Number:', "5" - 3);      // 2 (resta convierte a número)
+console.log('String * Number:', "5" * 3);      // 15 (multiplicación convierte a número)
+
+// Comparaciones con type coercion
+console.log('"5" == 5:', "5" == 5);           // true (conversión)
+console.log('"5" === 5:', "5" === 5);         // false (sin conversión)
+console.log('null == undefined:', null == undefined); // true
+console.log('null === undefined:', null === undefined); // false
+
+// Operadores de asignación
+let numero = 10;
+numero += 5;  // numero = numero + 5
+console.log('+= 5:', numero);  // 15
+
+numero *= 2;  // numero = numero * 2
+console.log('*= 2:', numero);  // 30
+
+// Operadores de incremento/decremento
+let contador = 5;
+console.log('Pre-incremento:', ++contador);  // 6
+console.log('Post-incremento:', contador++); // 6 (pero contador ahora es 7)
+console.log('Valor final:', contador);       // 7</code></pre>
+                                    </div>
+                                    <div class="code-output" id="operadores-advanced-output"></div>
+                                </div>
+                            </div>
+
+                            <div id="operadores-interactive" class="example-tab-content">
+                                <div class="interactive-example">
+                                    <h4>🎮 Calculadora de Operadores</h4>
+                                    <div class="interactive-content">
+                                        <div class="input-group">
+                                            <label>Primer número:</label>
+                                            <input type="number" id="calc-num1" value="10">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Segundo número:</label>
+                                            <input type="number" id="calc-num2" value="3">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Operación:</label>
+                                            <select id="calc-operation">
+                                                <option value="+">Suma (+)</option>
+                                                <option value="-">Resta (-)</option>
+                                                <option value="*">Multiplicación (*)</option>
+                                                <option value="/">División (/)</option>
+                                                <option value="%">Módulo (%)</option>
+                                                <option value="**">Exponenciación (**)</option>
+                                            </select>
+                                        </div>
+                                        <button class="btn btn-primary" onclick="calculateOperation()">
+                                            <i class="fas fa-calculator"></i> Calcular
+                                        </button>
+                                        <div class="result-display" id="calc-result"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="lesson-summary">
+                        <h4>📝 Resumen de la Lección</h4>
+                        <ul>
+                            <li>Los operadores aritméticos realizan operaciones matemáticas básicas</li>
+                            <li>Los operadores de comparación evalúan relaciones entre valores</li>
+                            <li>Los operadores lógicos combinan expresiones booleanas</li>
+                            <li>La precedencia determina el orden de evaluación</li>
+                            <li>Type coercion puede causar comportamientos inesperados</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección 3: Estructuras de Control -->
-        <section id="control" class="lesson-section">
+        <!-- Lección 3: Estructuras de Control -->
+        <section id="control" class="lesson-section" data-lesson="control">
             <div class="container">
                 <div class="lesson-header">
+                    <div class="lesson-badge">
+                        <i class="fas fa-sitemap"></i>
+                        <span>Lección 3</span>
+                    </div>
                     <h2>Estructuras de Control</h2>
-                    <p>Las estructuras de control permiten que tu código tome decisiones y repita operaciones basándose en condiciones.</p>
+                    <p class="lesson-intro">Las estructuras de control permiten que tu código tome decisiones y repita operaciones basándose en condiciones. Son fundamentales para crear lógica en JavaScript.</p>
+                    
+                    <div class="key-points">
+                        <h4>🎯 Puntos Clave</h4>
+                        <div class="key-points-grid">
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>3 tipos de condicionales</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>4 tipos de bucles</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Operador ternario</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Break y continue</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Iteración de arrays y objetos</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="lesson-content">
                     <div class="theory-section">
-                        <h3>Teoría</h3>
-                        <div class="theory-content">
-                            <h4>Condicionales</h4>
-                            <ul>
-                                <li><strong>if/else:</strong> Ejecuta código basado en una condición</li>
-                                <li><strong>switch:</strong> Evalúa múltiples casos</li>
-                                <li><strong>Operador ternario:</strong> Condicional en una línea</li>
-                            </ul>
+                        <div class="section-toggle" onclick="toggleSection('control-theory')">
+                            <h3><i class="fas fa-book"></i> Teoría</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div id="control-theory" class="theory-content collapsed">
+                            <div class="theory-grid">
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-question-circle"></i> Condicionales</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item">
+                                            <code>if/else</code>
+                                            <span>Ejecuta código basado en condición</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>switch</code>
+                                            <span>Evalúa múltiples casos</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>? :</code>
+                                            <span>Operador ternario (una línea)</span>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <h4>Bucles (Loops)</h4>
-                            <ul>
-                                <li><strong>for:</strong> Bucle con contador</li>
-                                <li><strong>while:</strong> Bucle mientras se cumple condición</li>
-                                <li><strong>for...of:</strong> Iterar sobre arrays</li>
-                                <li><strong>for...in:</strong> Iterar sobre propiedades de objetos</li>
-                            </ul>
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-sync-alt"></i> Bucles (Loops)</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item">
+                                            <code>for</code>
+                                            <span>Bucle con contador</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>while</code>
+                                            <span>Mientras se cumple condición</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>for...of</code>
+                                            <span>Iterar sobre arrays</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>for...in</code>
+                                            <span>Iterar sobre propiedades</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-exclamation-triangle"></i> Control de Flujo</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item">
+                                            <code>break</code>
+                                            <span>Salir del bucle</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>continue</code>
+                                            <span>Saltar iteración</span>
+                                        </div>
+                                        <div class="theory-item">
+                                            <code>return</code>
+                                            <span>Salir de función</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="example-section">
-                        <h3>Ejemplo Práctico</h3>
-                        <div class="example-content">
-                            <div class="code-example">
-                                <div class="code-header">
-                                    <span class="code-title">Estructuras de Control</span>
-                                    <button class="btn btn-sm btn-outline" onclick="toggleCode('control-code')">
-                                        <i class="fas fa-code"></i> Ver Código
-                                    </button>
-                                </div>
-                                <div id="control-code" class="code-block" style="display: none;">
-                                    <pre><code class="language-javascript">// Condicionales
+                        <div class="section-toggle" onclick="toggleSection('control-example')">
+                            <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div id="control-example" class="example-content collapsed">
+                            <div class="example-tabs">
+                                <button class="tab-btn active" onclick="showExampleTab('control', 'basic')">Básico</button>
+                                <button class="tab-btn" onclick="showExampleTab('control', 'advanced')">Avanzado</button>
+                                <button class="tab-btn" onclick="showExampleTab('control', 'interactive')">Interactivo</button>
+                            </div>
+
+                            <div id="control-basic" class="example-tab-content active">
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-title">Condicionales y Bucles Básicos</span>
+                                        <button class="btn btn-sm btn-primary" onclick="runCode('control-basic-code')">
+                                            <i class="fas fa-play"></i> Ejecutar
+                                        </button>
+                                    </div>
+                                    <div class="code-block">
+                                        <pre><code class="language-javascript" id="control-basic-code">// Condicionales
 let temperatura = 25;
 
 if (temperatura > 30) {
@@ -525,6 +786,7 @@ if (temperatura > 30) {
 
 // Operador ternario
 let mensaje = temperatura > 25 ? "Calor" : "Fresco";
+console.log("Mensaje:", mensaje);
 
 // Switch
 let dia = "lunes";
@@ -544,44 +806,159 @@ switch (dia) {
         console.log("Día laboral");
 }
 
-// Bucles
-// For loop
+// Bucles básicos
+console.log("--- For Loop ---");
 for (let i = 0; i < 5; i++) {
     console.log(`Iteración ${i}`);
 }
 
-// While loop
+console.log("--- While Loop ---");
 let contador = 0;
 while (contador < 3) {
     console.log(`Contador: ${contador}`);
     contador++;
-}
+}</code></pre>
+                                    </div>
+                                    <div class="code-output" id="control-basic-output"></div>
+                                </div>
+                            </div>
 
-// For...of (para arrays)
-let frutas = ["manzana", "banana", "naranja"];
+                            <div id="control-advanced" class="example-tab-content">
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-title">Iteración de Arrays y Objetos</span>
+                                        <button class="btn btn-sm btn-primary" onclick="runCode('control-advanced-code')">
+                                            <i class="fas fa-play"></i> Ejecutar
+                                        </button>
+                                    </div>
+                                    <div class="code-block">
+                                        <pre><code class="language-javascript" id="control-advanced-code">// Arrays
+let frutas = ["manzana", "banana", "naranja", "uva"];
+
+console.log("--- For...of (valores) ---");
 for (let fruta of frutas) {
     console.log(fruta);
 }
 
-// For...in (para objetos)
-let persona = { nombre: "Juan", edad: 30 };
+console.log("--- For tradicional con índices ---");
+for (let i = 0; i < frutas.length; i++) {
+    console.log(`${i}: ${frutas[i]}`);
+}
+
+// Objetos
+let persona = { 
+    nombre: "Juan", 
+    edad: 30, 
+    ciudad: "Madrid",
+    profesion: "Desarrollador"
+};
+
+console.log("--- For...in (propiedades) ---");
 for (let propiedad in persona) {
     console.log(`${propiedad}: ${persona[propiedad]}`);
+}
+
+// Break y Continue
+console.log("--- Break y Continue ---");
+for (let i = 0; i < 10; i++) {
+    if (i === 3) {
+        console.log("Saltando 3...");
+        continue; // Salta esta iteración
+    }
+    if (i === 7) {
+        console.log("Llegamos a 7, terminando...");
+        break; // Sale del bucle
+    }
+    console.log(`Número: ${i}`);
+}
+
+// Bucle anidado
+console.log("--- Bucle Anidado ---");
+for (let i = 1; i <= 3; i++) {
+    for (let j = 1; j <= 2; j++) {
+        console.log(`i=${i}, j=${j}`);
+    }
 }</code></pre>
+                                    </div>
+                                    <div class="code-output" id="control-advanced-output"></div>
+                                </div>
+                            </div>
+
+                            <div id="control-interactive" class="example-tab-content">
+                                <div class="interactive-example">
+                                    <h4>🎮 Simulador de Condiciones</h4>
+                                    <div class="interactive-content">
+                                        <div class="input-group">
+                                            <label>Edad:</label>
+                                            <input type="number" id="age-input" value="18" min="0" max="100">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Tiene licencia:</label>
+                                            <select id="license-input">
+                                                <option value="true">Sí</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                        <button class="btn btn-primary" onclick="checkConditions()">
+                                            <i class="fas fa-check"></i> Verificar Condiciones
+                                        </button>
+                                        <div class="result-display" id="conditions-result"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="lesson-summary">
+                        <h4>📝 Resumen de la Lección</h4>
+                        <ul>
+                            <li>Los condicionales permiten tomar decisiones en el código</li>
+                            <li>Los bucles repiten operaciones de manera eficiente</li>
+                            <li>El operador ternario simplifica condicionales simples</li>
+                            <li>Break y continue controlan el flujo de los bucles</li>
+                            <li>for...of es ideal para arrays, for...in para objetos</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección 4: Funciones -->
-        <section id="funciones" class="lesson-section bg-light">
+        <!-- Lección 4: Funciones -->
+        <section id="funciones" class="lesson-section bg-light" data-lesson="funciones">
             <div class="container">
                 <div class="lesson-header">
+                    <div class="lesson-badge">
+                        <i class="fas fa-cogs"></i>
+                        <span>Lección 4</span>
+                    </div>
                     <h2>Funciones</h2>
-                    <p>Las funciones son bloques de código reutilizables que realizan una tarea específica. Son fundamentales en JavaScript.</p>
+                    <p class="lesson-intro">Las funciones son bloques de código reutilizables que realizan una tarea específica. Son fundamentales en JavaScript para organizar y reutilizar código.</p>
+                    
+                    <div class="key-points">
+                        <h4>🎯 Puntos Clave</h4>
+                        <div class="key-points-grid">
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>3 tipos de funciones</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Parámetros y argumentos</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Return y scope</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Arrow functions</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Closures importantes</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="lesson-content">
