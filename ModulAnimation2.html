@@ -274,6 +274,83 @@
         }
 
         /* Responsive */
+        /* Modal informativo personalizado */
+        .info-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .info-modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+            position: relative;
+        }
+
+        .info-modal-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+
+        .info-modal-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .info-modal-body {
+            padding: 2rem;
+            color: #333;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .info-modal-close {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 2rem 2rem 2rem;
+            width: calc(100% - 4rem);
+            transition: all 0.3s ease;
+        }
+
+        .info-modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 768px) {
             .animation-header h1 {
                 font-size: 2rem;
@@ -289,6 +366,11 @@
             
             .scope-visualization {
                 flex-direction: column;
+            }
+
+            .info-modal-content {
+                margin: 10% 1rem;
+                max-width: calc(100% - 2rem);
             }
         }
     </style>
@@ -446,7 +528,37 @@
         </div>
     </div>
 
+    <!-- Modal informativo personalizado -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <div class="info-modal-header">
+                <h3 id="infoModalTitle">Información</h3>
+            </div>
+            <div class="info-modal-body" id="infoModalBody"></div>
+            <button class="info-modal-close" onclick="closeInfoModal()">Aceptar</button>
+        </div>
+    </div>
+
     <script>
+        // Funciones para modal informativo personalizado
+        function showInfoModal(title, message) {
+            document.getElementById('infoModalTitle').textContent = title;
+            document.getElementById('infoModalBody').textContent = message;
+            document.getElementById('infoModal').style.display = 'block';
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                closeInfoModal();
+            }
+        });
+
         // Animaciones de funciones
         function animateFunction(type) {
             const cards = document.querySelectorAll('.function-card');
@@ -474,11 +586,17 @@
                 'arrow': 'ARROW FUNCTION:\n• Sintaxis más corta\n• Sin this propio\n• Return implícito\n• Sintaxis: let nombre = () => {}'
             };
             
-            alert(explanations[type]);
+            const titles = {
+                'declared': 'Función Declarada',
+                'expressed': 'Función Expresada',
+                'arrow': 'Arrow Function'
+            };
+            
+            showInfoModal(titles[type], explanations[type]);
         }
 
         function showFunctionComparison() {
-            alert(`COMPARACIÓN DE FUNCIONES:
+            const mensaje = `COMPARACIÓN DE FUNCIONES:
 
 DECLARADA:
 ✅ Hoisting completo
@@ -494,7 +612,8 @@ ARROW:
 ❌ Sin hoisting
 ❌ Anónima
 ✅ Más corta
-✅ Sin this propio`);
+✅ Sin this propio`;
+            showInfoModal('Comparación de Funciones', mensaje);
         }
 
         function resetFunctions() {
@@ -524,7 +643,8 @@ ARROW:
             const nombre = prompt('Escribe tu nombre para probar la función:');
             if (nombre) {
                 const resultado = `Hola, ${nombre}! Bienvenido a JavaScript.`;
-                alert(`Resultado de la función:\n"${resultado}"`);
+                const mensaje = `Resultado de la función:\n"${resultado}"`;
+                showInfoModal('Resultado de la Función', mensaje);
             }
         }
 
@@ -544,7 +664,7 @@ ARROW:
         }
 
         function showClosure() {
-            alert(`CLOSURE (Cierre):
+            const mensaje = `CLOSURE (Cierre):
 
 Una función que "recuerda" su entorno:
 
@@ -560,7 +680,8 @@ let miContador = crearContador();
 miContador(); // 1
 miContador(); // 2
 
-La función interna "recuerda" la variable contador.`);
+La función interna "recuerda" la variable contador.`;
+            showInfoModal('Closure (Cierre)', mensaje);
         }
 
         // Animación de callbacks
@@ -577,7 +698,7 @@ La función interna "recuerda" la variable contador.`);
         }
 
         function showCallbackExamples() {
-            alert(`EJEMPLOS DE CALLBACKS:
+            const mensaje = `EJEMPLOS DE CALLBACKS:
 
 1. Con setTimeout:
 setTimeout(() => {
@@ -591,7 +712,8 @@ let dobles = numeros.map(num => num * 2);
 3. Con eventos:
 boton.addEventListener('click', function() {
     console.log('Botón presionado');
-});`);
+});`;
+            showInfoModal('Ejemplos de Callbacks', mensaje);
         }
 
         // Animaciones de entrada

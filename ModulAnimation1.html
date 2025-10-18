@@ -302,6 +302,83 @@
         }
 
         /* Responsive */
+        /* Modal informativo personalizado */
+        .info-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .info-modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+            position: relative;
+        }
+
+        .info-modal-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+
+        .info-modal-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .info-modal-body {
+            padding: 2rem;
+            color: #333;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .info-modal-close {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 2rem 2rem 2rem;
+            width: calc(100% - 4rem);
+            transition: all 0.3s ease;
+        }
+
+        .info-modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 768px) {
             .animation-header h1 {
                 font-size: 2rem;
@@ -319,6 +396,11 @@
             .control-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .info-modal-content {
+                margin: 10% 1rem;
+                max-width: calc(100% - 2rem);
             }
         }
     </style>
@@ -466,7 +548,37 @@
         </div>
     </div>
 
+    <!-- Modal informativo personalizado -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <div class="info-modal-header">
+                <h3 id="infoModalTitle">Información</h3>
+            </div>
+            <div class="info-modal-body" id="infoModalBody"></div>
+            <button class="info-modal-close" onclick="closeInfoModal()">Aceptar</button>
+        </div>
+    </div>
+
     <script>
+        // Funciones para modal informativo personalizado
+        function showInfoModal(title, message) {
+            document.getElementById('infoModalTitle').textContent = title;
+            document.getElementById('infoModalBody').textContent = message;
+            document.getElementById('infoModal').style.display = 'block';
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                closeInfoModal();
+            }
+        });
+
         // Animaciones de variables
         function animateVariable(type) {
             const boxes = document.querySelectorAll('.variable-box');
@@ -491,17 +603,18 @@
                 'const': 'const es una constante que no se puede reasignar. Debe inicializarse al declararla.'
             };
             
-            alert(explanations[type]);
+            showInfoModal('Variable: ' + type.toUpperCase(), explanations[type]);
         }
 
         function showVariableInfo() {
-            alert(`DIFERENCIAS CLAVE:
+            const mensaje = `DIFERENCIAS CLAVE:
             
 var: Scope de función, se puede redeclarar, hoisting completo
 let: Scope de bloque, no se puede redeclarar, hoisting parcial  
 const: Scope de bloque, no se puede reasignar, debe inicializarse
 
-¡Usa let y const en lugar de var para código más seguro!`);
+¡Usa let y const en lugar de var para código más seguro!`;
+            showInfoModal('Diferencias entre Variables', mensaje);
         }
 
         function resetVariables() {
@@ -538,27 +651,29 @@ const: Scope de bloque, no se puede reasignar, debe inicializarse
                 'array': 'Array: Lista ordenada de elementos. Los índices empiezan en 0.'
             };
             
-            alert(explanations[type]);
+            showInfoModal('Tipo: ' + type.charAt(0).toUpperCase() + type.slice(1), explanations[type]);
         }
 
         function showTypeConversion() {
-            alert(`CONVERSIONES DE TIPOS:
+            const mensaje = `CONVERSIONES DE TIPOS:
 
 String a Number: parseInt("123") = 123
 Number a String: (123).toString() = "123"
 Boolean a String: String(true) = "true"
 Array a String: [1,2,3].join(",") = "1,2,3"
 
-JavaScript convierte automáticamente entre tipos cuando es necesario.`);
+JavaScript convierte automáticamente entre tipos cuando es necesario.`;
+            showInfoModal('Conversiones de Tipos', mensaje);
         }
 
         function interactiveDemo() {
             const userInput = prompt('Escribe algo y veremos qué tipo de dato es:');
             if (userInput !== null) {
                 const type = typeof userInput;
-                alert(`Has escrito: "${userInput}"
+                const mensaje = `Has escrito: "${userInput}"
 Tipo detectado: ${type}
-Longitud: ${userInput.length} caracteres`);
+Longitud: ${userInput.length} caracteres`;
+                showInfoModal('Análisis de Entrada', mensaje);
             }
         }
 
@@ -578,7 +693,7 @@ Longitud: ${userInput.length} caracteres`);
         }
 
         function showHoisting() {
-            alert(`HOISTING (Elevación):
+            const mensaje = `HOISTING (Elevación):
 
 var: Se eleva completamente (declaración + inicialización)
 let/const: Se elevan pero no se pueden usar (zona muerta temporal)
@@ -588,7 +703,8 @@ console.log(x); // undefined (var)
 var x = 5;
 
 console.log(y); // ReferenceError (let)
-let y = 10;`);
+let y = 10;`;
+            showInfoModal('Hoisting (Elevación)', mensaje);
         }
 
         // Animaciones de entrada
