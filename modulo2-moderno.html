@@ -216,17 +216,20 @@
                             <div class="theory-card">
                                 <h4><i class="fas fa-tag"></i> Declaraciones de Variables</h4>
                                 <div class="theory-list">
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('var-modal')">
                                         <code>var</code>
                                         <span>Scope de función, se puede redeclarar</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('let-modal')">
                                         <code>let</code>
                                         <span>Scope de bloque, no se puede redeclarar</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('const-modal')">
                                         <code>const</code>
                                         <span>Scope de bloque, valor inmutable</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
                                 </div>
                             </div>
@@ -234,17 +237,20 @@
                             <div class="theory-card">
                                 <h4><i class="fas fa-exclamation-triangle"></i> Diferencias Importantes</h4>
                                 <div class="theory-list">
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('hoisting-modal')">
                                         <code>Hoisting</code>
                                         <span>var se eleva, let/const no</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('tdz-modal')">
                                         <code>TDZ</code>
                                         <span>Temporal Dead Zone en let/const</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('scope-modal')">
                                         <code>Scope</code>
                                         <span>Bloque vs función</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
                                 </div>
                             </div>
@@ -1244,5 +1250,612 @@ El año que viene tendré ${age + 1} años.
         window.createArrowFunction = createArrowFunction;
         window.generateMessage = generateMessage;
     </script>
+
+    <!-- Modales Explicativos - Lección 1: Let, Const y Var -->
+    <div id="var-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('var-modal')">&times;</span>
+            <h2><i class="fas fa-tag"></i> var - Declaración Clásica</h2>
+            <div class="modal-body">
+                <h3>¿Qué es var?</h3>
+                <p><code>var</code> es la forma clásica de declarar variables en JavaScript. Aunque sigue funcionando, se recomienda usar <code>let</code> o <code>const</code> en código moderno.</p>
+                
+                <h3>Características de var:</h3>
+                <ul>
+                    <li><strong>Scope de función:</strong> La variable existe en toda la función donde se declara</li>
+                    <li><strong>Hoisting:</strong> La declaración se eleva al inicio de la función</li>
+                    <li><strong>Se puede redeclarar:</strong> Puedes declarar la misma variable múltiples veces</li>
+                    <li><strong>Sin Temporal Dead Zone:</strong> Puedes usar la variable antes de declararla (valor undefined)</li>
+                </ul>
+                
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// Scope de función
+function ejemplo() {
+    console.log(x); // undefined (hoisting)
+    var x = 10;
+    
+    if (true) {
+        var y = 20; // Accesible fuera del if
+    }
+    console.log(y); // 20 - NO error
+}
+
+// Redeclaración
+var nombre = "Ana";
+var nombre = "Carlos"; // ✅ Permitido (pero confuso)</code></pre>
+                
+                <h3>Problemas de var:</h3>
+                <pre><code class="language-javascript">// Problema 1: Scope confuso
+for (var i = 0; i < 3; i++) {
+    setTimeout(() => console.log(i), 1000);
+}
+// Imprime: 3, 3, 3 (no 0, 1, 2)
+
+// Problema 2: Contaminación global
+var x = 10;
+if (true) {
+    var x = 20; // ¡Sobrescribe la x externa!
+}
+console.log(x); // 20</code></pre>
+                
+                <h3>⚠️ Recomendación:</h3>
+                <p>En código moderno ES6+, evita usar <code>var</code>. Usa <code>let</code> para variables que cambian y <code>const</code> para constantes.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="let-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('let-modal')">&times;</span>
+            <h2><i class="fas fa-tag"></i> let - Declaración Moderna</h2>
+            <div class="modal-body">
+                <h3>¿Qué es let?</h3>
+                <p><code>let</code> es la forma moderna de declarar variables en JavaScript ES6+. Tiene mejor scope y evita problemas de <code>var</code>.</p>
+                
+                <h3>Características de let:</h3>
+                <ul>
+                    <li><strong>Scope de bloque:</strong> La variable solo existe en el bloque {...} donde se declara</li>
+                    <li><strong>No se puede redeclarar:</strong> Previene errores al intentar declarar dos veces</li>
+                    <li><strong>Temporal Dead Zone (TDZ):</strong> No puedes usar la variable antes de declararla</li>
+                    <li><strong>Valor reasignable:</strong> Puedes cambiar el valor de la variable</li>
+                </ul>
+                
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// Scope de bloque
+let nombre = "Ana";
+
+if (true) {
+    let nombre = "Carlos"; // Variable diferente
+    console.log(nombre); // "Carlos"
+}
+
+console.log(nombre); // "Ana"
+
+// Reasignación permitida
+let edad = 25;
+edad = 26; // ✅ Permitido
+
+// Redeclaración NO permitida
+let x = 10;
+// let x = 20; // ❌ Error: x ya está declarada</code></pre>
+                
+                <h3>Ventajas de let:</h3>
+                <pre><code class="language-javascript">// Soluciona el problema del loop
+for (let i = 0; i < 3; i++) {
+    setTimeout(() => console.log(i), 1000);
+}
+// Imprime: 0, 1, 2 ✅
+
+// Scope de bloque
+{
+    let privada = "Solo aquí";
+    console.log(privada); // "Solo aquí"
+}
+// console.log(privada); // ❌ Error: no definida</code></pre>
+                
+                <h3>Cuándo usar let:</h3>
+                <ul>
+                    <li>Cuando el valor de la variable va a cambiar</li>
+                    <li>Para contadores de loops</li>
+                    <li>Para variables que se reasignan</li>
+                </ul>
+                
+                <h3>⚠️ Temporal Dead Zone:</h3>
+                <pre><code class="language-javascript">// console.log(x); // ❌ Error: TDZ
+let x = 10; // Aquí termina la TDZ
+console.log(x); // ✅ 10</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="const-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('const-modal')">&times;</span>
+            <h2><i class="fas fa-tag"></i> const - Constantes</h2>
+            <div class="modal-body">
+                <h3>¿Qué es const?</h3>
+                <p><code>const</code> declara constantes en JavaScript ES6+. Una vez asignado, el valor NO se puede reasignar.</p>
+                
+                <h3>Características de const:</h3>
+                <ul>
+                    <li><strong>Scope de bloque:</strong> Como let, solo existe en su bloque</li>
+                    <li><strong>No se puede reasignar:</strong> El valor no cambia después de la asignación inicial</li>
+                    <li><strong>Debe inicializarse:</strong> Debes asignar un valor al declarar</li>
+                    <li><strong>Temporal Dead Zone (TDZ):</strong> Como let, no puedes usarla antes de declararla</li>
+                </ul>
+                
+                <h3>Ejemplo Básico:</h3>
+                <pre><code class="language-javascript">// Declaración e inicialización
+const PI = 3.14159;
+const NOMBRE = "Ana";
+
+// Reasignación NO permitida
+// PI = 3.14; // ❌ Error: no se puede reasignar
+
+// Debe inicializarse
+// const x; // ❌ Error: falta inicialización
+const x = 10; // ✅ Correcto</code></pre>
+                
+                <h3>⚠️ Importante - Objetos y Arrays:</h3>
+                <p>Con objetos y arrays, <code>const</code> NO hace que el contenido sea inmutable, solo la referencia.</p>
+                <pre><code class="language-javascript">// Objeto con const
+const usuario = {
+    nombre: "Ana",
+    edad: 25
+};
+
+// ✅ Puedes modificar propiedades
+usuario.edad = 26;
+usuario.ciudad = "Madrid";
+console.log(usuario); // { nombre: "Ana", edad: 26, ciudad: "Madrid" }
+
+// ❌ NO puedes reasignar el objeto
+// usuario = {}; // Error!
+
+// Array con const
+const numeros = [1, 2, 3];
+
+// ✅ Puedes modificar el contenido
+numeros.push(4);
+numeros[0] = 10;
+console.log(numeros); // [10, 2, 3, 4]
+
+// ❌ NO puedes reasignar el array
+// numeros = []; // Error!</code></pre>
+                
+                <h3>Inmutabilidad Real:</h3>
+                <p>Si necesitas que el contenido también sea inmutable:</p>
+                <pre><code class="language-javascript">// Object.freeze() para inmutabilidad
+const config = Object.freeze({
+    API_URL: "https://api.example.com",
+    VERSION: "1.0.0"
+});
+
+// Intentar modificar no causa error, simplemente no funciona
+config.API_URL = "otro"; // Silenciosamente ignorado
+console.log(config.API_URL); // "https://api.example.com"</code></pre>
+                
+                <h3>Cuándo usar const:</h3>
+                <ul>
+                    <li><strong>Por defecto:</strong> Usa const siempre que puedas</li>
+                    <li>Para valores que no deben cambiar</li>
+                    <li>Para objetos y arrays (aunque su contenido cambie)</li>
+                    <li>Para funciones declaradas</li>
+                    <li>Para imports de módulos</li>
+                </ul>
+                
+                <h3>⚠️ Buena Práctica:</h3>
+                <p><strong>Regla general:</strong> Usa <code>const</code> por defecto. Solo usa <code>let</code> si realmente necesitas reasignar la variable.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="hoisting-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('hoisting-modal')">&times;</span>
+            <h2><i class="fas fa-arrow-up"></i> Hoisting</h2>
+            <div class="modal-body">
+                <h3>¿Qué es Hoisting?</h3>
+                <p><strong>Hoisting</strong> (elevación) es un comportamiento de JavaScript donde las declaraciones de variables y funciones se "mueven" al inicio de su scope antes de la ejecución del código.</p>
+                
+                <h3>Hoisting con var:</h3>
+                <pre><code class="language-javascript">console.log(x); // undefined (no error)
+var x = 10;
+console.log(x); // 10
+
+// JavaScript lo interpreta así:
+var x; // Declaración elevada
+console.log(x); // undefined
+x = 10; // Asignación permanece aquí
+console.log(x); // 10</code></pre>
+                
+                <h3>Hoisting con let y const:</h3>
+                <p>Con <code>let</code> y <code>const</code>, las declaraciones también se elevan PERO entran en la <strong>Temporal Dead Zone (TDZ)</strong>.</p>
+                <pre><code class="language-javascript">// console.log(y); // ❌ ReferenceError: Cannot access 'y' before initialization
+let y = 20;
+
+// console.log(z); // ❌ ReferenceError: Cannot access 'z' before initialization
+const z = 30;</code></pre>
+                
+                <h3>Hoisting de Funciones:</h3>
+                <pre><code class="language-javascript">// ✅ Las funciones declaradas se elevan completamente
+saludar(); // "¡Hola!" - Funciona
+
+function saludar() {
+    console.log("¡Hola!");
+}
+
+// ❌ Las funciones expresadas NO se elevan
+// despedir(); // Error: despedir no es una función
+const despedir = function() {
+    console.log("¡Adiós!");
+};</code></pre>
+                
+                <h3>Ejemplo Completo:</h3>
+                <pre><code class="language-javascript">// Código escrito
+console.log(nombre); // undefined
+var nombre = "Ana";
+
+// console.log(edad); // Error: TDZ
+let edad = 25;
+
+saludar(); // "Hola"
+
+function saludar() {
+    console.log("Hola");
+}
+
+// JavaScript lo interpreta así:
+var nombre; // var elevada
+function saludar() { // función elevada
+    console.log("Hola");
+}
+
+console.log(nombre); // undefined
+nombre = "Ana";
+
+let edad; // let elevada PERO en TDZ
+// console.log(edad); // Error: TDZ
+edad = 25;</code></pre>
+                
+                <h3>Comparación:</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Declaración</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Hoisting</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Valor antes de declaración</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><code>var</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Sí</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><code>undefined</code></td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><code>let</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Sí (TDZ)</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ ReferenceError</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><code>const</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Sí (TDZ)</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ ReferenceError</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><code>function</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Completamente</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Función completa</td>
+                    </tr>
+                </table>
+                
+                <h3>⚠️ Buena Práctica:</h3>
+                <ul>
+                    <li>Declara variables al inicio de su scope</li>
+                    <li>Usa <code>let</code> y <code>const</code> en lugar de <code>var</code></li>
+                    <li>No confíes en hoisting - declara antes de usar</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="tdz-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('tdz-modal')">&times;</span>
+            <h2><i class="fas fa-skull-crossbones"></i> Temporal Dead Zone (TDZ)</h2>
+            <div class="modal-body">
+                <h3>¿Qué es la Temporal Dead Zone?</h3>
+                <p>La <strong>Temporal Dead Zone (TDZ)</strong> es el período entre el inicio del scope y la línea donde se declara una variable <code>let</code> o <code>const</code>. Durante este período, NO puedes acceder a la variable.</p>
+                
+                <h3>Visualización de la TDZ:</h3>
+                <pre><code class="language-javascript">{
+    // ⚠️ TDZ empieza aquí
+    console.log(x); // ❌ ReferenceError
+    console.log(y); // ❌ ReferenceError
+    
+    let x = 10; // ✅ TDZ de x termina aquí
+    console.log(x); // ✅ 10
+    
+    const y = 20; // ✅ TDZ de y termina aquí
+    console.log(y); // ✅ 20
+}</code></pre>
+                
+                <h3>Diferencia con var:</h3>
+                <pre><code class="language-javascript">// Con var - NO hay TDZ
+console.log(a); // undefined (no error)
+var a = 10;
+
+// Con let - SÍ hay TDZ
+// console.log(b); // ❌ ReferenceError
+let b = 20;
+
+// Con const - SÍ hay TDZ
+// console.log(c); // ❌ ReferenceError
+const c = 30;</code></pre>
+                
+                <h3>TDZ en Funciones:</h3>
+                <pre><code class="language-javascript">function ejemplo() {
+    // TDZ de x empieza aquí
+    
+    // console.log(x); // ❌ Error
+    
+    if (true) {
+        // console.log(x); // ❌ Error - todavía en TDZ
+        let x = 10; // TDZ termina
+        console.log(x); // ✅ 10
+    }
+    
+    // console.log(x); // ❌ Error - fuera de scope
+}</code></pre>
+                
+                <h3>TDZ con typeof:</h3>
+                <p>Algo interesante: <code>typeof</code> también falla en la TDZ.</p>
+                <pre><code class="language-javascript">// Con var
+console.log(typeof varVariable); // "undefined"
+var varVariable = 10;
+
+// Con let - TDZ
+// console.log(typeof letVariable); // ❌ ReferenceError
+let letVariable = 20;
+
+// Variable nunca declarada
+console.log(typeof nuncaDeclarada); // "undefined" (no error)</code></pre>
+                
+                <h3>TDZ en Parámetros por Defecto:</h3>
+                <pre><code class="language-javascript">// Ejemplo complejo de TDZ
+function ejemplo(a = b, b = 2) {
+    // ❌ Error: b está en TDZ cuando se evalúa a
+    console.log(a, b);
+}
+
+// ejemplo(undefined, 3); // ReferenceError
+
+// Solución
+function ejemplo2(b = 2, a = b) {
+    // ✅ Funciona: b ya está declarada cuando se evalúa a
+    console.log(a, b);
+}
+
+ejemplo2(); // 2, 2</code></pre>
+                
+                <h3>¿Por qué existe la TDZ?</h3>
+                <ul>
+                    <li><strong>Prevenir errores:</strong> Detecta errores de usar variables antes de declararlas</li>
+                    <li><strong>Código más claro:</strong> Fuerza a declarar variables en orden lógico</li>
+                    <li><strong>Consistencia:</strong> Hace que const sea realmente constante desde su inicio</li>
+                </ul>
+                
+                <h3>Ejemplo Práctico:</h3>
+                <pre><code class="language-javascript">// Problema que TDZ previene
+let x = 10;
+
+function prueba() {
+    // Sin TDZ, esto mostraría 10 (la x global)
+    // Con TDZ, esto da error (la x local está en TDZ)
+    // console.log(x); // ❌ ReferenceError
+    
+    let x = 20; // x local
+    console.log(x); // 20
+}
+
+prueba();</code></pre>
+                
+                <h3>⚠️ Buenas Prácticas:</h3>
+                <ul>
+                    <li>Declara variables al principio de su scope</li>
+                    <li>No intentes usar variables antes de declararlas</li>
+                    <li>El linter te avisará de errores de TDZ</li>
+                </ul>
+                
+                <h3>Resumen:</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;"></th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">var</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">let/const</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>TDZ</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ No</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Sí</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Valor antes de declaración</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">undefined</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">ReferenceError</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>typeof antes de declaración</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">"undefined"</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">ReferenceError</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="scope-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('scope-modal')">&times;</span>
+            <h2><i class="fas fa-layer-group"></i> Scope: Bloque vs Función</h2>
+            <div class="modal-body">
+                <h3>¿Qué es el Scope?</h3>
+                <p>El <strong>scope</strong> (ámbito) es la región del código donde una variable es accesible. JavaScript tiene principalmente dos tipos de scope para variables: <strong>function scope</strong> y <strong>block scope</strong>.</p>
+                
+                <h3>Function Scope (var):</h3>
+                <p><code>var</code> tiene <strong>function scope</strong>: la variable existe en toda la función donde se declara.</p>
+                <pre><code class="language-javascript">function ejemplo() {
+    if (true) {
+        var x = 10; // Declarada en el if
+    }
+    console.log(x); // ✅ 10 - Accesible fuera del if
+}
+
+ejemplo();
+
+// Fuera de la función
+// console.log(x); // ❌ Error: x no existe fuera de la función</code></pre>
+                
+                <h3>Block Scope (let y const):</h3>
+                <p><code>let</code> y <code>const</code> tienen <strong>block scope</strong>: la variable solo existe en el bloque <code>{...}</code> donde se declara.</p>
+                <pre><code class="language-javascript">function ejemplo() {
+    if (true) {
+        let y = 20; // Declarada en el bloque if
+        const z = 30;
+        console.log(y, z); // ✅ 20, 30
+    }
+    // console.log(y); // ❌ Error: y no existe fuera del if
+    // console.log(z); // ❌ Error: z no existe fuera del if
+}
+
+ejemplo();</code></pre>
+                
+                <h3>Comparación Visual:</h3>
+                <pre><code class="language-javascript">function comparacion() {
+    console.log("=== Function Scope (var) ===");
+    if (true) {
+        var funcionScope = "Accesible en toda la función";
+    }
+    console.log(funcionScope); // ✅ Funciona
+    
+    console.log("=== Block Scope (let/const) ===");
+    if (true) {
+        let bloqueScope = "Solo en este bloque";
+    }
+    // console.log(bloqueScope); // ❌ Error
+}</code></pre>
+                
+                <h3>Scope en Loops:</h3>
+                <pre><code class="language-javascript">// Con var - function scope
+for (var i = 0; i < 3; i++) {
+    setTimeout(() => console.log("var:", i), 1000);
+}
+// Imprime: var: 3, var: 3, var: 3
+// (i es la misma variable en todos los callbacks)
+
+// Con let - block scope
+for (let j = 0; j < 3; j++) {
+    setTimeout(() => console.log("let:", j), 1000);
+}
+// Imprime: let: 0, let: 1, let: 2
+// (cada iteración tiene su propia j)</code></pre>
+                
+                <h3>Bloques Anidados:</h3>
+                <pre><code class="language-javascript">function anidados() {
+    let exterior = "Outer";
+    
+    if (true) {
+        let medio = "Middle";
+        console.log(exterior); // ✅ Accesible
+        
+        {
+            let interior = "Inner";
+            console.log(exterior); // ✅ Accesible
+            console.log(medio); // ✅ Accesible
+            console.log(interior); // ✅ Accesible
+        }
+        
+        // console.log(interior); // ❌ No accesible
+    }
+    
+    // console.log(medio); // ❌ No accesible
+}</code></pre>
+                
+                <h3>Global Scope:</h3>
+                <pre><code class="language-javascript">// Scope global
+var globalVar = "Global var"; // Propiedad de window
+let globalLet = "Global let"; // NO es propiedad de window
+const globalConst = "Global const"; // NO es propiedad de window
+
+console.log(window.globalVar); // "Global var"
+console.log(window.globalLet); // undefined
+console.log(window.globalConst); // undefined
+
+// Todos son accesibles globalmente
+console.log(globalVar, globalLet, globalConst);</code></pre>
+                
+                <h3>Ejemplo Práctico - Problema Clásico:</h3>
+                <pre><code class="language-javascript">// ❌ Problema con var
+var botones = [];
+for (var i = 0; i < 3; i++) {
+    botones.push(function() {
+        console.log("Botón", i);
+    });
+}
+
+botones.forEach(boton => boton());
+// Imprime: Botón 3, Botón 3, Botón 3
+
+// ✅ Solución con let
+var botones2 = [];
+for (let i = 0; i < 3; i++) {
+    botones2.push(function() {
+        console.log("Botón", i);
+    });
+}
+
+botones2.forEach(boton => boton());
+// Imprime: Botón 0, Botón 1, Botón 2</code></pre>
+                
+                <h3>Ámbitos de JavaScript:</h3>
+                <ul>
+                    <li><strong>Global Scope:</strong> Variables accesibles en todo el programa</li>
+                    <li><strong>Function Scope:</strong> Variables accesibles en toda la función (var)</li>
+                    <li><strong>Block Scope:</strong> Variables accesibles solo en el bloque (let/const)</li>
+                    <li><strong>Module Scope:</strong> Variables accesibles solo en el módulo ES6</li>
+                </ul>
+                
+                <h3>Resumen Comparativo:</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Declaración</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Scope</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Disponible en bloques</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><code>var</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Function</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Sí (traspasa bloques)</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><code>let</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Block</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ No (limitado al bloque)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><code>const</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Block</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ No (limitado al bloque)</td>
+                    </tr>
+                </table>
+                
+                <h3>⚠️ Buenas Prácticas:</h3>
+                <ul>
+                    <li>Usa <code>let</code> y <code>const</code> para tener control preciso del scope</li>
+                    <li>Declara variables en el scope más pequeño posible</li>
+                    <li>Evita contaminar el scope global</li>
+                    <li>Usa bloques <code>{...}</code> para crear scopes privados cuando sea necesario</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
