@@ -916,12 +916,6 @@ body {
     font-weight: 600;
 }
 
-/* Padding general para modal-content - se aplica a todos los modales */
-.modal-content {
-    padding: 2rem;
-    line-height: 1.6;
-}
-
 /* Ajustar padding cuando tiene modal-body */
 .modal-content .modal-body {
     padding: 0;
@@ -1330,10 +1324,16 @@ body {
 
     .modal-content {
         margin: 10% auto;
-        padding: 1.5rem;
+        padding: 2rem; /* Increased padding for better readability */
         min-width: 300px;
         max-width: 95%;
     }
+}
+
+/* CRITICAL: Ensure modal padding is applied with maximum specificity */
+.modal-content {
+    padding: 2rem !important;
+    line-height: 1.6 !important;
 }
 
 /* Animaciones adicionales */
