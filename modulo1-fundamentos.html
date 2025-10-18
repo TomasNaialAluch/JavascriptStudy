@@ -1842,61 +1842,6 @@ analizarTexto(miTexto);</code></pre>
             </div>
         </section>
 
-        <!-- Consejos para Entrevistas -->
-        <section class="interview-tips">
-            <div class="container">
-                <h2>💼 Consejos para Entrevistas de Trabajo</h2>
-                <div class="tips-grid">
-                    <div class="tip-card">
-                        <h3><i class="fas fa-question-circle"></i> Preguntas Técnicas Comunes</h3>
-                        <ul>
-                            <li><strong>"¿Cuál es la diferencia entre var, let y const?"</strong><br>
-                            Explica scope, hoisting y reasignación</li>
-                            <li><strong>"¿Qué es el hoisting?"</strong><br>
-                            Declaraciones se elevan, asignaciones no</li>
-                            <li><strong>"¿Qué es un closure?"</strong><br>
-                            Función que accede a variables del scope padre</li>
-                            <li><strong>"¿Cuál es la diferencia entre == y ===?"</strong><br>
-                            Comparación flexible vs estricta</li>
-                        </ul>
-                    </div>
-                    <div class="tip-card">
-                        <h3><i class="fas fa-code"></i> Ejercicios de Código</h3>
-                        <ul>
-                            <li><strong>Implementar una función que sume números indefinidos</strong></li>
-                            <li><strong>Crear un contador con closure</strong></li>
-                            <li><strong>Explicar el resultado de: console.log(typeof null)</strong></li>
-                            <li><strong>Implementar debounce o throttle</strong></li>
-                        </ul>
-                    </div>
-                    <div class="tip-card">
-                        <h3><i class="fas fa-lightbulb"></i> Conceptos Clave</h3>
-                        <ul>
-                            <li>Scope y lexical scope</li>
-                            <li>Prototype y herencia</li>
-                            <li>Event loop y asincronía</li>
-                            <li>Type coercion y truthy/falsy</li>
-                            <li>Closures y module pattern</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Navegación entre módulos -->
-        <section class="module-navigation">
-            <div class="container">
-                <div class="nav-buttons">
-                    <a href="index.html#modulos" class="btn btn-outline">
-                        <i class="fas fa-arrow-left"></i> Volver a Módulos
-                    </a>
-                    <a href="modulo2-moderno.html" class="btn btn-primary">
-                        Siguiente Módulo <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Lección 7: Callbacks y Programación Asíncrona -->
         <section id="callbacks" class="lesson-section" data-lesson="callbacks">
             <div class="container">
@@ -2062,8 +2007,15 @@ analizarTexto(miTexto);</code></pre>
                         </div>
 
                         <div id="callbacks-basic" class="example-content active">
-                            <h4>Ejemplo Básico: Callbacks Síncronos</h4>
-                            <pre><code class="language-javascript">// Callback simple
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Callbacks Síncronos</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('callbacks-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="callbacks-basic-code">// Callback simple
 function saludar(nombre) {
     console.log(`Hola, ${nombre}!`);
 }
@@ -2085,11 +2037,21 @@ let numeros = [1, 2, 3, 4, 5];
 numeros.forEach(function(numero) {
     console.log(numero * 2);
 });</code></pre>
+                                </div>
+                                <div class="code-output" id="callbacks-basic-output"></div>
+                            </div>
                         </div>
 
                         <div id="callbacks-advanced" class="example-content">
-                            <h4>Ejemplo Avanzado: Event Listeners y Callbacks Anidados</h4>
-                            <pre><code class="language-javascript">// Event listener con callback
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Event Listeners y Callbacks Anidados</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('callbacks-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="callbacks-advanced-code">// Event listener con callback
 document.getElementById('miBoton').addEventListener('click', function(event) {
     console.log('Botón presionado!');
     console.log('Coordenadas:', event.clientX, event.clientY);
@@ -2115,12 +2077,16 @@ let preciosConIva = productos.map(function(producto) {
     };
 });
 
-console.log(preciosConIva);</code></pre>
+console.log("Productos caros:", productosCaros);
+console.log("Precios con IVA:", preciosConIva);</code></pre>
+                                </div>
+                                <div class="code-output" id="callbacks-advanced-output"></div>
+                            </div>
                         </div>
 
                         <div id="callbacks-interactive" class="example-content">
-                            <h4>Ejemplo Interactivo: Simulador de Temporizador</h4>
                             <div class="interactive-demo">
+                                <h4>Simulador de Temporizador</h4>
                                 <p>Prueba este temporizador interactivo:</p>
                                 <button class="btn btn-primary" onclick="runCallbackDemo()">
                                     <i class="fas fa-play"></i> Iniciar Temporizador
@@ -2129,7 +2095,12 @@ console.log(preciosConIva);</code></pre>
                                     <p>Haz clic en el botón para ver el callback en acción...</p>
                                 </div>
                             </div>
-                            <pre><code class="language-javascript">function runCallbackDemo() {
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Código del Temporizador</span>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript">function runCallbackDemo() {
     let output = document.getElementById('callback-output');
     output.innerHTML = '<p>⏳ Iniciando temporizador...</p>';
     
@@ -2145,11 +2116,69 @@ console.log(preciosConIva);</code></pre>
         output.innerHTML += '<p>✅ ¡3 segundos! Callback completado</p>';
     }, 3000);
 }</code></pre>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Consejos para Entrevistas -->
+        <section class="interview-tips">
+            <div class="container">
+                <h2>💼 Consejos para Entrevistas de Trabajo</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <h3><i class="fas fa-question-circle"></i> Preguntas Técnicas Comunes</h3>
+                        <ul>
+                            <li><strong>"¿Cuál es la diferencia entre var, let y const?"</strong><br>
+                            Explica scope, hoisting y reasignación</li>
+                            <li><strong>"¿Qué es el hoisting?"</strong><br>
+                            Declaraciones se elevan, asignaciones no</li>
+                            <li><strong>"¿Qué es un closure?"</strong><br>
+                            Función que accede a variables del scope padre</li>
+                            <li><strong>"¿Cuál es la diferencia entre == y ===?"</strong><br>
+                            Comparación flexible vs estricta</li>
+                        </ul>
+                    </div>
+                    <div class="tip-card">
+                        <h3><i class="fas fa-code"></i> Ejercicios de Código</h3>
+                        <ul>
+                            <li><strong>Implementar una función que sume números indefinidos</strong></li>
+                            <li><strong>Crear un contador con closure</strong></li>
+                            <li><strong>Explicar el resultado de: console.log(typeof null)</strong></li>
+                            <li><strong>Implementar debounce o throttle</strong></li>
+                        </ul>
+                    </div>
+                    <div class="tip-card">
+                        <h3><i class="fas fa-lightbulb"></i> Conceptos Clave</h3>
+                        <ul>
+                            <li>Scope y lexical scope</li>
+                            <li>Prototype y herencia</li>
+                            <li>Event loop y asincronía</li>
+                            <li>Type coercion y truthy/falsy</li>
+                            <li>Closures y module pattern</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación entre módulos -->
+        <section class="module-navigation">
+            <div class="container">
+                <div class="nav-buttons">
+                    <a href="index.html#modulos" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> Volver a Módulos
+                    </a>
+                    <a href="modulo2-moderno.html" class="btn btn-primary">
+                        Siguiente Módulo <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->

@@ -638,17 +638,20 @@ console.log("Ordenados por edad:", ordenados);</code></pre>
                             <div class="theory-card">
                                 <h4><i class="fas fa-quote-left"></i> Sintaxis Template Literals</h4>
                                 <div class="theory-list">
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('template-backticks-modal')">
                                         <code>`texto`</code>
                                         <span>Backticks en lugar de comillas</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('template-interpolation-modal')">
                                         <code>${variable}</code>
                                         <span>Interpolación de variables</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('template-expressions-modal')">
                                         <code>${expresion}</code>
                                         <span>Evaluación de expresiones</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
                                 </div>
                             </div>
@@ -656,17 +659,20 @@ console.log("Ordenados por edad:", ordenados);</code></pre>
                             <div class="theory-card">
                                 <h4><i class="fas fa-star"></i> Ventajas</h4>
                                 <div class="theory-list">
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('template-legibility-modal')">
                                         <code>Legibilidad</code>
                                         <span>Código más limpio y claro</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('template-multiline-modal')">
                                         <code>Multilínea</code>
                                         <span>Strings sin concatenación</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('template-flexibility-modal')">
                                         <code>Flexibilidad</code>
                                         <span>Expresiones complejas</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
                                 </div>
                             </div>
@@ -1859,6 +1865,1654 @@ botones2.forEach(boton => boton());
                     <li>Declara variables en el scope más pequeño posible</li>
                     <li>Evita contaminar el scope global</li>
                     <li>Usa bloques <code>{...}</code> para crear scopes privados cuando sea necesario</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales Explicativos - Lección 2: Arrow Functions -->
+    <div id="arrow-syntax-noparams-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('arrow-syntax-noparams-modal')">&times;</span>
+            <h2><i class="fas fa-arrow-right"></i> Arrow Functions Sin Parámetros</h2>
+            <div class="modal-body">
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">() => {
+    // Código aquí
+}</code></pre>
+                
+                <h3>Ejemplo Básico:</h3>
+                <pre><code class="language-javascript">// Función tradicional
+function saludar() {
+    console.log("¡Hola!");
+}
+
+// Arrow function equivalente
+const saludar = () => {
+    console.log("¡Hola!");
+};
+
+// Arrow function con return implícito
+const saludar = () => console.log("¡Hola!");</code></pre>
+                
+                <h3>Casos de Uso Comunes:</h3>
+                <pre><code class="language-javascript">// Callbacks sin parámetros
+setTimeout(() => {
+    console.log("Ejecutado después de 1 segundo");
+}, 1000);
+
+// Event listeners
+boton.addEventListener('click', () => {
+    console.log("Botón clickeado");
+});
+
+// Métodos de arrays
+let numeros = [1, 2, 3];
+numeros.forEach(() => {
+    console.log("Iteración");
+});</code></pre>
+                
+                <h3>Comparación:</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Tradicional</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Arrow Function</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><code>function() { }</code></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><code>() => { }</code></td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Más verboso</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Más conciso</td>
+                    </tr>
+                </table>
+                
+                <h3>⚠️ Importante:</h3>
+                <p>Los paréntesis <code>()</code> son obligatorios cuando no hay parámetros en arrow functions.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="arrow-syntax-oneparam-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('arrow-syntax-oneparam-modal')">&times;</span>
+            <h2><i class="fas fa-arrow-right"></i> Arrow Functions con Un Parámetro</h2>
+            <div class="modal-body">
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">// Con paréntesis (opcional)
+(x) => {
+    return x * 2;
+}
+
+// Sin paréntesis (recomendado)
+x => {
+    return x * 2;
+}
+
+// Return implícito (más conciso)
+x => x * 2</code></pre>
+                
+                <h3>Ejemplos Prácticos:</h3>
+                <pre><code class="language-javascript">// Función tradicional
+function duplicar(x) {
+    return x * 2;
+}
+
+// Arrow function con return explícito
+const duplicar = (x) => {
+    return x * 2;
+};
+
+// Arrow function con return implícito
+const duplicar = x => x * 2;
+
+// Uso en arrays
+let numeros = [1, 2, 3, 4, 5];
+let dobles = numeros.map(x => x * 2);
+console.log(dobles); // [2, 4, 6, 8, 10]</code></pre>
+                
+                <h3>Casos de Uso Comunes:</h3>
+                <pre><code class="language-javascript">// Métodos de arrays
+let palabras = ["hola", "mundo", "javascript"];
+let mayusculas = palabras.map(palabra => palabra.toUpperCase());
+
+// Filtros
+let numeros = [1, 2, 3, 4, 5, 6];
+let pares = numeros.filter(n => n % 2 === 0);
+
+// Event handlers
+elemento.addEventListener('click', evento => {
+    console.log("Click en:", evento.target);
+});
+
+// Promesas
+fetch('/api/data')
+    .then(response => response.json())
+    .then(data => console.log(data));</code></pre>
+                
+                <h3>Ventajas del Return Implícito:</h3>
+                <ul>
+                    <li><strong>Más conciso:</strong> Menos código para escribir</li>
+                    <li><strong>Más legible:</strong> Se ve más limpio</li>
+                    <li><strong>Funcional:</strong> Ideal para transformaciones de datos</li>
+                </ul>
+                
+                <h3>⚠️ Cuándo NO usar Return Implícito:</h3>
+                <pre><code class="language-javascript">// ❌ No usar cuando necesitas múltiples líneas
+let procesar = x => {
+    let resultado = x * 2;
+    console.log("Procesando:", x);
+    return resultado; // Necesitas return explícito
+};
+
+// ✅ Mejor así
+let procesar = x => {
+    let resultado = x * 2;
+    console.log("Procesando:", x);
+    return resultado;
+};</code></pre>
+                
+                <h3>Reglas de Paréntesis:</h3>
+                <ul>
+                    <li><strong>Un parámetro:</strong> Paréntesis opcionales</li>
+                    <li><strong>Sin parámetros:</strong> Paréntesis obligatorios</li>
+                    <li><strong>Múltiples parámetros:</strong> Paréntesis obligatorios</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="arrow-syntax-multiparams-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('arrow-syntax-multiparams-modal')">&times;</span>
+            <h2><i class="fas fa-arrow-right"></i> Arrow Functions con Múltiples Parámetros</h2>
+            <div class="modal-body">
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">// Con return explícito
+(a, b) => {
+    return a + b;
+}
+
+// Con return implícito
+(a, b) => a + b
+
+// Con más parámetros
+(a, b, c) => a + b + c</code></pre>
+                
+                <h3>Ejemplos Prácticos:</h3>
+                <pre><code class="language-javascript">// Función tradicional
+function sumar(a, b) {
+    return a + b;
+}
+
+// Arrow function
+const sumar = (a, b) => a + b;
+
+// Uso en reduce
+let numeros = [1, 2, 3, 4, 5];
+let suma = numeros.reduce((acumulador, numero) => acumulador + numero, 0);
+console.log(suma); // 15</code></pre>
+                
+                <h3>Casos de Uso Avanzados:</h3>
+                <pre><code class="language-javascript">// Sort con arrow function
+let personas = [
+    { nombre: "Ana", edad: 25 },
+    { nombre: "Carlos", edad: 30 },
+    { nombre: "María", edad: 22 }
+];
+
+// Ordenar por edad
+personas.sort((a, b) => a.edad - b.edad);
+
+// Map con índice
+let frutas = ["manzana", "banana", "naranja"];
+let conIndice = frutas.map((fruta, indice) => `${indice}: ${fruta}`);
+
+// Filter con múltiples condiciones
+let productos = [
+    { nombre: "Laptop", precio: 1000, categoria: "electrónica" },
+    { nombre: "Mouse", precio: 25, categoria: "electrónica" },
+    { nombre: "Camisa", precio: 30, categoria: "ropa" }
+];
+
+let electronicosBaratos = productos.filter((producto, indice) => 
+    producto.categoria === "electrónica" && producto.precio < 100
+);</code></pre>
+                
+                <h3>Destructuring en Parámetros:</h3>
+                <pre><code class="language-javascript">// Con objetos
+let usuarios = [
+    { nombre: "Ana", edad: 25 },
+    { nombre: "Carlos", edad: 30 }
+];
+
+let nombres = usuarios.map(({ nombre }) => nombre);
+console.log(nombres); // ["Ana", "Carlos"]
+
+// Con arrays
+let coordenadas = [[1, 2], [3, 4], [5, 6]];
+let sumas = coordenadas.map(([x, y]) => x + y);
+console.log(sumas); // [3, 7, 11]</code></pre>
+                
+                <h3>Parámetros por Defecto:</h3>
+                <pre><code class="language-javascript">// Con valores por defecto
+const saludar = (nombre = "Usuario", saludo = "Hola") => 
+    `${saludo}, ${nombre}!`;
+
+console.log(saludar()); // "Hola, Usuario!"
+console.log(saludar("Ana")); // "Hola, Ana!"
+console.log(saludar("Carlos", "Buenos días")); // "Buenos días, Carlos!"</code></pre>
+                
+                <h3>Rest Parameters:</h3>
+                <pre><code class="language-javascript">// Con rest parameters
+const sumarTodo = (primero, segundo, ...resto) => {
+    let suma = primero + segundo;
+    return resto.reduce((acc, num) => acc + num, suma);
+};
+
+console.log(sumarTodo(1, 2, 3, 4, 5)); // 15</code></pre>
+                
+                <h3>⚠️ Reglas Importantes:</h3>
+                <ul>
+                    <li><strong>Paréntesis obligatorios:</strong> Con múltiples parámetros siempre usa <code>()</code></li>
+                    <li><strong>Orden de parámetros:</strong> Mantén el mismo orden que la función original</li>
+                    <li><strong>Nombres descriptivos:</strong> Usa nombres que indiquen qué hace cada parámetro</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="arrow-this-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('arrow-this-modal')">&times;</span>
+            <h2><i class="fas fa-question"></i> this en Arrow Functions</h2>
+            <div class="modal-body">
+                <h3>¿Qué es this?</h3>
+                <p><code>this</code> es una palabra clave que se refiere al contexto de ejecución actual. En arrow functions, <code>this</code> NO tiene su propio valor, sino que hereda el <code>this</code> del scope padre.</p>
+                
+                <h3>Diferencia Clave:</h3>
+                <pre><code class="language-javascript">let objeto = {
+    nombre: "MiObjeto",
+    
+    // Función tradicional - this cambia
+    metodoNormal: function() {
+        console.log("Normal:", this.nombre);
+        
+        setTimeout(function() {
+            console.log("Normal en setTimeout:", this.nombre); // undefined
+        }, 1000);
+    },
+    
+    // Arrow function - this se mantiene
+    metodoArrow: function() {
+        console.log("Arrow:", this.nombre);
+        
+        setTimeout(() => {
+            console.log("Arrow en setTimeout:", this.nombre); // "MiObjeto"
+        }, 1000);
+    }
+};
+
+objeto.metodoNormal();
+objeto.metodoArrow();</code></pre>
+                
+                <h3>Ejemplo Práctico - Event Listeners:</h3>
+                <pre><code class="language-javascript">class Contador {
+    constructor() {
+        this.contador = 0;
+        this.boton = document.getElementById('boton');
+        
+        // ❌ Problema con función normal
+        this.boton.addEventListener('click', function() {
+            this.contador++; // ❌ this es el botón, no Contador
+            console.log(this.contador); // undefined
+        });
+        
+        // ✅ Solución con arrow function
+        this.boton.addEventListener('click', () => {
+            this.contador++; // ✅ this es Contador
+            console.log(this.contador); // Funciona correctamente
+        });
+    }
+}</code></pre>
+                
+                <h3>Arrow Functions NO pueden cambiar this:</h3>
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Ana",
+    saludar: () => {
+        console.log(this.nombre); // this es window (o undefined en strict mode)
+    }
+};
+
+persona.saludar(); // undefined
+
+// No puedes usar call, apply, o bind para cambiar this
+persona.saludar.call({ nombre: "Carlos" }); // Sigue siendo undefined</code></pre>
+                
+                <h3>Cuándo NO usar Arrow Functions:</h3>
+                <pre><code class="language-javascript">// ❌ NO para métodos de objeto
+let objeto = {
+    valor: 42,
+    metodo: () => {
+        console.log(this.valor); // undefined
+    }
+};
+
+// ✅ Mejor usar función normal
+let objeto2 = {
+    valor: 42,
+    metodo: function() {
+        console.log(this.valor); // 42
+    }
+};
+
+// ❌ NO para constructores
+let Constructor = () => {
+    this.propiedad = "valor";
+};
+// new Constructor(); // Error!</code></pre>
+                
+                <h3>Cuándo SÍ usar Arrow Functions:</h3>
+                <pre><code class="language-javascript">// ✅ Para callbacks que necesitan mantener this
+class Timer {
+    constructor() {
+        this.segundos = 0;
+    }
+    
+    iniciar() {
+        setInterval(() => {
+            this.segundos++;
+            console.log(this.segundos);
+        }, 1000);
+    }
+}
+
+// ✅ Para métodos de arrays
+let numeros = [1, 2, 3, 4, 5];
+let dobles = numeros.map(n => n * 2);
+
+// ✅ Para funciones que no necesitan this
+let sumar = (a, b) => a + b;</code></pre>
+                
+                <h3>Resumen:</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Aspecto</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Función Normal</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Arrow Function</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>this</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Cambia según cómo se llama</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Hereda del scope padre</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>call/apply/bind</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Funciona</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ No funciona</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>constructores</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Pueden ser constructores</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ No pueden ser constructores</td>
+                    </tr>
+                </table>
+                
+                <h3>⚠️ Regla de Oro:</h3>
+                <p>Usa arrow functions cuando quieras que <code>this</code> sea el mismo que en el scope padre. Usa funciones normales cuando necesites controlar <code>this</code> explícitamente.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="arrow-arguments-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('arrow-arguments-modal')">&times;</span>
+            <h2><i class="fas fa-list"></i> arguments en Arrow Functions</h2>
+            <div class="modal-body">
+                <h3>¿Qué es arguments?</h3>
+                <p><code>arguments</code> es un objeto especial disponible en funciones normales que contiene todos los argumentos pasados a la función, incluso si no están declarados como parámetros.</p>
+                
+                <h3>Diferencia Clave:</h3>
+                <pre><code class="language-javascript">// Función normal - tiene arguments
+function sumar() {
+    console.log("arguments:", arguments);
+    let suma = 0;
+    for (let i = 0; i < arguments.length; i++) {
+        suma += arguments[i];
+    }
+    return suma;
+}
+
+console.log(sumar(1, 2, 3, 4)); // 10
+
+// Arrow function - NO tiene arguments
+const sumarArrow = () => {
+    console.log("arguments:", arguments); // ❌ Error: arguments is not defined
+};
+
+// sumarArrow(1, 2, 3, 4); // Error!</code></pre>
+                
+                <h3>Alternativas Modernas:</h3>
+                <pre><code class="language-javascript">// ✅ Usar rest parameters en lugar de arguments
+const sumar = (...numeros) => {
+    console.log("numeros:", numeros); // [1, 2, 3, 4]
+    return numeros.reduce((acc, num) => acc + num, 0);
+};
+
+console.log(sumar(1, 2, 3, 4)); // 10
+
+// ✅ Con parámetros normales + rest
+const procesar = (primer, segundo, ...resto) => {
+    console.log("Primer:", primer);
+    console.log("Segundo:", segundo);
+    console.log("Resto:", resto);
+};
+
+procesar("A", "B", "C", "D", "E");
+// Primer: A
+// Segundo: B
+// Resto: ["C", "D", "E"]</code></pre>
+                
+                <h3>Ventajas de Rest Parameters:</h3>
+                <ul>
+                    <li><strong>Array real:</strong> <code>...resto</code> es un array verdadero, no un objeto</li>
+                    <li><strong>Métodos de array:</strong> Puedes usar map, filter, reduce, etc.</li>
+                    <li><strong>Más claro:</strong> Es explícito qué parámetros esperas</li>
+                    <li><strong>Mejor rendimiento:</strong> No se crea el objeto arguments</li>
+                </ul>
+                
+                <h3>Ejemplo Práctico - Función de Logging:</h3>
+                <pre><code class="language-javascript">// Función tradicional con arguments
+function log() {
+    let mensaje = Array.from(arguments).join(' ');
+    console.log(mensaje);
+}
+
+// Arrow function con rest parameters
+const logArrow = (...args) => {
+    let mensaje = args.join(' ');
+    console.log(mensaje);
+};
+
+// Ambas funcionan igual
+log("Hola", "mundo", "desde", "JavaScript");
+logArrow("Hola", "mundo", "desde", "Arrow Function");</code></pre>
+                
+                <h3>Ejemplo Avanzado - Función Flexible:</h3>
+                <pre><code class="language-javascript">// Función que puede tomar diferentes tipos de parámetros
+const crearUsuario = (nombre, ...opciones) => {
+    let usuario = {
+        nombre: nombre,
+        activo: true,
+        rol: "usuario"
+    };
+    
+    // Procesar opciones adicionales
+    opciones.forEach(opcion => {
+        if (typeof opcion === 'object') {
+            Object.assign(usuario, opcion);
+        }
+    });
+    
+    return usuario;
+};
+
+// Uso
+let usuario1 = crearUsuario("Ana");
+let usuario2 = crearUsuario("Carlos", { rol: "admin" });
+let usuario3 = crearUsuario("María", { rol: "editor" }, { activo: false });
+
+console.log(usuario1); // { nombre: "Ana", activo: true, rol: "usuario" }
+console.log(usuario2); // { nombre: "Carlos", activo: true, rol: "admin" }
+console.log(usuario3); // { nombre: "María", activo: false, rol: "editor" }</code></pre>
+                
+                <h3>Migración de arguments a Rest Parameters:</h3>
+                <pre><code class="language-javascript">// ❌ Código antiguo con arguments
+function procesarDatos() {
+    let datos = Array.from(arguments);
+    return datos.map(d => d * 2);
+}
+
+// ✅ Código moderno con rest parameters
+const procesarDatos = (...datos) => {
+    return datos.map(d => d * 2);
+};
+
+// Ambas funcionan igual
+console.log(procesarDatos(1, 2, 3, 4)); // [2, 4, 6, 8]</code></pre>
+                
+                <h3>⚠️ Limitaciones de Arrow Functions:</h3>
+                <ul>
+                    <li><strong>No tienen arguments:</strong> Debes usar rest parameters</li>
+                    <li><strong>No tienen super:</strong> No pueden ser métodos de clase</li>
+                    <li><strong>No tienen new.target:</strong> No pueden detectar si fueron llamadas con new</li>
+                </ul>
+                
+                <h3>Resumen:</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Aspecto</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Función Normal</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Arrow Function</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>arguments</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Disponible</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ No disponible</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>rest parameters</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Disponible</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Disponible</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>tipo de arguments</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Objeto</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Array (rest)</td>
+                    </tr>
+                </table>
+                
+                <h3>💡 Recomendación:</h3>
+                <p>En lugar de usar <code>arguments</code>, usa <strong>rest parameters</strong> (<code>...args</code>). Es más moderno, más claro y funciona tanto en funciones normales como en arrow functions.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="arrow-constructor-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('arrow-constructor-modal')">&times;</span>
+            <h2><i class="fas fa-hammer"></i> Arrow Functions como Constructores</h2>
+            <div class="modal-body">
+                <h3>¿Qué es un Constructor?</h3>
+                <p>Un <strong>constructor</strong> es una función que se usa con la palabra clave <code>new</code> para crear instancias de objetos. Las arrow functions NO pueden ser constructores.</p>
+                
+                <h3>Diferencia Clave:</h3>
+                <pre><code class="language-javascript">// ✅ Función normal como constructor
+function Persona(nombre, edad) {
+    this.nombre = nombre;
+    this.edad = edad;
+    
+    this.saludar = function() {
+        console.log(`Hola, soy ${this.nombre}`);
+    };
+}
+
+let persona1 = new Persona("Ana", 25);
+persona1.saludar(); // "Hola, soy Ana"
+
+// ❌ Arrow function NO puede ser constructor
+const PersonaArrow = (nombre, edad) => {
+    this.nombre = nombre; // ❌ Error: this no está definido
+    this.edad = edad;
+};
+
+// let persona2 = new PersonaArrow("Carlos", 30); // ❌ Error!</code></pre>
+                
+                <h3>¿Por qué Arrow Functions NO pueden ser Constructores?</h3>
+                <ul>
+                    <li><strong>No tienen prototype:</strong> No pueden crear objetos con métodos compartidos</li>
+                    <li><strong>No tienen this propio:</strong> No pueden asignar propiedades a la instancia</li>
+                    <li><strong>No tienen new.target:</strong> No pueden detectar si fueron llamadas con new</li>
+                </ul>
+                
+                <h3>Ejemplo del Error:</h3>
+                <pre><code class="language-javascript">const MiClase = () => {
+    this.propiedad = "valor";
+};
+
+// Esto causará un error
+try {
+    let instancia = new MiClase();
+} catch (error) {
+    console.log("Error:", error.message);
+    // "MiClase is not a constructor"
+}</code></pre>
+                
+                <h3>Alternativas Modernas - Clases ES6:</h3>
+                <pre><code class="language-javascript">// ✅ Usar clases ES6 en lugar de constructores
+class Persona {
+    constructor(nombre, edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+    
+    saludar() {
+        console.log(`Hola, soy ${this.nombre}`);
+    }
+    
+    // Método estático
+    static crearAnonimo() {
+        return new Persona("Anónimo", 0);
+    }
+}
+
+let persona = new Persona("María", 30);
+persona.saludar(); // "Hola, soy María"
+
+let anonimo = Persona.crearAnonimo();
+anonimo.saludar(); // "Hola, soy Anónimo"</code></pre>
+                
+                <h3>Factory Functions con Arrow Functions:</h3>
+                <pre><code class="language-javascript">// ✅ Crear objetos sin usar new
+const crearPersona = (nombre, edad) => ({
+    nombre: nombre,
+    edad: edad,
+    saludar: () => {
+        console.log(`Hola, soy ${nombre}`);
+    }
+});
+
+let persona = crearPersona("Carlos", 25);
+persona.saludar(); // "Hola, soy Carlos"
+
+// ✅ Factory con métodos compartidos
+const crearContador = (inicial = 0) => {
+    let contador = inicial;
+    
+    return {
+        incrementar: () => ++contador,
+        decrementar: () => --contador,
+        obtener: () => contador,
+        resetear: () => contador = inicial
+    };
+};
+
+let contador1 = crearContador(10);
+let contador2 = crearContador(5);
+
+console.log(contador1.incrementar()); // 11
+console.log(contador2.incrementar()); // 6</code></pre>
+                
+                <h3>Comparación de Enfoques:</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Enfoque</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Ventajas</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Desventajas</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Constructor tradicional</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Familiar, prototype</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Confuso con this</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Clases ES6</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Moderno, claro, herencia</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Más verboso</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Factory functions</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Flexible, sin new</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Sin prototype</td>
+                    </tr>
+                </table>
+                
+                <h3>Ejemplo Completo - Sistema de Usuarios:</h3>
+                <pre><code class="language-javascript">// ✅ Usando clases ES6 (recomendado)
+class Usuario {
+    constructor(nombre, email) {
+        this.nombre = nombre;
+        this.email = email;
+        this.activo = true;
+        this.fechaCreacion = new Date();
+    }
+    
+    desactivar() {
+        this.activo = false;
+    }
+    
+    obtenerInfo() {
+        return `${this.nombre} (${this.email}) - ${this.activo ? 'Activo' : 'Inactivo'}`;
+    }
+    
+    static crearAdmin(nombre, email) {
+        let admin = new Usuario(nombre, email);
+        admin.esAdmin = true;
+        return admin;
+    }
+}
+
+// Uso
+let usuario = new Usuario("Ana", "ana@email.com");
+console.log(usuario.obtenerInfo()); // "Ana (ana@email.com) - Activo"
+
+let admin = Usuario.crearAdmin("Carlos", "carlos@email.com");
+console.log(admin.esAdmin); // true</code></pre>
+                
+                <h3>⚠️ Resumen:</h3>
+                <ul>
+                    <li><strong>Arrow functions NO pueden ser constructores</strong></li>
+                    <li><strong>Usa clases ES6</strong> para crear objetos con <code>new</code></li>
+                    <li><strong>Usa factory functions</strong> si quieres crear objetos sin <code>new</code></li>
+                    <li><strong>Las clases son la forma moderna</strong> de crear constructores en JavaScript</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales Explicativos - Lección 3: Template Literals -->
+    <div id="template-backticks-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('template-backticks-modal')">&times;</span>
+            <h2><i class="fas fa-quote-left"></i> Backticks (`) - La Nueva Sintaxis</h2>
+            <div class="modal-body">
+                <h3>¿Qué son los Backticks?</h3>
+                <p>Los <strong>backticks</strong> (<code>`</code>) son caracteres especiales que se usan para crear <strong>template literals</strong> en JavaScript moderno (ES6+). A diferencia de las comillas simples (<code>'</code>) o dobles (<code>"</code>), los backticks permiten funcionalidades avanzadas.</p>
+                
+                <h3>Ubicación del Backtick en el Teclado:</h3>
+                <p>📍 Usualmente está en la misma tecla que <code>~</code> (tilde), arriba de la tecla TAB, a la izquierda del número 1.</p>
+                
+                <h3>Diferencia con Comillas Tradicionales:</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Aspecto</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Comillas ('  ")</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Backticks (`)</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Interpolación</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ No</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Sí con ${}</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Multilínea</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ Requiere \n</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Directo</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Expresiones</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ Concatenación</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Evaluación ${}</td>
+                    </tr>
+                </table>
+                
+                <h3>Ejemplos Comparativos:</h3>
+                <pre><code class="language-javascript">// ❌ Con comillas tradicionales
+let nombre = "Ana";
+let edad = 25;
+let mensaje1 = "Hola, mi nombre es " + nombre + " y tengo " + edad + " años";
+
+// ✅ Con backticks (template literals)
+let mensaje2 = `Hola, mi nombre es ${nombre} y tengo ${edad} años`;
+
+console.log(mensaje1); // "Hola, mi nombre es Ana y tengo 25 años"
+console.log(mensaje2); // "Hola, mi nombre es Ana y tengo 25 años"
+
+// Multilínea con comillas (feo)
+let texto1 = "Primera línea\n" +
+             "Segunda línea\n" +
+             "Tercera línea";
+
+// Multilínea con backticks (elegante)
+let texto2 = `Primera línea
+Segunda línea
+Tercera línea`;
+</code></pre>
+                
+                <h3>Ventajas de los Backticks:</h3>
+                <ul>
+                    <li><strong>Más legible:</strong> El código es más fácil de leer y entender</li>
+                    <li><strong>Menos errores:</strong> No necesitas concatenar con +</li>
+                    <li><strong>Más potente:</strong> Puedes ejecutar expresiones dentro del string</li>
+                    <li><strong>Flexible:</strong> Strings multilínea sin escape characters</li>
+                </ul>
+                
+                <h3>⚠️ Importante:</h3>
+                <p>Los backticks NO son lo mismo que las comillas simples. No los confundas: <code>`</code> vs <code>'</code></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="template-interpolation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('template-interpolation-modal')">&times;</span>
+            <h2><i class="fas fa-dollar-sign"></i> Interpolación de Variables ${variable}</h2>
+            <div class="modal-body">
+                <h3>¿Qué es la Interpolación?</h3>
+                <p><strong>Interpolar</strong> significa <strong>insertar el valor de una variable directamente dentro de un string</strong>. Con template literals, usas la sintaxis <code>${variable}</code> para lograrlo.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">`Texto ${nombreVariable} más texto`</code></pre>
+                
+                <h3>Comparación: Antes vs Ahora</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4>❌ Método Antiguo (Concatenación):</h4>
+                        <pre><code class="language-javascript">let nombre = "Carlos";
+let edad = 30;
+let ciudad = "Madrid";
+
+let mensaje = "Hola, soy " + nombre + 
+              ", tengo " + edad + 
+              " años y vivo en " + ciudad;
+
+console.log(mensaje);</code></pre>
+                        <p style="color: #e74c3c;"><strong>Problemas:</strong></p>
+                        <ul>
+                            <li>Muchos signos + dificultan la lectura</li>
+                            <li>Fácil olvidar espacios</li>
+                            <li>Difícil de mantener</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>✅ Método Moderno (Interpolación):</h4>
+                        <pre><code class="language-javascript">let nombre = "Carlos";
+let edad = 30;
+let ciudad = "Madrid";
+
+let mensaje = `Hola, soy ${nombre}, tengo ${edad} años y vivo en ${ciudad}`;
+
+console.log(mensaje);</code></pre>
+                        <p style="color: #27ae60;"><strong>Ventajas:</strong></p>
+                        <ul>
+                            <li>Más legible y claro</li>
+                            <li>Menos propenso a errores</li>
+                            <li>Fácil de mantener</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>Ejemplos Prácticos:</h3>
+                <pre><code class="language-javascript">// Saludo personalizado
+let usuario = "Ana";
+console.log(`¡Bienvenida, ${usuario}!`);
+
+// Información de producto
+let producto = "Laptop";
+let precio = 999;
+console.log(`El producto ${producto} cuesta $${precio}`);
+
+// Datos de usuario
+let user = {
+    nombre: "María",
+    edad: 28,
+    profesion: "Desarrolladora"
+};
+console.log(`${user.nombre} es ${user.profesion} y tiene ${user.edad} años`);
+
+// Arrays
+let frutas = ["manzana", "banana", "naranja"];
+console.log(`Mi fruta favorita es ${frutas[0]}`);
+
+// Fechas
+let fecha = new Date();
+console.log(`Hoy es ${fecha.toLocaleDateString()}`);
+</code></pre>
+                
+                <h3>Múltiples Variables:</h3>
+                <pre><code class="language-javascript">let nombre = "Juan";
+let apellido = "Pérez";
+let empresa = "TechCorp";
+let cargo = "Senior Developer";
+
+let firma = `
+════════════════════════════
+${nombre} ${apellido}
+${cargo} at ${empresa}
+════════════════════════════
+`;
+
+console.log(firma);</code></pre>
+                
+                <h3>💡 Consejo:</h3>
+                <p>Siempre que necesites incluir variables en un string, usa template literals. Es la forma moderna y recomendada en JavaScript.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="template-expressions-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('template-expressions-modal')">&times;</span>
+            <h2><i class="fas fa-calculator"></i> Evaluación de Expresiones ${expresion}</h2>
+            <div class="modal-body">
+                <h3>¿Qué son las Expresiones?</h3>
+                <p>Dentro de <code>${}</code> no solo puedes poner variables, sino <strong>cualquier expresión de JavaScript válida</strong>. La expresión se evalúa y su resultado se convierte en string.</p>
+                
+                <h3>Tipos de Expresiones que Puedes Usar:</h3>
+                
+                <h4>1. Operaciones Matemáticas:</h4>
+                <pre><code class="language-javascript">let a = 10;
+let b = 5;
+
+console.log(`La suma es: ${a + b}`);           // "La suma es: 15"
+console.log(`La resta es: ${a - b}`);          // "La resta es: 5"
+console.log(`El producto es: ${a * b}`);       // "El producto es: 50"
+console.log(`La división es: ${a / b}`);       // "La división es: 2"
+console.log(`El módulo es: ${a % b}`);         // "El módulo es: 0"
+console.log(`Potencia: ${a ** 2}`);            // "Potencia: 100"</code></pre>
+                
+                <h4>2. Operadores Ternarios:</h4>
+                <pre><code class="language-javascript">let edad = 18;
+let mensaje = `Eres ${edad >= 18 ? 'mayor' : 'menor'} de edad`;
+console.log(mensaje); // "Eres mayor de edad"
+
+let precio = 100;
+let descuento = `Precio: $${precio > 50 ? precio * 0.9 : precio}`;
+console.log(descuento); // "Precio: $90"
+
+let hora = 14;
+let saludo = `${hora < 12 ? 'Buenos días' : hora < 20 ? 'Buenas tardes' : 'Buenas noches'}`;
+console.log(saludo); // "Buenas tardes"</code></pre>
+                
+                <h4>3. Llamadas a Funciones:</h4>
+                <pre><code class="language-javascript">function obtenerNombre() {
+    return "Pedro";
+}
+
+function calcularEdad(anioNacimiento) {
+    return new Date().getFullYear() - anioNacimiento;
+}
+
+console.log(`Hola, ${obtenerNombre()}!`);
+// "Hola, Pedro!"
+
+console.log(`Tienes ${calcularEdad(1995)} años`);
+// "Tienes 29 años" (dependiendo del año actual)</code></pre>
+                
+                <h4>4. Métodos de Arrays:</h4>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+
+console.log(`Longitud: ${numeros.length}`);
+// "Longitud: 5"
+
+console.log(`Primer elemento: ${numeros[0]}`);
+// "Primer elemento: 1"
+
+console.log(`Array al revés: ${numeros.reverse()}`);
+// "Array al revés: 5,4,3,2,1"
+
+console.log(`Suma total: ${numeros.reduce((a, b) => a + b, 0)}`);
+// "Suma total: 15"</code></pre>
+                
+                <h4>5. Métodos de String:</h4>
+                <pre><code class="language-javascript">let nombre = "javascript";
+
+console.log(`Mayúsculas: ${nombre.toUpperCase()}`);
+// "Mayúsculas: JAVASCRIPT"
+
+console.log(`Primera letra: ${nombre.charAt(0).toUpperCase()}`);
+// "Primera letra: J"
+
+console.log(`Longitud: ${nombre.length} caracteres`);
+// "Longitud: 10 caracteres"</code></pre>
+                
+                <h4>6. Acceso a Propiedades de Objetos:</h4>
+                <pre><code class="language-javascript">let usuario = {
+    nombre: "Ana",
+    edad: 25,
+    direccion: {
+        ciudad: "Barcelona",
+        pais: "España"
+    },
+    obtenerEmail() {
+        return "ana@email.com";
+    }
+};
+
+console.log(`${usuario.nombre} vive en ${usuario.direccion.ciudad}`);
+// "Ana vive en Barcelona"
+
+console.log(`Email: ${usuario.obtenerEmail()}`);
+// "Email: ana@email.com"</code></pre>
+                
+                <h4>7. Expresiones Complejas:</h4>
+                <pre><code class="language-javascript">let productos = [
+    { nombre: "Laptop", precio: 999 },
+    { nombre: "Mouse", precio: 25 },
+    { nombre: "Teclado", precio: 75 }
+];
+
+console.log(`
+Total de productos: ${productos.length}
+Precio promedio: $${(productos.reduce((sum, p) => sum + p.precio, 0) / productos.length).toFixed(2)}
+Producto más caro: ${productos.sort((a, b) => b.precio - a.precio)[0].nombre}
+`);</code></pre>
+                
+                <h3>⚠️ Lo que NO puedes hacer dentro de ${}:</h3>
+                <ul>
+                    <li>❌ Declaraciones de variables: <code>${let x = 5}</code></li>
+                    <li>❌ Statements if/else completos (usa ternario)</li>
+                    <li>❌ Bucles for/while</li>
+                    <li>✅ Solo EXPRESIONES que devuelvan un valor</li>
+                </ul>
+                
+                <h3>💡 Regla de Oro:</h3>
+                <p>Si puedes asignarlo a una variable con <code>let x = ...</code>, entonces puedes usarlo dentro de <code>${}</code></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="template-legibility-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('template-legibility-modal')">&times;</span>
+            <h2><i class="fas fa-eye"></i> Legibilidad - Código Más Limpio y Claro</h2>
+            <div class="modal-body">
+                <h3>¿Por qué Template Literals son Más Legibles?</h3>
+                <p>La legibilidad del código es crucial para el mantenimiento y la colaboración. Los template literals hacen que el código sea <strong>más fácil de leer, entender y modificar</strong>.</p>
+                
+                <h3>Ejemplo 1: Mensajes de Usuario</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4>❌ Difícil de Leer:</h4>
+                        <pre><code class="language-javascript">let user = "Ana";
+let items = 3;
+let total = 150.50;
+
+let msg = "Hola " + user + ", " +
+          "tienes " + items + 
+          " artículos en tu carrito " +
+          "por un total de $" + 
+          total.toFixed(2) + ". " +
+          "¿Deseas proceder?";</code></pre>
+                        <p style="color: #e74c3c;">🔴 Problemas:</p>
+                        <ul>
+                            <li>Muchos signos +</li>
+                            <li>Difícil seguir el texto</li>
+                            <li>Fácil olvidar espacios</li>
+                            <li>Propenso a errores</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>✅ Fácil de Leer:</h4>
+                        <pre><code class="language-javascript">let user = "Ana";
+let items = 3;
+let total = 150.50;
+
+let msg = `Hola ${user}, tienes ${items} artículos en tu carrito por un total de $${total.toFixed(2)}. ¿Deseas proceder?`;
+</code></pre>
+                        <p style="color: #27ae60;">🟢 Ventajas:</p>
+                        <ul>
+                            <li>Texto fluido y natural</li>
+                            <li>Fácil de seguir</li>
+                            <li>Menos caracteres especiales</li>
+                            <li>Menos errores</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>Ejemplo 2: Generación de HTML</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4>❌ Concatenación Complicada:</h4>
+                        <pre><code class="language-javascript">let name = "Juan";
+let age = 30;
+let job = "Developer";
+
+let html = "<div class=\"card\">" +
+           "<h2>" + name + "</h2>" +
+           "<p>Edad: " + age + "</p>" +
+           "<p>Trabajo: " + job + "</p>" +
+           "</div>";
+</code></pre>
+                    </div>
+                    <div>
+                        <h4>✅ Template Literal Claro:</h4>
+                        <pre><code class="language-javascript">let name = "Juan";
+let age = 30;
+let job = "Developer";
+
+let html = `
+<div class="card">
+    <h2>${name}</h2>
+    <p>Edad: ${age}</p>
+    <p>Trabajo: ${job}</p>
+</div>
+`;
+</code></pre>
+                    </div>
+                </div>
+                
+                <h3>Ejemplo 3: Consultas SQL</h3>
+                <pre><code class="language-javascript">// ❌ Difícil de leer
+let query = "SELECT * FROM users WHERE id = " + userId + " AND status = '" + status + "' AND created_at > '" + date + "'";
+
+// ✅ Mucho más claro
+let query = `SELECT * FROM users WHERE id = ${userId} AND status = '${status}' AND created_at > '${date}'`;
+</code></pre>
+                
+                <h3>Ejemplo 4: URLs con Parámetros</h3>
+                <pre><code class="language-javascript">let endpoint = "api.example.com";
+let userId = 123;
+let filter = "active";
+let page = 2;
+
+// ❌ Difícil de seguir
+let url = "https://" + endpoint + "/users/" + userId + "?filter=" + filter + "&page=" + page;
+
+// ✅ Cristalino
+let url = `https://${endpoint}/users/${userId}?filter=${filter}&page=${page}`;
+
+console.log(url);
+// "https://api.example.com/users/123?filter=active&page=2"
+</code></pre>
+                
+                <h3>Ejemplo 5: Mensajes de Error</h3>
+                <pre><code class="language-javascript">function validarEdad(edad, minima) {
+    if (edad < minima) {
+        // ❌ Complicado
+        throw new Error("La edad " + edad + " es menor que la mínima requerida de " + minima + " años");
+        
+        // ✅ Claro
+        throw new Error(`La edad ${edad} es menor que la mínima requerida de ${minima} años`);
+    }
+}
+</code></pre>
+                
+                <h3>Beneficios Cuantificables:</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Métrica</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Concatenación</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Template Literals</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Caracteres especiales</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Muchos + y "</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Solo ${}</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Errores de espacios</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Frecuentes</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Raros</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Tiempo de lectura</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Lento</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Rápido</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Facilidad de modificación</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Difícil</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Fácil</td>
+                    </tr>
+                </table>
+                
+                <h3>💡 Consejo Profesional:</h3>
+                <p>Los desarrolladores experimentados siempre prefieren template literals por su legibilidad. Es una buena práctica que facilita el trabajo en equipo y el mantenimiento del código a largo plazo.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="template-multiline-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('template-multiline-modal')">&times;</span>
+            <h2><i class="fas fa-align-left"></i> Strings Multilínea - Sin Concatenación</h2>
+            <div class="modal-body">
+                <h3>El Problema con las Comillas Tradicionales</h3>
+                <p>Antes de ES6, crear strings de múltiples líneas era complicado y poco elegante. Tenías que usar caracteres de escape (<code>\n</code>) o concatenación con <code>+</code>.</p>
+                
+                <h3>Comparación: Antes vs Ahora</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4>❌ Método Antiguo:</h4>
+                        <pre><code class="language-javascript">// Con \n (escape character)
+let poema = "Roses are red,\nViolets are blue,\nSugar is sweet,\nAnd so are you.";
+
+// Con concatenación
+let carta = "Estimado cliente,\n" +
+            "\n" +
+            "Nos complace informarle\n" +
+            "que su pedido ha sido\n" +
+            "procesado exitosamente.\n" +
+            "\n" +
+            "Saludos cordiales,\n" +
+            "El equipo";
+
+console.log(carta);</code></pre>
+                        <p style="color: #e74c3c;">🔴 Problemas:</p>
+                        <ul>
+                            <li>Difícil de visualizar el resultado</li>
+                            <li>Muchos \n y +</li>
+                            <li>Propenso a errores</li>
+                            <li>Difícil de mantener</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>✅ Método Moderno:</h4>
+                        <pre><code class="language-javascript">// Template literals multilínea
+let poema = `Roses are red,
+Violets are blue,
+Sugar is sweet,
+And so are you.`;
+
+// Carta con formato
+let carta = `Estimado cliente,
+
+Nos complace informarle
+que su pedido ha sido
+procesado exitosamente.
+
+Saludos cordiales,
+El equipo`;
+
+console.log(carta);</code></pre>
+                        <p style="color: #27ae60;">🟢 Ventajas:</p>
+                        <ul>
+                            <li>Fácil de visualizar</li>
+                            <li>Sin caracteres especiales</li>
+                            <li>Menos errores</li>
+                            <li>Fácil de mantener</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>Ejemplo 1: Generación de HTML</h3>
+                <pre><code class="language-javascript">let nombre = "Ana";
+let edad = 28;
+let profesion = "Desarrolladora";
+
+let tarjetaPerfil = `
+<div class="perfil-card">
+    <div class="header">
+        <h2>${nombre}</h2>
+        <span class="badge">${profesion}</span>
+    </div>
+    <div class="body">
+        <p>Edad: ${edad} años</p>
+        <p>Experiencia: ${edad - 22} años</p>
+        <button onclick="contactar('${nombre}')">
+            Contactar
+        </button>
+    </div>
+</div>
+`;
+
+document.getElementById('container').innerHTML = tarjetaPerfil;</code></pre>
+                
+                <h3>Ejemplo 2: Emails/Notificaciones</h3>
+                <pre><code class="language-javascript">function generarEmailBienvenida(usuario) {
+    return `
+        Hola ${usuario.nombre},
+        
+        ¡Bienvenido/a a nuestra plataforma!
+        
+        Tu cuenta ha sido creada exitosamente con los siguientes datos:
+        
+        - Usuario: ${usuario.email}
+        - Plan: ${usuario.plan}
+        - Fecha de registro: ${new Date().toLocaleDateString()}
+        
+        Para comenzar, visita:
+        https://miapp.com/dashboard
+        
+        Si tienes alguna pregunta, no dudes en contactarnos.
+        
+        Saludos,
+        El equipo de MiApp
+    `;
+}
+
+let usuario = {
+    nombre: "Carlos",
+    email: "carlos@email.com",
+    plan: "Premium"
+};
+
+console.log(generarEmailBienvenida(usuario));</code></pre>
+                
+                <h3>Ejemplo 3: Consultas SQL</h3>
+                <pre><code class="language-javascript">let userId = 123;
+let startDate = "2024-01-01";
+let endDate = "2024-12-31";
+
+let query = `
+    SELECT 
+        u.id,
+        u.nombre,
+        u.email,
+        COUNT(p.id) as total_pedidos,
+        SUM(p.total) as total_gastado
+    FROM usuarios u
+    LEFT JOIN pedidos p ON u.id = p.usuario_id
+    WHERE u.id = ${userId}
+        AND p.fecha BETWEEN '${startDate}' AND '${endDate}'
+    GROUP BY u.id
+    ORDER BY total_gastado DESC
+`;
+
+// Ejecutar query...
+console.log(query);</code></pre>
+                
+                <h3>Ejemplo 4: Documentación/Help Text</h3>
+                <pre><code class="language-javascript">function mostrarAyuda(comando) {
+    const ayuda = `
+╔══════════════════════════════════════╗
+║     AYUDA: ${comando.toUpperCase()}                    ║
+╠══════════════════════════════════════╣
+║                                      ║
+║  Uso:                                ║
+║    ${comando} [opciones] <archivo>      ║
+║                                      ║
+║  Opciones:                           ║
+║    -h, --help     Muestra esta ayuda ║
+║    -v, --version  Muestra la versión ║
+║    -o, --output   Archivo de salida  ║
+║                                      ║
+║  Ejemplos:                           ║
+║    ${comando} -o resultado.txt input.txt ║
+║    ${comando} --help                    ║
+║                                      ║
+╚══════════════════════════════════════╝
+    `;
+    
+    console.log(ayuda);
+}
+
+mostrarAyuda("procesar");</code></pre>
+                
+                <h3>Ejemplo 5: Reportes/Logs</h3>
+                <pre><code class="language-javascript">function generarReporte(datos) {
+    return `
+┌─────────────────────────────────────┐
+│        REPORTE DE VENTAS            │
+├─────────────────────────────────────┤
+│ Fecha: ${new Date().toLocaleDateString()}              │
+│ Total de ventas: ${datos.totalVentas}          │
+│ Promedio por venta: $${datos.promedio}     │
+│ Producto más vendido: ${datos.topProducto}  │
+│                                     │
+│ Desglose por categoría:             │
+│ - Electrónicos: $${datos.electronica}       │
+│ - Ropa: $${datos.ropa}                      │
+│ - Hogar: $${datos.hogar}                    │
+│                                     │
+│ Estado: ${datos.estado}                     │
+└─────────────────────────────────────┘
+    `;
+}
+
+let datos = {
+    totalVentas: 150,
+    promedio: 45.50,
+    topProducto: "Laptop Pro",
+    electronica: 75000,
+    ropa: 25000,
+    hogar: 50000,
+    estado: "✅ Aprobado"
+};
+
+console.log(generarReporte(datos));</code></pre>
+                
+                <h3>⚠️ Cuidado con la Indentación:</h3>
+                <pre><code class="language-javascript">// ❌ La indentación se incluye en el string
+function mal() {
+    let html = `
+        <div>
+            <p>Texto</p>
+        </div>
+    `;
+    // El resultado incluye todos los espacios!
+}
+
+// ✅ Mejor control de indentación
+function bien() {
+    let html = `
+<div>
+    <p>Texto</p>
+</div>
+`.trim(); // trim() elimina espacios al inicio/final
+}</code></pre>
+                
+                <h3>💡 Consejo:</h3>
+                <p>Los template literals multilínea son perfectos para HTML, SQL, emails, reportes y cualquier texto largo. Hacen que tu código sea mucho más legible y mantenible.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="template-flexibility-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('template-flexibility-modal')">&times;</span>
+            <h2><i class="fas fa-expand-arrows-alt"></i> Flexibilidad - Expresiones Complejas</h2>
+            <div class="modal-body">
+                <h3>El Poder de ${}</h3>
+                <p>Los template literals no solo permiten variables simples, sino <strong>cualquier expresión JavaScript válida</strong>. Esto los hace increíblemente flexibles y potentes.</p>
+                
+                <h3>1. Expresiones Condicionales Complejas</h3>
+                <pre><code class="language-javascript">let usuario = {
+    nombre: "Ana",
+    edad: 17,
+    premium: true,
+    creditos: 50
+};
+
+// Ternarios anidados
+let mensaje = `
+Hola ${usuario.nombre},
+Eres ${usuario.edad >= 18 ? 'mayor' : 'menor'} de edad.
+Tu cuenta es ${usuario.premium ? 'Premium ⭐' : 'Básica'}.
+${usuario.premium ? 
+    `Tienes ${usuario.creditos} créditos disponibles.` : 
+    'Mejora a Premium para obtener créditos.'
+}
+`;
+
+console.log(mensaje);</code></pre>
+                
+                <h3>2. Transformación de Datos</h3>
+                <pre><code class="language-javascript">let productos = [
+    { nombre: "Laptop", precio: 999, stock: 5 },
+    { nombre: "Mouse", precio: 25, stock: 0 },
+    { nombre: "Teclado", precio: 75, stock: 12 }
+];
+
+let reporte = `
+REPORTE DE INVENTARIO
+═════════════════════════════════
+
+Total de productos: ${productos.length}
+Productos en stock: ${productos.filter(p => p.stock > 0).length}
+Productos agotados: ${productos.filter(p => p.stock === 0).length}
+
+Valor total del inventario: $${productos.reduce((sum, p) => sum + (p.precio * p.stock), 0)}
+
+Productos por precio (descendente):
+${productos
+    .sort((a, b) => b.precio - a.precio)
+    .map((p, i) => `${i + 1}. ${p.nombre}: $${p.precio} (Stock: ${p.stock})`)
+    .join('\n')}
+
+⚠️ Productos que necesitan reabastecimiento:
+${productos
+    .filter(p => p.stock < 5)
+    .map(p => `- ${p.nombre} (${p.stock} unidades)`)
+    .join('\n') || 'Ninguno'}
+`;
+
+console.log(reporte);</code></pre>
+                
+                <h3>3. Formateo Dinámico</h3>
+                <pre><code class="language-javascript">function formatearMoneda(valor, moneda = 'USD') {
+    return new Intl.NumberFormat('es-ES', {
+        style: 'currency',
+        currency: moneda
+    }).format(valor);
+}
+
+function formatearFecha(fecha) {
+    return new Date(fecha).toLocaleDateString('es-ES', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
+let pedido = {
+    id: 12345,
+    cliente: "Carlos Rodríguez",
+    total: 1250.50,
+    fecha: "2024-01-15",
+    items: 8
+};
+
+let factura = `
+╔═══════════════════════════════════════╗
+║           FACTURA #${pedido.id}            ║
+╠═══════════════════════════════════════╣
+║                                       ║
+║  Cliente: ${pedido.cliente.padEnd(26)} ║
+║  Fecha: ${formatearFecha(pedido.fecha).padEnd(28)} ║
+║                                       ║
+║  Cantidad de artículos: ${String(pedido.items).padStart(12)} ║
+║  Subtotal: ${formatearMoneda(pedido.total * 0.81).padStart(21)} ║
+║  IVA (19%): ${formatearMoneda(pedido.total * 0.19).padStart(20)} ║
+║  ─────────────────────────────────── ║
+║  TOTAL: ${formatearMoneda(pedido.total).padStart(24)} ║
+║                                       ║
+╚═══════════════════════════════════════╝
+`;
+
+console.log(factura);</code></pre>
+                
+                <h3>4. Generación de Código</h3>
+                <pre><code class="language-javascript">function generarClase(nombre, propiedades) {
+    return `
+class ${nombre} {
+    constructor(${propiedades.map(p => p.nombre).join(', ')}) {
+${propiedades.map(p => `        this.${p.nombre} = ${p.nombre};`).join('\n')}
+    }
+    
+${propiedades.map(p => `
+    get${p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1)}() {
+        return this.${p.nombre};
+    }
+    
+    set${p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1)}(valor) {
+        this.${p.nombre} = valor;
+    }
+`).join('\n')}
+    
+    toString() {
+        return \`${nombre} { ${propiedades.map(p => `${p.nombre}: \${this.${p.nombre}}`).join(', ')} }\`;
+    }
+}
+    `;
+}
+
+let codigo = generarClase('Usuario', [
+    { nombre: 'nombre', tipo: 'string' },
+    { nombre: 'edad', tipo: 'number' },
+    { nombre: 'email', tipo: 'string' }
+]);
+
+console.log(codigo);</code></pre>
+                
+                <h3>5. Templates Anidados</h3>
+                <pre><code class="language-javascript">let usuarios = [
+    { id: 1, nombre: "Ana", rol: "Admin", activo: true },
+    { id: 2, nombre: "Carlos", rol: "Usuario", activo: true },
+    { id: 3, nombre: "María", rol: "Usuario", activo: false }
+];
+
+let tablaHTML = `
+<table class="usuarios-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Rol</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        ${usuarios.map(u => `
+            <tr class="${u.activo ? 'activo' : 'inactivo'}">
+                <td>${u.id}</td>
+                <td>${u.nombre}</td>
+                <td>
+                    <span class="badge badge-${u.rol === 'Admin' ? 'danger' : 'primary'}">
+                        ${u.rol}
+                    </span>
+                </td>
+                <td>
+                    ${u.activo ? 
+                        '<span class="status-active">✅ Activo</span>' : 
+                        '<span class="status-inactive">❌ Inactivo</span>'
+                    }
+                </td>
+            </tr>
+        `).join('')}
+    </tbody>
+</table>
+`;
+
+document.body.innerHTML = tablaHTML;</code></pre>
+                
+                <h3>6. Internacionalización (i18n)</h3>
+                <pre><code class="language-javascript">const traducciones = {
+    es: {
+        bienvenida: "Bienvenido",
+        productos: "productos",
+        carrito: "carrito"
+    },
+    en: {
+        bienvenida: "Welcome",
+        productos: "products",
+        carrito: "cart"
+    },
+    fr: {
+        bienvenida: "Bienvenue",
+        productos: "produits",
+        carrito: "panier"
+    }
+};
+
+function mensaje(idioma, usuario, numProductos) {
+    const t = traducciones[idioma];
+    return `${t.bienvenida} ${usuario}, tienes ${numProductos} ${t.productos} en tu ${t.carrito}.`;
+}
+
+console.log(mensaje('es', 'Ana', 5));
+// "Bienvenido Ana, tienes 5 productos en tu carrito."
+
+console.log(mensaje('en', 'Ana', 5));
+// "Welcome Ana, you have 5 products in your cart."
+
+console.log(mensaje('fr', 'Ana', 5));
+// "Bienvenue Ana, vous avez 5 produits dans votre panier."</code></pre>
+                
+                <h3>7. Debugging Avanzado</h3>
+                <pre><code class="language-javascript">function debugObject(obj, nombre = 'Object') {
+    return `
+╔${'═'.repeat(50)}╗
+║ DEBUG: ${nombre.padEnd(42)}║
+╠${'═'.repeat(50)}╣
+${Object.entries(obj).map(([key, value]) => {
+    const tipo = typeof value;
+    const valorStr = tipo === 'object' ? JSON.stringify(value) : String(value);
+    return `║ ${key.padEnd(20)} │ ${tipo.padEnd(10)} │ ${valorStr.slice(0, 15).padEnd(15)} ║`;
+}).join('\n')}
+╚${'═'.repeat(50)}╝
+    `;
+}
+
+let datos = {
+    nombre: "Ana",
+    edad: 28,
+    activo: true,
+    config: { tema: "oscuro" }
+};
+
+console.log(debugObject(datos, 'Usuario'));</code></pre>
+                
+                <h3>Casos de Uso Profesionales:</h3>
+                <ul>
+                    <li><strong>APIs:</strong> Construcción dinámica de URLs con parámetros</li>
+                    <li><strong>Logs:</strong> Mensajes formateados con contexto completo</li>
+                    <li><strong>Testing:</strong> Generación de datos de prueba</li>
+                    <li><strong>Reportes:</strong> Informes complejos con cálculos</li>
+                    <li><strong>Documentación:</strong> Generación automática de docs</li>
+                    <li><strong>CLI Tools:</strong> Interfaces de línea de comandos</li>
+                </ul>
+                
+                <h3>💡 Límites y Buenas Prácticas:</h3>
+                <ul>
+                    <li>✅ Usa template literals para strings con lógica simple/media</li>
+                    <li>❌ Si la lógica es muy compleja, extrae a funciones separadas</li>
+                    <li>✅ Son perfectos para templates de UI (React, Vue, etc.)</li>
+                    <li>✅ Excelentes para construcción de strings dinámicos</li>
+                    <li>⚠️ Ten cuidado con la seguridad al insertar datos de usuarios</li>
                 </ul>
             </div>
         </div>
