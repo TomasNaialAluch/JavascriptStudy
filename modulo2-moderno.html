@@ -420,17 +420,20 @@ console.log("Usuario:", usuario);</code></pre>
                             <div class="theory-card">
                                 <h4><i class="fas fa-arrow-right"></i> Sintaxis Arrow Functions</h4>
                                 <div class="theory-list">
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('arrow-syntax-noparams-modal')">
                                         <code>() => {}</code>
                                         <span>Sin parámetros</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('arrow-syntax-oneparam-modal')">
                                         <code>x => x * 2</code>
                                         <span>Un parámetro, return implícito</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('arrow-syntax-multiparams-modal')">
                                         <code>(a, b) => a + b</code>
                                         <span>Múltiples parámetros</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
                                 </div>
                             </div>
@@ -438,17 +441,20 @@ console.log("Usuario:", usuario);</code></pre>
                             <div class="theory-card">
                                 <h4><i class="fas fa-exclamation-triangle"></i> Diferencias con Function</h4>
                                 <div class="theory-list">
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('arrow-this-modal')">
                                         <code>this</code>
                                         <span>No tienen su propio contexto</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('arrow-arguments-modal')">
                                         <code>arguments</code>
                                         <span>No tienen objeto arguments</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('arrow-constructor-modal')">
                                         <code>constructor</code>
                                         <span>No pueden ser constructores</span>
+                                        <i class="fas fa-info-circle"></i>
                                     </div>
                                 </div>
                             </div>
