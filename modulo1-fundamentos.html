@@ -2398,8 +2398,15 @@ switch (dia) {
 
     <div id="for-of-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('for-of-modal')">&times;</span>
-            <h2><i class="fas fa-list"></i> for...of - Iterar VALORES</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-list"></i> for...of - Iterar VALORES</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('for-of-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('for-of-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es for...of?</h3>
                 <p>Es un bucle que itera sobre los <strong>VALORES</strong> de elementos iterables (arrays, strings, etc.). Es más simple que el for tradicional cuando solo necesitas los valores, no los índices.</p>
@@ -2459,8 +2466,15 @@ for (let fruta of frutas) {
 
     <div id="for-in-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('for-in-modal')">&times;</span>
-            <h2><i class="fas fa-key"></i> for...in - Iterar PROPIEDADES</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-key"></i> for...in - Iterar PROPIEDADES</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('for-in-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('for-in-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es for...in?</h3>
                 <p>Es un bucle que itera sobre las <strong>PROPIEDADES</strong> (claves) de un objeto. Te da acceso a los nombres de las propiedades, no a sus valores.</p>
@@ -2525,8 +2539,15 @@ for (let indice in array) {
 
     <div id="while-loop-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('while-loop-modal')">&times;</span>
-            <h2><i class="fas fa-sync"></i> while - Mientras se cumple condición</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-sync"></i> while - Mientras se cumple condición</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('while-loop-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('while-loop-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es el bucle while?</h3>
                 <p>Es un bucle que se repite <strong>mientras</strong> una condición sea verdadera. No sabes cuántas veces se ejecutará, solo sabes cuándo debe parar.</p>
@@ -2586,8 +2607,15 @@ while (i < 5) {
 
     <div id="ternary-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('ternary-modal')">&times;</span>
-            <h2><i class="fas fa-question"></i> Operador Ternario (? :)</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-question"></i> Operador Ternario (? :)</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('ternary-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('ternary-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es el operador ternario?</h3>
                 <p>Es una forma <strong>abreviada</strong> de escribir un if/else simple en una sola línea. Es perfecto para asignaciones condicionales.</p>
@@ -3037,8 +3065,15 @@ if (a > b) {
     <!-- Modales para Lección 4 (Funciones) -->
     <div id="function-declared-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('function-declared-modal')">&times;</span>
-            <h2><i class="fas fa-code"></i> Función Declarada</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-code"></i> Función Declarada</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('function-declared-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('function-declared-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es una función declarada?</h3>
                 <p>Es la forma tradicional de crear funciones en JavaScript. Se declara con la palabra clave <code>function</code> seguida del nombre de la función.</p>
@@ -3069,8 +3104,15 @@ function saludar(nombre) {
 
     <div id="function-expressed-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('function-expressed-modal')">&times;</span>
-            <h2><i class="fas fa-code"></i> Función Expresada</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-code"></i> Función Expresada</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('function-expressed-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('function-expressed-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es una función expresada?</h3>
                 <p>Es una función que se <strong>asigna a una variable</strong>. Se crea usando una expresión de función anónima (sin nombre propio).</p>
@@ -3147,8 +3189,15 @@ function saludarDeclarada(nombre) {
 
     <div id="arrow-function-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('arrow-function-modal')">&times;</span>
-            <h2><i class="fas fa-arrow-right"></i> Arrow Function (ES6)</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-arrow-right"></i> Arrow Function (ES6)</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('arrow-function-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('arrow-function-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es ES6?</h3>
                 <p><strong>ES6 (ECMAScript 2015)</strong> es una versión importante de JavaScript que se lanzó en 2015. Introdujo muchas características modernas que hicieron JavaScript más potente y fácil de usar. ES6 incluye:</p>
