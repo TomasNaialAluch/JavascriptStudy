@@ -1423,12 +1423,16 @@ html {
     transition: transform 0.3s ease;
 }
 
+/* Teoría */
+.theory-content {
+    padding: 1.5rem;
+    display: block;
+}
+
 .theory-content.collapsed,
 .example-content.collapsed {
     display: none;
 }
-
-/* Teoría */
 .theory-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -2090,11 +2094,6 @@ html {
 
 .theory-header.active i:last-child {
     transform: rotate(180deg);
-}
-
-.theory-content {
-    padding: 1.5rem;
-    display: block;
 }
 
 .theory-content.show {
