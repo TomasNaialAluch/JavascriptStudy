@@ -2046,3 +2046,147 @@ html {
         width: 100%;
     }
 }
+
+/* Estilos para secciones de teoría y ejemplos de código */
+.theory-section {
+    background: var(--white);
+    border: 1px solid #e9ecef;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.theory-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 1px solid #e9ecef;
+}
+
+.theory-header:hover {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+}
+
+.theory-header i:first-child {
+    color: var(--primary-color);
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.theory-header span {
+    font-weight: 600;
+    color: var(--text-color);
+    flex: 1;
+}
+
+.theory-header i:last-child {
+    color: var(--text-light);
+    transition: transform 0.3s ease;
+}
+
+.theory-header.active i:last-child {
+    transform: rotate(180deg);
+}
+
+.theory-content {
+    padding: 1.5rem;
+    display: none;
+}
+
+.theory-content.show {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.code-examples-section {
+    background: var(--white);
+    border: 1px solid #e9ecef;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.code-examples-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.code-examples-header i {
+    color: var(--primary-color);
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.code-examples-header span {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.code-tabs {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.code-tab {
+    background: none;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 3px solid transparent;
+    flex: 1;
+    text-align: center;
+}
+
+.code-tab:hover {
+    background: rgba(247, 223, 30, 0.1);
+    color: var(--text-color);
+}
+
+.code-tab.active {
+    color: var(--primary-color);
+    background: var(--white);
+    border-bottom-color: var(--primary-color);
+}
+
+.code-tab-content {
+    padding: 1.5rem;
+    display: none;
+}
+
+.code-tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
