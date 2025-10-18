@@ -1427,6 +1427,7 @@ html {
 .theory-content {
     padding: 1.5rem;
     display: block;
+    animation: slideDown 0.4s ease-out;
 }
 
 .theory-content.collapsed,

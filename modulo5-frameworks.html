@@ -1619,6 +1619,23 @@ jobs:
 
     <script src="script.js"></script>
     <script>
+        // Funciones de modal
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevenir scroll
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restaurar scroll
+            }
+        }
+
         // Estado del módulo
         let moduleProgress = 0;
         let completedLessons = new Set();
