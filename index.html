@@ -19,9 +19,7 @@
             <ul class="nav-menu">
                 <li><a href="#inicio" class="nav-link">Inicio</a></li>
                 <li><a href="#modulos" class="nav-link">Módulos</a></li>
-                <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
-                <li><a href="#recursos" class="nav-link">Recursos</a></li>
-                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                <li><a href="#metodologia" class="nav-link">Metodología</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -70,8 +68,8 @@
                     <button class="btn btn-primary" onclick="scrollToSection('modulos')">
                         <i class="fas fa-play"></i> Comenzar Curso
                     </button>
-                    <button class="btn btn-secondary" onclick="scrollToSection('proyectos')">
-                        <i class="fas fa-code"></i> Ver Proyectos
+                    <button class="btn btn-secondary" onclick="scrollToSection('metodologia')">
+                        <i class="fas fa-graduation-cap"></i> Ver Metodología
                     </button>
                 </div>
             </div>
@@ -296,175 +294,98 @@
             </div>
         </section>
 
-        <!-- Sección de Proyectos Prácticos -->
-        <section id="proyectos" class="section bg-light">
+        <!-- Sección de Metodología -->
+        <section id="metodologia" class="section bg-light">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Proyectos Prácticos</h2>
-                    <p class="section-subtitle">Aplica lo que aprendas en proyectos reales y construye tu portfolio</p>
+                    <h2 class="section-title">Nuestra Metodología de Aprendizaje</h2>
+                    <p class="section-subtitle">Un enfoque estructurado y práctico para dominar JavaScript</p>
                 </div>
                 
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <i class="fas fa-todo-list"></i>
+                <div class="methodology-grid">
+                    <div class="methodology-card">
+                        <div class="methodology-icon">
+                            <i class="fas fa-book-open"></i>
                         </div>
-                        <div class="project-content">
-                            <div class="project-level">
-                                <span class="level-badge beginner">Principiante</span>
-                            </div>
-                            <h3>Todo List App</h3>
-                            <p>Aplicación completa de gestión de tareas con funcionalidades CRUD, filtros y persistencia local.</p>
-                            <div class="project-skills">
-                                <span class="skill-tag">DOM</span>
-                                <span class="skill-tag">LocalStorage</span>
-                                <span class="skill-tag">Event Handling</span>
-                            </div>
-                            <div class="project-time">
-                                <i class="fas fa-clock"></i> 2-3 días
-                            </div>
-                        </div>
-                        <div class="project-footer">
-                            <a href="#" class="btn btn-outline">Ver Proyecto</a>
-                        </div>
+                        <h3>Teoría Clara</h3>
+                        <p>Conceptos explicados de forma simple y progresiva, con ejemplos visuales y analogías del mundo real.</p>
                     </div>
 
-                    <div class="project-card">
-                        <div class="project-image">
-                            <i class="fas fa-cloud-sun"></i>
+                    <div class="methodology-card">
+                        <div class="methodology-icon">
+                            <i class="fas fa-code"></i>
                         </div>
-                        <div class="project-content">
-                            <div class="project-level">
-                                <span class="level-badge intermediate">Intermedio</span>
-                            </div>
-                            <h3>Weather App</h3>
-                            <p>Aplicación del clima con API externa, geolocalización y pronóstico extendido.</p>
-                            <div class="project-skills">
-                                <span class="skill-tag">Fetch API</span>
-                                <span class="skill-tag">Async/Await</span>
-                                <span class="skill-tag">JSON</span>
-                            </div>
-                            <div class="project-time">
-                                <i class="fas fa-clock"></i> 3-5 días
-                            </div>
-                        </div>
-                        <div class="project-footer">
-                            <a href="#" class="btn btn-outline">Ver Proyecto</a>
-                        </div>
+                        <h3>Ejemplos Prácticos</h3>
+                        <p>Código real que puedes ejecutar y modificar. Aprende haciendo, no solo leyendo.</p>
                     </div>
 
-                    <div class="project-card">
-                        <div class="project-image">
-                            <i class="fas fa-gamepad"></i>
+                    <div class="methodology-card">
+                        <div class="methodology-icon">
+                            <i class="fas fa-puzzle-piece"></i>
                         </div>
-                        <div class="project-content">
-                            <div class="project-level">
-                                <span class="level-badge intermediate">Intermedio</span>
-                            </div>
-                            <h3>Memory Game</h3>
-                            <p>Juego de memoria con diferentes niveles de dificultad y sistema de puntuación.</p>
-                            <div class="project-skills">
-                                <span class="skill-tag">Game Logic</span>
-                                <span class="skill-tag">CSS Animations</span>
-                                <span class="skill-tag">Timer</span>
-                            </div>
-                            <div class="project-time">
-                                <i class="fas fa-clock"></i> 4-6 días
-                            </div>
+                        <h3>Ejercicios Graduales</h3>
+                        <p>Progresión natural desde conceptos básicos hasta proyectos complejos.</p>
+                    </div>
+
+                    <div class="methodology-card">
+                        <div class="methodology-icon">
+                            <i class="fas fa-lightbulb"></i>
                         </div>
-                        <div class="project-footer">
-                            <a href="#" class="btn btn-outline">Ver Proyecto</a>
-                        </div>
+                        <h3>Consejos Profesionales</h3>
+                        <p>Tips de entrevistas y mejores prácticas que usan los desarrolladores senior.</p>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Sección de Recursos -->
-        <section id="recursos" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Recursos Adicionales</h2>
-                    <p class="section-subtitle">Herramientas y enlaces útiles para tu aprendizaje</p>
-                </div>
-                
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <h3>Documentación</h3>
-                        <ul>
-                            <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank">MDN JavaScript</a></li>
-                            <li><a href="https://javascript.info/" target="_blank">JavaScript.info</a></li>
-                            <li><a href="https://reactjs.org/docs/" target="_blank">React Docs</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-play-circle"></i>
-                        </div>
-                        <h3>Plataformas</h3>
-                        <ul>
-                            <li><a href="https://www.freecodecamp.org/" target="_blank">FreeCodeCamp</a></li>
-                            <li><a href="https://codepen.io/" target="_blank">CodePen</a></li>
-                            <li><a href="https://repl.it/" target="_blank">Repl.it</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3>Comunidades</h3>
-                        <ul>
-                            <li><a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a></li>
-                            <li><a href="https://dev.to/" target="_blank">Dev.to</a></li>
-                            <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección de Contacto -->
-        <section id="contacto" class="section bg-light">
-            <div class="container">
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h2>¿Tienes Preguntas?</h2>
-                        <p>Estamos aquí para ayudarte en tu camino de aprendizaje. No dudes en contactarnos si necesitas ayuda o tienes alguna sugerencia.</p>
-                        <div class="contact-methods">
-                            <div class="contact-method">
-                                <i class="fas fa-envelope"></i>
-                                <span>contacto@jsacademy.com</span>
-                            </div>
-                            <div class="contact-method">
-                                <i class="fab fa-github"></i>
-                                <span>github.com/jsacademy</span>
-                            </div>
-                            <div class="contact-method">
-                                <i class="fab fa-discord"></i>
-                                <span>Discord Community</span>
+                <div class="learning-path">
+                    <h3>Ruta de Aprendizaje Recomendada</h3>
+                    <div class="path-steps">
+                        <div class="path-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Fundamentos</h4>
+                                <p>Variables, tipos de datos, operadores y estructuras básicas</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="contact-form">
-                        <form>
-                            <div class="form-group">
-                                <input type="text" placeholder="Tu nombre" required>
+                        <div class="path-arrow">→</div>
+                        <div class="path-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>JavaScript Moderno</h4>
+                                <p>ES6+, arrow functions, destructuring y características modernas</p>
                             </div>
-                            <div class="form-group">
-                                <input type="email" placeholder="Tu email" required>
+                        </div>
+                        <div class="path-arrow">→</div>
+                        <div class="path-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>DOM & Interactividad</h4>
+                                <p>Manipulación del DOM, eventos y formularios</p>
                             </div>
-                            <div class="form-group">
-                                <textarea placeholder="Tu mensaje" rows="4" required></textarea>
+                        </div>
+                        <div class="path-arrow">→</div>
+                        <div class="path-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Programación Asíncrona</h4>
+                                <p>Promises, async/await y manejo de datos externos</p>
                             </div>
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-paper-plane"></i> Enviar Mensaje
-                            </button>
-                        </form>
+                        </div>
+                        <div class="path-arrow">→</div>
+                        <div class="path-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Frameworks</h4>
+                                <p>React, Node.js y herramientas modernas</p>
+                            </div>
+                        </div>
+                        <div class="path-arrow">→</div>
+                        <div class="path-step">
+                            <div class="step-number">6</div>
+                            <div class="step-content">
+                                <h4>Herramientas</h4>
+                                <p>Git, VS Code, testing y deployment</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -489,15 +410,17 @@
                         <li><a href="modulo2-moderno.html">JavaScript Moderno</a></li>
                         <li><a href="modulo3-dom.html">DOM Manipulation</a></li>
                         <li><a href="modulo4-asincrono.html">Programación Asíncrona</a></li>
+                        <li><a href="modulo5-frameworks.html">Frameworks</a></li>
+                        <li><a href="modulo6-herramientas.html">Herramientas</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Recursos</h4>
+                    <h4>Aprendizaje</h4>
                     <ul>
-                        <li><a href="#proyectos">Proyectos</a></li>
-                        <li><a href="#recursos">Documentación</a></li>
-                        <li><a href="#contacto">Comunidad</a></li>
-                        <li><a href="#contacto">Soporte</a></li>
+                        <li><a href="#metodologia">Metodología</a></li>
+                        <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank">MDN Docs</a></li>
+                        <li><a href="https://javascript.info/" target="_blank">JavaScript.info</a></li>
+                        <li><a href="https://github.com/TomasNaialAluch/JavascriptStudy" target="_blank">GitHub</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
