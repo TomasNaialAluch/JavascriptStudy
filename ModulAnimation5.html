@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModulAnimation 5 - Programación Asíncrona</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .animation-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .animation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .animation-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .animation-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .concept-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .concept-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Visualización de promesas */
+        .promise-visualization {
+            background: #2c2c54;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .promise-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .promise-step {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 150px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .promise-step.pending {
+            background: linear-gradient(45deg, #feca57, #ff6348);
+            animation: pulse 2s infinite;
+        }
+
+        .promise-step.resolved {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+
+        .promise-step.rejected {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: white;
+            animation: bounce 1s infinite;
+        }
+
+        /* Estados de promesa */
+        .promise-states {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .state-card {
+            background: linear-gradient(135deg, #4834d4, #686de0);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .state-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .state-card.pending { background: linear-gradient(135deg, #feca57, #ff6348); }
+        .state-card.fulfilled { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .state-card.rejected { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .animate-in {
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .animate-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @media (max-width: 768px) {
+            .animation-header h1 { font-size: 2rem; }
+            .promise-flow { flex-direction: column; }
+            .promise-states { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animation-page">
+        <div class="animation-container">
+            <div class="animation-header animate-up">
+                <h1><i class="fas fa-sync-alt"></i> ModulAnimation 5</h1>
+                <p>Programación Asíncrona - Aprende con Animaciones Interactivas</p>
+            </div>
+
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">⏳ Estados de Promesas</h2>
+                <p class="concept-description">Haz clic en cada estado para ver cómo funciona</p>
+                
+                <div class="promise-states">
+                    <div class="state-card pending" onclick="animateState('pending')">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">⏳</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">Pending</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">En espera</div>
+                    </div>
+                    
+                    <div class="state-card fulfilled" onclick="animateState('fulfilled')">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">✅</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">Fulfilled</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Resuelta</div>
+                    </div>
+                    
+                    <div class="state-card rejected" onclick="animateState('rejected')">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">❌</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">Rejected</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Rechazada</div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="showPromiseInfo()">
+                        <i class="fas fa-info-circle"></i> Ver Información
+                    </button>
+                    <button class="control-btn" onclick="demoPromise()">
+                        <i class="fas fa-play"></i> Demo Promesa
+                    </button>
+                </div>
+            </div>
+
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">🔄 Flujo de Promesas</h2>
+                <p class="concept-description">Ve cómo fluye una promesa desde su creación hasta su resolución</p>
+                
+                <div class="promise-visualization">
+                    <div class="promise-flow">
+                        <div class="promise-step pending" id="step1">
+                            <div style="font-size: 1.2rem; font-weight: bold;">Crear Promesa</div>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">new Promise()</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="promise-step pending" id="step2">
+                            <div style="font-size: 1.2rem; font-weight: bold;">Ejecutar</div>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Operación asíncrona</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="promise-step resolved" id="step3">
+                            <div style="font-size: 1.2rem; font-weight: bold;">Resuelta</div>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">resolve() o reject()</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="animatePromiseFlow()">
+                        <i class="fas fa-play"></i> Ver Flujo
+                    </button>
+                    <button class="control-btn" onclick="showAsyncAwait()">
+                        <i class="fas fa-code"></i> Ver Async/Await
+                    </button>
+                </div>
+            </div>
+
+            <div class="control-buttons">
+                <button class="control-btn" onclick="window.location.href='ModulAnimation4.html'">
+                    <i class="fas fa-arrow-left"></i> Anterior: Objetos
+                </button>
+                <button class="control-btn" onclick="window.location.href='ModulAnimation6.html'">
+                    <i class="fas fa-arrow-right"></i> Siguiente: Herramientas
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function animateState(state) {
+            const cards = document.querySelectorAll('.state-card');
+            cards.forEach(card => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+            });
+            
+            const targetCard = document.querySelector(`.state-card.${state}`);
+            targetCard.style.transform = 'translateY(-15px) scale(1.05)';
+            targetCard.style.boxShadow = '0 25px 50px rgba(0,0,0,0.4)';
+            
+            setTimeout(() => {
+                targetCard.style.transform = 'translateY(-10px) scale(1.02)';
+                targetCard.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+            }, 500);
+            
+            showStateExplanation(state);
+        }
+
+        function showStateExplanation(state) {
+            const explanations = {
+                'pending': 'PENDING (En espera):\n\n• Estado inicial de una promesa\n• Ni resuelta ni rechazada\n• Puede cambiar a fulfilled o rejected\n\nlet promesa = new Promise((resolve, reject) => {\n  // Código asíncrono\n});',
+                'fulfilled': 'FULFILLED (Resuelta):\n\n• La promesa se completó exitosamente\n• Se ejecuta .then()\n• Tiene un valor de resolución\n\npromesa.then(resultado => {\n  console.log("Éxito:", resultado);\n});',
+                'rejected': 'REJECTED (Rechazada):\n\n• La promesa falló\n• Se ejecuta .catch()\n• Tiene un motivo de rechazo\n\npromesa.catch(error => {\n  console.log("Error:", error);\n});'
+            };
+            
+            alert(explanations[state]);
+        }
+
+        function showPromiseInfo() {
+            alert(`PROMESAS EN JAVASCRIPT:
+
+Las promesas representan operaciones asíncronas que pueden:
+• Estar pendientes (pending)
+• Resolverse exitosamente (fulfilled)
+• Ser rechazadas (rejected)
+
+Sintaxis:
+let promesa = new Promise((resolve, reject) => {
+  // Operación asíncrona
+  if (éxito) {
+    resolve(resultado);
+  } else {
+    reject(error);
+  }
+});
+
+Uso:
+promesa
+  .then(resultado => console.log(resultado))
+  .catch(error => console.error(error));`);
+        }
+
+        function demoPromise() {
+            alert('Creando una promesa que se resuelve en 2 segundos...');
+            
+            const promesa = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('¡Promesa resuelta exitosamente!');
+                }, 2000);
+            });
+            
+            promesa.then(resultado => {
+                alert(`Resultado: ${resultado}`);
+            });
+        }
+
+        function animatePromiseFlow() {
+            const steps = document.querySelectorAll('.promise-step');
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.style.transform = 'scale(1.1)';
+                    step.style.boxShadow = '0 15px 30px rgba(0,0,0,0.3)';
+                    setTimeout(() => {
+                        step.style.transform = 'scale(1)';
+                        step.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+                    }, 500);
+                }, index * 800);
+            });
+        }
+
+        function showAsyncAwait() {
+            alert(`ASYNC/AWAIT (Sintaxis moderna):
+
+async function obtenerDatos() {
+  try {
+    const respuesta = await fetch('/api/datos');
+    const datos = await respuesta.json();
+    return datos;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+Ventajas:
+• Código más legible
+• Manejo de errores con try/catch
+• Evita el "callback hell"
+• Sintaxis similar a código síncrono`);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.concept-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

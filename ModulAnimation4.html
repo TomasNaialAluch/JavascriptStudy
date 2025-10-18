@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModulAnimation 4 - Objetos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .animation-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .animation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .animation-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .animation-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .concept-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .concept-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Visualización de objeto */
+        .object-visualization {
+            background: #2c2c54;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .object-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .object-box {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 200px;
+            margin: 1rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .object-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .property-item {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .property-key {
+            font-weight: bold;
+        }
+
+        .property-value {
+            opacity: 0.9;
+        }
+
+        /* Métodos de objeto */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .method-card {
+            background: linear-gradient(135deg, #4834d4, #686de0);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .method-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .method-card.access { background: linear-gradient(135deg, #00d2d3, #54a0ff); }
+        .method-card.methods { background: linear-gradient(135deg, #ff9ff3, #f368e0); }
+        .method-card.destructuring { background: linear-gradient(135deg, #96ceb4, #6c5ce7); }
+
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .animate-in {
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .animate-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .animation-header h1 { font-size: 2rem; }
+            .methods-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animation-page">
+        <div class="animation-container">
+            <div class="animation-header animate-up">
+                <h1><i class="fas fa-cube"></i> ModulAnimation 4</h1>
+                <p>Objetos - Aprende con Animaciones Interactivas</p>
+            </div>
+
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">📦 Estructura de Objetos</h2>
+                <p class="concept-description">Haz clic en las propiedades para ver sus valores</p>
+                
+                <div class="object-visualization">
+                    <h3>Objeto: persona</h3>
+                    <div class="object-container">
+                        <div class="object-box" onclick="showObjectInfo()">
+                            <h4>👤 persona</h4>
+                            <div class="property-item">
+                                <span class="property-key">nombre:</span>
+                                <span class="property-value">"Ana"</span>
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">edad:</span>
+                                <span class="property-value">25</span>
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">ciudad:</span>
+                                <span class="property-value">"Madrid"</span>
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">profesion:</span>
+                                <span class="property-value">"Desarrolladora"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="showObjectInfo()">
+                        <i class="fas fa-info-circle"></i> Ver Información
+                    </button>
+                    <button class="control-btn" onclick="interactiveObject()">
+                        <i class="fas fa-play"></i> Crear Objeto
+                    </button>
+                </div>
+            </div>
+
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">🔧 Métodos de Objetos</h2>
+                <p class="concept-description">Explora las diferentes formas de trabajar con objetos</p>
+                
+                <div class="methods-grid">
+                    <div class="method-card access" onclick="animateMethod('access')">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔑</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">Acceso a Propiedades</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">objeto.propiedad o objeto["propiedad"]</div>
+                    </div>
+                    
+                    <div class="method-card methods" onclick="animateMethod('methods')">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚙️</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">Métodos</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Funciones dentro de objetos</div>
+                    </div>
+                    
+                    <div class="method-card destructuring" onclick="animateMethod('destructuring')">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📤</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem;">Destructuring</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Extraer propiedades fácilmente</div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="showMethodExamples()">
+                        <i class="fas fa-code"></i> Ver Ejemplos
+                    </button>
+                    <button class="control-btn" onclick="showObjectMethods()">
+                        <i class="fas fa-tools"></i> Métodos de Object
+                    </button>
+                </div>
+            </div>
+
+            <div class="control-buttons">
+                <button class="control-btn" onclick="window.location.href='ModulAnimation3.html'">
+                    <i class="fas fa-arrow-left"></i> Anterior: Arrays
+                </button>
+                <button class="control-btn" onclick="window.location.href='ModulAnimation5.html'">
+                    <i class="fas fa-arrow-right"></i> Siguiente: Asíncrono
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showObjectInfo() {
+            alert(`INFORMACIÓN DE OBJETOS:
+
+• Los objetos son colecciones de propiedades clave-valor
+• Las claves son strings (pueden omitir las comillas)
+• Los valores pueden ser cualquier tipo de dato
+• Se accede con: objeto.propiedad o objeto["propiedad"]
+
+Ejemplo:
+let persona = {
+    nombre: "Ana",
+    edad: 25,
+    ciudad: "Madrid"
+};
+
+console.log(persona.nombre); // "Ana"
+console.log(persona["edad"]); // 25`);
+        }
+
+        function interactiveObject() {
+            const nombre = prompt('Nombre:');
+            const edad = prompt('Edad:');
+            const ciudad = prompt('Ciudad:');
+            
+            if (nombre && edad && ciudad) {
+                const objeto = { nombre, edad, ciudad };
+                alert(`Objeto creado:
+{
+  nombre: "${objeto.nombre}",
+  edad: ${objeto.edad},
+  ciudad: "${objeto.ciudad}"
+}
+
+Acceso:
+objeto.nombre = "${objeto.nombre}"
+objeto["edad"] = ${objeto["edad"]}`);
+            }
+        }
+
+        function animateMethod(method) {
+            const cards = document.querySelectorAll('.method-card');
+            cards.forEach(card => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+            });
+            
+            const targetCard = document.querySelector(`.method-card.${method}`);
+            targetCard.style.transform = 'translateY(-15px) scale(1.05)';
+            targetCard.style.boxShadow = '0 25px 50px rgba(0,0,0,0.4)';
+            
+            setTimeout(() => {
+                targetCard.style.transform = 'translateY(-10px) scale(1.02)';
+                targetCard.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+            }, 500);
+            
+            showMethodExplanation(method);
+        }
+
+        function showMethodExplanation(method) {
+            const explanations = {
+                'access': 'ACCESO A PROPIEDADES:\n\nNotación de punto: objeto.propiedad\nNotación de corchetes: objeto["propiedad"]\n\nlet persona = { nombre: "Ana" };\nconsole.log(persona.nombre); // "Ana"\nconsole.log(persona["nombre"]); // "Ana"',
+                'methods': 'MÉTODOS DE OBJETO:\n\nLos métodos son funciones dentro de objetos:\n\nlet calculadora = {\n  sumar: function(a, b) {\n    return a + b;\n  }\n};\n\ncalculadora.sumar(5, 3); // 8',
+                'destructuring': 'DESTRUCTURING:\n\nExtrae propiedades de objetos:\n\nlet persona = { nombre: "Ana", edad: 25 };\nlet { nombre, edad } = persona;\nconsole.log(nombre); // "Ana"\nconsole.log(edad); // 25'
+            };
+            
+            alert(explanations[method]);
+        }
+
+        function showMethodExamples() {
+            alert(`EJEMPLOS PRÁCTICOS:
+
+// Crear objeto
+let producto = {
+    nombre: "Laptop",
+    precio: 999,
+    stock: 5,
+    calcularTotal: function(cantidad) {
+        return this.precio * cantidad;
+    }
+};
+
+// Acceder a propiedades
+console.log(producto.nombre); // "Laptop"
+console.log(producto["precio"]); // 999
+
+// Usar método
+let total = producto.calcularTotal(2); // 1998
+
+// Destructuring
+let { nombre, precio } = producto;
+console.log(nombre, precio); // "Laptop" 999`);
+        }
+
+        function showObjectMethods() {
+            alert(`MÉTODOS DE OBJECT:
+
+Object.keys(objeto) - Obtiene las claves
+Object.values(objeto) - Obtiene los valores
+Object.entries(objeto) - Obtiene pares clave-valor
+
+let persona = { nombre: "Ana", edad: 25 };
+
+Object.keys(persona); // ["nombre", "edad"]
+Object.values(persona); // ["Ana", 25]
+Object.entries(persona); // [["nombre", "Ana"], ["edad", 25]]`);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.concept-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModulAnimation 3 - Arrays</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .animation-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .animation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .animation-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .animation-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .concept-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Visualización de array */
+        .array-visualization {
+            background: #2c2c54;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .array-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .array-element {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 60px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .array-element:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .array-index {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4ecdc4;
+            color: #333;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .array-element.highlighted {
+            background: linear-gradient(45deg, #feca57, #ff9ff3);
+            transform: scale(1.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        /* Métodos de array */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .method-card {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .method-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .method-card.push { background: linear-gradient(135deg, #4834d4, #686de0); }
+        .method-card.pop { background: linear-gradient(135deg, #00d2d3, #54a0ff); }
+        .method-card.map { background: linear-gradient(135deg, #ff9ff3, #f368e0); }
+        .method-card.filter { background: linear-gradient(135deg, #96ceb4, #6c5ce7); }
+        .method-card.reduce { background: linear-gradient(135deg, #feca57, #ff6348); }
+
+        .method-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .method-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .method-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Animación de transformación */
+        .transformation-demo {
+            background: #96ceb4;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            color: #333;
+        }
+
+        .transformation-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .transformation-step {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 150px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .transformation-step.active {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: #333;
+            animation: bounce 1s infinite;
+        }
+
+        /* Control buttons */
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Animaciones CSS */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-in {
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .animate-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .animation-header h1 {
+                font-size: 2rem;
+            }
+            
+            .array-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .methods-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .transformation-steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animation-page">
+        <div class="animation-container">
+            <!-- Header -->
+            <div class="animation-header animate-up">
+                <h1><i class="fas fa-list"></i> ModulAnimation 3</h1>
+                <p>Arrays - Aprende con Animaciones Interactivas</p>
+            </div>
+
+            <!-- Sección 1: Visualización de Array -->
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">📋 Estructura de Arrays</h2>
+                <p class="concept-description">Haz clic en los elementos para ver sus índices</p>
+                
+                <div class="array-visualization">
+                    <h3>Array: [10, 20, 30, 40, 50]</h3>
+                    <div class="array-container" id="arrayContainer">
+                        <div class="array-element" data-index="0" onclick="highlightElement(0)">
+                            <div class="array-index">0</div>
+                            <div>10</div>
+                        </div>
+                        <div class="array-element" data-index="1" onclick="highlightElement(1)">
+                            <div class="array-index">1</div>
+                            <div>20</div>
+                        </div>
+                        <div class="array-element" data-index="2" onclick="highlightElement(2)">
+                            <div class="array-index">2</div>
+                            <div>30</div>
+                        </div>
+                        <div class="array-element" data-index="3" onclick="highlightElement(3)">
+                            <div class="array-index">3</div>
+                            <div>40</div>
+                        </div>
+                        <div class="array-element" data-index="4" onclick="highlightElement(4)">
+                            <div class="array-index">4</div>
+                            <div>50</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="showArrayInfo()">
+                        <i class="fas fa-info-circle"></i> Ver Información
+                    </button>
+                    <button class="control-btn" onclick="resetArray()">
+                        <i class="fas fa-redo"></i> Reiniciar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sección 2: Métodos de Array -->
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">🔧 Métodos de Array</h2>
+                <p class="concept-description">Explora los métodos más importantes</p>
+                
+                <div class="methods-grid">
+                    <div class="method-card push" onclick="animateMethod('push')">
+                        <div class="method-icon">➕</div>
+                        <div class="method-name">push()</div>
+                        <div class="method-description">Agrega al final</div>
+                    </div>
+                    
+                    <div class="method-card pop" onclick="animateMethod('pop')">
+                        <div class="method-icon">➖</div>
+                        <div class="method-name">pop()</div>
+                        <div class="method-description">Quita del final</div>
+                    </div>
+                    
+                    <div class="method-card map" onclick="animateMethod('map')">
+                        <div class="method-icon">🔄</div>
+                        <div class="method-name">map()</div>
+                        <div class="method-description">Transforma elementos</div>
+                    </div>
+                    
+                    <div class="method-card filter" onclick="animateMethod('filter')">
+                        <div class="method-icon">🔍</div>
+                        <div class="method-name">filter()</div>
+                        <div class="method-description">Filtra elementos</div>
+                    </div>
+                    
+                    <div class="method-card reduce" onclick="animateMethod('reduce')">
+                        <div class="method-icon">📊</div>
+                        <div class="method-name">reduce()</div>
+                        <div class="method-description">Reduce a un valor</div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="showMethodExamples()">
+                        <i class="fas fa-code"></i> Ver Ejemplos
+                    </button>
+                    <button class="control-btn" onclick="interactiveArray()">
+                        <i class="fas fa-play"></i> Probar Array
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sección 3: Transformaciones -->
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">🔄 Transformaciones de Array</h2>
+                <p class="concept-description">Ve cómo se transforman los arrays paso a paso</p>
+                
+                <div class="transformation-demo">
+                    <div class="transformation-steps">
+                        <div class="transformation-step" id="step1">
+                            <h4>Array Original</h4>
+                            <div>[1, 2, 3, 4, 5]</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="transformation-step" id="step2">
+                            <h4>map(x => x * 2)</h4>
+                            <div>[2, 4, 6, 8, 10]</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="transformation-step" id="step3">
+                            <h4>filter(x => x > 5)</h4>
+                            <div>[6, 8, 10]</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="transformation-step" id="step4">
+                            <h4>reduce((a, b) => a + b)</h4>
+                            <div>24</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="animateTransformation()">
+                        <i class="fas fa-play"></i> Ver Transformación
+                    </button>
+                    <button class="control-btn" onclick="showChainExample()">
+                        <i class="fas fa-link"></i> Ver Encadenamiento
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navegación -->
+            <div class="control-buttons">
+                <button class="control-btn" onclick="window.location.href='ModulAnimation2.html'">
+                    <i class="fas fa-arrow-left"></i> Anterior: Funciones
+                </button>
+                <button class="control-btn" onclick="window.location.href='ModulAnimation4.html'">
+                    <i class="fas fa-arrow-right"></i> Siguiente: Objetos
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animación de elementos de array
+        function highlightElement(index) {
+            const elements = document.querySelectorAll('.array-element');
+            elements.forEach(el => el.classList.remove('highlighted'));
+            
+            const targetElement = document.querySelector(`[data-index="${index}"]`);
+            targetElement.classList.add('highlighted');
+            
+            setTimeout(() => {
+                targetElement.classList.remove('highlighted');
+            }, 1000);
+            
+            alert(`Elemento en índice ${index}: ${targetElement.textContent.trim()}`);
+        }
+
+        function showArrayInfo() {
+            alert(`INFORMACIÓN DE ARRAYS:
+
+• Los arrays son listas ordenadas de elementos
+• Los índices empiezan en 0 (no en 1)
+• Se pueden acceder con: array[índice]
+• La longitud es: array.length
+• Los elementos pueden ser de cualquier tipo
+
+Ejemplo:
+let frutas = ["manzana", "banana", "naranja"];
+console.log(frutas[0]); // "manzana"
+console.log(frutas.length); // 3`);
+        }
+
+        function resetArray() {
+            const elements = document.querySelectorAll('.array-element');
+            elements.forEach(el => el.classList.remove('highlighted'));
+        }
+
+        // Animación de métodos
+        function animateMethod(method) {
+            const cards = document.querySelectorAll('.method-card');
+            cards.forEach(card => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+            });
+            
+            const targetCard = document.querySelector(`.method-card.${method}`);
+            targetCard.style.transform = 'translateY(-15px) scale(1.05)';
+            targetCard.style.boxShadow = '0 25px 50px rgba(0,0,0,0.4)';
+            
+            setTimeout(() => {
+                targetCard.style.transform = 'translateY(-10px) scale(1.02)';
+                targetCard.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+            }, 500);
+            
+            showMethodExplanation(method);
+        }
+
+        function showMethodExplanation(method) {
+            const explanations = {
+                'push': 'PUSH(): Agrega uno o más elementos al final del array y devuelve la nueva longitud.\n\nlet numeros = [1, 2, 3];\nnumeros.push(4); // [1, 2, 3, 4]',
+                'pop': 'POP(): Elimina el último elemento del array y lo devuelve.\n\nlet numeros = [1, 2, 3];\nlet ultimo = numeros.pop(); // ultimo = 3, numeros = [1, 2]',
+                'map': 'MAP(): Crea un nuevo array con los resultados de aplicar una función a cada elemento.\n\nlet numeros = [1, 2, 3];\nlet dobles = numeros.map(x => x * 2); // [2, 4, 6]',
+                'filter': 'FILTER(): Crea un nuevo array con elementos que pasan una prueba.\n\nlet numeros = [1, 2, 3, 4, 5];\nlet pares = numeros.filter(x => x % 2 === 0); // [2, 4]',
+                'reduce': 'REDUCE(): Reduce el array a un solo valor aplicando una función acumuladora.\n\nlet numeros = [1, 2, 3, 4];\nlet suma = numeros.reduce((a, b) => a + b); // 10'
+            };
+            
+            alert(explanations[method]);
+        }
+
+        function showMethodExamples() {
+            alert(`EJEMPLOS PRÁCTICOS:
+
+// Crear array
+let productos = ["laptop", "mouse", "teclado"];
+
+// Agregar elemento
+productos.push("monitor"); // ["laptop", "mouse", "teclado", "monitor"]
+
+// Quitar último
+let ultimo = productos.pop(); // ultimo = "monitor"
+
+// Transformar
+let mayusculas = productos.map(p => p.toUpperCase());
+// ["LAPTOP", "MOUSE", "TECLADO"]
+
+// Filtrar
+let largos = productos.filter(p => p.length > 5);
+// ["teclado"]
+
+// Reducir
+let total = productos.reduce((acc, p) => acc + p.length, 0);
+// 18 (suma de longitudes)`);
+        }
+
+        function interactiveArray() {
+            const input = prompt('Escribe elementos separados por comas (ej: manzana, banana, naranja):');
+            if (input) {
+                const array = input.split(',').map(item => item.trim());
+                alert(`Array creado: [${array.join(', ')}]\nLongitud: ${array.length}\nPrimer elemento: ${array[0]}\nÚltimo elemento: ${array[array.length - 1]}`);
+            }
+        }
+
+        // Animación de transformaciones
+        function animateTransformation() {
+            const steps = document.querySelectorAll('.transformation-step');
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.classList.add('active');
+                    setTimeout(() => {
+                        step.classList.remove('active');
+                    }, 1000);
+                }, index * 800);
+            });
+        }
+
+        function showChainExample() {
+            alert(`ENCADENAMIENTO DE MÉTODOS:
+
+let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+let resultado = numeros
+    .filter(x => x % 2 === 0)    // [2, 4, 6, 8, 10]
+    .map(x => x * 2)              // [4, 8, 12, 16, 20]
+    .reduce((a, b) => a + b);     // 60
+
+Paso a paso:
+1. Filtrar números pares
+2. Multiplicar por 2
+3. Sumar todos los resultados`);
+        }
+
+        // Animaciones de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.concept-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

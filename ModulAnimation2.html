@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModulAnimation 2 - Funciones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .animation-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .animation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .animation-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .animation-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .concept-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Animación de tipos de funciones */
+        .function-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .function-card {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .function-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .function-card.declared {
+            background: linear-gradient(135deg, #4834d4, #686de0);
+        }
+
+        .function-card.expressed {
+            background: linear-gradient(135deg, #00d2d3, #54a0ff);
+        }
+
+        .function-card.arrow {
+            background: linear-gradient(135deg, #ff9ff3, #f368e0);
+        }
+
+        .function-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .function-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .function-code {
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        /* Animación de parámetros */
+        .parameters-demo {
+            background: #2c2c54;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .parameter-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .parameter-box {
+            background: #ff6b6b;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 120px;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        .parameter-box.argument {
+            background: #4ecdc4;
+        }
+
+        .parameter-box.result {
+            background: #feca57;
+            color: #333;
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: white;
+            animation: bounce 1s infinite;
+        }
+
+        /* Animación de scope */
+        .scope-visualization {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .scope-box {
+            background: #40407a;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 200px;
+            margin: 1rem;
+            position: relative;
+        }
+
+        .scope-box.global {
+            border: 3px solid #4ecdc4;
+        }
+
+        .scope-box.local {
+            border: 3px solid #feca57;
+        }
+
+        .variable-item {
+            background: #ff6b6b;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+            display: inline-block;
+        }
+
+        /* Animación de callbacks */
+        .callback-demo {
+            background: #96ceb4;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            color: #333;
+        }
+
+        .callback-chain {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .callback-step {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 100px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .callback-step.active {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Animaciones CSS */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-in {
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .animate-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .animation-header h1 {
+                font-size: 2rem;
+            }
+            
+            .function-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .parameter-flow {
+                flex-direction: column;
+            }
+            
+            .scope-visualization {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animation-page">
+        <div class="animation-container">
+            <!-- Header -->
+            <div class="animation-header animate-up">
+                <h1><i class="fas fa-cogs"></i> ModulAnimation 2</h1>
+                <p>Funciones - Aprende con Animaciones Interactivas</p>
+            </div>
+
+            <!-- Sección 1: Tipos de Funciones -->
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">🔧 Tipos de Funciones</h2>
+                <p class="concept-description">Haz clic en cada tipo para ver cómo funciona</p>
+                
+                <div class="function-types">
+                    <div class="function-card declared" onclick="animateFunction('declared')">
+                        <div class="function-icon">📝</div>
+                        <div class="function-name">Función Declarada</div>
+                        <div class="function-code">function saludar() {<br>&nbsp;&nbsp;return "Hola";<br>}</div>
+                    </div>
+                    
+                    <div class="function-card expressed" onclick="animateFunction('expressed')">
+                        <div class="function-icon">⚡</div>
+                        <div class="function-name">Función Expresada</div>
+                        <div class="function-code">let saludar = function() {<br>&nbsp;&nbsp;return "Hola";<br>};</div>
+                    </div>
+                    
+                    <div class="function-card arrow" onclick="animateFunction('arrow')">
+                        <div class="function-icon">🏹</div>
+                        <div class="function-name">Arrow Function</div>
+                        <div class="function-code">let saludar = () => "Hola";</div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="showFunctionComparison()">
+                        <i class="fas fa-balance-scale"></i> Comparar Tipos
+                    </button>
+                    <button class="control-btn" onclick="resetFunctions()">
+                        <i class="fas fa-redo"></i> Reiniciar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sección 2: Parámetros y Argumentos -->
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">📥 Parámetros y Argumentos</h2>
+                <p class="concept-description">Ve cómo fluyen los datos a través de las funciones</p>
+                
+                <div class="parameters-demo">
+                    <div class="parameter-flow">
+                        <div class="parameter-box">
+                            <div>Argumento</div>
+                            <div>"Juan"</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="parameter-box parameter">
+                            <div>Parámetro</div>
+                            <div>nombre</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="parameter-box result">
+                            <div>Resultado</div>
+                            <div>"Hola Juan"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="animateParameterFlow()">
+                        <i class="fas fa-play"></i> Ver Flujo
+                    </button>
+                    <button class="control-btn" onclick="interactiveFunction()">
+                        <i class="fas fa-keyboard"></i> Probar Función
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sección 3: Scope y Closures -->
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">🌐 Scope y Closures</h2>
+                <p class="concept-description">Entiende cómo las funciones crean su propio mundo</p>
+                
+                <div class="scope-visualization">
+                    <div class="scope-box global">
+                        <h3>🌍 Scope Global</h3>
+                        <div class="variable-item">let global = "Soy global"</div>
+                        <div class="variable-item">function ejemplo() { ... }</div>
+                    </div>
+                    
+                    <div class="scope-box local">
+                        <h3>🏠 Scope Local</h3>
+                        <div class="variable-item">let local = "Soy local"</div>
+                        <div class="variable-item">return local + global</div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="animateScope()">
+                        <i class="fas fa-eye"></i> Ver Scope
+                    </button>
+                    <button class="control-btn" onclick="showClosure()">
+                        <i class="fas fa-lock"></i> Ver Closure
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sección 4: Callbacks -->
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">🔄 Callbacks</h2>
+                <p class="concept-description">Funciones que se pasan como parámetros</p>
+                
+                <div class="callback-demo">
+                    <div class="callback-chain">
+                        <div class="callback-step" id="step1">
+                            <div>1. Función Principal</div>
+                            <div>procesarDatos()</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="callback-step" id="step2">
+                            <div>2. Callback</div>
+                            <div>mostrarResultado()</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="callback-step" id="step3">
+                            <div>3. Resultado</div>
+                            <div>Datos procesados</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="animateCallback()">
+                        <i class="fas fa-play"></i> Ejecutar Callback
+                    </button>
+                    <button class="control-btn" onclick="showCallbackExamples()">
+                        <i class="fas fa-code"></i> Ver Ejemplos
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navegación -->
+            <div class="control-buttons">
+                <button class="control-btn" onclick="window.location.href='ModulAnimation1.html'">
+                    <i class="fas fa-arrow-left"></i> Anterior: Variables
+                </button>
+                <button class="control-btn" onclick="window.location.href='ModulAnimation3.html'">
+                    <i class="fas fa-arrow-right"></i> Siguiente: Arrays
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animaciones de funciones
+        function animateFunction(type) {
+            const cards = document.querySelectorAll('.function-card');
+            cards.forEach(card => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+            });
+            
+            const targetCard = document.querySelector(`.function-card.${type}`);
+            targetCard.style.transform = 'translateY(-15px) scale(1.05)';
+            targetCard.style.boxShadow = '0 25px 50px rgba(0,0,0,0.4)';
+            
+            setTimeout(() => {
+                targetCard.style.transform = 'translateY(-10px) scale(1.02)';
+                targetCard.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+            }, 500);
+            
+            showFunctionExplanation(type);
+        }
+
+        function showFunctionExplanation(type) {
+            const explanations = {
+                'declared': 'FUNCIÓN DECLARADA:\n• Se puede usar antes de declararla (hoisting)\n• Tiene nombre propio\n• Scope de función\n• Sintaxis: function nombre() {}',
+                'expressed': 'FUNCIÓN EXPRESADA:\n• Se asigna a una variable\n• No se puede usar antes de declararla\n• Anónima (sin nombre propio)\n• Sintaxis: let nombre = function() {}',
+                'arrow': 'ARROW FUNCTION:\n• Sintaxis más corta\n• Sin this propio\n• Return implícito\n• Sintaxis: let nombre = () => {}'
+            };
+            
+            alert(explanations[type]);
+        }
+
+        function showFunctionComparison() {
+            alert(`COMPARACIÓN DE FUNCIONES:
+
+DECLARADA:
+✅ Hoisting completo
+✅ Tiene nombre
+❌ Más verbosa
+
+EXPRESADA:
+❌ Sin hoisting
+❌ Anónima
+✅ Más flexible
+
+ARROW:
+❌ Sin hoisting
+❌ Anónima
+✅ Más corta
+✅ Sin this propio`);
+        }
+
+        function resetFunctions() {
+            const cards = document.querySelectorAll('.function-card');
+            cards.forEach(card => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+            });
+        }
+
+        // Animación de parámetros
+        function animateParameterFlow() {
+            const boxes = document.querySelectorAll('.parameter-box');
+            boxes.forEach((box, index) => {
+                setTimeout(() => {
+                    box.style.transform = 'scale(1.2)';
+                    box.style.boxShadow = '0 15px 30px rgba(0,0,0,0.3)';
+                    setTimeout(() => {
+                        box.style.transform = 'scale(1)';
+                        box.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+                    }, 500);
+                }, index * 300);
+            });
+        }
+
+        function interactiveFunction() {
+            const nombre = prompt('Escribe tu nombre para probar la función:');
+            if (nombre) {
+                const resultado = `Hola, ${nombre}! Bienvenido a JavaScript.`;
+                alert(`Resultado de la función:\n"${resultado}"`);
+            }
+        }
+
+        // Animación de scope
+        function animateScope() {
+            const boxes = document.querySelectorAll('.scope-box');
+            boxes.forEach((box, index) => {
+                setTimeout(() => {
+                    box.style.borderWidth = '5px';
+                    box.style.backgroundColor = '#ff6b6b20';
+                    setTimeout(() => {
+                        box.style.borderWidth = '3px';
+                        box.style.backgroundColor = '#40407a';
+                    }, 1000);
+                }, index * 500);
+            });
+        }
+
+        function showClosure() {
+            alert(`CLOSURE (Cierre):
+
+Una función que "recuerda" su entorno:
+
+function crearContador() {
+    let contador = 0;
+    return function() {
+        contador++;
+        return contador;
+    };
+}
+
+let miContador = crearContador();
+miContador(); // 1
+miContador(); // 2
+
+La función interna "recuerda" la variable contador.`);
+        }
+
+        // Animación de callbacks
+        function animateCallback() {
+            const steps = document.querySelectorAll('.callback-step');
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.classList.add('active');
+                    setTimeout(() => {
+                        step.classList.remove('active');
+                    }, 1000);
+                }, index * 800);
+            });
+        }
+
+        function showCallbackExamples() {
+            alert(`EJEMPLOS DE CALLBACKS:
+
+1. Con setTimeout:
+setTimeout(() => {
+    console.log('Se ejecutó después de 2 segundos');
+}, 2000);
+
+2. Con arrays:
+let numeros = [1, 2, 3, 4, 5];
+let dobles = numeros.map(num => num * 2);
+
+3. Con eventos:
+boton.addEventListener('click', function() {
+    console.log('Botón presionado');
+});`);
+        }
+
+        // Animaciones de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.concept-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

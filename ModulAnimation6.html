@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModulAnimation 6 - Herramientas de Desarrollo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .animation-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .animation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .animation-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .animation-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .concept-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .concept-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Herramientas grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tool-card {
+            background: linear-gradient(135deg, #4834d4, #686de0);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .tool-card.debugger { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+        .tool-card.console { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .tool-card.git { background: linear-gradient(135deg, #feca57, #ff6348); }
+        .tool-card.npm { background: linear-gradient(135deg, #96ceb4, #6c5ce7); }
+        .tool-card.vscode { background: linear-gradient(135deg, #ff9ff3, #f368e0); }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Flujo de desarrollo */
+        .development-flow {
+            background: #2c2c54;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .flow-steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 150px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step.active {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: white;
+            animation: bounce 1s infinite;
+        }
+
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .animate-in {
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .animate-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @media (max-width: 768px) {
+            .animation-header h1 { font-size: 2rem; }
+            .tools-grid { grid-template-columns: 1fr; }
+            .flow-steps { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animation-page">
+        <div class="animation-container">
+            <div class="animation-header animate-up">
+                <h1><i class="fas fa-tools"></i> ModulAnimation 6</h1>
+                <p>Herramientas de Desarrollo - Aprende con Animaciones Interactivas</p>
+            </div>
+
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">🛠️ Herramientas Esenciales</h2>
+                <p class="concept-description">Haz clic en cada herramienta para conocer su función</p>
+                
+                <div class="tools-grid">
+                    <div class="tool-card debugger" onclick="animateTool('debugger')">
+                        <div class="tool-icon">🐛</div>
+                        <div class="tool-name">Debugger</div>
+                        <div class="tool-description">Depurar código paso a paso</div>
+                    </div>
+                    
+                    <div class="tool-card console" onclick="animateTool('console')">
+                        <div class="tool-icon">💻</div>
+                        <div class="tool-name">Console</div>
+                        <div class="tool-description">Ver logs y errores</div>
+                    </div>
+                    
+                    <div class="tool-card git" onclick="animateTool('git')">
+                        <div class="tool-icon">📚</div>
+                        <div class="tool-name">Git</div>
+                        <div class="tool-description">Control de versiones</div>
+                    </div>
+                    
+                    <div class="tool-card npm" onclick="animateTool('npm')">
+                        <div class="tool-icon">📦</div>
+                        <div class="tool-name">NPM</div>
+                        <div class="tool-description">Gestor de paquetes</div>
+                    </div>
+                    
+                    <div class="tool-card vscode" onclick="animateTool('vscode')">
+                        <div class="tool-icon">⚡</div>
+                        <div class="tool-name">VS Code</div>
+                        <div class="tool-description">Editor de código</div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="showToolsInfo()">
+                        <i class="fas fa-info-circle"></i> Ver Información
+                    </button>
+                    <button class="control-btn" onclick="demoConsole()">
+                        <i class="fas fa-play"></i> Demo Console
+                    </button>
+                </div>
+            </div>
+
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">🔄 Flujo de Desarrollo</h2>
+                <p class="concept-description">Ve el proceso completo de desarrollo de software</p>
+                
+                <div class="development-flow">
+                    <div class="flow-steps">
+                        <div class="flow-step" id="step1">
+                            <div style="font-size: 1.2rem; font-weight: bold;">1. Escribir</div>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Código en editor</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step" id="step2">
+                            <div style="font-size: 1.2rem; font-weight: bold;">2. Debuggear</div>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Encontrar errores</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step" id="step3">
+                            <div style="font-size: 1.2rem; font-weight: bold;">3. Probar</div>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Verificar funcionamiento</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step" id="step4">
+                            <div style="font-size: 1.2rem; font-weight: bold;">4. Subir</div>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Git commit & push</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="animateFlow()">
+                        <i class="fas fa-play"></i> Ver Flujo
+                    </button>
+                    <button class="control-btn" onclick="showBestPractices()">
+                        <i class="fas fa-star"></i> Mejores Prácticas
+                    </button>
+                </div>
+            </div>
+
+            <div class="control-buttons">
+                <button class="control-btn" onclick="window.location.href='ModulAnimation5.html'">
+                    <i class="fas fa-arrow-left"></i> Anterior: Asíncrono
+                </button>
+                <button class="control-btn" onclick="window.location.href='index.html'">
+                    <i class="fas fa-home"></i> Volver al Inicio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function animateTool(tool) {
+            const cards = document.querySelectorAll('.tool-card');
+            cards.forEach(card => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+            });
+            
+            const targetCard = document.querySelector(`.tool-card.${tool}`);
+            targetCard.style.transform = 'translateY(-15px) scale(1.05)';
+            targetCard.style.boxShadow = '0 25px 50px rgba(0,0,0,0.4)';
+            
+            setTimeout(() => {
+                targetCard.style.transform = 'translateY(-10px) scale(1.02)';
+                targetCard.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+            }, 500);
+            
+            showToolExplanation(tool);
+        }
+
+        function showToolExplanation(tool) {
+            const explanations = {
+                'debugger': 'DEBUGGER:\n\n• Permite ejecutar código paso a paso\n• Inspeccionar variables en tiempo real\n• Encontrar errores más fácilmente\n\nUso: debugger; // Pausa la ejecución\n\nEn DevTools: Sources → Breakpoints',
+                'console': 'CONSOLE:\n\n• Muestra logs, errores y advertencias\n• Permite ejecutar código JavaScript\n• Inspeccionar variables y objetos\n\nComandos útiles:\nconsole.log() - Mostrar información\nconsole.error() - Mostrar errores\nconsole.table() - Mostrar en tabla',
+                'git': 'GIT:\n\n• Control de versiones del código\n• Historial de cambios\n• Colaboración en equipo\n\nComandos básicos:\ngit add . - Agregar cambios\ngit commit -m "mensaje" - Guardar\ngit push - Subir cambios',
+                'npm': 'NPM:\n\n• Gestor de paquetes de Node.js\n• Instalar librerías y dependencias\n• Gestionar versiones\n\nComandos:\nnpm install paquete - Instalar\nnpm start - Ejecutar proyecto\nnpm run build - Compilar',
+                'vscode': 'VS CODE:\n\n• Editor de código moderno\n• Extensiones útiles\n• Integración con Git\n\nExtensiones recomendadas:\n• Live Server\n• Prettier\n• ESLint\n• GitLens'
+            };
+            
+            alert(explanations[tool]);
+        }
+
+        function showToolsInfo() {
+            alert(`HERRAMIENTAS DE DESARROLLO:
+
+1. DEBUGGER: Depurar código paso a paso
+2. CONSOLE: Ver logs y ejecutar código
+3. GIT: Control de versiones
+4. NPM: Gestor de paquetes
+5. VS CODE: Editor de código
+
+Estas herramientas son esenciales para:
+• Escribir código eficientemente
+• Encontrar y corregir errores
+• Colaborar con otros desarrolladores
+• Mantener el código organizado`);
+        }
+
+        function demoConsole() {
+            alert('Abre la consola del navegador (F12) para ver los logs:');
+            console.log('¡Hola desde la consola!');
+            console.log('Este es un log de información');
+            console.warn('Este es una advertencia');
+            console.error('Este es un error');
+            console.table(['Manzana', 'Banana', 'Naranja']);
+        }
+
+        function animateFlow() {
+            const steps = document.querySelectorAll('.flow-step');
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.classList.add('active');
+                    setTimeout(() => {
+                        step.classList.remove('active');
+                    }, 1000);
+                }, index * 800);
+            });
+        }
+
+        function showBestPractices() {
+            alert(`MEJORES PRÁCTICAS:
+
+1. CÓDIGO:
+• Usa nombres descriptivos
+• Comenta código complejo
+• Mantén funciones pequeñas
+• Sigue un estilo consistente
+
+2. DEBUGGING:
+• Usa console.log() estratégicamente
+• Aprende a usar el debugger
+• Revisa errores en la consola
+• Prueba tu código regularmente
+
+3. GIT:
+• Haz commits frecuentes
+• Escribe mensajes descriptivos
+• Usa ramas para features
+• Mantén el historial limpio
+
+4. HERRAMIENTAS:
+• Configura tu editor
+• Usa extensiones útiles
+• Aprende atajos de teclado
+• Mantén las herramientas actualizadas`);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.concept-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

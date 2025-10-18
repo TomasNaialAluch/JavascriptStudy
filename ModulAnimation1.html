@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModulAnimation 1 - Variables y Tipos de Datos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para la página de animaciones */
+        .animation-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .animation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .animation-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .animation-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .animation-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .concept-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .concept-description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Animación de variables */
+        .variable-demo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .variable-box {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 150px;
+            position: relative;
+            animation: pulse 2s infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .variable-box:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .variable-box.var {
+            background: linear-gradient(45deg, #4834d4, #686de0);
+        }
+
+        .variable-box.let {
+            background: linear-gradient(45deg, #00d2d3, #54a0ff);
+        }
+
+        .variable-box.const {
+            background: linear-gradient(45deg, #ff9ff3, #f368e0);
+        }
+
+        .variable-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .variable-value {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .variable-type {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #2c2c54;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Animación de tipos de datos */
+        .types-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .type-card {
+            background: white;
+            border: 3px solid #ddd;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .type-card.string {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, #ff6b6b20, #ff6b6b10);
+        }
+
+        .type-card.number {
+            border-color: #4ecdc4;
+            background: linear-gradient(135deg, #4ecdc420, #4ecdc410);
+        }
+
+        .type-card.boolean {
+            border-color: #45b7d1;
+            background: linear-gradient(135deg, #45b7d120, #45b7d110);
+        }
+
+        .type-card.object {
+            border-color: #96ceb4;
+            background: linear-gradient(135deg, #96ceb420, #96ceb410);
+        }
+
+        .type-card.array {
+            border-color: #feca57;
+            background: linear-gradient(135deg, #feca5720, #feca5710);
+        }
+
+        .type-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .type-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .type-example {
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Animación de scope */
+        .scope-demo {
+            background: #2c2c54;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .scope-block {
+            background: #40407a;
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid #ff6b6b;
+            position: relative;
+        }
+
+        .scope-block.global {
+            border-left-color: #4ecdc4;
+        }
+
+        .scope-block.local {
+            border-left-color: #feca57;
+        }
+
+        .scope-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .variable-flow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: #ff6b6b;
+            animation: bounce 1s infinite;
+        }
+
+        /* Botones de control */
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Animaciones CSS */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-in {
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .animate-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .animation-header h1 {
+                font-size: 2rem;
+            }
+            
+            .variable-demo {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .types-demo {
+                grid-template-columns: 1fr;
+            }
+            
+            .control-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animation-page">
+        <div class="animation-container">
+            <!-- Header -->
+            <div class="animation-header animate-up">
+                <h1><i class="fas fa-play-circle"></i> ModulAnimation 1</h1>
+                <p>Variables y Tipos de Datos - Aprende con Animaciones Interactivas</p>
+            </div>
+
+            <!-- Sección 1: Declaración de Variables -->
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">🔧 Declaración de Variables</h2>
+                <p class="concept-description">Haz clic en cada variable para ver cómo se comporta</p>
+                
+                <div class="variable-demo">
+                    <div class="variable-box var" onclick="animateVariable('var')">
+                        <div class="variable-type">var</div>
+                        <div class="variable-name">var</div>
+                        <div class="variable-value">Tradicional</div>
+                    </div>
+                    
+                    <div class="variable-box let" onclick="animateVariable('let')">
+                        <div class="variable-type">let</div>
+                        <div class="variable-name">let</div>
+                        <div class="variable-value">Moderno</div>
+                    </div>
+                    
+                    <div class="variable-box const" onclick="animateVariable('const')">
+                        <div class="variable-type">const</div>
+                        <div class="variable-name">const</div>
+                        <div class="variable-value">Constante</div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="showVariableInfo()">
+                        <i class="fas fa-info-circle"></i> Ver Diferencias
+                    </button>
+                    <button class="control-btn" onclick="resetVariables()">
+                        <i class="fas fa-redo"></i> Reiniciar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sección 2: Tipos de Datos -->
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">📊 Tipos de Datos</h2>
+                <p class="concept-description">Explora los diferentes tipos de datos en JavaScript</p>
+                
+                <div class="types-demo">
+                    <div class="type-card string" onclick="animateType('string')">
+                        <div class="type-icon">📝</div>
+                        <div class="type-name">String</div>
+                        <div class="type-example">"Hola Mundo"</div>
+                    </div>
+                    
+                    <div class="type-card number" onclick="animateType('number')">
+                        <div class="type-icon">🔢</div>
+                        <div class="type-name">Number</div>
+                        <div class="type-example">42, 3.14</div>
+                    </div>
+                    
+                    <div class="type-card boolean" onclick="animateType('boolean')">
+                        <div class="type-icon">✅</div>
+                        <div class="type-name">Boolean</div>
+                        <div class="type-example">true, false</div>
+                    </div>
+                    
+                    <div class="type-card object" onclick="animateType('object')">
+                        <div class="type-icon">📦</div>
+                        <div class="type-name">Object</div>
+                        <div class="type-example">{nombre: "Ana"}</div>
+                    </div>
+                    
+                    <div class="type-card array" onclick="animateType('array')">
+                        <div class="type-icon">📋</div>
+                        <div class="type-name">Array</div>
+                        <div class="type-example">[1, 2, 3]</div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="showTypeConversion()">
+                        <i class="fas fa-exchange-alt"></i> Ver Conversiones
+                    </button>
+                    <button class="control-btn" onclick="interactiveDemo()">
+                        <i class="fas fa-play"></i> Demo Interactivo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sección 3: Scope y Hoisting -->
+            <div class="concept-section animate-in">
+                <h2 class="concept-title">🌐 Scope y Hoisting</h2>
+                <p class="concept-description">Entiende cómo funcionan el alcance y la elevación de variables</p>
+                
+                <div class="scope-demo">
+                    <div class="scope-block global">
+                        <div class="scope-title">🌍 Scope Global</div>
+                        <div class="variable-flow">
+                            <span>var globalVar = "Soy global"</span>
+                            <div class="flow-arrow">→</div>
+                            <span>Accesible en toda la aplicación</span>
+                        </div>
+                    </div>
+                    
+                    <div class="scope-block local">
+                        <div class="scope-title">🏠 Scope Local</div>
+                        <div class="variable-flow">
+                            <span>function ejemplo() {</span>
+                            <div class="flow-arrow">→</div>
+                            <span>let localVar = "Soy local"</span>
+                        </div>
+                        <div class="variable-flow">
+                            <span>}</span>
+                            <div class="flow-arrow">→</div>
+                            <span>Solo accesible dentro de la función</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="animateScope()">
+                        <i class="fas fa-eye"></i> Ver Scope en Acción
+                    </button>
+                    <button class="control-btn" onclick="showHoisting()">
+                        <i class="fas fa-arrow-up"></i> Ver Hoisting
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navegación -->
+            <div class="control-buttons">
+                <button class="control-btn" onclick="window.location.href='modulo1-fundamentos.html'">
+                    <i class="fas fa-arrow-left"></i> Volver al Módulo 1
+                </button>
+                <button class="control-btn" onclick="window.location.href='ModulAnimation2.html'">
+                    <i class="fas fa-arrow-right"></i> Siguiente: Funciones
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animaciones de variables
+        function animateVariable(type) {
+            const boxes = document.querySelectorAll('.variable-box');
+            boxes.forEach(box => box.style.transform = 'scale(1)');
+            
+            const targetBox = document.querySelector(`.variable-box.${type}`);
+            targetBox.style.transform = 'scale(1.2)';
+            targetBox.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4)';
+            
+            setTimeout(() => {
+                targetBox.style.transform = 'scale(1.1)';
+                targetBox.style.boxShadow = '0 15px 35px rgba(0,0,0,0.3)';
+            }, 500);
+            
+            showVariableExplanation(type);
+        }
+
+        function showVariableExplanation(type) {
+            const explanations = {
+                'var': 'var tiene scope de función y se puede redeclarar. Se "eleva" (hoisting) al inicio de su scope.',
+                'let': 'let tiene scope de bloque y no se puede redeclarar. No se puede usar antes de declararla.',
+                'const': 'const es una constante que no se puede reasignar. Debe inicializarse al declararla.'
+            };
+            
+            alert(explanations[type]);
+        }
+
+        function showVariableInfo() {
+            alert(`DIFERENCIAS CLAVE:
+            
+var: Scope de función, se puede redeclarar, hoisting completo
+let: Scope de bloque, no se puede redeclarar, hoisting parcial  
+const: Scope de bloque, no se puede reasignar, debe inicializarse
+
+¡Usa let y const en lugar de var para código más seguro!`);
+        }
+
+        function resetVariables() {
+            const boxes = document.querySelectorAll('.variable-box');
+            boxes.forEach(box => {
+                box.style.transform = 'scale(1)';
+                box.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+            });
+        }
+
+        // Animaciones de tipos
+        function animateType(type) {
+            const cards = document.querySelectorAll('.type-card');
+            cards.forEach(card => card.style.transform = 'translateY(0)');
+            
+            const targetCard = document.querySelector(`.type-card.${type}`);
+            targetCard.style.transform = 'translateY(-15px) scale(1.05)';
+            targetCard.style.boxShadow = '0 25px 50px rgba(0,0,0,0.2)';
+            
+            setTimeout(() => {
+                targetCard.style.transform = 'translateY(-10px) scale(1.02)';
+                targetCard.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
+            }, 500);
+            
+            showTypeExplanation(type);
+        }
+
+        function showTypeExplanation(type) {
+            const explanations = {
+                'string': 'String: Texto entre comillas. Puede usar comillas simples, dobles o backticks.',
+                'number': 'Number: Números enteros o decimales. JavaScript no distingue entre int y float.',
+                'boolean': 'Boolean: Solo true o false. Se usa para condiciones y lógica.',
+                'object': 'Object: Colección de propiedades clave-valor. Muy flexible y poderoso.',
+                'array': 'Array: Lista ordenada de elementos. Los índices empiezan en 0.'
+            };
+            
+            alert(explanations[type]);
+        }
+
+        function showTypeConversion() {
+            alert(`CONVERSIONES DE TIPOS:
+
+String a Number: parseInt("123") = 123
+Number a String: (123).toString() = "123"
+Boolean a String: String(true) = "true"
+Array a String: [1,2,3].join(",") = "1,2,3"
+
+JavaScript convierte automáticamente entre tipos cuando es necesario.`);
+        }
+
+        function interactiveDemo() {
+            const userInput = prompt('Escribe algo y veremos qué tipo de dato es:');
+            if (userInput !== null) {
+                const type = typeof userInput;
+                alert(`Has escrito: "${userInput}"
+Tipo detectado: ${type}
+Longitud: ${userInput.length} caracteres`);
+            }
+        }
+
+        // Animaciones de scope
+        function animateScope() {
+            const blocks = document.querySelectorAll('.scope-block');
+            blocks.forEach((block, index) => {
+                setTimeout(() => {
+                    block.style.borderLeftWidth = '10px';
+                    block.style.backgroundColor = '#ff6b6b20';
+                    setTimeout(() => {
+                        block.style.borderLeftWidth = '5px';
+                        block.style.backgroundColor = '#40407a';
+                    }, 1000);
+                }, index * 500);
+            });
+        }
+
+        function showHoisting() {
+            alert(`HOISTING (Elevación):
+
+var: Se eleva completamente (declaración + inicialización)
+let/const: Se elevan pero no se pueden usar (zona muerta temporal)
+
+Ejemplo:
+console.log(x); // undefined (var)
+var x = 5;
+
+console.log(y); // ReferenceError (let)
+let y = 10;`);
+        }
+
+        // Animaciones de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.concept-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
