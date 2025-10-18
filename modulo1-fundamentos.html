@@ -6813,25 +6813,84 @@ n => ({ valor: n })</code></pre>
         </div>
     </div>
 
-    <!-- Botón de navegación a animaciones -->
-    <div style="position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;">
-        <button onclick="window.location.href='ModulAnimation1.html'" 
-                style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); 
-                       color: white; 
-                       border: none; 
-                       padding: 1rem 1.5rem; 
-                       border-radius: 50px; 
-                       font-size: 1rem; 
-                       font-weight: bold; 
-                       cursor: pointer; 
-                       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                       transition: all 0.3s ease;
-                       display: flex;
-                       align-items: center;
-                       gap: 0.5rem;">
-            <i class="fas fa-magic"></i>
-            <span>Ver Animaciones</span>
+    <!-- Floating Action Button (FAB) -->
+    <div class="fab-container">
+        <button class="fab-button" id="fabButton">
+            <i class="fas fa-bars"></i>
         </button>
+        <div class="fab-menu" id="fabMenu">
+            <a href="#" class="fab-item" onclick="scrollToTop(); return false;">
+                <i class="fas fa-arrow-up"></i>
+                <span>Ir Arriba</span>
+            </a>
+            <a href="#variables" class="fab-item">
+                <i class="fas fa-tag"></i>
+                <span>Lección 1: Variables y Tipos</span>
+            </a>
+            <a href="#operadores" class="fab-item">
+                <i class="fas fa-calculator"></i>
+                <span>Lección 2: Operadores</span>
+            </a>
+            <a href="#control" class="fab-item">
+                <i class="fas fa-code-branch"></i>
+                <span>Lección 3: Estructuras de Control</span>
+            </a>
+            <a href="#funciones" class="fab-item">
+                <i class="fas fa-cogs"></i>
+                <span>Lección 4: Funciones</span>
+            </a>
+            <a href="#arrays" class="fab-item">
+                <i class="fas fa-list"></i>
+                <span>Lección 5: Arrays y Objetos</span>
+            </a>
+            <a href="#ejercicios" class="fab-item">
+                <i class="fas fa-dumbbell"></i>
+                <span>Lección 6: Ejercicios</span>
+            </a>
+            <a href="#callbacks" class="fab-item">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Lección 7: Callbacks</span>
+            </a>
+            <a href="ModulAnimation1.html" class="fab-item">
+                <i class="fas fa-magic"></i>
+                <span>Ver Animaciones</span>
+            </a>
+        </div>
     </div>
+
+    <script>
+        // FAB functionality
+        const fabButton = document.getElementById('fabButton');
+        const fabMenu = document.getElementById('fabMenu');
+        
+        fabButton.addEventListener('click', () => {
+            fabMenu.classList.toggle('active');
+            fabButton.classList.toggle('active');
+        });
+
+        // Close FAB menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.fab-container')) {
+                fabMenu.classList.remove('active');
+                fabButton.classList.remove('active');
+            }
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Close FAB menu when clicking on a lesson link
+        document.querySelectorAll('.fab-item[href^="#"]').forEach(link => {
+            link.addEventListener('click', () => {
+                fabMenu.classList.remove('active');
+                fabButton.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>

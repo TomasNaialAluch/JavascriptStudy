@@ -2198,7 +2198,10 @@ html {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    z-index: 1000;
+    z-index: 9999;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .fab-button {
@@ -2209,12 +2212,14 @@ html {
     border: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--secondary-color);
     font-size: 1.5rem;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .fab-button:hover {
