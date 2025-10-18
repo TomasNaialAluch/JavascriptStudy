@@ -241,17 +241,20 @@
                                 <div class="theory-card">
                                     <h4><i class="fas fa-tag"></i> Declaración de Variables</h4>
                                     <div class="theory-list">
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('var-declaration-modal')">
                                             <code>var</code>
                                             <span>Declaración tradicional, con scope de función</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('let-declaration-modal')">
                                             <code>let</code>
                                             <span>Declaración moderna, con scope de bloque</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('const-declaration-modal')">
                                             <code>const</code>
                                             <span>Constante que no puede ser reasignada</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -259,25 +262,30 @@
                                 <div class="theory-card">
                                     <h4><i class="fas fa-database"></i> Tipos de Datos</h4>
                                     <div class="theory-list">
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('string-type-modal')">
                                             <code>String</code>
                                             <span>Texto entre comillas</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('number-type-modal')">
                                             <code>Number</code>
                                             <span>Números enteros o decimales</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('boolean-type-modal')">
                                             <code>Boolean</code>
                                             <span>true o false</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('object-type-modal')">
                                             <code>Object</code>
                                             <span>Colección de propiedades</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <div class="theory-item">
+                                        <div class="theory-item clickable" onclick="openModal('array-type-modal')">
                                             <code>Array</code>
                                             <span>Lista ordenada de elementos</span>
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -3859,6 +3867,1068 @@ analizarTexto(miTexto);</code></pre>
                     <li><strong>filter():</strong> Crea un nuevo array con elementos que cumplen una condición</li>
                     <li><strong>length:</strong> Propiedad que devuelve la longitud de strings y arrays</li>
                     <li><strong>Bucles:</strong> for...of para recorrer arrays fácilmente</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales para Lección 1: Variables y Tipos de Datos -->
+    <div id="var-declaration-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('var-declaration-modal')">&times;</span>
+            <h2><i class="fas fa-tag"></i> var - Declaración Tradicional</h2>
+            <div class="modal-body">
+                <h3>¿Qué es var?</h3>
+                <p><code>var</code> es la forma tradicional (pre-ES6) de declarar variables en JavaScript. Aunque sigue funcionando, tiene peculiaridades que pueden causar errores.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">var nombreVariable = valor;</code></pre>
+                
+                <h3>Características de var:</h3>
+                <h4>1. Function Scope (Alcance de Función):</h4>
+                <pre><code class="language-javascript">function ejemplo() {
+    if (true) {
+        var x = 10;
+    }
+    console.log(x); // 10 - ¡x existe fuera del if!
+}
+
+ejemplo();</code></pre>
+                
+                <h4>2. Hoisting (Elevación):</h4>
+                <pre><code class="language-javascript">console.log(nombre); // undefined (no error)
+var nombre = "Juan";
+
+// JavaScript lo interpreta así:
+var nombre;              // Declaración elevada
+console.log(nombre);     // undefined
+nombre = "Juan";         // Asignación queda en su lugar</code></pre>
+                
+                <h4>3. Re-declaración Permitida:</h4>
+                <pre><code class="language-javascript">var edad = 25;
+var edad = 30;  // ✅ Permitido (pero confuso)
+console.log(edad); // 30</code></pre>
+                
+                <h4>4. Variables Globales:</h4>
+                <pre><code class="language-javascript">var global = "Soy global";
+
+function test() {
+    var local = "Soy local";
+    console.log(global); // "Soy global" ✅
+}
+
+test();
+console.log(local); // ❌ Error: local is not defined</code></pre>
+                
+                <h3>Problemas Comunes con var:</h3>
+                <pre><code class="language-javascript">// Problema 1: Scope inesperado
+for (var i = 0; i < 3; i++) {
+    setTimeout(function() {
+        console.log(i); // Imprime 3, 3, 3 (no 0, 1, 2)
+    }, 100);
+}
+
+// Problema 2: Variables accidentalmente globales
+function calcular() {
+    resultado = 10 * 2; // ❌ Sin var/let/const = global!
+}
+calcular();
+console.log(resultado); // 20 (¡ups!)
+
+// Problema 3: Re-declaración confusa
+var usuario = "Ana";
+// ... muchas líneas después ...
+var usuario = "Carlos"; // ¿Intencional o error?</code></pre>
+                
+                <h3>Cuándo NO usar var:</h3>
+                <ul>
+                    <li>❌ En código nuevo (usa <code>let</code> o <code>const</code>)</li>
+                    <li>❌ Cuando necesites block scope</li>
+                    <li>❌ Para evitar confusiones con hoisting</li>
+                </ul>
+                
+                <h3>Cuándo podrías usar var:</h3>
+                <ul>
+                    <li>✅ Manteniendo código legacy</li>
+                    <li>✅ Compatibilidad con navegadores muy antiguos</li>
+                </ul>
+                
+                <h3>💡 Recomendación Moderna:</h3>
+                <p>Usa <code>let</code> y <code>const</code> en lugar de <code>var</code>. Son más predecibles y menos propensos a errores.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="let-declaration-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('let-declaration-modal')">&times;</span>
+            <h2><i class="fas fa-tag"></i> let - Declaración Moderna con Block Scope</h2>
+            <div class="modal-body">
+                <h3>¿Qué es let?</h3>
+                <p><code>let</code> es la forma moderna (ES6+) de declarar variables. Tiene block scope y soluciona muchos problemas de <code>var</code>.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">let nombreVariable = valor;</code></pre>
+                
+                <h3>Características de let:</h3>
+                <h4>1. Block Scope (Alcance de Bloque):</h4>
+                <pre><code class="language-javascript">function ejemplo() {
+    if (true) {
+        let x = 10;
+        console.log(x); // 10 ✅
+    }
+    console.log(x); // ❌ Error: x is not defined
+}
+
+// El scope es el bloque {...}
+{
+    let mensaje = "Hola";
+    console.log(mensaje); // "Hola" ✅
+}
+console.log(mensaje); // ❌ Error: mensaje is not defined</code></pre>
+                
+                <h4>2. NO se Re-declara:</h4>
+                <pre><code class="language-javascript">let edad = 25;
+let edad = 30; // ❌ Error: Identifier 'edad' has already been declared
+
+// Pero SÍ se puede reasignar:
+edad = 30; // ✅ Correcto
+console.log(edad); // 30</code></pre>
+                
+                <h4>3. Temporal Dead Zone (TDZ):</h4>
+                <pre><code class="language-javascript">console.log(nombre); // ❌ Error: Cannot access 'nombre' before initialization
+let nombre = "Juan";
+
+// let SÍ tiene hoisting, pero no se puede acceder antes de la declaración</code></pre>
+                
+                <h4>4. Perfecto para Loops:</h4>
+                <pre><code class="language-javascript">// Con let - cada iteración tiene su propio scope
+for (let i = 0; i < 3; i++) {
+    setTimeout(function() {
+        console.log(i); // Imprime 0, 1, 2 ✅
+    }, 100);
+}
+
+// Comparación con var:
+for (var j = 0; j < 3; j++) {
+    setTimeout(function() {
+        console.log(j); // Imprime 3, 3, 3 ❌
+    }, 100);
+}</code></pre>
+                
+                <h3>Ejemplos Prácticos:</h3>
+                <pre><code class="language-javascript">// Variables que cambian
+let contador = 0;
+contador++; // ✅
+contador = 10; // ✅
+
+// Diferentes tipos
+let nombre = "Ana";
+let edad = 25;
+let activo = true;
+
+// En condicionales
+if (usuario.premium) {
+    let descuento = 0.2;
+    precio = precio * (1 - descuento);
+}
+// descuento no existe aquí ✅
+
+// En bucles
+let frutas = ["manzana", "banana", "naranja"];
+for (let i = 0; i < frutas.length; i++) {
+    console.log(frutas[i]);
+}
+// i no existe aquí ✅</code></pre>
+                
+                <h3>Diferencia clave: let vs var</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Característica</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">var</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">let</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Scope</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Function</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Block</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Re-declaración</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Permitida</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ Error</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Hoisting</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Sí (valor undefined)</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Sí (TDZ)</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Global object</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Crea propiedad</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">No crea propiedad</td>
+                    </tr>
+                </table>
+                
+                <h3>💡 Cuándo usar let:</h3>
+                <ul>
+                    <li>✅ Cuando la variable va a cambiar de valor</li>
+                    <li>✅ Para contadores en loops</li>
+                    <li>✅ Variables temporales en bloques</li>
+                    <li>✅ Como reemplazo moderno de var</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="const-declaration-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('const-declaration-modal')">&times;</span>
+            <h2><i class="fas fa-lock"></i> const - Constantes (No Reasignables)</h2>
+            <div class="modal-body">
+                <h3>¿Qué es const?</h3>
+                <p><code>const</code> declara una constante cuya referencia no puede ser reasignada. Tiene las mismas características de scope que <code>let</code>, pero con la restricción de no poder reasignar.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">const nombreConstante = valor;</code></pre>
+                
+                <h3>Reglas de const:</h3>
+                <h4>1. Debe Inicializarse al Declarar:</h4>
+                <pre><code class="language-javascript">const PI = 3.14159; // ✅ Correcto
+
+const nombre; // ❌ Error: Missing initializer in const declaration
+nombre = "Juan";</code></pre>
+                
+                <h4>2. NO se Puede Reasignar:</h4>
+                <pre><code class="language-javascript">const edad = 25;
+edad = 30; // ❌ Error: Assignment to constant variable
+
+const nombre = "Ana";
+nombre = "Carlos"; // ❌ Error</code></pre>
+                
+                <h4>3. Block Scope (como let):</h4>
+                <pre><code class="language-javascript">if (true) {
+    const mensaje = "Hola";
+    console.log(mensaje); // "Hola" ✅
+}
+console.log(mensaje); // ❌ Error: mensaje is not defined</code></pre>
+                
+                <h4>4. ⚠️ Objetos y Arrays SÍ se Pueden Modificar:</h4>
+                <pre><code class="language-javascript">// La REFERENCIA es constante, no el CONTENIDO
+const persona = {
+    nombre: "Juan",
+    edad: 25
+};
+
+// ✅ Modificar propiedades es PERMITIDO
+persona.edad = 26;
+persona.ciudad = "Madrid";
+console.log(persona); // { nombre: "Juan", edad: 26, ciudad: "Madrid" }
+
+// ❌ Reasignar el objeto NO es permitido
+persona = { nombre: "Carlos" }; // ❌ Error
+
+// Lo mismo con arrays
+const numeros = [1, 2, 3];
+
+// ✅ Modificar el array es PERMITIDO
+numeros.push(4);
+numeros[0] = 10;
+console.log(numeros); // [10, 2, 3, 4]
+
+// ❌ Reasignar el array NO es permitido
+numeros = [5, 6, 7]; // ❌ Error</code></pre>
+                
+                <h3>Ejemplos Prácticos:</h3>
+                <pre><code class="language-javascript">// Constantes matemáticas
+const PI = 3.14159;
+const E = 2.71828;
+
+// Configuración
+const API_URL = "https://api.example.com";
+const MAX_RETRIES = 3;
+const TIMEOUT = 5000;
+
+// Funciones
+const saludar = (nombre) => `Hola, ${nombre}!`;
+const sumar = (a, b) => a + b;
+
+// Objetos de configuración
+const config = {
+    theme: "dark",
+    language: "es",
+    notifications: true
+};
+
+// Podemos cambiar propiedades:
+config.theme = "light"; // ✅
+
+// Arrays
+const usuarios = ["Ana", "Carlos", "María"];
+usuarios.push("Pedro"); // ✅
+console.log(usuarios); // ["Ana", "Carlos", "María", "Pedro"]</code></pre>
+                
+                <h3>Hacer Objetos Realmente Inmutables:</h3>
+                <pre><code class="language-javascript">// Si quieres que el objeto sea 100% inmutable:
+const persona = Object.freeze({
+    nombre: "Juan",
+    edad: 25
+});
+
+persona.edad = 30; // ❌ Silenciosamente no hace nada (error en strict mode)
+console.log(persona.edad); // 25 (no cambió)
+
+// Para arrays
+const numeros = Object.freeze([1, 2, 3]);
+numeros.push(4); // ❌ Error: Cannot add property</code></pre>
+                
+                <h3>Diferencia: const vs let</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">Característica</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">let</th>
+                        <th style="padding: 0.5rem; border: 1px solid #dee2e6;">const</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Reasignación</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Permitida</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">❌ NO permitida</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Inicialización</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Opcional</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Obligatoria</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Scope</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Block</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">Block</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;"><strong>Mutación de objetos</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Permitida</td>
+                        <td style="padding: 0.5rem; border: 1px solid #dee2e6;">✅ Permitida</td>
+                    </tr>
+                </table>
+                
+                <h3>💡 Cuándo usar const:</h3>
+                <ul>
+                    <li>✅ Por defecto, usa const para TODO</li>
+                    <li>✅ Para valores que no deben cambiar</li>
+                    <li>✅ Para funciones (arrow functions)</li>
+                    <li>✅ Para objetos y arrays (aunque se modifiquen)</li>
+                    <li>✅ Para constantes (PI, API_URL, etc.)</li>
+                </ul>
+                
+                <h3>Regla de Oro:</h3>
+                <p><strong>Usa <code>const</code> por defecto. Solo cambia a <code>let</code> si necesitas reasignar.</strong> Nunca uses <code>var</code> en código nuevo.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales para Lección 1: Tipos de Datos -->
+    <div id="string-type-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('string-type-modal')">&times;</span>
+            <h2><i class="fas fa-quote-left"></i> String - Cadenas de Texto</h2>
+            <div class="modal-body">
+                <h3>¿Qué es un String?</h3>
+                <p>Un <code>string</code> es un tipo de dato que representa texto. Es una secuencia de caracteres encerrados entre comillas.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">// Comillas simples
+let mensaje = 'Hola mundo';
+
+// Comillas dobles
+let nombre = "Juan";
+
+// Template literals (ES6)
+let saludo = `Hola, ${nombre}!`;</code></pre>
+                
+                <h3>Características:</h3>
+                <h4>1. Inmutabilidad:</h4>
+                <pre><code class="language-javascript">let texto = "Hola";
+texto[0] = "M"; // ❌ No funciona
+console.log(texto); // "Hola" (sin cambios)
+
+// Para cambiar, crea uno nuevo:
+texto = "Mola"; // ✅</code></pre>
+                
+                <h4>2. Propiedades y Métodos:</h4>
+                <pre><code class="language-javascript">let texto = "JavaScript";
+
+// Longitud
+console.log(texto.length); // 10
+
+// Acceso a caracteres
+console.log(texto[0]); // "J"
+console.log(texto.charAt(0)); // "J"
+
+// Métodos comunes
+console.log(texto.toUpperCase()); // "JAVASCRIPT"
+console.log(texto.toLowerCase()); // "javascript"
+console.log(texto.includes("Java")); // true
+console.log(texto.indexOf("Script")); // 4
+console.log(texto.substring(0, 4)); // "Java"</code></pre>
+                
+                <h4>3. Concatenación:</h4>
+                <pre><code class="language-javascript">// Operador +
+let nombre = "Ana";
+let apellido = "García";
+let completo = nombre + " " + apellido; // "Ana García"
+
+// Template literals (recomendado)
+let saludo = `Hola, ${nombre} ${apellido}!`; // "Hola, Ana García!"
+
+// Método concat()
+let resultado = nombre.concat(" ", apellido); // "Ana García"</code></pre>
+                
+                <h3>Escape de Caracteres:</h3>
+                <pre><code class="language-javascript">// Comillas dentro de comillas
+let mensaje = "Dijo: \"Hola mundo\"";
+let otro = 'Dijo: \'Hola mundo\'';
+
+// Caracteres especiales
+let texto = "Línea 1\nLínea 2"; // Salto de línea
+let tab = "Columna1\tColumna2"; // Tabulación
+let backslash = "Ruta: C:\\carpeta\\archivo"; // Barra invertida</code></pre>
+                
+                <h3>Comparación de Strings:</h3>
+                <pre><code class="language-javascript">let a = "Hola";
+let b = "Hola";
+let c = "hola";
+
+console.log(a === b); // true (iguales)
+console.log(a === c); // false (diferentes)
+console.log(a.toLowerCase() === c); // true (comparación insensible)</code></pre>
+                
+                <h3>💡 Casos de Uso Comunes:</h3>
+                <ul>
+                    <li>✅ Mensajes de usuario</li>
+                    <li>✅ Nombres y descripciones</li>
+                    <li>✅ URLs y rutas</li>
+                    <li>✅ Validación de formularios</li>
+                    <li>✅ Manipulación de texto</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="number-type-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('number-type-modal')">&times;</span>
+            <h2><i class="fas fa-calculator"></i> Number - Números</h2>
+            <div class="modal-body">
+                <h3>¿Qué es un Number?</h3>
+                <p>Un <code>number</code> representa valores numéricos. JavaScript tiene un solo tipo numérico que incluye enteros y decimales.</p>
+                
+                <h3>Tipos de Números:</h3>
+                <h4>1. Enteros:</h4>
+                <pre><code class="language-javascript">let edad = 25;
+let negativo = -10;
+let grande = 1000000;</code></pre>
+                
+                <h4>2. Decimales (Float):</h4>
+                <pre><code class="language-javascript">let precio = 19.99;
+let pi = 3.14159;
+let cientifico = 1.5e6; // 1,500,000</code></pre>
+                
+                <h4>3. Valores Especiales:</h4>
+                <pre><code class="language-javascript">let infinito = Infinity;
+let menosInfinito = -Infinity;
+let noEsNumero = NaN; // Not a Number
+
+console.log(typeof infinito); // "number"
+console.log(typeof NaN); // "number"</code></pre>
+                
+                <h3>Operaciones Matemáticas:</h3>
+                <pre><code class="language-javascript">let a = 10;
+let b = 3;
+
+// Operaciones básicas
+console.log(a + b); // 13 (suma)
+console.log(a - b); // 7 (resta)
+console.log(a * b); // 30 (multiplicación)
+console.log(a / b); // 3.333... (división)
+console.log(a % b); // 1 (módulo/resto)
+console.log(a ** b); // 1000 (exponenciación)</code></pre>
+                
+                <h3>Métodos Útiles:</h3>
+                <pre><code class="language-javascript">let numero = 3.14159;
+
+// Redondeo
+console.log(Math.round(numero)); // 3
+console.log(Math.floor(numero)); // 3 (hacia abajo)
+console.log(Math.ceil(numero)); // 4 (hacia arriba)
+console.log(Math.trunc(numero)); // 3 (elimina decimales)
+
+// Valor absoluto
+console.log(Math.abs(-5)); // 5
+
+// Máximo y mínimo
+console.log(Math.max(1, 5, 3)); // 5
+console.log(Math.min(1, 5, 3)); // 1
+
+// Números aleatorios
+console.log(Math.random()); // 0.0 a 0.999...
+console.log(Math.floor(Math.random() * 10)); // 0 a 9</code></pre>
+                
+                <h3>Conversión de Tipos:</h3>
+                <pre><code class="language-javascript">// String a Number
+let texto = "123";
+let numero = Number(texto); // 123
+let entero = parseInt(texto); // 123
+let decimal = parseFloat("12.34"); // 12.34
+
+// Number a String
+let num = 456;
+let texto2 = num.toString(); // "456"
+let texto3 = String(num); // "456"
+
+// Verificar si es número
+console.log(isNaN("abc")); // true
+console.log(isFinite(Infinity)); // false
+console.log(Number.isInteger(5)); // true</code></pre>
+                
+                <h3>Precisión y Errores:</h3>
+                <pre><code class="language-javascript">// Problema de precisión con decimales
+console.log(0.1 + 0.2); // 0.30000000000000004 (no 0.3)
+
+// Solución: redondear
+console.log(Math.round((0.1 + 0.2) * 100) / 100); // 0.3
+
+// Comparación segura
+function esIgual(a, b) {
+    return Math.abs(a - b) < 0.0001;
+}
+console.log(esIgual(0.1 + 0.2, 0.3)); // true</code></pre>
+                
+                <h3>💡 Casos de Uso Comunes:</h3>
+                <ul>
+                    <li>✅ Cálculos matemáticos</li>
+                    <li>✅ Contadores y índices</li>
+                    <li>✅ Precios y cantidades</li>
+                    <li>✅ Coordenadas y medidas</li>
+                    <li>✅ IDs y códigos numéricos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="boolean-type-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('boolean-type-modal')">&times;</span>
+            <h2><i class="fas fa-check-circle"></i> Boolean - Valores Lógicos</h2>
+            <div class="modal-body">
+                <h3>¿Qué es un Boolean?</h3>
+                <p>Un <code>boolean</code> representa un valor lógico que puede ser <code>true</code> (verdadero) o <code>false</code> (falso).</p>
+                
+                <h3>Valores Booleanos:</h3>
+                <pre><code class="language-javascript">let verdadero = true;
+let falso = false;
+
+console.log(typeof verdadero); // "boolean"
+console.log(typeof falso); // "boolean"</code></pre>
+                
+                <h3>Valores Falsy (Falsos):</h3>
+                <pre><code class="language-javascript">// Estos valores se evalúan como false:
+console.log(Boolean(false));     // false
+console.log(Boolean(0));         // false
+console.log(Boolean(-0));        // false
+console.log(Boolean(0n));        // false (BigInt)
+console.log(Boolean(""));        // false (string vacío)
+console.log(Boolean(null));      // false
+console.log(Boolean(undefined)); // false
+console.log(Boolean(NaN));       // false</code></pre>
+                
+                <h3>Valores Truthy (Verdaderos):</h3>
+                <pre><code class="language-javascript">// Casi todo lo demás es true:
+console.log(Boolean(true));      // true
+console.log(Boolean(1));         // true
+console.log(Boolean(-1));        // true
+console.log(Boolean("0"));       // true (string con "0")
+console.log(Boolean("false"));   // true (string con "false")
+console.log(Boolean([]));        // true (array vacío)
+console.log(Boolean({}));        // true (objeto vacío)
+console.log(Boolean(function(){})); // true (función)</code></pre>
+                
+                <h3>Operadores Lógicos:</h3>
+                <h4>1. AND (&&):</h4>
+                <pre><code class="language-javascript">// Devuelve el primer valor falsy o el último si todos son truthy
+console.log(true && true);   // true
+console.log(true && false);  // false
+console.log(false && true);  // false
+console.log(false && false); // false
+
+// Ejemplos prácticos
+let edad = 25;
+let tieneLicencia = true;
+let puedeConducir = edad >= 18 && tieneLicencia; // true
+
+// Short-circuit evaluation
+let usuario = null;
+let nombre = usuario && usuario.nombre; // null (no da error)</code></pre>
+                
+                <h4>2. OR (||):</h4>
+                <pre><code class="language-javascript">// Devuelve el primer valor truthy o el último si todos son falsy
+console.log(true || true);   // true
+console.log(true || false);  // true
+console.log(false || true);  // true
+console.log(false || false); // false
+
+// Valores por defecto
+let nombre = "";
+let nombreUsuario = nombre || "Usuario"; // "Usuario"
+
+// Configuración
+let puerto = process.env.PORT || 3000; // 3000 si no hay PORT</code></pre>
+                
+                <h4>3. NOT (!):</h4>
+                <pre><code class="language-javascript">console.log(!true);  // false
+console.log(!false); // true
+
+// Doble negación para convertir a boolean
+let texto = "Hola";
+let esTexto = !!texto; // true (más explícito que Boolean(texto))
+
+// Verificar si algo existe
+if (!usuario) {
+    console.log("No hay usuario");
+}</code></pre>
+                
+                <h3>Comparaciones que Devuelven Boolean:</h3>
+                <pre><code class="language-javascript">let a = 5;
+let b = 10;
+
+// Operadores de comparación
+console.log(a == b);  // false (igualdad)
+console.log(a != b);  // true (desigualdad)
+console.log(a === b); // false (igualdad estricta)
+console.log(a !== b); // true (desigualdad estricta)
+console.log(a < b);   // true (menor que)
+console.log(a > b);   // false (mayor que)
+console.log(a <= b);  // true (menor o igual)
+console.log(a >= b);  // false (mayor o igual)</code></pre>
+                
+                <h3>Uso en Condicionales:</h3>
+                <pre><code class="language-javascript">let edad = 18;
+let tieneLicencia = true;
+
+// if/else
+if (edad >= 18 && tieneLicencia) {
+    console.log("Puede conducir");
+} else {
+    console.log("No puede conducir");
+}
+
+// Operador ternario
+let mensaje = edad >= 18 ? "Mayor de edad" : "Menor de edad";
+
+// Switch (comparación estricta)
+switch (true) {
+    case edad < 18:
+        console.log("Menor");
+        break;
+    case edad >= 18 && edad < 65:
+        console.log("Adulto");
+        break;
+    default:
+        console.log("Jubilado");
+}</code></pre>
+                
+                <h3>Conversión a Boolean:</h3>
+                <pre><code class="language-javascript">// Métodos de conversión
+let valor = "Hola";
+
+// Constructor Boolean()
+let bool1 = Boolean(valor); // true
+
+// Doble negación
+let bool2 = !!valor; // true
+
+// En contexto booleano (if, while, etc.)
+if (valor) {
+    console.log("Es truthy");
+}
+
+// Verificación explícita
+if (valor === true) {
+    console.log("Es exactamente true");
+}</code></pre>
+                
+                <h3>💡 Casos de Uso Comunes:</h3>
+                <ul>
+                    <li>✅ Condiciones en if/else</li>
+                    <li>✅ Bucles while/for</li>
+                    <li>✅ Validación de formularios</li>
+                    <li>✅ Estados de aplicación</li>
+                    <li>✅ Flags y configuraciones</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="object-type-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('object-type-modal')">&times;</span>
+            <h2><i class="fas fa-cube"></i> Object - Objetos</h2>
+            <div class="modal-body">
+                <h3>¿Qué es un Object?</h3>
+                <p>Un <code>object</code> es una colección de propiedades (clave-valor) que permite almacenar y organizar datos de manera estructurada.</p>
+                
+                <h3>Creación de Objetos:</h3>
+                <h4>1. Literal de Objeto:</h4>
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Juan",
+    edad: 25,
+    ciudad: "Madrid",
+    activo: true
+};</code></pre>
+                
+                <h4>2. Constructor Object():</h4>
+                <pre><code class="language-javascript">let auto = new Object();
+auto.marca = "Toyota";
+auto.modelo = "Corolla";
+auto.año = 2020;</code></pre>
+                
+                <h4>3. Object.create():</h4>
+                <pre><code class="language-javascript">let animal = Object.create(null);
+animal.tipo = "Perro";
+animal.edad = 3;</code></pre>
+                
+                <h3>Acceso a Propiedades:</h3>
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Ana",
+    edad: 30,
+    "apellido": "García" // Clave con comillas
+};
+
+// Notación de punto
+console.log(persona.nombre); // "Ana"
+
+// Notación de corchetes
+console.log(persona["edad"]); // 30
+console.log(persona["apellido"]); // "García"
+
+// Variable como clave
+let clave = "nombre";
+console.log(persona[clave]); // "Ana"</code></pre>
+                
+                <h3>Modificación de Propiedades:</h3>
+                <pre><code class="language-javascript">let usuario = {
+    nombre: "Carlos",
+    edad: 25
+};
+
+// Agregar propiedades
+usuario.email = "carlos@email.com";
+usuario["ciudad"] = "Barcelona";
+
+// Modificar propiedades existentes
+usuario.edad = 26;
+
+// Eliminar propiedades
+delete usuario.ciudad;
+
+console.log(usuario); // { nombre: "Carlos", edad: 26, email: "carlos@email.com" }</code></pre>
+                
+                <h3>Métodos de Objeto:</h3>
+                <pre><code class="language-javascript">let calculadora = {
+    resultado: 0,
+    
+    // Método (función como propiedad)
+    sumar: function(a, b) {
+        this.resultado = a + b;
+        return this.resultado;
+    },
+    
+    // Arrow function (no tiene this propio)
+    restar: (a, b) => {
+        // this.resultado no funcionaría aquí
+        return a - b;
+    },
+    
+    // Método con sintaxis ES6
+    multiplicar(a, b) {
+        this.resultado = a * b;
+        return this.resultado;
+    }
+};
+
+console.log(calculadora.sumar(5, 3)); // 8
+console.log(calculadora.resultado); // 8</code></pre>
+                
+                <h3>Iteración sobre Objetos:</h3>
+                <pre><code class="language-javascript">let datos = {
+    nombre: "María",
+    edad: 28,
+    profesion: "Desarrolladora"
+};
+
+// for...in
+for (let clave in datos) {
+    console.log(clave + ": " + datos[clave]);
+}
+
+// Object.keys()
+let claves = Object.keys(datos);
+console.log(claves); // ["nombre", "edad", "profesion"]
+
+// Object.values()
+let valores = Object.values(datos);
+console.log(valores); // ["María", 28, "Desarrolladora"]
+
+// Object.entries()
+let entradas = Object.entries(datos);
+console.log(entradas); // [["nombre", "María"], ["edad", 28], ["profesion", "Desarrolladora"]]
+
+// for...of con Object.entries()
+for (let [clave, valor] of Object.entries(datos)) {
+    console.log(`${clave}: ${valor}`);
+}</code></pre>
+                
+                <h3>Objetos Anidados:</h3>
+                <pre><code class="language-javascript">let empresa = {
+    nombre: "TechCorp",
+    direccion: {
+        calle: "Calle Principal 123",
+        ciudad: "Madrid",
+        codigoPostal: "28001"
+    },
+    empleados: [
+        { nombre: "Ana", puesto: "CEO" },
+        { nombre: "Carlos", puesto: "CTO" }
+    ]
+};
+
+// Acceso a propiedades anidadas
+console.log(empresa.direccion.ciudad); // "Madrid"
+console.log(empresa.empleados[0].nombre); // "Ana"
+
+// Modificación de propiedades anidadas
+empresa.direccion.ciudad = "Barcelona";
+empresa.empleados.push({ nombre: "María", puesto: "Desarrolladora" });</code></pre>
+                
+                <h3>Métodos Útiles:</h3>
+                <pre><code class="language-javascript">let obj = { a: 1, b: 2, c: 3 };
+
+// Verificar si existe una propiedad
+console.log("a" in obj); // true
+console.log(obj.hasOwnProperty("a")); // true
+
+// Copiar objeto (shallow copy)
+let copia = Object.assign({}, obj);
+let copia2 = { ...obj }; // Spread operator (ES6)
+
+// Congelar objeto (no se puede modificar)
+let congelado = Object.freeze({ x: 1, y: 2 });
+congelado.x = 3; // No funciona (en strict mode da error)
+
+// Obtener descriptores de propiedades
+let descriptores = Object.getOwnPropertyDescriptors(obj);
+console.log(descriptores);</code></pre>
+                
+                <h3>💡 Casos de Uso Comunes:</h3>
+                <ul>
+                    <li>✅ Representar entidades del mundo real</li>
+                    <li>✅ Configuraciones y opciones</li>
+                    <li>✅ Almacenar datos relacionados</li>
+                    <li>✅ Namespaces y módulos</li>
+                    <li>✅ APIs y respuestas de servidor</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="array-type-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('array-type-modal')">&times;</span>
+            <h2><i class="fas fa-list"></i> Array - Arreglos</h2>
+            <div class="modal-body">
+                <h3>¿Qué es un Array?</h3>
+                <p>Un <code>array</code> es una lista ordenada de elementos que pueden ser de cualquier tipo. Los elementos se acceden por su índice (posición).</p>
+                
+                <h3>Creación de Arrays:</h3>
+                <h4>1. Literal de Array:</h4>
+                <pre><code class="language-javascript">let frutas = ["manzana", "banana", "naranja"];
+let numeros = [1, 2, 3, 4, 5];
+let mixto = ["texto", 123, true, { nombre: "Juan" }];</code></pre>
+                
+                <h4>2. Constructor Array():</h4>
+                <pre><code class="language-javascript">let colores = new Array("rojo", "verde", "azul");
+let vacio = new Array(); // []
+let conTamaño = new Array(3); // [undefined, undefined, undefined]</code></pre>
+                
+                <h4>3. Array.from() y Array.of():</h4>
+                <pre><code class="language-javascript">// Array.from() - crear desde iterable
+let array1 = Array.from("Hola"); // ["H", "o", "l", "a"]
+let array2 = Array.from({length: 3}, (_, i) => i * 2); // [0, 2, 4]
+
+// Array.of() - crear con elementos específicos
+let array3 = Array.of(1, 2, 3); // [1, 2, 3]</code></pre>
+                
+                <h3>Acceso a Elementos:</h3>
+                <pre><code class="language-javascript">let frutas = ["manzana", "banana", "naranja"];
+
+// Acceso por índice (empieza en 0)
+console.log(frutas[0]); // "manzana"
+console.log(frutas[1]); // "banana"
+console.log(frutas[2]); // "naranja"
+
+// Modificar elementos
+frutas[1] = "pera";
+console.log(frutas); // ["manzana", "pera", "naranja"]
+
+// Acceso a último elemento
+console.log(frutas[frutas.length - 1]); // "naranja"
+console.log(frutas.at(-1)); // "naranja" (ES2022)</code></pre>
+                
+                <h3>Propiedades y Métodos Básicos:</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+
+// Longitud del array
+console.log(numeros.length); // 5
+
+// Verificar si es array
+console.log(Array.isArray(numeros)); // true
+console.log(numeros instanceof Array); // true
+
+// Convertir a string
+console.log(numeros.toString()); // "1,2,3,4,5"
+console.log(numeros.join(" - ")); // "1 - 2 - 3 - 4 - 5"</code></pre>
+                
+                <h3>Métodos de Modificación:</h3>
+                <h4>1. Agregar elementos:</h4>
+                <pre><code class="language-javascript">let colores = ["rojo", "verde"];
+
+// push() - al final
+colores.push("azul");
+console.log(colores); // ["rojo", "verde", "azul"]
+
+// unshift() - al principio
+colores.unshift("amarillo");
+console.log(colores); // ["amarillo", "rojo", "verde", "azul"]
+
+// splice() - en posición específica
+colores.splice(2, 0, "naranja"); // Insertar en posición 2
+console.log(colores); // ["amarillo", "rojo", "naranja", "verde", "azul"]</code></pre>
+                
+                <h4>2. Eliminar elementos:</h4>
+                <pre><code class="language-javascript">let frutas = ["manzana", "banana", "naranja", "pera"];
+
+// pop() - del final
+let ultimo = frutas.pop();
+console.log(ultimo); // "pera"
+console.log(frutas); // ["manzana", "banana", "naranja"]
+
+// shift() - del principio
+let primero = frutas.shift();
+console.log(primero); // "manzana"
+console.log(frutas); // ["banana", "naranja"]
+
+// splice() - eliminar específicos
+frutas.splice(0, 1); // Eliminar 1 elemento desde posición 0
+console.log(frutas); // ["naranja"]</code></pre>
+                
+                <h3>Métodos de Búsqueda:</h3>
+                <pre><code class="language-javascript">let numeros = [1, 5, 3, 9, 2, 5];
+
+// indexOf() - primera ocurrencia
+console.log(numeros.indexOf(5)); // 1
+console.log(numeros.indexOf(10)); // -1 (no encontrado)
+
+// lastIndexOf() - última ocurrencia
+console.log(numeros.lastIndexOf(5)); // 5
+
+// includes() - verificar existencia
+console.log(numeros.includes(3)); // true
+console.log(numeros.includes(10)); // false
+
+// find() - primer elemento que cumple condición
+let mayorQue3 = numeros.find(num => num > 3);
+console.log(mayorQue3); // 5
+
+// findIndex() - índice del primer elemento que cumple condición
+let indice = numeros.findIndex(num => num > 3);
+console.log(indice); // 1</code></pre>
+                
+                <h3>Métodos de Iteración:</h3>
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+
+// forEach() - ejecutar función para cada elemento
+numeros.forEach((num, index) => {
+    console.log(`Índice ${index}: ${num}`);
+});
+
+// map() - crear nuevo array transformando elementos
+let dobles = numeros.map(num => num * 2);
+console.log(dobles); // [2, 4, 6, 8, 10]
+
+// filter() - crear nuevo array con elementos que cumplen condición
+let pares = numeros.filter(num => num % 2 === 0);
+console.log(pares); // [2, 4]
+
+// reduce() - reducir array a un solo valor
+let suma = numeros.reduce((acumulador, num) => acumulador + num, 0);
+console.log(suma); // 15
+
+// some() - verificar si algún elemento cumple condición
+let hayPares = numeros.some(num => num % 2 === 0);
+console.log(hayPares); // true
+
+// every() - verificar si todos los elementos cumplen condición
+let todosPositivos = numeros.every(num => num > 0);
+console.log(todosPositivos); // true</code></pre>
+                
+                <h3>Ordenamiento:</h3>
+                <pre><code class="language-javascript">let numeros = [3, 1, 4, 1, 5, 9];
+
+// sort() - ordenar (modifica el array original)
+numeros.sort();
+console.log(numeros); // [1, 1, 3, 4, 5, 9]
+
+// Ordenar números correctamente
+let numeros2 = [10, 5, 40, 25, 1000, 1];
+numeros2.sort((a, b) => a - b); // Ascendente
+console.log(numeros2); // [1, 5, 10, 25, 40, 1000]
+
+numeros2.sort((a, b) => b - a); // Descendente
+console.log(numeros2); // [1000, 40, 25, 10, 5, 1]
+
+// reverse() - invertir orden
+let letras = ["a", "b", "c"];
+letras.reverse();
+console.log(letras); // ["c", "b", "a"]</code></pre>
+                
+                <h3>Arrays Multidimensionales:</h3>
+                <pre><code class="language-javascript">// Matriz 2D
+let matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+console.log(matriz[0][0]); // 1
+console.log(matriz[1][2]); // 6
+
+// Iterar matriz
+matriz.forEach((fila, i) => {
+    fila.forEach((elemento, j) => {
+        console.log(`[${i}][${j}]: ${elemento}`);
+    });
+});
+
+// Crear matriz vacía
+let matriz3x3 = Array(3).fill().map(() => Array(3).fill(0));
+console.log(matriz3x3); // [[0,0,0], [0,0,0], [0,0,0]]</code></pre>
+                
+                <h3>💡 Casos de Uso Comunes:</h3>
+                <ul>
+                    <li>✅ Listas de elementos</li>
+                    <li>✅ Colecciones de datos</li>
+                    <li>✅ Pilas y colas</li>
+                    <li>✅ Resultados de búsquedas</li>
+                    <li>✅ Datos de formularios</li>
                 </ul>
             </div>
         </div>
