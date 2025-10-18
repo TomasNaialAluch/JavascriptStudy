@@ -2006,15 +2006,18 @@ analizarTexto(miTexto);</code></pre>
                     </div>
 
                     <!-- Ejemplos con pestañas -->
-                    <div class="examples-section">
-                        <h3><i class="fas fa-code"></i> Ejemplos de Código</h3>
-                        <div class="example-tabs">
-                            <button class="tab-button active" onclick="showExampleTab('callbacks', 'basic')">Básico</button>
-                            <button class="tab-button" onclick="showExampleTab('callbacks', 'advanced')">Avanzado</button>
-                            <button class="tab-button" onclick="showExampleTab('callbacks', 'interactive')">Interactivo</button>
+                    <div class="code-examples-section">
+                        <div class="code-examples-header">
+                            <i class="fas fa-code"></i>
+                            <span>Ejemplos de Código</span>
+                        </div>
+                        <div class="code-tabs">
+                            <button class="code-tab active" onclick="showExampleTab('callbacks', 'basic')">Básico</button>
+                            <button class="code-tab" onclick="showExampleTab('callbacks', 'advanced')">Avanzado</button>
+                            <button class="code-tab" onclick="showExampleTab('callbacks', 'interactive')">Interactivo</button>
                         </div>
 
-                        <div id="callbacks-basic" class="example-content active">
+                        <div id="callbacks-basic" class="code-tab-content active">
                             <div class="code-example">
                                 <div class="code-header">
                                     <span class="code-title">Callbacks Síncronos</span>
@@ -2050,7 +2053,7 @@ numeros.forEach(function(numero) {
                             </div>
                         </div>
 
-                        <div id="callbacks-advanced" class="example-content">
+                        <div id="callbacks-advanced" class="code-tab-content">
                             <div class="code-example">
                                 <div class="code-header">
                                     <span class="code-title">Event Listeners y Callbacks Anidados</span>
@@ -2092,7 +2095,7 @@ console.log("Precios con IVA:", preciosConIva);</code></pre>
                             </div>
                         </div>
 
-                        <div id="callbacks-interactive" class="example-content">
+                        <div id="callbacks-interactive" class="code-tab-content">
                             <div class="interactive-demo">
                                 <h4>Simulador de Temporizador</h4>
                                 <p>Prueba este temporizador interactivo:</p>
@@ -2686,8 +2689,8 @@ if (a > b) {
 
         function showExampleTab(lesson, tab) {
             // Ocultar todas las pestañas
-            const tabContents = document.querySelectorAll(`#${lesson}-example .example-tab-content`);
-            const tabButtons = document.querySelectorAll(`#${lesson}-example .tab-btn`);
+            const tabContents = document.querySelectorAll(`#${lesson}-example .example-tab-content, .code-tab-content`);
+            const tabButtons = document.querySelectorAll(`#${lesson}-example .tab-btn, .code-tab`);
             
             tabContents.forEach(content => content.classList.remove('active'));
             tabButtons.forEach(button => button.classList.remove('active'));
