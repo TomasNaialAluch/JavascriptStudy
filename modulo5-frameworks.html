@@ -11,38 +11,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header con navegación -->
     <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fab fa-js-square"></i>
-                    <span>JavaScript Academy</span>
-                </div>
-                <nav class="nav">
-                    <a href="index.html" class="nav-link">Inicio</a>
-                    <a href="index.html#modules" class="nav-link">Módulos</a>
-                    <a href="index.html#projects" class="nav-link">Proyectos</a>
-                    <a href="index.html#contact" class="nav-link">Contacto</a>
-                </nav>
-                <button class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fab fa-js-square"></i>
+                <span>JS Academy</span>
             </div>
-        </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="index.html#modulos" class="nav-link">Módulos</a></li>
+                <li><a href="index.html#proyectos" class="nav-link">Proyectos</a></li>
+                <li><a href="index.html#recursos" class="nav-link">Recursos</a></li>
+                <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
     </header>
 
     <!-- Breadcrumbs -->
-    <nav class="breadcrumbs">
-        <div class="container">
-            <a href="index.html">Inicio</a>
-            <span class="separator">></span>
-            <a href="index.html#modules">Módulos</a>
-            <span class="separator">></span>
-            <span id="current-page">Frameworks y Librerías</span>
-        </div>
+    <nav class="breadcrumb" id="breadcrumb">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="index.html#modulos">Módulos</a>
+            </li>
+            <li class="breadcrumb-item active" id="current-page">Frameworks y Librerías</li>
+        </ol>
     </nav>
 
     <!-- Barra de Progreso -->
@@ -1961,6 +1962,66 @@ jobs:
         window.generatePackageJson = generatePackageJson;
         window.generateReactComponent = generateReactComponent;
         window.generateNodeAPI = generateNodeAPI;
+    </script>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab-button" id="fabButton">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="fab-menu" id="fabMenu">
+            <a href="#" class="fab-item" onclick="scrollToTop(); return false;">
+                <i class="fas fa-arrow-up"></i>
+                <span>Ir Arriba</span>
+            </a>
+            <a href="#npm" class="fab-item">
+                <i class="fab fa-npm"></i>
+                <span>Lección 1: NPM y Gestión de Paquetes</span>
+            </a>
+            <a href="#react" class="fab-item">
+                <i class="fab fa-react"></i>
+                <span>Lección 2: React Básico</span>
+            </a>
+            <a href="#nodejs" class="fab-item">
+                <i class="fab fa-node"></i>
+                <span>Lección 3: Node.js</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // FAB functionality
+        const fabButton = document.getElementById('fabButton');
+        const fabMenu = document.getElementById('fabMenu');
+        
+        fabButton.addEventListener('click', () => {
+            fabMenu.classList.toggle('active');
+            fabButton.classList.toggle('active');
+        });
+
+        // Close FAB menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.fab-container')) {
+                fabMenu.classList.remove('active');
+                fabButton.classList.remove('active');
+            }
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Close FAB menu when clicking on a lesson link
+        document.querySelectorAll('.fab-item[href^="#"]').forEach(link => {
+            link.addEventListener('click', () => {
+                fabMenu.classList.remove('active');
+                fabButton.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
