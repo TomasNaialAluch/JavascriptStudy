@@ -448,6 +448,42 @@ function initSearch() {
     console.log('Sistema de búsqueda listo para implementar');
 }
 
+// Función para mostrar el panel de módulos con animación
+function showModulesPanel() {
+    const heroInitial = document.getElementById('hero-initial');
+    const heroExpanded = document.getElementById('hero-expanded');
+    
+    if (heroInitial && heroExpanded) {
+        // Agregar clase de animación de salida al estado inicial
+        heroInitial.classList.add('slide-out');
+        
+        // Después de la animación de salida, mostrar el estado expandido
+        setTimeout(() => {
+            heroInitial.style.display = 'none';
+            heroExpanded.style.display = 'flex';
+            heroExpanded.classList.add('show', 'slide-in');
+            
+            // Remover la clase de animación después de completarse
+            setTimeout(() => {
+                heroExpanded.classList.remove('slide-in');
+            }, 800);
+        }, 400);
+    }
+}
+
+// Función para volver al estado inicial (opcional)
+function resetHeroState() {
+    const heroInitial = document.getElementById('hero-initial');
+    const heroExpanded = document.getElementById('hero-expanded');
+    
+    if (heroInitial && heroExpanded) {
+        heroExpanded.style.display = 'none';
+        heroExpanded.classList.remove('show', 'slide-in');
+        heroInitial.style.display = 'flex';
+        heroInitial.classList.remove('slide-out');
+    }
+}
+
 // Exportar funciones para uso global
 window.scrollToSection = scrollToSection;
 window.toggleCard = toggleCard;
@@ -457,3 +493,5 @@ window.startProject = startProject;
 window.viewCode = viewCode;
 window.applyJob = applyJob;
 window.saveJob = saveJob;
+window.showModulesPanel = showModulesPanel;
+window.resetHeroState = resetHeroState;
