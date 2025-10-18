@@ -1528,7 +1528,8 @@ const z = 30;</code></pre>
                 </div>
                 
                 <h3>Hoisting de Funciones:</h3>
-                <pre><code class="language-javascript">// ✅ Las funciones declaradas se elevan completamente
+                <div class="code-block">
+                    <pre><code class="language-javascript">// ✅ Las funciones declaradas se elevan completamente
 saludar(); // "¡Hola!" - Funciona
 
 function saludar() {
@@ -1540,9 +1541,11 @@ function saludar() {
 const despedir = function() {
     console.log("¡Adiós!");
 };</code></pre>
+                </div>
                 
                 <h3>Ejemplo Completo:</h3>
-                <pre><code class="language-javascript">// Código escrito
+                <div class="code-block">
+                    <pre><code class="language-javascript">// Código escrito
 console.log(nombre); // undefined
 var nombre = "Ana";
 
@@ -1567,6 +1570,7 @@ nombre = "Ana";
 let edad; // let elevada PERO en TDZ
 // console.log(edad); // Error: TDZ
 edad = 25;</code></pre>
+                </div>
                 
                 <h3>Comparación:</h3>
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
