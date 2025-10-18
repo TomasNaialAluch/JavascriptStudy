@@ -1427,12 +1427,22 @@ html {
 .theory-content {
     padding: 1.5rem;
     display: block;
+    overflow: hidden;
+    max-height: 1000px;
     animation: slideDown 2s ease-out;
 }
 
 .theory-content.collapsed,
 .example-content.collapsed {
     display: none;
+}
+
+.theory-content.collapsing {
+    animation: slideUp 2s ease-out;
+    overflow: hidden;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 .theory-grid {
     display: grid;
@@ -2099,17 +2109,38 @@ html {
 
 .theory-content.show {
     display: block;
-    animation: slideDown 0.3s ease-out;
+    overflow: hidden;
+    max-height: 1000px;
+    animation: slideDown 2s ease-out;
 }
 
 @keyframes slideDown {
     from {
+        max-height: 0;
         opacity: 0;
-        transform: translateY(-10px);
+        padding-top: 0;
+        padding-bottom: 0;
     }
     to {
+        max-height: 1000px;
         opacity: 1;
-        transform: translateY(0);
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        max-height: 1000px;
+        opacity: 1;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    to {
+        max-height: 0;
+        opacity: 0;
+        padding-top: 0;
+        padding-bottom: 0;
     }
 }
 
