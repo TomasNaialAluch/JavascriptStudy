@@ -1639,8 +1639,15 @@ edad = 25;</code></pre>
 
     <div id="tdz-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('tdz-modal')">&times;</span>
-            <h2><i class="fas fa-skull-crossbones"></i> Temporal Dead Zone (TDZ)</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-skull-crossbones"></i> Temporal Dead Zone (TDZ)</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('tdz-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('tdz-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es la Temporal Dead Zone?</h3>
                 <p>La <strong>Temporal Dead Zone (TDZ)</strong> es el período entre el inicio del scope y la línea donde se declara una variable <code>let</code> o <code>const</code>. Durante este período, NO puedes acceder a la variable.</p>
@@ -1774,8 +1781,15 @@ prueba();</code></pre>
 
     <div id="scope-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('scope-modal')">&times;</span>
-            <h2><i class="fas fa-layer-group"></i> Scope: Bloque vs Función</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-layer-group"></i> Scope: Bloque vs Función</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('scope-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('scope-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es el Scope?</h3>
                 <p>El <strong>scope</strong> (ámbito) es la región del código donde una variable es accesible. JavaScript tiene principalmente dos tipos de scope para variables: <strong>function scope</strong> y <strong>block scope</strong>.</p>
@@ -1941,8 +1955,15 @@ botones2.forEach(boton => boton());
     <!-- Modales Explicativos - Lección 2: Arrow Functions -->
     <div id="arrow-syntax-noparams-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('arrow-syntax-noparams-modal')">&times;</span>
-            <h2><i class="fas fa-arrow-right"></i> Arrow Functions Sin Parámetros</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-arrow-right"></i> Arrow Functions Sin Parámetros</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('arrow-syntax-noparams-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('arrow-syntax-noparams-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>Sintaxis:</h3>
                 <pre><code class="language-javascript">() => {
