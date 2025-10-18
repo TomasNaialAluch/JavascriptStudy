@@ -1543,7 +1543,7 @@ console.log("Valores:", Object.values(producto)); // ["Laptop", 999, 5, function
                                                 <li>Probar todas las funciones</li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-outline" onclick="toggleCode('ejercicio1-code')">
+                                        <button class="btn btn-outline" onclick="openModal('ejercicio1-solucion-modal')">
                                             <i class="fas fa-code"></i> Ver Solución
                                         </button>
                                         <div id="ejercicio1-code" class="code-block" style="display: none;">
@@ -1605,7 +1605,7 @@ console.log("Precio final:", precioFinal); // 80</code></pre>
                                                 <li>Usar objetos para cada producto</li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-outline" onclick="toggleCode('ejercicio2-code')">
+                                        <button class="btn btn-outline" onclick="openModal('ejercicio2-solucion-modal')">
                                             <i class="fas fa-code"></i> Ver Solución
                                         </button>
                                         <div id="ejercicio2-code" class="code-block" style="display: none;">
@@ -1676,7 +1676,7 @@ console.log("💰 Total a pagar: $" + calcularTotal());</code></pre>
                                                 <li>Probar con diferentes edades</li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-outline" onclick="toggleCode('ejercicio3-code')">
+                                        <button class="btn btn-outline" onclick="openModal('ejercicio3-solucion-modal')">
                                             <i class="fas fa-code"></i> Ver Solución
                                         </button>
                                         <div id="ejercicio3-code" class="code-block" style="display: none;">
@@ -1747,7 +1747,7 @@ verificarPersona("María", 8);</code></pre>
                                                 <li>Usar split() y length</li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-outline" onclick="toggleCode('ejercicio4-code')">
+                                        <button class="btn btn-outline" onclick="openModal('ejercicio4-solucion-modal')">
                                             <i class="fas fa-code"></i> Ver Solución
                                         </button>
                                         <div id="ejercicio4-code" class="code-block" style="display: none;">
@@ -3303,6 +3303,250 @@ let [primero, segundo, tercero] = colores;
 console.log(primero);  // "rojo"
 console.log(segundo);  // "verde"
 console.log(tercero);  // "azul"</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales para Soluciones de Ejercicios -->
+    <div id="ejercicio1-solucion-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('ejercicio1-solucion-modal')">&times;</span>
+            <h2><i class="fas fa-calculator"></i> Solución: Calculadora Simple</h2>
+            <div class="modal-body">
+                <h3>Explicación:</h3>
+                <p>Este ejercicio te enseña a crear funciones básicas que realizan operaciones matemáticas. Cada función recibe dos parámetros y retorna el resultado de la operación.</p>
+                
+                <h3>Código de la Solución:</h3>
+                <pre><code class="language-javascript">// Solución del Ejercicio 1: Calculadora Simple
+
+// Función para sumar
+function sumar(a, b) {
+    return a + b;
+}
+
+// Función para restar
+function restar(a, b) {
+    return a - b;
+}
+
+// Función para multiplicar
+function multiplicar(a, b) {
+    return a * b;
+}
+
+// Función para dividir
+function dividir(a, b) {
+    if (b === 0) {
+        return "Error: No se puede dividir por cero";
+    }
+    return a / b;
+}
+
+// Probar las funciones
+console.log("Suma:", sumar(10, 5));        // 15
+console.log("Resta:", restar(10, 5));      // 5
+console.log("Multiplicación:", multiplicar(10, 5)); // 50
+console.log("División:", dividir(10, 5));  // 2
+console.log("División por cero:", dividir(10, 0)); // Error
+
+// Ejemplo de uso práctico
+let precio = 100;
+let descuento = 20;
+let precioFinal = restar(precio, descuento);
+console.log("Precio final:", precioFinal); // 80</code></pre>
+                
+                <h3>Puntos Clave:</h3>
+                <ul>
+                    <li><strong>Parámetros:</strong> Las funciones reciben valores a través de parámetros</li>
+                    <li><strong>Return:</strong> Cada función devuelve un resultado usando return</li>
+                    <li><strong>Validación:</strong> La función dividir valida que no se divida por cero</li>
+                    <li><strong>Reutilización:</strong> Las funciones se pueden usar múltiples veces</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="ejercicio2-solucion-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('ejercicio2-solucion-modal')">&times;</span>
+            <h2><i class="fas fa-shopping-cart"></i> Solución: Gestor de Lista de Compras</h2>
+            <div class="modal-body">
+                <h3>Explicación:</h3>
+                <p>Este ejercicio combina arrays y objetos para crear un sistema de gestión. Aprenderás a agregar elementos, recorrer arrays y calcular totales.</p>
+                
+                <h3>Código de la Solución:</h3>
+                <pre><code class="language-javascript">// Solución del Ejercicio 2: Gestor de Lista de Compras
+
+// Array para almacenar productos
+let listaCompras = [];
+
+// Función para agregar producto
+function agregarProducto(nombre, precio, cantidad) {
+    let producto = {
+        nombre: nombre,
+        precio: precio,
+        cantidad: cantidad,
+        subtotal: precio * cantidad
+    };
+    listaCompras.push(producto);
+    console.log(`${nombre} agregado a la lista`);
+}
+
+// Función para mostrar lista
+function mostrarLista() {
+    console.log("=== LISTA DE COMPRAS ===");
+    for (let i = 0; i < listaCompras.length; i++) {
+        let producto = listaCompras[i];
+        console.log(`${i + 1}. ${producto.nombre} - $${producto.precio} x ${producto.cantidad} = $${producto.subtotal}`);
+    }
+}
+
+// Función para calcular total
+function calcularTotal() {
+    let total = 0;
+    for (let producto of listaCompras) {
+        total += producto.subtotal;
+    }
+    return total;
+}
+
+// Ejemplo de uso
+agregarProducto("Manzanas", 2.50, 3);
+agregarProducto("Leche", 1.80, 2);
+agregarProducto("Pan", 0.90, 1);
+
+mostrarLista();
+console.log("Total a pagar: $" + calcularTotal());</code></pre>
+                
+                <h3>Puntos Clave:</h3>
+                <ul>
+                    <li><strong>Objetos:</strong> Cada producto es un objeto con propiedades</li>
+                    <li><strong>Arrays:</strong> La lista es un array que contiene objetos</li>
+                    <li><strong>push():</strong> Agrega elementos al final del array</li>
+                    <li><strong>Bucles:</strong> for y for...of para recorrer arrays</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="ejercicio3-solucion-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('ejercicio3-solucion-modal')">&times;</span>
+            <h2><i class="fas fa-user-check"></i> Solución: Validador de Edad</h2>
+            <div class="modal-body">
+                <h3>Explicación:</h3>
+                <p>Este ejercicio te enseña a usar condicionales (if/else) para tomar decisiones basadas en la edad. Es un ejemplo práctico de lógica condicional.</p>
+                
+                <h3>Código de la Solución:</h3>
+                <pre><code class="language-javascript">// Solución del Ejercicio 3: Validador de Edad
+
+function validarEdad(edad) {
+    if (edad < 0) {
+        return "Error: La edad no puede ser negativa";
+    } else if (edad < 13) {
+        return "Eres un niño. Puedes jugar y estudiar.";
+    } else if (edad < 18) {
+        return "Eres un adolescente. Puedes estudiar y salir con amigos.";
+    } else if (edad < 65) {
+        return "Eres un adulto. Puedes trabajar, votar y conducir.";
+    } else {
+        return "Eres un adulto mayor. Puedes disfrutar de la jubilación.";
+    }
+}
+
+// Función para verificar permisos específicos
+function verificarPermisos(edad) {
+    let permisos = [];
+    
+    if (edad >= 16) permisos.push("Trabajar (con permiso)");
+    if (edad >= 18) permisos.push("Votar", "Conducir", "Trabajar sin restricciones");
+    if (edad >= 21) permisos.push("Beber alcohol (en algunos países)");
+    if (edad >= 65) permisos.push("Jubilación");
+    
+    return permisos;
+}
+
+// Probar la función
+console.log(validarEdad(25)); // "Eres un adulto..."
+console.log(validarEdad(15)); // "Eres un adolescente..."
+console.log(validarEdad(70)); // "Eres un adulto mayor..."
+
+let permisos = verificarPermisos(20);
+console.log("Permisos:", permisos);</code></pre>
+                
+                <h3>Puntos Clave:</h3>
+                <ul>
+                    <li><strong>if/else if/else:</strong> Estructura para múltiples condiciones</li>
+                    <li><strong>Operadores de comparación:</strong> <, >=, === para comparar valores</li>
+                    <li><strong>Arrays:</strong> push() para agregar elementos dinámicamente</li>
+                    <li><strong>Validación:</strong> Siempre validar datos de entrada</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="ejercicio4-solucion-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('ejercicio4-solucion-modal')">&times;</span>
+            <h2><i class="fas fa-font"></i> Solución: Contador de Palabras</h2>
+            <div class="modal-body">
+                <h3>Explicación:</h3>
+                <p>Este ejercicio te enseña a trabajar con strings y arrays usando métodos como split() y length. Es muy útil para procesar texto.</p>
+                
+                <h3>Código de la Solución:</h3>
+                <pre><code class="language-javascript">// Solución del Ejercicio 4: Contador de Palabras
+
+function contarPalabras(texto) {
+    // Dividir el texto en palabras (separadas por espacios)
+    let palabras = texto.split(' ');
+    
+    // Filtrar palabras vacías (espacios múltiples)
+    let palabrasValidas = palabras.filter(palabra => palabra.length > 0);
+    
+    return palabrasValidas.length;
+}
+
+function contarCaracteres(texto) {
+    return texto.length;
+}
+
+function encontrarPalabraMasLarga(texto) {
+    let palabras = texto.split(' ').filter(palabra => palabra.length > 0);
+    
+    if (palabras.length === 0) {
+        return "No hay palabras";
+    }
+    
+    let palabraMasLarga = palabras[0];
+    
+    for (let palabra of palabras) {
+        if (palabra.length > palabraMasLarga.length) {
+            palabraMasLarga = palabra;
+        }
+    }
+    
+    return palabraMasLarga;
+}
+
+function analizarTexto(texto) {
+    console.log("=== ANÁLISIS DE TEXTO ===");
+    console.log("Texto original:", texto);
+    console.log("Número de palabras:", contarPalabras(texto));
+    console.log("Número de caracteres:", contarCaracteres(texto));
+    console.log("Palabra más larga:", encontrarPalabraMasLarga(texto));
+}
+
+// Ejemplo de uso
+let miTexto = "JavaScript es un lenguaje de programación muy poderoso";
+analizarTexto(miTexto);</code></pre>
+                
+                <h3>Puntos Clave:</h3>
+                <ul>
+                    <li><strong>split():</strong> Divide un string en un array usando un separador</li>
+                    <li><strong>filter():</strong> Crea un nuevo array con elementos que cumplen una condición</li>
+                    <li><strong>length:</strong> Propiedad que devuelve la longitud de strings y arrays</li>
+                    <li><strong>Bucles:</strong> for...of para recorrer arrays fácilmente</li>
+                </ul>
             </div>
         </div>
     </div>
