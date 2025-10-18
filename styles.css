@@ -766,8 +766,9 @@ body {
     margin: 2% auto;
     padding: 2rem;
     border-radius: var(--border-radius);
-    width: 90%;
-    max-width: 800px;
+    width: fit-content;
+    min-width: 400px;
+    max-width: 70%;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
@@ -1086,7 +1087,8 @@ body {
     .modal-content {
         margin: 10% auto;
         padding: 1.5rem;
-        width: 95%;
+        min-width: 300px;
+        max-width: 95%;
     }
 }
 

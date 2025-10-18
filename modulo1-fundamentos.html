@@ -2732,7 +2732,7 @@ function saludar(nombre) {
             <h2><i class="fas fa-code"></i> Función Expresada</h2>
             <div class="modal-body">
                 <h3>¿Qué es una función expresada?</h3>
-                <p>Es una función que se asigna a una variable. Se crea usando una expresión de función anónima.</p>
+                <p>Es una función que se <strong>asigna a una variable</strong>. Se crea usando una expresión de función anónima (sin nombre propio).</p>
                 
                 <h3>Sintaxis:</h3>
                 <pre><code class="language-javascript">let nombreVariable = function(parametros) {
@@ -2740,22 +2740,66 @@ function saludar(nombre) {
     return valor;
 };</code></pre>
                 
+                <h3>¿Cuándo se usa?</h3>
+                <ul>
+                    <li><strong>Funciones condicionales:</strong> Cuando quieres crear diferentes funciones según una condición</li>
+                    <li><strong>Callbacks:</strong> Para pasar funciones como parámetros a otras funciones</li>
+                    <li><strong>Funciones dinámicas:</strong> Cuando el nombre de la función puede cambiar</li>
+                    <li><strong>Módulos:</strong> Para exportar funciones específicas</li>
+                </ul>
+                
+                <h3>Ejemplos prácticos:</h3>
+                <pre><code class="language-javascript">// 1. Función condicional
+let operacion;
+if (usuario.esAdmin) {
+    operacion = function() {
+        return "Acceso completo";
+    };
+} else {
+    operacion = function() {
+        return "Acceso limitado";
+    };
+}
+
+// 2. Callback en setTimeout
+setTimeout(function() {
+    console.log("Se ejecutó después de 2 segundos");
+}, 2000);
+
+// 3. Función como parámetro
+function procesarDatos(datos, callback) {
+    let resultado = datos * 2;
+    callback(resultado);
+}
+
+let miCallback = function(resultado) {
+    console.log("El resultado es:", resultado);
+};
+
+procesarDatos(5, miCallback); // "El resultado es: 10"</code></pre>
+                
                 <h3>Características:</h3>
                 <ul>
                     <li><strong>Sin hoisting:</strong> No se puede usar antes de declararla</li>
                     <li><strong>Asignada a variable:</strong> Se almacena en una variable</li>
                     <li><strong>Anónima:</strong> La función no tiene nombre propio</li>
+                    <li><strong>Flexible:</strong> Se puede reasignar o pasar como parámetro</li>
                 </ul>
                 
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">// ❌ Esto NO funciona
-// console.log(saludar("Juan")); // ReferenceError
+                <h3>Comparación con función declarada:</h3>
+                <pre><code class="language-javascript">// ❌ Esto NO funciona - función expresada
+console.log(saludarExpresada("Juan")); // ReferenceError
 
-let saludar = function(nombre) {
+let saludarExpresada = function(nombre) {
     return `Hola, ${nombre}!`;
 };
 
-console.log(saludar("Juan")); // ✅ Ahora funciona</code></pre>
+// ✅ Esto SÍ funciona - función declarada
+console.log(saludarDeclarada("Juan")); // "Hola, Juan!"
+
+function saludarDeclarada(nombre) {
+    return `Hola, ${nombre}!`;
+}</code></pre>
             </div>
         </div>
     </div>
@@ -2763,10 +2807,21 @@ console.log(saludar("Juan")); // ✅ Ahora funciona</code></pre>
     <div id="arrow-function-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('arrow-function-modal')">&times;</span>
-            <h2><i class="fas fa-arrow-right"></i> Arrow Function</h2>
+            <h2><i class="fas fa-arrow-right"></i> Arrow Function (ES6)</h2>
             <div class="modal-body">
+                <h3>¿Qué es ES6?</h3>
+                <p><strong>ES6 (ECMAScript 2015)</strong> es una versión importante de JavaScript que se lanzó en 2015. Introdujo muchas características modernas que hicieron JavaScript más potente y fácil de usar. ES6 incluye:</p>
+                <ul>
+                    <li><strong>Arrow functions:</strong> Sintaxis más corta para funciones</li>
+                    <li><strong>let y const:</strong> Nuevas formas de declarar variables</li>
+                    <li><strong>Template literals:</strong> Strings con interpolación (backticks)</li>
+                    <li><strong>Destructuring:</strong> Extraer valores de objetos y arrays</li>
+                    <li><strong>Classes:</strong> Programación orientada a objetos</li>
+                    <li><strong>Modules:</strong> Importar y exportar código</li>
+                </ul>
+                
                 <h3>¿Qué es una arrow function?</h3>
-                <p>Es una forma más corta y moderna de escribir funciones, introducida en ES6. Usa la sintaxis <code>=></code>.</p>
+                <p>Es una forma más corta y moderna de escribir funciones, introducida en <strong>ES6</strong>. Usa la sintaxis <code>=></code> (flecha) y es muy popular en JavaScript moderno.</p>
                 
                 <h3>Sintaxis:</h3>
                 <pre><code class="language-javascript">// Con un parámetro
@@ -2781,27 +2836,162 @@ let nombre = (param1, param2) => {
     return valor;
 };</code></pre>
                 
-                <h3>Características:</h3>
+                <h3>¿Cuándo usar arrow functions?</h3>
                 <ul>
-                    <li><strong>Más corta:</strong> Sintaxis más concisa</li>
-                    <li><strong>Sin this propio:</strong> Hereda el this del contexto</li>
-                    <li><strong>Return implícito:</strong> Si es una expresión, no necesita return</li>
+                    <li><strong>Callbacks cortos:</strong> En map(), filter(), forEach()</li>
+                    <li><strong>Funciones simples:</strong> Cuando la lógica es básica</li>
+                    <li><strong>Event handlers:</strong> Para manejar eventos del DOM</li>
+                    <li><strong>Promesas:</strong> En .then() y .catch()</li>
                 </ul>
                 
-                <h3>Ejemplos:</h3>
-                <pre><code class="language-javascript">// Función tradicional
+                <h3>Ejemplos prácticos:</h3>
+                <pre><code class="language-javascript">// 1. Con arrays (muy común)
+let numeros = [1, 2, 3, 4, 5];
+
+// Función tradicional
+let dobles = numeros.map(function(num) {
+    return num * 2;
+});
+
+// Arrow function (más corta)
+let dobles = numeros.map(num => num * 2);
+
+// 2. Con eventos
+document.addEventListener('click', () => {
+    console.log('Se hizo clic en la página');
+});
+
+// 3. Con promesas
+fetch('/api/datos')
+    .then(response => response.json())
+    .then(data => console.log(data));</code></pre>
+                
+                <h3>Características importantes:</h3>
+                <ul>
+                    <li><strong>Más corta:</strong> Sintaxis más concisa y legible</li>
+                    <li><strong>Sin this propio:</strong> Hereda el this del contexto padre</li>
+                    <li><strong>Return implícito:</strong> Si es una expresión, no necesita return</li>
+                    <li><strong>No se puede usar como constructor:</strong> No se puede usar con 'new'</li>
+                </ul>
+                
+                <h3>Explicación Detallada de Características:</h3>
+                
+                <h4>1. Sintaxis más concisa:</h4>
+                <p>Las arrow functions reducen significativamente la cantidad de código necesario:</p>
+                <pre><code class="language-javascript">// Función tradicional - 3 líneas
+let numeros = [1, 2, 3, 4, 5];
+let dobles = numeros.map(function(numero) {
+    return numero * 2;
+});
+
+// Arrow function - 1 línea
+let dobles = numeros.map(numero => numero * 2);
+
+// Ahorro: 66% menos código</code></pre>
+                
+                <h4>2. Sin this propio (muy importante):</h4>
+                <p>Las arrow functions NO crean su propio contexto de <code>this</code>, heredan el del contexto padre:</p>
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Ana",
+    edad: 25,
+    
+    // ❌ PROBLEMA con función tradicional
+    saludarTradicional: function() {
+        setTimeout(function() {
+            console.log(`Hola, soy ${this.nombre}`); // this = undefined
+        }, 1000);
+    },
+    
+    // ✅ SOLUCIÓN con arrow function
+    saludarArrow: function() {
+        setTimeout(() => {
+            console.log(`Hola, soy ${this.nombre}`); // this = persona
+        }, 1000);
+    }
+};
+
+persona.saludarTradicional(); // "Hola, soy undefined"
+persona.saludarArrow();       // "Hola, soy Ana"</code></pre>
+                
+                <h4>3. Return implícito (cuando NO usar llaves):</h4>
+                <p>Si la función es una sola expresión, NO necesitas <code>return</code> ni llaves:</p>
+                <pre><code class="language-javascript">// ✅ CON return implícito (sin llaves)
+let sumar = (a, b) => a + b;
+let esPar = num => num % 2 === 0;
+let obtenerNombre = usuario => usuario.nombre;
+
+// ❌ INCORRECTO - no necesitas return aquí
+let sumar = (a, b) => { return a + b; };
+
+// ✅ CON return explícito (con llaves)
+let procesarDatos = (datos) => {
+    let resultado = datos * 2;
+    console.log("Procesando...");
+    return resultado; // Necesario porque hay más código
+};
+
+// ✅ CON return implícito (una sola expresión)
+let procesarDatos = (datos) => datos * 2;</code></pre>
+                
+                <h4>Casos de uso reales:</h4>
+                <pre><code class="language-javascript">// 1. Con arrays (muy común)
+let precios = [10, 20, 30, 40];
+let preciosConIva = precios.map(precio => precio * 1.21);
+let preciosAltos = precios.filter(precio => precio > 25);
+
+// 2. Con eventos del DOM
+document.getElementById('boton').addEventListener('click', () => {
+    console.log('Botón presionado');
+});
+
+// 3. Con promesas
+fetch('/api/datos')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));</code></pre>
+                
+                <h4>Errores comunes a evitar:</h4>
+                <pre><code class="language-javascript">// ❌ ERROR: No puedes usar arrow function como constructor
+let Persona = (nombre) => {
+    this.nombre = nombre; // Error: this no existe
+};
+let p = new Persona("Ana"); // TypeError
+
+// ✅ CORRECTO: Usa función tradicional para constructores
+function Persona(nombre) {
+    this.nombre = nombre;
+}
+let p = new Persona("Ana"); // Funciona
+
+// ❌ ERROR: No puedes usar arrow function para métodos de objeto
+let objeto = {
+    valor: 42,
+    duplicar: () => this.valor * 2 // this = window, no objeto
+};
+
+// ✅ CORRECTO: Usa función tradicional para métodos
+let objeto = {
+    valor: 42,
+    duplicar: function() {
+        return this.valor * 2; // this = objeto
+    }
+};</code></pre>
+                
+                <h3>Comparación completa:</h3>
+                <pre><code class="language-javascript">// Función declarada (tradicional)
+function sumar(a, b) {
+    return a + b;
+}
+
+// Función expresada (asignada)
 let sumar = function(a, b) {
     return a + b;
 };
 
-// Arrow function equivalente
+// Arrow function (ES6)
 let sumar = (a, b) => a + b;
 
-// Con un solo parámetro
-let duplicar = x => x * 2;
-
-// Sin parámetros
-let saludar = () => "Hola mundo";</code></pre>
+// Todas hacen lo mismo, pero arrow function es más corta</code></pre>
             </div>
         </div>
     </div>
