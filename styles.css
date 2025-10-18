@@ -2094,7 +2094,7 @@ html {
 
 .theory-content {
     padding: 1.5rem;
-    display: none;
+    display: block;
 }
 
 .theory-content.show {
