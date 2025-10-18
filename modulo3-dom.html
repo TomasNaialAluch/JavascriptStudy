@@ -215,19 +215,19 @@
                             <div class="theory-card">
                                 <h4><i class="fas fa-search"></i> Métodos de Selección</h4>
                                 <div class="theory-list">
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('getelementbyid-modal')">
                                         <code>getElementById()</code>
                                         <span>Selecciona por ID único</span>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('queryselector-modal')">
                                         <code>querySelector()</code>
                                         <span>Selecciona con CSS selector</span>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('queryselectorall-modal')">
                                         <code>querySelectorAll()</code>
                                         <span>Selecciona múltiples elementos</span>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('getelementsbyclassname-modal')">
                                         <code>getElementsByClassName()</code>
                                         <span>Selecciona por clase</span>
                                     </div>
@@ -237,19 +237,19 @@
                             <div class="theory-card">
                                 <h4><i class="fas fa-tags"></i> Selectores CSS</h4>
                                 <div class="theory-list">
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('css-id-selector-modal')">
                                         <code>#id</code>
                                         <span>Por ID</span>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('css-class-selector-modal')">
                                         <code>.clase</code>
                                         <span>Por clase</span>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('css-element-selector-modal')">
                                         <code>elemento</code>
                                         <span>Por etiqueta</span>
                                     </div>
-                                    <div class="theory-item">
+                                    <div class="theory-item clickable" onclick="openModal('css-attribute-selector-modal')">
                                         <code>[atributo]</code>
                                         <span>Por atributo</span>
                                     </div>
@@ -1811,6 +1811,343 @@ renderizarTareas();</code></pre>
             // Start speaking
             speechSynthesis.speak(utterance);
         }
+
+        // Funciones para modales
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevenir scroll
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restaurar scroll
+            }
+        }
+
+        // Cerrar modal al hacer clic fuera de él
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
     </script>
+
+    <!-- Modales Interactivos para Conceptos -->
+    <div id="getelementbyid-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-search"></i> getElementById()</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('getelementbyid-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('getelementbyid-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué es getElementById()?</h3>
+                <p>Es el método más directo para seleccionar un elemento del DOM usando su ID único. Es muy rápido y eficiente.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">document.getElementById('id-del-elemento');</code></pre>
+
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// HTML: <div id="mi-div">Contenido</div>
+
+// JavaScript
+let elemento = document.getElementById('mi-div');
+console.log(elemento); // <div id="mi-div">Contenido</div></code></pre>
+
+                <h3>Características:</h3>
+                <ul>
+                    <li>Devuelve un solo elemento o <code>null</code> si no lo encuentra</li>
+                    <li>Es el método más rápido para seleccionar por ID</li>
+                    <li>No necesita el símbolo # (a diferencia de querySelector)</li>
+                    <li>ID debe ser único en toda la página</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="queryselector-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-search"></i> querySelector()</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('queryselector-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('queryselector-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué es querySelector()?</h3>
+                <p>Es un método moderno que permite seleccionar elementos usando selectores CSS. Es muy flexible y potente.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">document.querySelector('selector-css');</code></pre>
+
+                <h3>Ejemplos:</h3>
+                <pre><code class="language-javascript">// Por ID
+let elemento = document.querySelector('#mi-id');
+
+// Por clase
+let elemento = document.querySelector('.mi-clase');
+
+// Por etiqueta
+let elemento = document.querySelector('div');
+
+// Selector complejo
+let elemento = document.querySelector('div.clase#id');</code></pre>
+
+                <h3>Características:</h3>
+                <ul>
+                    <li>Devuelve el primer elemento que coincida</li>
+                    <li>Usa sintaxis de selectores CSS</li>
+                    <li>Muy flexible para selecciones complejas</li>
+                    <li>Devuelve <code>null</code> si no encuentra nada</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="queryselectorall-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-search"></i> querySelectorAll()</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('queryselectorall-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('queryselectorall-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué es querySelectorAll()?</h3>
+                <p>Similar a querySelector(), pero devuelve TODOS los elementos que coincidan con el selector, no solo el primero.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">document.querySelectorAll('selector-css');</code></pre>
+
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// HTML: <div class="item">1</div><div class="item">2</div>
+
+// JavaScript
+let elementos = document.querySelectorAll('.item');
+console.log(elementos); // NodeList con 2 elementos
+
+// Iterar sobre todos
+elementos.forEach(elemento => {
+    console.log(elemento.textContent);
+});</code></pre>
+
+                <h3>Características:</h3>
+                <ul>
+                    <li>Devuelve una NodeList (similar a un array)</li>
+                    <li>Puede devolver 0, 1 o múltiples elementos</li>
+                    <li>Se puede iterar con forEach()</li>
+                    <li>No se actualiza automáticamente si cambia el DOM</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="getelementsbyclassname-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-search"></i> getElementsByClassName()</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('getelementsbyclassname-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('getelementsbyclassname-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué es getElementsByClassName()?</h3>
+                <p>Selecciona todos los elementos que tengan una clase específica. Es más rápido que querySelectorAll() para clases.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">document.getElementsByClassName('nombre-clase');</code></pre>
+
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// HTML: <div class="item">1</div><p class="item">2</p>
+
+// JavaScript
+let elementos = document.getElementsByClassName('item');
+console.log(elementos); // HTMLCollection con 2 elementos
+
+// Convertir a array para usar forEach
+Array.from(elementos).forEach(elemento => {
+    console.log(elemento.textContent);
+});</code></pre>
+
+                <h3>Características:</h3>
+                <ul>
+                    <li>Devuelve una HTMLCollection (viva, se actualiza automáticamente)</li>
+                    <li>Muy rápido para seleccionar por clase</li>
+                    <li>No necesita el punto (.) como querySelector</li>
+                    <li>Se puede usar múltiples clases separadas por espacio</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="css-id-selector-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-tag"></i> Selector CSS por ID</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('css-id-selector-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('css-id-selector-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Selector por ID (#)</h3>
+                <p>El símbolo # se usa para seleccionar elementos por su ID único en selectores CSS.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">document.querySelector('#id-del-elemento');</code></pre>
+
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// HTML: <div id="mi-contenedor">Contenido</div>
+
+// JavaScript
+let contenedor = document.querySelector('#mi-contenedor');
+console.log(contenedor); // <div id="mi-contenedor">Contenido</div></code></pre>
+
+                <h3>Características:</h3>
+                <ul>
+                    <li>El ID debe ser único en toda la página</li>
+                    <li>Muy específico, tiene alta prioridad en CSS</li>
+                    <li>Se puede usar en querySelector() y querySelectorAll()</li>
+                    <li>No se puede repetir en la misma página</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="css-class-selector-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-tag"></i> Selector CSS por Clase</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('css-class-selector-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('css-class-selector-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Selector por Clase (.)</h3>
+                <p>El símbolo . se usa para seleccionar elementos por su clase CSS.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">document.querySelector('.nombre-clase');</code></pre>
+
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// HTML: <div class="boton">Click</div><button class="boton">Enviar</button>
+
+// JavaScript - Seleccionar el primero
+let primerBoton = document.querySelector('.boton');
+
+// JavaScript - Seleccionar todos
+let todosLosBotones = document.querySelectorAll('.boton');</code></pre>
+
+                <h3>Características:</h3>
+                <ul>
+                    <li>Puede aplicarse a múltiples elementos</li>
+                    <li>Muy útil para estilos reutilizables</li>
+                    <li>Se puede combinar con otros selectores</li>
+                    <li>Un elemento puede tener múltiples clases</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="css-element-selector-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-tag"></i> Selector CSS por Etiqueta</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('css-element-selector-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('css-element-selector-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Selector por Etiqueta</h3>
+                <p>Se usa el nombre de la etiqueta HTML directamente para seleccionar todos los elementos de ese tipo.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">document.querySelector('nombre-etiqueta');</code></pre>
+
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// HTML: <p>Párrafo 1</p><p>Párrafo 2</p>
+
+// JavaScript - Seleccionar el primero
+let primerParrafo = document.querySelector('p');
+
+// JavaScript - Seleccionar todos
+let todosLosParrafos = document.querySelectorAll('p');</code></pre>
+
+                <h3>Características:</h3>
+                <ul>
+                    <li>Selecciona por tipo de elemento HTML</li>
+                    <li>Muy útil para aplicar estilos a todos los elementos de un tipo</li>
+                    <li>Puede seleccionar muchos elementos</li>
+                    <li>Se puede combinar con otros selectores</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="css-attribute-selector-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-tag"></i> Selector CSS por Atributo</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('css-attribute-selector-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('css-attribute-selector-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Selector por Atributo ([])</h3>
+                <p>Los corchetes [] se usan para seleccionar elementos que tengan un atributo específico.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">document.querySelector('[atributo]');
+document.querySelector('[atributo="valor"]');</code></pre>
+
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// HTML: <input type="text" required><input type="email">
+
+// JavaScript - Por atributo
+let inputsRequeridos = document.querySelectorAll('[required]');
+
+// JavaScript - Por atributo con valor
+let inputsTexto = document.querySelectorAll('[type="text"]');</code></pre>
+
+                <h3>Características:</h3>
+                <ul>
+                    <li>Muy flexible para selecciones específicas</li>
+                    <li>Se puede usar con cualquier atributo HTML</li>
+                    <li>Útil para formularios y elementos especiales</li>
+                    <li>Se puede combinar con otros selectores</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
