@@ -969,49 +969,103 @@ for (let i = 1; i <= 3; i++) {
                 </div>
 
                 <div class="lesson-content">
+                    <!-- Teoría colapsable -->
                     <div class="theory-section">
-                        <h3>Teoría</h3>
-                        <div class="theory-content">
-                            <h4>Tipos de Funciones</h4>
-                            <ul>
-                                <li><strong>Función declarada:</strong> function nombre() {}</li>
-                                <li><strong>Función expresada:</strong> let nombre = function() {}</li>
-                                <li><strong>Arrow function:</strong> let nombre = () => {}</li>
-                            </ul>
+                        <div class="section-toggle" onclick="toggleSection('funciones-theory')">
+                            <h3><i class="fas fa-book"></i> Teoría</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div id="funciones-theory" class="theory-content collapsed">
+                            <div class="theory-grid">
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-code"></i> Tipos de Funciones</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item clickable" onclick="openModal('function-declared-modal')">
+                                            <code>function</code>
+                                            <span>Función declarada (tradicional)</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('function-expressed-modal')">
+                                            <code>let func = function()</code>
+                                            <span>Función expresada (asignada)</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('arrow-function-modal')">
+                                            <code>() => {}</code>
+                                            <span>Arrow function (ES6+)</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <h4>Conceptos Importantes</h4>
-                            <ul>
-                                <li><strong>Parámetros:</strong> Valores que recibe la función</li>
-                                <li><strong>Return:</strong> Valor que devuelve la función</li>
-                                <li><strong>Scope:</strong> Alcance de las variables</li>
-                                <li><strong>Hoisting:</strong> Elevación de declaraciones</li>
-                            </ul>
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-cog"></i> Conceptos Clave</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item clickable" onclick="openModal('parameters-modal')">
+                                            <code>parámetros</code>
+                                            <span>Valores que recibe la función</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('return-modal')">
+                                            <code>return</code>
+                                            <span>Valor que devuelve la función</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('scope-modal')">
+                                            <code>scope</code>
+                                            <span>Alcance de las variables</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('hoisting-modal')">
+                                            <code>hoisting</code>
+                                            <span>Elevación de declaraciones</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Ejemplo interactivo -->
                     <div class="example-section">
-                        <h3>Ejemplo Práctico</h3>
-                        <div class="example-content">
-                            <div class="code-example">
-                                <div class="code-header">
-                                    <span class="code-title">Declaración de Funciones</span>
-                                    <button class="btn btn-sm btn-outline" onclick="toggleCode('funciones-code')">
-                                        <i class="fas fa-code"></i> Ver Código
-                                    </button>
-                                </div>
-                                <div id="funciones-code" class="code-block" style="display: none;">
-                                    <pre><code class="language-javascript">// Función declarada
+                        <div class="section-toggle" onclick="toggleSection('funciones-example')">
+                            <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div id="funciones-example" class="example-content collapsed">
+                            <div class="example-tabs">
+                                <button class="tab-btn active" onclick="showExampleTab('funciones', 'basic')">Básico</button>
+                                <button class="tab-btn" onclick="showExampleTab('funciones', 'advanced')">Avanzado</button>
+                                <button class="tab-btn" onclick="showExampleTab('funciones', 'interactive')">Interactivo</button>
+                            </div>
+
+                            <div id="funciones-basic" class="example-tab-content active">
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-title">Declaración Básica de Funciones</span>
+                                        <button class="btn btn-sm btn-primary" onclick="runCode('funciones-basic-code')">
+                                            <i class="fas fa-play"></i> Ejecutar
+                                        </button>
+                                    </div>
+                                    <div class="code-block">
+                                        <pre><code class="language-javascript" id="funciones-basic-code">// Función declarada - se puede usar antes de declararla
 function saludar(nombre) {
     return `Hola, ${nombre}!`;
 }
 
-// Función expresada
+// Función expresada - se debe declarar antes de usar
 let sumar = function(a, b) {
     return a + b;
 };
 
-// Arrow function (ES6)
+// Arrow function (ES6) - más corta y moderna
 let multiplicar = (a, b) => a * b;
+
+// Uso de las funciones
+console.log(saludar("María"));           // "Hola, María!"
+console.log(sumar(5, 3));                // 8
+console.log(multiplicar(4, 6));          // 24
 
 // Función con parámetros por defecto
 function crearUsuario(nombre, edad = 18, activo = true) {
@@ -1022,280 +1076,754 @@ function crearUsuario(nombre, edad = 18, activo = true) {
     };
 }
 
-// Scope y Hoisting
-function ejemplo() {
-    let local = "Soy local";
-    var global = "Soy global";
-}
-
-// Hoisting con var
-console.log(x); // undefined (no error)
-var x = 5;
-
-// No hoisting con let/const
-// console.log(y); // ReferenceError
-let y = 10;
-
-// Uso de funciones
-console.log(saludar("María"));           // "Hola, María!"
-console.log(sumar(5, 3));                // 8
-console.log(multiplicar(4, 6));          // 24
-console.log(crearUsuario("Juan", 25));   // { nombre: "Juan", edad: 25, activo: true }</code></pre>
+console.log(crearUsuario("Juan", 25));   // { nombre: "Juan", edad: 25, activo: true }
+console.log(crearUsuario("Ana"));        // { nombre: "Ana", edad: 18, activo: true }</code></pre>
+                                    </div>
+                                    <div class="code-output" id="funciones-basic-output"></div>
                                 </div>
                             </div>
+
+                            <div id="funciones-advanced" class="example-tab-content">
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-title">Scope, Hoisting y Closures</span>
+                                        <button class="btn btn-sm btn-primary" onclick="runCode('funciones-advanced-code')">
+                                            <i class="fas fa-play"></i> Ejecutar
+                                        </button>
+                                    </div>
+                                    <div class="code-block">
+                                        <pre><code class="language-javascript" id="funciones-advanced-code">// HOISTING - Las funciones declaradas se "elevan"
+console.log(saludarHoisted("Juan")); // ✅ Funciona - "Hola Juan!"
+
+function saludarHoisted(nombre) {
+    return `Hola ${nombre}!`;
+}
+
+// ❌ Esto NO funciona con funciones expresadas
+// console.log(saludarExpressed("Ana")); // ReferenceError
+
+let saludarExpressed = function(nombre) {
+    return `Hola ${nombre}!`;
+};
+
+// SCOPE - Alcance de variables
+let variableGlobal = "Soy global";
+
+function ejemploScope() {
+    let variableLocal = "Soy local";
+    var variableVar = "Soy var";
+    
+    console.log("Dentro de la función:");
+    console.log("Global:", variableGlobal);  // ✅ Accesible
+    console.log("Local:", variableLocal);    // ✅ Accesible
+    console.log("Var:", variableVar);        // ✅ Accesible
+}
+
+ejemploScope();
+
+// ❌ Esto NO funciona - variableLocal no existe fuera
+// console.log(variableLocal); // ReferenceError
+
+// CLOSURE - Función que "recuerda" su entorno
+function crearContador() {
+    let contador = 0;
+    
+    return function() {
+        contador++;
+        return contador;
+    };
+}
+
+let miContador = crearContador();
+console.log(miContador()); // 1
+console.log(miContador()); // 2
+console.log(miContador()); // 3
+
+// Cada contador es independiente
+let otroContador = crearContador();
+console.log(otroContador()); // 1 (no 4)</code></pre>
+                                    </div>
+                                    <div class="code-output" id="funciones-advanced-output"></div>
+                                </div>
+                            </div>
+
+                            <div id="funciones-interactive" class="example-tab-content">
+                                <div class="interactive-example">
+                                    <h4>🎮 Creador de Funciones</h4>
+                                    <div class="interactive-content">
+                                        <div class="input-group">
+                                            <label>Nombre de la función:</label>
+                                            <input type="text" id="function-name" placeholder="miFuncion" value="calcularArea">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Parámetros (separados por comas):</label>
+                                            <input type="text" id="function-params" placeholder="ancho, alto" value="ancho, alto">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Operación:</label>
+                                            <select id="function-operation">
+                                                <option value="suma">Suma</option>
+                                                <option value="multiplicacion">Multiplicación</option>
+                                                <option value="area">Área (ancho * alto)</option>
+                                                <option value="personalizada">Personalizada</option>
+                                            </select>
+                                        </div>
+                                        <button class="btn btn-primary" onclick="createFunction()">
+                                            <i class="fas fa-magic"></i> Crear Función
+                                        </button>
+                                        <div class="interactive-output" id="function-output"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resumen de la lección -->
+                    <div class="lesson-summary">
+                        <h4>📝 Resumen</h4>
+                        <div class="summary-content">
+                            <p>En esta lección aprendiste sobre:</p>
+                            <ul>
+                                <li>Los tres tipos de funciones: declaradas, expresadas y arrow functions</li>
+                                <li>Cómo usar parámetros y valores de retorno</li>
+                                <li>El concepto de scope y cómo afecta a las variables</li>
+                                <li>Qué es el hoisting y cómo funciona con las funciones</li>
+                                <li>Los closures y cómo crean funciones con "memoria"</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección 5: Arrays y Objetos -->
-        <section id="arrays" class="lesson-section">
+        <!-- Lección 5: Arrays y Objetos -->
+        <section id="arrays" class="lesson-section" data-lesson="arrays">
             <div class="container">
                 <div class="lesson-header">
+                    <div class="lesson-badge">
+                        <i class="fas fa-list"></i>
+                        <span>Lección 5</span>
+                    </div>
                     <h2>Arrays y Objetos</h2>
-                    <p>Los arrays y objetos son estructuras de datos fundamentales en JavaScript para organizar y manipular información.</p>
+                    <p class="lesson-intro">Los arrays y objetos son estructuras de datos fundamentales en JavaScript para organizar y manipular información. Los arrays almacenan listas de elementos, mientras que los objetos almacenan pares clave-valor.</p>
+                    
+                    <div class="key-points">
+                        <h4>🎯 Puntos Clave</h4>
+                        <div class="key-points-grid">
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Métodos de arrays</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Acceso a propiedades</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Destructuring</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Métodos de objetos</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Iteración y búsqueda</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="lesson-content">
+                    <!-- Teoría colapsable -->
                     <div class="theory-section">
-                        <h3>Teoría</h3>
-                        <div class="theory-content">
-                            <h4>Arrays</h4>
-                            <ul>
-                                <li><strong>Métodos básicos:</strong> push(), pop(), shift(), unshift()</li>
-                                <li><strong>Métodos de transformación:</strong> map(), filter(), reduce()</li>
-                                <li><strong>Búsqueda:</strong> indexOf(), includes(), find()</li>
-                            </ul>
+                        <div class="section-toggle" onclick="toggleSection('arrays-theory')">
+                            <h3><i class="fas fa-book"></i> Teoría</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div id="arrays-theory" class="theory-content collapsed">
+                            <div class="theory-grid">
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-list"></i> Arrays</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item clickable" onclick="openModal('array-basic-modal')">
+                                            <code>push(), pop()</code>
+                                            <span>Agregar/quitar al final</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('array-transform-modal')">
+                                            <code>map(), filter()</code>
+                                            <span>Transformar elementos</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('array-search-modal')">
+                                            <code>find(), includes()</code>
+                                            <span>Buscar elementos</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <h4>Objetos</h4>
-                            <ul>
-                                <li><strong>Propiedades:</strong> Acceso con punto o corchetes</li>
-                                <li><strong>Métodos:</strong> Funciones dentro de objetos</li>
-                                <li><strong>Destructuring:</strong> Extraer propiedades</li>
-                            </ul>
+                                <div class="theory-card">
+                                    <h4><i class="fas fa-cube"></i> Objetos</h4>
+                                    <div class="theory-list">
+                                        <div class="theory-item clickable" onclick="openModal('object-access-modal')">
+                                            <code>objeto.propiedad</code>
+                                            <span>Acceso a propiedades</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('object-methods-modal')">
+                                            <code>objeto.metodo()</code>
+                                            <span>Métodos de objetos</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="theory-item clickable" onclick="openModal('destructuring-modal')">
+                                            <code>{prop1, prop2}</code>
+                                            <span>Destructuring</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Ejemplo interactivo -->
                     <div class="example-section">
-                        <h3>Ejemplo Práctico</h3>
-                        <div class="example-content">
-                            <div class="code-example">
-                                <div class="code-header">
-                                    <span class="code-title">Arrays y Objetos</span>
-                                    <button class="btn btn-sm btn-outline" onclick="toggleCode('arrays-code')">
-                                        <i class="fas fa-code"></i> Ver Código
-                                    </button>
-                                </div>
-                                <div id="arrays-code" class="code-block" style="display: none;">
-                                    <pre><code class="language-javascript">// Arrays
-let numeros = [1, 2, 3, 4, 5];
+                        <div class="section-toggle" onclick="toggleSection('arrays-example')">
+                            <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div id="arrays-example" class="example-content collapsed">
+                            <div class="example-tabs">
+                                <button class="tab-btn active" onclick="showExampleTab('arrays', 'basic')">Básico</button>
+                                <button class="tab-btn" onclick="showExampleTab('arrays', 'advanced')">Avanzado</button>
+                                <button class="tab-btn" onclick="showExampleTab('arrays', 'interactive')">Interactivo</button>
+                            </div>
 
-// Métodos de array
-numeros.push(6);           // [1, 2, 3, 4, 5, 6]
-numeros.pop();             // [1, 2, 3, 4, 5]
-numeros.unshift(0);        // [0, 1, 2, 3, 4, 5]
-numeros.shift();           // [1, 2, 3, 4, 5]
+                            <div id="arrays-basic" class="example-tab-content active">
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-title">Arrays y Objetos Básicos</span>
+                                        <button class="btn btn-sm btn-primary" onclick="runCode('arrays-basic-code')">
+                                            <i class="fas fa-play"></i> Ejecutar
+                                        </button>
+                                    </div>
+                                    <div class="code-block">
+                                        <pre><code class="language-javascript" id="arrays-basic-code">// ARRAYS - Listas de elementos
+let frutas = ["manzana", "banana", "naranja"];
 
-// Métodos de transformación
-let dobles = numeros.map(n => n * 2);        // [2, 4, 6, 8, 10]
-let pares = numeros.filter(n => n % 2 === 0); // [2, 4]
-let suma = numeros.reduce((acc, n) => acc + n, 0); // 15
+// Métodos básicos de arrays
+frutas.push("uva");        // Agregar al final
+console.log("Después de push:", frutas);
 
-// Búsqueda
-let indice = numeros.indexOf(3);     // 2
-let existe = numeros.includes(3);    // true
-let encontrado = numeros.find(n => n > 3); // 4
+let ultima = frutas.pop(); // Quitar del final
+console.log("Elemento quitado:", ultima);
+console.log("Array después de pop:", frutas);
 
-// Objetos
+// Acceso a elementos
+console.log("Primera fruta:", frutas[0]);     // "manzana"
+console.log("Cantidad:", frutas.length);      // 2
+
+// OBJETOS - Pares clave-valor
 let persona = {
-    nombre: "Ana",
+    nombre: "Juan",
     edad: 25,
-    saludar: function() {
-        return `Hola, soy ${this.nombre}`;
-    }
+    ciudad: "Madrid"
 };
 
 // Acceso a propiedades
-console.log(persona.nombre);        // "Ana"
-console.log(persona["edad"]);       // 25
-console.log(persona.saludar());     // "Hola, soy Ana"
+console.log("Nombre:", persona.nombre);       // "Juan"
+console.log("Edad:", persona["edad"]);        // 25
 
-// Modificación
-persona.ciudad = "Madrid";
+// Modificar propiedades
 persona.edad = 26;
+persona.profesion = "Desarrollador";
 
-// Destructuring
-let { nombre, edad } = persona;
-console.log(nombre, edad); // "Ana" 26</code></pre>
+console.log("Persona actualizada:", persona);
+
+// Método en objeto
+let calculadora = {
+    sumar: function(a, b) {
+        return a + b;
+    },
+    multiplicar: function(a, b) {
+        return a * b;
+    }
+};
+
+console.log("Suma:", calculadora.sumar(5, 3));        // 8
+console.log("Multiplicación:", calculadora.multiplicar(4, 6)); // 24</code></pre>
+                                    </div>
+                                    <div class="code-output" id="arrays-basic-output"></div>
                                 </div>
                             </div>
+
+                            <div id="arrays-advanced" class="example-tab-content">
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-title">Métodos Avanzados y Destructuring</span>
+                                        <button class="btn btn-sm btn-primary" onclick="runCode('arrays-advanced-code')">
+                                            <i class="fas fa-play"></i> Ejecutar
+                                        </button>
+                                    </div>
+                                    <div class="code-block">
+                                        <pre><code class="language-javascript" id="arrays-advanced-code">// MÉTODOS DE TRANSFORMACIÓN DE ARRAYS
+let numeros = [1, 2, 3, 4, 5];
+
+// map() - Transformar cada elemento
+let dobles = numeros.map(num => num * 2);
+console.log("Dobles:", dobles); // [2, 4, 6, 8, 10]
+
+// filter() - Filtrar elementos
+let pares = numeros.filter(num => num % 2 === 0);
+console.log("Pares:", pares); // [2, 4]
+
+// reduce() - Reducir a un solo valor
+let suma = numeros.reduce((acumulador, num) => acumulador + num, 0);
+console.log("Suma total:", suma); // 15
+
+// BÚSQUEDA EN ARRAYS
+let frutas = ["manzana", "banana", "naranja", "uva"];
+
+console.log("Índice de banana:", frutas.indexOf("banana")); // 1
+console.log("¿Tiene uva?:", frutas.includes("uva"));        // true
+console.log("Fruta larga:", frutas.find(fruta => fruta.length > 5)); // "naranja"
+
+// DESTRUCTURING - Extraer propiedades
+let usuario = {
+    nombre: "Ana",
+    edad: 30,
+    ciudad: "Barcelona",
+    profesion: "Diseñadora"
+};
+
+// Destructuring de objeto
+let { nombre, edad, ciudad } = usuario;
+console.log("Nombre:", nombre);   // "Ana"
+console.log("Edad:", edad);       // 30
+console.log("Ciudad:", ciudad);   // "Barcelona"
+
+// Destructuring de array
+let colores = ["rojo", "verde", "azul"];
+let [primero, segundo] = colores;
+console.log("Primer color:", primero);  // "rojo"
+console.log("Segundo color:", segundo); // "verde"
+
+// MÉTODOS DE OBJETO
+let producto = {
+    nombre: "Laptop",
+    precio: 999,
+    stock: 5,
+    calcularTotal: function(cantidad) {
+        return this.precio * cantidad;
+    }
+};
+
+console.log("Total por 2:", producto.calcularTotal(2)); // 1998
+
+// Object.keys() - Obtener todas las claves
+console.log("Propiedades:", Object.keys(producto)); // ["nombre", "precio", "stock", "calcularTotal"]
+
+// Object.values() - Obtener todos los valores
+console.log("Valores:", Object.values(producto)); // ["Laptop", 999, 5, function...]</code></pre>
+                                    </div>
+                                    <div class="code-output" id="arrays-advanced-output"></div>
+                                </div>
+                            </div>
+
+                            <div id="arrays-interactive" class="example-tab-content">
+                                <div class="interactive-example">
+                                    <h4>🎮 Gestor de Lista de Compras</h4>
+                                    <div class="interactive-content">
+                                        <div class="input-group">
+                                            <label>Agregar producto:</label>
+                                            <input type="text" id="producto-input" placeholder="Ej: Leche" value="Leche">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Precio:</label>
+                                            <input type="number" id="precio-input" placeholder="Ej: 2.50" value="2.50" step="0.01">
+                                        </div>
+                                        <button class="btn btn-primary" onclick="addProduct()">
+                                            <i class="fas fa-plus"></i> Agregar Producto
+                                        </button>
+                                        <button class="btn btn-secondary" onclick="showList()">
+                                            <i class="fas fa-list"></i> Ver Lista
+                                        </button>
+                                        <button class="btn btn-success" onclick="calculateTotal()">
+                                            <i class="fas fa-calculator"></i> Calcular Total
+                                        </button>
+                                        <div class="interactive-output" id="shopping-output"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resumen de la lección -->
+                    <div class="lesson-summary">
+                        <h4>📝 Resumen</h4>
+                        <div class="summary-content">
+                            <p>En esta lección aprendiste sobre:</p>
+                            <ul>
+                                <li>Los métodos básicos de arrays: push(), pop(), shift(), unshift()</li>
+                                <li>Métodos de transformación: map(), filter(), reduce()</li>
+                                <li>Cómo buscar elementos: find(), includes(), indexOf()</li>
+                                <li>Acceso a propiedades de objetos con punto y corchetes</li>
+                                <li>Destructuring para extraer propiedades de objetos y arrays</li>
+                                <li>Métodos de objetos y cómo crear funciones dentro de ellos</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección de Ejercicios Prácticos -->
-        <section id="ejercicios" class="lesson-section bg-light">
+        <!-- Lección 6: Ejercicios Prácticos -->
+        <section id="ejercicios" class="lesson-section bg-light" data-lesson="ejercicios">
             <div class="container">
                 <div class="lesson-header">
+                    <div class="lesson-badge">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>Lección 6</span>
+                    </div>
                     <h2>Ejercicios Prácticos</h2>
-                    <p>Pon en práctica lo que has aprendido con estos ejercicios reales. Cada ejercicio incluye una solución paso a paso.</p>
+                    <p class="lesson-intro">Pon en práctica lo que has aprendido con estos ejercicios diseñados para principiantes. Cada ejercicio incluye una solución paso a paso y usa solo los conceptos que ya conoces.</p>
+                    
+                    <div class="key-points">
+                        <h4>🎯 Puntos Clave</h4>
+                        <div class="key-points-grid">
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Ejercicios básicos</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Soluciones paso a paso</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Conceptos ya aprendidos</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Progresión gradual</span>
+                            </div>
+                            <div class="key-point">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Ejemplos reales</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="exercises-grid">
-                    <div class="exercise-card">
-                        <div class="exercise-header">
-                            <h3>Ejercicio 1: Calculadora Básica</h3>
-                            <span class="difficulty beginner">Principiante</span>
+                <div class="lesson-content">
+                    <!-- Ejercicios colapsables -->
+                    <div class="theory-section">
+                        <div class="section-toggle" onclick="toggleSection('ejercicios-content')">
+                            <h3><i class="fas fa-dumbbell"></i> Ejercicios</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
                         </div>
-                        <div class="exercise-content">
-                            <p>Crea una calculadora que realice las operaciones básicas: suma, resta, multiplicación y división.</p>
-                            <div class="exercise-requirements">
-                                <h4>Requisitos:</h4>
-                                <ul>
-                                    <li>Crear una clase Calculadora</li>
-                                    <li>Implementar métodos para cada operación</li>
-                                    <li>Manejar errores (división por cero)</li>
-                                    <li>Mantener historial de operaciones</li>
-                                </ul>
-                            </div>
-                            <button class="btn btn-outline" onclick="toggleCode('ejercicio1-code')">
-                                <i class="fas fa-code"></i> Ver Solución
-                            </button>
-                            <div id="ejercicio1-code" class="code-block" style="display: none;">
-                                <pre><code class="language-javascript">// Solución del Ejercicio 1: Calculadora Básica
-class Calculadora {
-    constructor() {
-        this.historial = [];
+                        <div id="ejercicios-content" class="theory-content collapsed">
+                            <div class="exercises-grid">
+                                <div class="exercise-card">
+                                    <div class="exercise-header">
+                                        <h3>Ejercicio 1: Calculadora Simple</h3>
+                                        <span class="difficulty beginner">Principiante</span>
+                                    </div>
+                                    <div class="exercise-content">
+                                        <p>Crea funciones para realizar operaciones matemáticas básicas usando solo variables, operadores y funciones.</p>
+                                        <div class="exercise-requirements">
+                                            <h4>Requisitos:</h4>
+                                            <ul>
+                                                <li>Crear función <code>sumar(a, b)</code></li>
+                                                <li>Crear función <code>restar(a, b)</code></li>
+                                                <li>Crear función <code>multiplicar(a, b)</code></li>
+                                                <li>Crear función <code>dividir(a, b)</code></li>
+                                                <li>Probar todas las funciones</li>
+                                            </ul>
+                                        </div>
+                                        <button class="btn btn-outline" onclick="toggleCode('ejercicio1-code')">
+                                            <i class="fas fa-code"></i> Ver Solución
+                                        </button>
+                                        <div id="ejercicio1-code" class="code-block" style="display: none;">
+                                            <pre><code class="language-javascript">// Solución del Ejercicio 1: Calculadora Simple
+
+// Función para sumar
+function sumar(a, b) {
+    return a + b;
+}
+
+// Función para restar
+function restar(a, b) {
+    return a - b;
+}
+
+// Función para multiplicar
+function multiplicar(a, b) {
+    return a * b;
+}
+
+// Función para dividir
+function dividir(a, b) {
+    if (b === 0) {
+        return "Error: No se puede dividir por cero";
     }
+    return a / b;
+}
+
+// Probar las funciones
+console.log("Suma:", sumar(10, 5));        // 15
+console.log("Resta:", restar(10, 5));      // 5
+console.log("Multiplicación:", multiplicar(10, 5)); // 50
+console.log("División:", dividir(10, 5));  // 2
+console.log("División por cero:", dividir(10, 0)); // Error
+
+// Ejemplo de uso práctico
+let precio = 100;
+let descuento = 20;
+let precioFinal = restar(precio, descuento);
+console.log("Precio final:", precioFinal); // 80</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="exercise-card">
+                                    <div class="exercise-header">
+                                        <h3>Ejercicio 2: Gestor de Lista de Compras</h3>
+                                        <span class="difficulty beginner">Principiante</span>
+                                    </div>
+                                    <div class="exercise-content">
+                                        <p>Crea un sistema simple para gestionar una lista de compras usando arrays y objetos.</p>
+                                        <div class="exercise-requirements">
+                                            <h4>Requisitos:</h4>
+                                            <ul>
+                                                <li>Crear array para productos</li>
+                                                <li>Función para agregar productos</li>
+                                                <li>Función para mostrar lista</li>
+                                                <li>Función para calcular total</li>
+                                                <li>Usar objetos para cada producto</li>
+                                            </ul>
+                                        </div>
+                                        <button class="btn btn-outline" onclick="toggleCode('ejercicio2-code')">
+                                            <i class="fas fa-code"></i> Ver Solución
+                                        </button>
+                                        <div id="ejercicio2-code" class="code-block" style="display: none;">
+                                            <pre><code class="language-javascript">// Solución del Ejercicio 2: Gestor de Lista de Compras
+
+// Array para almacenar productos
+let listaCompras = [];
+
+// Función para agregar producto
+function agregarProducto(nombre, precio, cantidad = 1) {
+    let producto = {
+        nombre: nombre,
+        precio: precio,
+        cantidad: cantidad,
+        total: precio * cantidad
+    };
     
-    sumar(a, b) {
-        let resultado = a + b;
-        this.agregarAlHistorial(`${a} + ${b} = ${resultado}`);
-        return resultado;
-    }
+    listaCompras.push(producto);
+    console.log(`✅ ${nombre} agregado a la lista`);
+}
+
+// Función para mostrar la lista
+function mostrarLista() {
+    console.log("🛒 Lista de Compras:");
+    console.log("==================");
     
-    restar(a, b) {
-        let resultado = a - b;
-        this.agregarAlHistorial(`${a} - ${b} = ${resultado}`);
-        return resultado;
-    }
-    
-    multiplicar(a, b) {
-        let resultado = a * b;
-        this.agregarAlHistorial(`${a} * ${b} = ${resultado}`);
-        return resultado;
-    }
-    
-    dividir(a, b) {
-        if (b === 0) {
-            throw new Error('No se puede dividir por cero');
-        }
-        let resultado = a / b;
-        this.agregarAlHistorial(`${a} / ${b} = ${resultado}`);
-        return resultado;
-    }
-    
-    agregarAlHistorial(operacion) {
-        this.historial.push(operacion);
-    }
-    
-    obtenerHistorial() {
-        return this.historial;
+    for (let i = 0; i < listaCompras.length; i++) {
+        let producto = listaCompras[i];
+        console.log(`${i + 1}. ${producto.nombre} - $${producto.precio} x ${producto.cantidad} = $${producto.total}`);
     }
 }
 
-// Uso de la calculadora
-let calc = new Calculadora();
-console.log(calc.sumar(5, 3));        // 8
-console.log(calc.multiplicar(4, 6));  // 24
-console.log(calc.obtenerHistorial());</code></pre>
+// Función para calcular total
+function calcularTotal() {
+    let total = 0;
+    
+    for (let producto of listaCompras) {
+        total += producto.total;
+    }
+    
+    return total;
+}
+
+// Probar el sistema
+agregarProducto("Leche", 2.50, 2);
+agregarProducto("Pan", 1.20, 1);
+agregarProducto("Huevos", 3.00, 1);
+
+mostrarLista();
+console.log("💰 Total a pagar: $" + calcularTotal());</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="exercise-card">
+                                    <div class="exercise-header">
+                                        <h3>Ejercicio 3: Validador de Edad</h3>
+                                        <span class="difficulty beginner">Principiante</span>
+                                    </div>
+                                    <div class="exercise-content">
+                                        <p>Crea un sistema que valide la edad y determine qué puede hacer una persona según su edad.</p>
+                                        <div class="exercise-requirements">
+                                            <h4>Requisitos:</h4>
+                                            <ul>
+                                                <li>Función que reciba edad como parámetro</li>
+                                                <li>Usar if/else para diferentes rangos de edad</li>
+                                                <li>Retornar mensaje apropiado</li>
+                                                <li>Probar con diferentes edades</li>
+                                            </ul>
+                                        </div>
+                                        <button class="btn btn-outline" onclick="toggleCode('ejercicio3-code')">
+                                            <i class="fas fa-code"></i> Ver Solución
+                                        </button>
+                                        <div id="ejercicio3-code" class="code-block" style="display: none;">
+                                            <pre><code class="language-javascript">// Solución del Ejercicio 3: Validador de Edad
+
+function validarEdad(edad) {
+    if (edad < 0) {
+        return "❌ Edad inválida";
+    } else if (edad < 13) {
+        return "👶 Eres un niño/a";
+    } else if (edad < 18) {
+        return "👦 Eres adolescente";
+    } else if (edad < 65) {
+        return "👨 Eres adulto";
+    } else {
+        return "👴 Eres adulto mayor";
+    }
+}
+
+function quePuedeHacer(edad) {
+    if (edad >= 18) {
+        return "✅ Puedes votar, conducir y trabajar";
+    } else if (edad >= 16) {
+        return "⚠️ Puedes trabajar con permiso de tus padres";
+    } else if (edad >= 13) {
+        return "📚 Debes ir a la escuela";
+    } else {
+        return "🎮 Puedes jugar y estudiar";
+    }
+}
+
+// Probar con diferentes edades
+let edades = [5, 15, 20, 35, 70];
+
+for (let edad of edades) {
+    console.log(`\nEdad: ${edad}`);
+    console.log(validarEdad(edad));
+    console.log(quePuedeHacer(edad));
+}
+
+// Ejemplo interactivo
+function verificarPersona(nombre, edad) {
+    console.log(`\n👤 ${nombre}, ${edad} años:`);
+    console.log(validarEdad(edad));
+    console.log(quePuedeHacer(edad));
+}
+
+verificarPersona("Ana", 25);
+verificarPersona("Carlos", 16);
+verificarPersona("María", 8);</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="exercise-card">
+                                    <div class="exercise-header">
+                                        <h3>Ejercicio 4: Contador de Palabras</h3>
+                                        <span class="difficulty beginner">Principiante</span>
+                                    </div>
+                                    <div class="exercise-content">
+                                        <p>Crea funciones para analizar texto usando métodos de string y arrays.</p>
+                                        <div class="exercise-requirements">
+                                            <h4>Requisitos:</h4>
+                                            <ul>
+                                                <li>Función para contar palabras</li>
+                                                <li>Función para contar caracteres</li>
+                                                <li>Función para encontrar palabra más larga</li>
+                                                <li>Usar split() y length</li>
+                                            </ul>
+                                        </div>
+                                        <button class="btn btn-outline" onclick="toggleCode('ejercicio4-code')">
+                                            <i class="fas fa-code"></i> Ver Solución
+                                        </button>
+                                        <div id="ejercicio4-code" class="code-block" style="display: none;">
+                                            <pre><code class="language-javascript">// Solución del Ejercicio 4: Contador de Palabras
+
+function contarPalabras(texto) {
+    // Dividir el texto en palabras (separadas por espacios)
+    let palabras = texto.split(' ');
+    
+    // Filtrar palabras vacías (por si hay espacios dobles)
+    let palabrasReales = palabras.filter(palabra => palabra.length > 0);
+    
+    return palabrasReales.length;
+}
+
+function contarCaracteres(texto) {
+    return texto.length;
+}
+
+function palabraMasLarga(texto) {
+    let palabras = texto.split(' ');
+    let palabraLarga = '';
+    
+    for (let palabra of palabras) {
+        if (palabra.length > palabraLarga.length) {
+            palabraLarga = palabra;
+        }
+    }
+    
+    return palabraLarga;
+}
+
+function analizarTexto(texto) {
+    console.log("📝 Análisis del texto:");
+    console.log("=====================");
+    console.log(`Texto: "${texto}"`);
+    console.log(`Caracteres: ${contarCaracteres(texto)}`);
+    console.log(`Palabras: ${contarPalabras(texto)}`);
+    console.log(`Palabra más larga: "${palabraMasLarga(texto)}"`);
+}
+
+// Probar con diferentes textos
+let textos = [
+    "Hola mundo",
+    "JavaScript es genial para programar",
+    "Aprender programación es divertido y útil"
+];
+
+for (let texto of textos) {
+    analizarTexto(texto);
+    console.log(""); // Línea en blanco
+}
+
+// Ejemplo práctico
+let miTexto = "Me gusta mucho programar en JavaScript";
+analizarTexto(miTexto);</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="exercise-card">
-                        <div class="exercise-header">
-                            <h3>Ejercicio 2: Gestor de Tareas</h3>
-                            <span class="difficulty intermediate">Intermedio</span>
-                        </div>
-                        <div class="exercise-content">
-                            <p>Crea un sistema de gestión de tareas con funcionalidades CRUD y persistencia local.</p>
-                            <div class="exercise-requirements">
-                                <h4>Requisitos:</h4>
-                                <ul>
-                                    <li>Agregar, editar y eliminar tareas</li>
-                                    <li>Marcar tareas como completadas</li>
-                                    <li>Filtrar por estado</li>
-                                    <li>Guardar en localStorage</li>
-                                </ul>
-                            </div>
-                            <button class="btn btn-outline" onclick="toggleCode('ejercicio2-code')">
-                                <i class="fas fa-code"></i> Ver Solución
-                            </button>
-                            <div id="ejercicio2-code" class="code-block" style="display: none;">
-                                <pre><code class="language-javascript">// Solución del Ejercicio 2: Gestor de Tareas
-class GestorTareas {
-    constructor() {
-        this.tareas = this.cargarTareas();
-    }
-    
-    agregarTarea(texto, prioridad = 'media') {
-        const tarea = {
-            id: Date.now(),
-            texto,
-            prioridad,
-            completada: false,
-            fechaCreacion: new Date().toISOString()
-        };
-        
-        this.tareas.push(tarea);
-        this.guardarTareas();
-        return tarea;
-    }
-    
-    completarTarea(id) {
-        const tarea = this.tareas.find(t => t.id === id);
-        if (tarea) {
-            tarea.completada = true;
-            this.guardarTareas();
-        }
-    }
-    
-    eliminarTarea(id) {
-        this.tareas = this.tareas.filter(t => t.id !== id);
-        this.guardarTareas();
-    }
-    
-    obtenerTareas(filtro = 'todas') {
-        switch (filtro) {
-            case 'completadas':
-                return this.tareas.filter(t => t.completada);
-            case 'pendientes':
-                return this.tareas.filter(t => !t.completada);
-            default:
-                return this.tareas;
-        }
-    }
-    
-    guardarTareas() {
-        localStorage.setItem('tareas', JSON.stringify(this.tareas));
-    }
-    
-    cargarTareas() {
-        const tareas = localStorage.getItem('tareas');
-        return tareas ? JSON.parse(tareas) : [];
-    }
-}
-
-// Uso del gestor de tareas
-const gestor = new GestorTareas();
-gestor.agregarTarea('Aprender JavaScript', 'alta');
-gestor.agregarTarea('Hacer ejercicio', 'media');
-console.log(gestor.obtenerTareas());</code></pre>
-                            </div>
+                    <!-- Resumen de la lección -->
+                    <div class="lesson-summary">
+                        <h4>📝 Resumen</h4>
+                        <div class="summary-content">
+                            <p>En esta lección practicaste:</p>
+                            <ul>
+                                <li>Crear funciones simples para operaciones matemáticas</li>
+                                <li>Usar arrays y objetos para almacenar datos</li>
+                                <li>Aplicar condicionales para tomar decisiones</li>
+                                <li>Manipular strings y arrays con métodos básicos</li>
+                                <li>Combinar todos los conceptos aprendidos en proyectos reales</li>
+                            </ul>
+                            <p><strong>¡Felicidades! Has completado el Módulo 1 de JavaScript. Ahora tienes una base sólida para continuar con conceptos más avanzados.</strong></p>
                         </div>
                     </div>
                 </div>
@@ -1930,6 +2458,121 @@ if (a > b) {
             `;
         }
 
+        // Funciones para Lección 4 (Funciones)
+        function createFunction() {
+            const nombre = document.getElementById('function-name').value;
+            const params = document.getElementById('function-params').value;
+            const operacion = document.getElementById('function-operation').value;
+            const output = document.getElementById('function-output');
+            
+            if (!nombre || !params) {
+                output.innerHTML = '<div class="error">Por favor, completa todos los campos</div>';
+                return;
+            }
+            
+            let codigo = '';
+            let descripcion = '';
+            
+            switch(operacion) {
+                case 'suma':
+                    codigo = `function ${nombre}(${params}) {\n    return ${params.split(',').map(p => p.trim()).join(' + ')};\n}`;
+                    descripcion = 'Suma los parámetros';
+                    break;
+                case 'multiplicacion':
+                    codigo = `function ${nombre}(${params}) {\n    return ${params.split(',').map(p => p.trim()).join(' * ')};\n}`;
+                    descripcion = 'Multiplica los parámetros';
+                    break;
+                case 'area':
+                    codigo = `function ${nombre}(${params}) {\n    return ${params.split(',')[0].trim()} * ${params.split(',')[1].trim()};\n}`;
+                    descripcion = 'Calcula el área (ancho * alto)';
+                    break;
+                case 'personalizada':
+                    codigo = `function ${nombre}(${params}) {\n    // Tu código aquí\n    return resultado;\n}`;
+                    descripcion = 'Función personalizada';
+                    break;
+            }
+            
+            output.innerHTML = `
+                <div class="success">
+                    <h5>✅ Función generada:</h5>
+                    <pre class="object-display">${codigo}</pre>
+                    <p><strong>Descripción:</strong> ${descripcion}</p>
+                    <p><strong>Uso:</strong> <code>${nombre}(${params.split(',').map(p => p.trim()).map(p => 'valor').join(', ')})</code></p>
+                </div>
+            `;
+        }
+
+        // Funciones para Lección 5 (Arrays y Objetos)
+        let listaCompras = [];
+        
+        function addProduct() {
+            const producto = document.getElementById('producto-input').value;
+            const precio = parseFloat(document.getElementById('precio-input').value);
+            const output = document.getElementById('shopping-output');
+            
+            if (!producto || !precio) {
+                output.innerHTML = '<div class="error">Por favor, completa ambos campos</div>';
+                return;
+            }
+            
+            const item = {
+                producto: producto,
+                precio: precio,
+                cantidad: 1,
+                total: precio
+            };
+            
+            listaCompras.push(item);
+            
+            output.innerHTML = `
+                <div class="success">
+                    <h5>✅ ${producto} agregado a la lista</h5>
+                    <p>Precio: $${precio}</p>
+                    <p>Total de productos: ${listaCompras.length}</p>
+                </div>
+            `;
+        }
+        
+        function showList() {
+            const output = document.getElementById('shopping-output');
+            
+            if (listaCompras.length === 0) {
+                output.innerHTML = '<div class="error">La lista está vacía</div>';
+                return;
+            }
+            
+            let html = '<div class="success"><h5>🛒 Lista de Compras:</h5><ul>';
+            
+            for (let i = 0; i < listaCompras.length; i++) {
+                const item = listaCompras[i];
+                html += `<li>${i + 1}. ${item.producto} - $${item.precio}</li>`;
+            }
+            
+            html += '</ul></div>';
+            output.innerHTML = html;
+        }
+        
+        function calculateTotal() {
+            const output = document.getElementById('shopping-output');
+            
+            if (listaCompras.length === 0) {
+                output.innerHTML = '<div class="error">La lista está vacía</div>';
+                return;
+            }
+            
+            let total = 0;
+            for (let item of listaCompras) {
+                total += item.precio;
+            }
+            
+            output.innerHTML = `
+                <div class="success">
+                    <h5>💰 Total a pagar: $${total.toFixed(2)}</h5>
+                    <p>Productos: ${listaCompras.length}</p>
+                </div>
+            `;
+        }
+
         // Observador de intersección para progreso
         function setupProgressObserver() {
             const lessons = document.querySelectorAll('.lesson-section');
@@ -2049,5 +2692,429 @@ if (a > b) {
         window.openModal = openModal;
         window.closeModal = closeModal;
     </script>
+
+    <!-- Modales para Lección 4 (Funciones) -->
+    <div id="function-declared-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('function-declared-modal')">&times;</span>
+            <h2><i class="fas fa-code"></i> Función Declarada</h2>
+            <div class="modal-body">
+                <h3>¿Qué es una función declarada?</h3>
+                <p>Es la forma tradicional de crear funciones en JavaScript. Se declara con la palabra clave <code>function</code> seguida del nombre de la función.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">function nombreFuncion(parametros) {
+    // código a ejecutar
+    return valor;
+}</code></pre>
+                
+                <h3>Características:</h3>
+                <ul>
+                    <li><strong>Hoisting:</strong> Se puede usar antes de declararla</li>
+                    <li><strong>Nombre obligatorio:</strong> Debe tener un nombre</li>
+                    <li><strong>Scope global:</strong> Se crea en el scope donde se declara</li>
+                </ul>
+                
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// Se puede usar antes de declararla
+console.log(saludar("Juan")); // ✅ Funciona
+
+function saludar(nombre) {
+    return `Hola, ${nombre}!`;
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="function-expressed-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('function-expressed-modal')">&times;</span>
+            <h2><i class="fas fa-code"></i> Función Expresada</h2>
+            <div class="modal-body">
+                <h3>¿Qué es una función expresada?</h3>
+                <p>Es una función que se asigna a una variable. Se crea usando una expresión de función anónima.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">let nombreVariable = function(parametros) {
+    // código a ejecutar
+    return valor;
+};</code></pre>
+                
+                <h3>Características:</h3>
+                <ul>
+                    <li><strong>Sin hoisting:</strong> No se puede usar antes de declararla</li>
+                    <li><strong>Asignada a variable:</strong> Se almacena en una variable</li>
+                    <li><strong>Anónima:</strong> La función no tiene nombre propio</li>
+                </ul>
+                
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// ❌ Esto NO funciona
+// console.log(saludar("Juan")); // ReferenceError
+
+let saludar = function(nombre) {
+    return `Hola, ${nombre}!`;
+};
+
+console.log(saludar("Juan")); // ✅ Ahora funciona</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="arrow-function-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('arrow-function-modal')">&times;</span>
+            <h2><i class="fas fa-arrow-right"></i> Arrow Function</h2>
+            <div class="modal-body">
+                <h3>¿Qué es una arrow function?</h3>
+                <p>Es una forma más corta y moderna de escribir funciones, introducida en ES6. Usa la sintaxis <code>=></code>.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">// Con un parámetro
+let nombre = parametro => expresion;
+
+// Con múltiples parámetros
+let nombre = (param1, param2) => expresion;
+
+// Con bloque de código
+let nombre = (param1, param2) => {
+    // código
+    return valor;
+};</code></pre>
+                
+                <h3>Características:</h3>
+                <ul>
+                    <li><strong>Más corta:</strong> Sintaxis más concisa</li>
+                    <li><strong>Sin this propio:</strong> Hereda el this del contexto</li>
+                    <li><strong>Return implícito:</strong> Si es una expresión, no necesita return</li>
+                </ul>
+                
+                <h3>Ejemplos:</h3>
+                <pre><code class="language-javascript">// Función tradicional
+let sumar = function(a, b) {
+    return a + b;
+};
+
+// Arrow function equivalente
+let sumar = (a, b) => a + b;
+
+// Con un solo parámetro
+let duplicar = x => x * 2;
+
+// Sin parámetros
+let saludar = () => "Hola mundo";</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="parameters-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('parameters-modal')">&times;</span>
+            <h2><i class="fas fa-cog"></i> Parámetros y Argumentos</h2>
+            <div class="modal-body">
+                <h3>¿Qué son los parámetros?</h3>
+                <p>Los <strong>parámetros</strong> son variables que se definen en la declaración de la función. Los <strong>argumentos</strong> son los valores reales que se pasan cuando se llama la función.</p>
+                
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">// Parámetros: nombre y edad
+function presentar(nombre, edad) {
+    return `Hola, soy ${nombre} y tengo ${edad} años`;
+}
+
+// Argumentos: "Ana" y 25
+presentar("Ana", 25); // "Hola, soy Ana y tengo 25 años"</code></pre>
+                
+                <h3>Parámetros por defecto:</h3>
+                <pre><code class="language-javascript">function saludar(nombre = "Usuario") {
+    return `Hola, ${nombre}!`;
+}
+
+saludar();        // "Hola, Usuario!"
+saludar("Juan");  // "Hola, Juan!"</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="return-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('return-modal')">&times;</span>
+            <h2><i class="fas fa-undo"></i> Return - Valor de Retorno</h2>
+            <div class="modal-body">
+                <h3>¿Qué es return?</h3>
+                <p>La palabra clave <code>return</code> especifica qué valor debe devolver la función. Una función sin return devuelve <code>undefined</code>.</p>
+                
+                <h3>Ejemplos:</h3>
+                <pre><code class="language-javascript">// Función con return
+function sumar(a, b) {
+    return a + b; // Devuelve la suma
+}
+
+let resultado = sumar(5, 3); // resultado = 8
+
+// Función sin return
+function saludar(nombre) {
+    console.log(`Hola, ${nombre}!`);
+    // No hay return, devuelve undefined
+}
+
+let saludo = saludar("Juan"); // saludo = undefined</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="scope-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('scope-modal')">&times;</span>
+            <h2><i class="fas fa-eye"></i> Scope - Alcance de Variables</h2>
+            <div class="modal-body">
+                <h3>¿Qué es el scope?</h3>
+                <p>El <strong>scope</strong> es el alcance o visibilidad de una variable. Define dónde puede ser accedida una variable en el código.</p>
+                
+                <h3>Tipos de scope:</h3>
+                <ul>
+                    <li><strong>Global:</strong> Accesible desde cualquier parte</li>
+                    <li><strong>Local:</strong> Solo accesible dentro de la función</li>
+                    <li><strong>Bloque:</strong> Solo accesible dentro del bloque {}</li>
+                </ul>
+                
+                <h3>Ejemplo de scope local:</h3>
+                <pre><code class="language-javascript">let global = "Soy global";
+
+function ejemplo() {
+    let local = "Soy local";
+    console.log(global); // ✅ Accesible
+    console.log(local);  // ✅ Accesible
+}
+
+ejemplo();
+console.log(global); // ✅ Accesible
+console.log(local);  // ❌ Error: local is not defined</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="hoisting-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('hoisting-modal')">&times;</span>
+            <h2><i class="fas fa-arrow-up"></i> Hoisting - Elevación</h2>
+            <div class="modal-body">
+                <h3>¿Qué es el hoisting?</h3>
+                <p>El <strong>hoisting</strong> es el comportamiento de JavaScript de "elevar" las declaraciones de variables y funciones al inicio de su scope antes de la ejecución.</p>
+                
+                <h3>Hoisting de funciones:</h3>
+                <pre><code class="language-javascript">// Esto funciona gracias al hoisting
+console.log(saludar("Juan")); // ✅ "Hola Juan!"
+
+function saludar(nombre) {
+    return `Hola ${nombre}!`;
+}</code></pre>
+                
+                <h3>Hoisting de variables:</h3>
+                <pre><code class="language-javascript">// var se eleva pero no se inicializa
+console.log(x); // undefined (no error)
+var x = 5;
+
+// let/const se elevan pero no se pueden usar
+console.log(y); // ❌ ReferenceError
+let y = 10;</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales para Lección 5 (Arrays y Objetos) -->
+    <div id="array-basic-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('array-basic-modal')">&times;</span>
+            <h2><i class="fas fa-list"></i> Métodos Básicos de Arrays</h2>
+            <div class="modal-body">
+                <h3>push() y pop()</h3>
+                <p>Métodos para agregar y quitar elementos al <strong>final</strong> del array.</p>
+                
+                <h3>Sintaxis:</h3>
+                <pre><code class="language-javascript">array.push(elemento1, elemento2, ...); // Agrega al final
+let ultimo = array.pop(); // Quita el último elemento</code></pre>
+                
+                <h3>Ejemplo:</h3>
+                <pre><code class="language-javascript">let frutas = ["manzana", "banana"];
+
+frutas.push("naranja"); // ["manzana", "banana", "naranja"]
+let ultima = frutas.pop(); // "naranja"
+// frutas ahora es ["manzana", "banana"]</code></pre>
+                
+                <h3>shift() y unshift()</h3>
+                <p>Métodos para agregar y quitar elementos al <strong>inicio</strong> del array.</p>
+                
+                <pre><code class="language-javascript">let numeros = [2, 3, 4];
+
+numeros.unshift(1); // [1, 2, 3, 4] - Agrega al inicio
+let primero = numeros.shift(); // 1 - Quita el primero
+// numeros ahora es [2, 3, 4]</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="array-transform-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('array-transform-modal')">&times;</span>
+            <h2><i class="fas fa-magic"></i> Métodos de Transformación</h2>
+            <div class="modal-body">
+                <h3>map() - Transformar elementos</h3>
+                <p>Crea un nuevo array aplicando una función a cada elemento.</p>
+                
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+
+// Duplicar cada número
+let dobles = numeros.map(num => num * 2);
+console.log(dobles); // [2, 4, 6, 8, 10]</code></pre>
+                
+                <h3>filter() - Filtrar elementos</h3>
+                <p>Crea un nuevo array con elementos que cumplan una condición.</p>
+                
+                <pre><code class="language-javascript">let edades = [15, 18, 25, 12, 30, 17];
+
+// Solo mayores de edad
+let mayores = edades.filter(edad => edad >= 18);
+console.log(mayores); // [18, 25, 30]</code></pre>
+                
+                <h3>reduce() - Reducir a un valor</h3>
+                <p>Reduce el array a un solo valor aplicando una función acumuladora.</p>
+                
+                <pre><code class="language-javascript">let numeros = [1, 2, 3, 4, 5];
+
+// Sumar todos los números
+let suma = numeros.reduce((total, num) => total + num, 0);
+console.log(suma); // 15</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="array-search-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('array-search-modal')">&times;</span>
+            <h2><i class="fas fa-search"></i> Métodos de Búsqueda</h2>
+            <div class="modal-body">
+                <h3>find() - Encontrar primer elemento</h3>
+                <p>Devuelve el primer elemento que cumpla la condición, o <code>undefined</code> si no encuentra nada.</p>
+                
+                <pre><code class="language-javascript">let personas = [
+    {nombre: "Ana", edad: 25},
+    {nombre: "Juan", edad: 30},
+    {nombre: "María", edad: 20}
+];
+
+// Buscar persona mayor de 25
+let mayor = personas.find(persona => persona.edad > 25);
+console.log(mayor); // {nombre: "Juan", edad: 30}</code></pre>
+                
+                <h3>includes() - Verificar si existe</h3>
+                <p>Devuelve <code>true</code> si el elemento existe en el array, <code>false</code> si no.</p>
+                
+                <pre><code class="language-javascript">let colores = ["rojo", "verde", "azul"];
+
+console.log(colores.includes("verde")); // true
+console.log(colores.includes("amarillo")); // false</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="object-access-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('object-access-modal')">&times;</span>
+            <h2><i class="fas fa-key"></i> Acceso a Propiedades</h2>
+            <div class="modal-body">
+                <h3>Notación de punto</h3>
+                <p>Usa un punto seguido del nombre de la propiedad.</p>
+                
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Juan",
+    edad: 25,
+    ciudad: "Madrid"
+};
+
+console.log(persona.nombre); // "Juan"
+console.log(persona.edad);   // 25</code></pre>
+                
+                <h3>Notación de corchetes</h3>
+                <p>Usa corchetes con el nombre de la propiedad como string.</p>
+                
+                <pre><code class="language-javascript">console.log(persona["nombre"]); // "Juan"
+console.log(persona["edad"]);   // 25
+
+// Útil cuando el nombre de la propiedad es dinámico
+let propiedad = "ciudad";
+console.log(persona[propiedad]); // "Madrid"</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="object-methods-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('object-methods-modal')">&times;</span>
+            <h2><i class="fas fa-cogs"></i> Métodos de Objetos</h2>
+            <div class="modal-body">
+                <h3>¿Qué son los métodos?</h3>
+                <p>Los <strong>métodos</strong> son funciones que pertenecen a un objeto. Se definen como propiedades que contienen una función.</p>
+                
+                <h3>Definir métodos:</h3>
+                <pre><code class="language-javascript">let calculadora = {
+    sumar: function(a, b) {
+        return a + b;
+    },
+    multiplicar: function(a, b) {
+        return a * b;
+    }
+};
+
+// Usar métodos
+console.log(calculadora.sumar(5, 3));        // 8
+console.log(calculadora.multiplicar(4, 6));  // 24</code></pre>
+                
+                <h3>Métodos con this:</h3>
+                <pre><code class="language-javascript">let persona = {
+    nombre: "Ana",
+    edad: 25,
+    saludar: function() {
+        return `Hola, soy ${this.nombre}`;
+    }
+};
+
+console.log(persona.saludar()); // "Hola, soy Ana"</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="destructuring-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('destructuring-modal')">&times;</span>
+            <h2><i class="fas fa-unpack"></i> Destructuring</h2>
+            <div class="modal-body">
+                <h3>¿Qué es destructuring?</h3>
+                <p>El <strong>destructuring</strong> es una forma de extraer valores de objetos y arrays de manera más concisa.</p>
+                
+                <h3>Destructuring de objetos:</h3>
+                <pre><code class="language-javascript">let usuario = {
+    nombre: "Ana",
+    edad: 30,
+    ciudad: "Barcelona"
+};
+
+// Extraer propiedades
+let { nombre, edad, ciudad } = usuario;
+
+console.log(nombre); // "Ana"
+console.log(edad);   // 30
+console.log(ciudad); // "Barcelona"</code></pre>
+                
+                <h3>Destructuring de arrays:</h3>
+                <pre><code class="language-javascript">let colores = ["rojo", "verde", "azul"];
+
+// Extraer elementos por posición
+let [primero, segundo, tercero] = colores;
+
+console.log(primero);  // "rojo"
+console.log(segundo);  // "verde"
+console.log(tercero);  // "azul"</code></pre>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
