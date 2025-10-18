@@ -2037,6 +2037,78 @@ jobs:
                 fabButton.classList.remove('active');
             });
         });
+
+        // Text-to-Speech functionality
+        let currentSpeech = null;
+        
+        function readModalContent(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            const audioBtn = modal.querySelector('.audio-btn');
+            const modalBody = modal.querySelector('.modal-body');
+            
+            if (!modalBody) return;
+            
+            // Stop current speech if playing
+            if (currentSpeech) {
+                speechSynthesis.cancel();
+                currentSpeech = null;
+                audioBtn.classList.remove('playing');
+                audioBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                return;
+            }
+            
+            // Get text content from modal body
+            let textToRead = '';
+            
+            // Extract text from headings and paragraphs, skip code blocks
+            const elements = modalBody.querySelectorAll('h3, h4, p, li, ul, ol');
+            elements.forEach(element => {
+                // Skip code blocks
+                if (element.closest('pre') || element.closest('code')) return;
+                
+                const text = element.textContent.trim();
+                if (text) {
+                    textToRead += text + '. ';
+                }
+            });
+            
+            if (!textToRead) {
+                textToRead = 'No hay contenido de texto para leer.';
+            }
+            
+            // Create speech synthesis
+            const utterance = new SpeechSynthesisUtterance(textToRead);
+            utterance.lang = 'es-ES';
+            utterance.rate = 0.8;
+            utterance.pitch = 1;
+            utterance.volume = 0.9;
+            
+            // Update button state
+            audioBtn.classList.add('playing');
+            audioBtn.innerHTML = '<i class="fas fa-stop"></i>';
+            
+            // Handle speech events
+            utterance.onstart = () => {
+                currentSpeech = utterance;
+            };
+            
+            utterance.onend = () => {
+                currentSpeech = null;
+                audioBtn.classList.remove('playing');
+                audioBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            };
+            
+            utterance.onerror = () => {
+                currentSpeech = null;
+                audioBtn.classList.remove('playing');
+                audioBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            };
+            
+            // Start speaking
+            speechSynthesis.speak(utterance);
+        }
     </script>
 </body>
 </html>

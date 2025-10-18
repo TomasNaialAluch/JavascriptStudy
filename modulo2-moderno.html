@@ -1282,8 +1282,15 @@ El año que viene tendré ${age + 1} años.
     <!-- Modales Explicativos - Lección 1: Let, Const y Var -->
     <div id="var-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('var-modal')">&times;</span>
-            <h2><i class="fas fa-tag"></i> var - Declaración Clásica</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-tag"></i> var - Declaración Clásica</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('var-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('var-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es var?</h3>
                 <p><code>var</code> es la forma clásica de declarar variables en JavaScript. Aunque sigue funcionando, se recomienda usar <code>let</code> o <code>const</code> en código moderno.</p>
@@ -1338,8 +1345,15 @@ console.log(x); // 20</code></pre>
 
     <div id="let-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('let-modal')">&times;</span>
-            <h2><i class="fas fa-tag"></i> let - Declaración Moderna</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-tag"></i> let - Declaración Moderna</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('let-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('let-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es let?</h3>
                 <p><code>let</code> es la forma moderna de declarar variables en JavaScript ES6+. Tiene mejor scope y evita problemas de <code>var</code>.</p>
@@ -1408,8 +1422,15 @@ console.log(x); // ✅ 10</code></pre>
 
     <div id="const-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('const-modal')">&times;</span>
-            <h2><i class="fas fa-tag"></i> const - Constantes</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-tag"></i> const - Constantes</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('const-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('const-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es const?</h3>
                 <p><code>const</code> declara constantes en JavaScript ES6+. Una vez asignado, el valor NO se puede reasignar.</p>
@@ -1496,8 +1517,15 @@ console.log(config.API_URL); // "https://api.example.com"</code></pre>
 
     <div id="hoisting-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('hoisting-modal')">&times;</span>
-            <h2><i class="fas fa-arrow-up"></i> Hoisting</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-arrow-up"></i> Hoisting</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('hoisting-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('hoisting-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es Hoisting?</h3>
                 <p><strong>Hoisting</strong> (elevación) es un comportamiento de JavaScript donde las declaraciones de variables y funciones se "mueven" al inicio de su scope antes de la ejecución del código.</p>
@@ -3752,6 +3780,78 @@ console.log(debugObject(datos, 'Usuario'));</code></pre>
                 fabButton.classList.remove('active');
             });
         });
+
+        // Text-to-Speech functionality
+        let currentSpeech = null;
+        
+        function readModalContent(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            const audioBtn = modal.querySelector('.audio-btn');
+            const modalBody = modal.querySelector('.modal-body');
+            
+            if (!modalBody) return;
+            
+            // Stop current speech if playing
+            if (currentSpeech) {
+                speechSynthesis.cancel();
+                currentSpeech = null;
+                audioBtn.classList.remove('playing');
+                audioBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                return;
+            }
+            
+            // Get text content from modal body
+            let textToRead = '';
+            
+            // Extract text from headings and paragraphs, skip code blocks
+            const elements = modalBody.querySelectorAll('h3, h4, p, li, ul, ol');
+            elements.forEach(element => {
+                // Skip code blocks
+                if (element.closest('pre') || element.closest('code')) return;
+                
+                const text = element.textContent.trim();
+                if (text) {
+                    textToRead += text + '. ';
+                }
+            });
+            
+            if (!textToRead) {
+                textToRead = 'No hay contenido de texto para leer.';
+            }
+            
+            // Create speech synthesis
+            const utterance = new SpeechSynthesisUtterance(textToRead);
+            utterance.lang = 'es-ES';
+            utterance.rate = 0.8;
+            utterance.pitch = 1;
+            utterance.volume = 0.9;
+            
+            // Update button state
+            audioBtn.classList.add('playing');
+            audioBtn.innerHTML = '<i class="fas fa-stop"></i>';
+            
+            // Handle speech events
+            utterance.onstart = () => {
+                currentSpeech = utterance;
+            };
+            
+            utterance.onend = () => {
+                currentSpeech = null;
+                audioBtn.classList.remove('playing');
+                audioBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            };
+            
+            utterance.onerror = () => {
+                currentSpeech = null;
+                audioBtn.classList.remove('playing');
+                audioBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            };
+            
+            // Start speaking
+            speechSynthesis.speak(utterance);
+        }
     </script>
 </body>
 </html>
