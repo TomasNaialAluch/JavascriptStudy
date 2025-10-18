@@ -780,9 +780,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 1.5rem 0 1.5rem;
+    padding: 2rem 2rem 1.5rem 2rem; /* Increased padding and added bottom padding */
     border-bottom: 1px solid #e9ecef;
-    margin-bottom: 1rem;
+    margin-bottom: 0; /* Removed margin, using padding instead */
 }
 
 .modal-actions {
@@ -827,35 +827,131 @@ body {
 }
 
 .modal-body {
-    padding: 1.5rem; /* Added padding on all sides for better readability */
+    padding: 2rem; /* Increased padding for better breathing room */
+    line-height: 1.6; /* Better line spacing for readability */
 }
 
 .modal-body h3 {
     color: var(--secondary-color);
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    margin-top: 2rem; /* Increased top margin */
+    margin-bottom: 1rem; /* Increased bottom margin */
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 .modal-body h3:first-child {
     margin-top: 0;
 }
 
+.modal-body h4 {
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.modal-body h5 {
+    color: var(--text-color);
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.modal-body p {
+    margin-bottom: 1.2rem; /* Increased bottom margin for paragraphs */
+    line-height: 1.7; /* Better line spacing */
+}
+
+.modal-body ul, .modal-body ol {
+    margin-bottom: 1.5rem; /* Increased bottom margin for lists */
+    padding-left: 1.5rem; /* Increased left padding */
+}
+
+.modal-body li {
+    margin-bottom: 0.5rem; /* Added bottom margin for list items */
+    line-height: 1.6;
+}
+
 .modal-body pre {
     background: #f8f9fa;
     border: 1px solid #e9ecef;
-    border-radius: 4px;
-    padding: 1rem;
+    border-radius: 8px; /* Increased border radius */
+    padding: 1.5rem; /* Increased padding */
     overflow-x: auto;
-    margin: 1rem 0;
+    margin: 1.5rem 0; /* Increased margin */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Added subtle shadow */
 }
 
 .modal-body code {
     background: var(--primary-color);
     color: var(--secondary-color);
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
+    padding: 0.3rem 0.6rem; /* Increased padding */
+    border-radius: 4px; /* Increased border radius */
     font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.modal-body table {
+    margin: 1.5rem 0; /* Added margin for tables */
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.modal-body th, .modal-body td {
+    padding: 0.8rem; /* Increased padding for table cells */
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-body th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Special spacing for divs with background colors */
+.modal-body div[style*="background"] {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+/* Improved spacing for comparison boxes */
+.modal-body div[style*="background: #fff3cd"],
+.modal-body div[style*="background: #d4edda"] {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.modal-body div[style*="background: #fff3cd"] {
+    border-left-color: #ffc107;
+}
+
+.modal-body div[style*="background: #d4edda"] {
+    border-left-color: #28a745;
+}
+
+/* Better spacing for code examples within comparison boxes */
+.modal-body div[style*="background"] pre {
+    margin: 1rem 0;
+    background: rgba(0,0,0,0.05);
+}
+
+/* Improved spacing for h5 elements in comparison boxes */
+.modal-body div[style*="background"] h5 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* Better spacing for paragraphs in comparison boxes */
+.modal-body div[style*="background"] p {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
 }
 
 .close {
