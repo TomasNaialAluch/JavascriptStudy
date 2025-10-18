@@ -826,9 +826,107 @@ body {
     100% { transform: scale(1); }
 }
 
+/* Estilos para modales con estructura nueva (modal-body) */
 .modal-body {
     padding: 2rem; /* Increased padding for better breathing room */
     line-height: 1.6; /* Better line spacing for readability */
+}
+
+/* Estilos para modales con estructura antigua (contenido directo en modal-content) */
+.modal-content > h2 + * {
+    margin-top: 2rem;
+}
+
+.modal-content > h3 {
+    color: var(--secondary-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.modal-content > h3:first-of-type {
+    margin-top: 2rem;
+}
+
+.modal-content > h4 {
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.modal-content > h5 {
+    color: var(--text-color);
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.modal-content > p {
+    margin-bottom: 1.2rem;
+    line-height: 1.7;
+}
+
+.modal-content > ul, .modal-content > ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.modal-content > li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.modal-content > pre {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.modal-content > code {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.modal-content > table {
+    margin: 1.5rem 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.modal-content > th, .modal-content > td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-content > th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Padding general para modal-content - se aplica a todos los modales */
+.modal-content {
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+/* Ajustar padding cuando tiene modal-body */
+.modal-content .modal-body {
+    padding: 0;
+    margin: -2rem;
+    margin-top: 0;
 }
 
 .modal-body h3 {
