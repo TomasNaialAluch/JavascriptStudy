@@ -919,15 +919,16 @@ body {
 
 /* Ajustar padding cuando tiene modal-body */
 .modal-content .modal-body {
-    padding: 0;
-    margin: -2rem;
-    margin-top: 0;
+    padding: 2rem !important;
+    margin: 0 !important;
 }
 
 .modal-body h3 {
     color: var(--secondary-color);
-    margin-top: 2rem; /* Increased top margin */
-    margin-bottom: 1rem; /* Increased bottom margin */
+    margin-top: 2rem !important; /* Increased top margin */
+    margin-bottom: 1rem !important; /* Increased bottom margin */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     font-size: 1.3rem;
     font-weight: 600;
 }

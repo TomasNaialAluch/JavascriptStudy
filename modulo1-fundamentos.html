@@ -20,7 +20,7 @@
                 <span>JS Academy</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="./index.html" class="nav-link">Inicio</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -34,7 +34,7 @@
     <nav class="breadcrumb" id="breadcrumb">
         <ol class="breadcrumb-list">
             <li class="breadcrumb-item">
-                <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+                <a href="./index.html"><i class="fas fa-home"></i> Inicio</a>
             </li>
             <li class="breadcrumb-item">
                 <a href="index.html#modulos">Módulos</a>
@@ -5321,8 +5321,15 @@ console.log(pares); // [2, 4, 6]</code></pre>
 
     <div id="settimeout-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('settimeout-modal')">&times;</span>
-            <h2><i class="fas fa-clock"></i> setTimeout()</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-clock"></i> setTimeout()</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('settimeout-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('settimeout-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es setTimeout?</h3>
                 <p><code>setTimeout()</code> ejecuta una función después de un tiempo específico (en milisegundos).</p>
@@ -5384,8 +5391,15 @@ console.log("Timeout cancelado");</code></pre>
 
     <div id="setinterval-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('setinterval-modal')">&times;</span>
-            <h2><i class="fas fa-redo"></i> setInterval()</h2>
+            <div class="modal-header">
+                <h2><i class="fas fa-redo"></i> setInterval()</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('setinterval-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('setinterval-modal')">&times;</span>
+                </div>
+            </div>
             <div class="modal-body">
                 <h3>¿Qué es setInterval?</h3>
                 <p><code>setInterval()</code> ejecuta una función repetidamente cada cierto tiempo.</p>
@@ -7174,7 +7188,7 @@ n => ({ valor: n })</code></pre>
             // Create speech synthesis
             const utterance = new SpeechSynthesisUtterance(textToRead);
             utterance.lang = 'es-ES';
-            utterance.rate = 0.8;
+            utterance.rate = 1.25;
             utterance.pitch = 1;
             utterance.volume = 0.9;
             
