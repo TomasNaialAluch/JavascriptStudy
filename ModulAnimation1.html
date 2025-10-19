@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animaciones Interactivas - Módulo 1: Fundamentos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .animation-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .animation-area {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #dee2e6;
+            margin: 2rem 0;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .code-line {
+            margin: 0.5rem 0;
+            padding: 0.3rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .code-line.highlight {
+            background: rgba(102, 126, 234, 0.3);
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+        }
+
+        .variable-block {
+            position: absolute;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .variable-block:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(79, 172, 254, 0.6);
+        }
+
+        .function-block {
+            position: absolute;
+            background: linear-gradient(45deg, #fa709a, #fee140);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(250, 112, 154, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .function-block:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(250, 112, 154, 0.6);
+        }
+
+        .arrow {
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border-radius: 2px;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: -6px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid #ee5a24;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .arrow.animated {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .data-flow {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .data-flow.show {
+            animation: dataFlow 2s ease-in-out;
+        }
+
+        @keyframes dataFlow {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn.secondary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn.secondary:hover {
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .explanation {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .step {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transform: scale(1.2);
+        }
+
+        .step.completed {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .info-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .info-modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+            position: relative;
+        }
+
+        .info-modal-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+
+        .info-modal-body {
+            padding: 2rem;
+            color: #333;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .info-modal-close {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 2rem 2rem 2rem;
+            width: calc(100% - 4rem);
+            transition: all 0.3s ease;
+        }
+
+        .info-modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .animation-area {
+                height: 300px;
+            }
+            
+            .variable-block, .function-block {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .control-panel {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-magic"></i> Animaciones Interactivas</h1>
+        <p>Módulo 1: Fundamentos de JavaScript - Aprende con Visualizaciones</p>
+    </div>
+
+    <div class="container">
+        <!-- Animación 1: Variables y Tipos de Datos -->
+        <div class="animation-section">
+            <h2 class="section-title">Variables y Tipos de Datos</h2>
+            <div class="code-block">
+                <div class="code-line">let nombre = "María";</div>
+                <div class="code-line">let edad = 25;</div>
+                <div class="code-line">let activo = true;</div>
+            </div>
+            <div class="animation-area" id="variables-animation">
+                <div class="variable-block" id="nombre-var" style="top: 50px; left: 50px;">
+                    <i class="fas fa-tag"></i> nombre = "María"
+                </div>
+                <div class="variable-block" id="edad-var" style="top: 50px; left: 300px;">
+                    <i class="fas fa-calculator"></i> edad = 25
+                </div>
+                <div class="variable-block" id="activo-var" style="top: 50px; left: 550px;">
+                    <i class="fas fa-check-circle"></i> activo = true
+                </div>
+                <div class="data-flow" id="data-flow-1" style="top: 150px; left: 100px;">
+                    String: Cadena de texto
+                </div>
+                <div class="data-flow" id="data-flow-2" style="top: 150px; left: 350px;">
+                    Number: Valor numérico
+                </div>
+                <div class="data-flow" id="data-flow-3" style="top: 150px; left: 600px;">
+                    Boolean: Verdadero/Falso
+                </div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateVariables()">
+                    <i class="fas fa-play"></i> Animar Variables
+                </button>
+                <button class="btn secondary" onclick="resetVariables()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="variables-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación</h3>
+                <p>Las variables son como cajas que guardan información. Cada tipo de dato tiene un propósito específico:</p>
+                <ul>
+                    <li><strong>String:</strong> Para texto (nombres, mensajes)</li>
+                    <li><strong>Number:</strong> Para números (edades, precios)</li>
+                    <li><strong>Boolean:</strong> Para valores lógicos (verdadero/falso)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Animación 2: Callbacks -->
+        <div class="animation-section">
+            <h2 class="section-title">Callbacks - Funciones como Parámetros</h2>
+            <div class="code-block">
+                <div class="code-line">function saludar(nombre) {</div>
+                <div class="code-line">    console.log(`Hola, ${nombre}!`);</div>
+                <div class="code-line">}</div>
+                <div class="code-line"></div>
+                <div class="code-line">function procesarEntrada(callback) {</div>
+                <div class="code-line">    let nombre = "María";</div>
+                <div class="code-line">    callback(nombre);</div>
+                <div class="code-line">}</div>
+                <div class="code-line"></div>
+                <div class="code-line">procesarEntrada(saludar);</div>
+            </div>
+            <div class="animation-area" id="callback-animation">
+                <div class="function-block" id="saludar-func" style="top: 50px; left: 50px;">
+                    <i class="fas fa-hand-wave"></i> saludar()
+                </div>
+                <div class="function-block" id="procesar-func" style="top: 200px; left: 300px;">
+                    <i class="fas fa-cogs"></i> procesarEntrada()
+                </div>
+                <div class="variable-block" id="nombre-callback" style="top: 200px; left: 550px;">
+                    <i class="fas fa-tag"></i> nombre = "María"
+                </div>
+                <div class="arrow" id="arrow-1" style="top: 100px; left: 200px; transform: rotate(45deg);"></div>
+                <div class="arrow" id="arrow-2" style="top: 250px; left: 450px; transform: rotate(-45deg);"></div>
+                <div class="data-flow" id="callback-flow" style="top: 300px; left: 100px;">
+                    Callback: función pasada como parámetro
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="step-1"></div>
+                <div class="step" id="step-2"></div>
+                <div class="step" id="step-3"></div>
+                <div class="step" id="step-4"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateCallback()">
+                    <i class="fas fa-play"></i> Ejecutar Callback
+                </button>
+                <button class="btn secondary" onclick="resetCallback()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="callback-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación del Callback</h3>
+                <p>Un callback es una función que se pasa como parámetro a otra función. En este ejemplo:</p>
+                <ol>
+                    <li><strong>procesarEntrada()</strong> recibe una función como parámetro</li>
+                    <li>Crea una variable <strong>nombre = "María"</strong></li>
+                    <li>Llama a la función callback pasándole el nombre</li>
+                    <li><strong>saludar()</strong> se ejecuta e imprime el mensaje</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Animación 3: Bucles For -->
+        <div class="animation-section">
+            <h2 class="section-title">Bucles For - Repetición Controlada</h2>
+            <div class="code-block">
+                <div class="code-line">for (let i = 0; i < 3; i++) {</div>
+                <div class="code-line">    console.log(`Iteración ${i}`);</div>
+                <div class="code-line">}</div>
+            </div>
+            <div class="animation-area" id="loop-animation">
+                <div class="variable-block" id="counter-var" style="top: 50px; left: 50px;">
+                    <i class="fas fa-sort-numeric-up"></i> i = 0
+                </div>
+                <div class="function-block" id="loop-body" style="top: 200px; left: 300px;">
+                    <i class="fas fa-repeat"></i> console.log()
+                </div>
+                <div class="data-flow" id="loop-output" style="top: 300px; left: 100px;">
+                    Iteración 0, Iteración 1, Iteración 2
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="loop-step-1"></div>
+                <div class="step" id="loop-step-2"></div>
+                <div class="step" id="loop-step-3"></div>
+                <div class="step" id="loop-step-4"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateLoop()">
+                    <i class="fas fa-play"></i> Ejecutar Bucle
+                </button>
+                <button class="btn secondary" onclick="resetLoop()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="loop-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación del Bucle For</h3>
+                <p>El bucle for repite un bloque de código un número específico de veces:</p>
+                <ol>
+                    <li><strong>Inicialización:</strong> let i = 0 (empezar en 0)</li>
+                    <li><strong>Condición:</strong> i < 3 (mientras i sea menor que 3)</li>
+                    <li><strong>Incremento:</strong> i++ (aumentar i en 1 cada vez)</li>
+                    <li><strong>Ejecución:</strong> El código dentro del bucle se ejecuta</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de información -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <div class="info-modal-header">
+                <h3 id="infoModalTitle">Información</h3>
+            </div>
+            <div class="info-modal-body" id="infoModalBody"></div>
+            <button class="info-modal-close" onclick="closeInfoModal()">Aceptar</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        let loopStep = 0;
+
+        function showInfoModal(title, message) {
+            document.getElementById('infoModalTitle').textContent = title;
+            document.getElementById('infoModalBody').textContent = message;
+            document.getElementById('infoModal').style.display = 'block';
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        // Animación de variables
+        function animateVariables() {
+            const variables = ['nombre-var', 'edad-var', 'activo-var'];
+            const dataFlows = ['data-flow-1', 'data-flow-2', 'data-flow-3'];
+            
+            variables.forEach((id, index) => {
+                setTimeout(() => {
+                    const element = document.getElementById(id);
+                    element.style.animation = 'pulse 0.5s ease-in-out';
+                    
+                    setTimeout(() => {
+                        document.getElementById(dataFlows[index]).classList.add('show');
+                    }, 300);
+                }, index * 500);
+            });
+
+            setTimeout(() => {
+                document.getElementById('variables-explanation').classList.add('show');
+            }, 2000);
+        }
+
+        function resetVariables() {
+            const elements = document.querySelectorAll('#variables-animation .variable-block, #variables-animation .data-flow');
+            elements.forEach(el => {
+                el.style.animation = 'none';
+                el.classList.remove('show');
+            });
+            document.getElementById('variables-explanation').classList.remove('show');
+        }
+
+        // Animación de callback
+        function animateCallback() {
+            currentStep = 0;
+            const steps = document.querySelectorAll('#callback-animation .step');
+            const arrows = document.querySelectorAll('#callback-animation .arrow');
+            
+            // Paso 1: Mostrar función procesarEntrada
+            setTimeout(() => {
+                document.getElementById('procesar-func').style.animation = 'pulse 0.5s ease-in-out';
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Se llama a procesarEntrada() con saludar como parámetro');
+            }, 500);
+
+            // Paso 2: Crear variable nombre
+            setTimeout(() => {
+                document.getElementById('nombre-callback').style.animation = 'pulse 0.5s ease-in-out';
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'Se crea la variable nombre = "María" dentro de procesarEntrada()');
+            }, 1500);
+
+            // Paso 3: Llamar callback
+            setTimeout(() => {
+                arrows[0].classList.add('animated');
+                arrows[1].classList.add('animated');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'procesarEntrada() llama a la función callback (saludar) pasándole el nombre');
+            }, 2500);
+
+            // Paso 4: Ejecutar saludar
+            setTimeout(() => {
+                document.getElementById('saludar-func').style.animation = 'pulse 0.5s ease-in-out';
+                document.getElementById('callback-flow').classList.add('show');
+                steps[2].classList.remove('active');
+                steps[2].classList.add('completed');
+                steps[3].classList.add('active');
+                showInfoModal('Paso 4', 'saludar() se ejecuta e imprime: "Hola, María!"');
+            }, 3500);
+
+            setTimeout(() => {
+                document.getElementById('callback-explanation').classList.add('show');
+            }, 4500);
+        }
+
+        function resetCallback() {
+            const elements = document.querySelectorAll('#callback-animation .step, #callback-animation .arrow, #callback-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'animated', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('callback-explanation').classList.remove('show');
+            currentStep = 0;
+        }
+
+        // Animación de bucle
+        function animateLoop() {
+            loopStep = 0;
+            const steps = document.querySelectorAll('#loop-animation .step');
+            const counter = document.getElementById('counter-var');
+            const output = document.getElementById('loop-output');
+            
+            function executeLoopStep() {
+                if (loopStep < 3) {
+                    // Mostrar paso actual
+                    steps[loopStep].classList.add('active');
+                    
+                    // Actualizar contador
+                    counter.innerHTML = `<i class="fas fa-sort-numeric-up"></i> i = ${loopStep}`;
+                    counter.style.animation = 'pulse 0.5s ease-in-out';
+                    
+                    // Mostrar salida
+                    const outputText = `Iteración ${loopStep}`;
+                    output.textContent = outputText;
+                    output.classList.add('show');
+                    
+                    showInfoModal(`Iteración ${loopStep + 1}`, `El bucle ejecuta: console.log("Iteración ${loopStep}")`);
+                    
+                    setTimeout(() => {
+                        steps[loopStep].classList.remove('active');
+                        steps[loopStep].classList.add('completed');
+                        loopStep++;
+                        executeLoopStep();
+                    }, 1500);
+                } else {
+                    // Bucle terminado
+                    steps[3].classList.add('active');
+                    showInfoModal('Bucle Completado', 'El bucle ha terminado. i ahora es 3, que no es menor que 3, por lo que el bucle se detiene.');
+                    setTimeout(() => {
+                        document.getElementById('loop-explanation').classList.add('show');
+                    }, 1000);
+                }
+            }
+            
+            executeLoopStep();
+        }
+
+        function resetLoop() {
+            const elements = document.querySelectorAll('#loop-animation .step, #loop-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('counter-var').innerHTML = '<i class="fas fa-sort-numeric-up"></i> i = 0';
+            document.getElementById('loop-output').textContent = 'Iteración 0, Iteración 1, Iteración 2';
+            document.getElementById('loop-explanation').classList.remove('show');
+            loopStep = 0;
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                closeInfoModal();
+            }
+        });
+
+        // Animaciones de entrada
+        window.addEventListener('load', function() {
+            const sections = document.querySelectorAll('.animation-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(30px)';
+                    section.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Fundamentos de JavaScript - JS Academy (Refactorizado)</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body>
+    <!-- Contenedor principal -->
+    <div id="app">
+        <!-- Los componentes se montarán aquí -->
+    </div>
+
+    <!-- FAB Menu -->
+    <div class="fab-container">
+        <button class="fab-main" id="fabMain">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="fab-menu" id="fabMenu">
+            <a href="#variables" class="fab-item" data-section="variables">
+                <span>Lección 1: Variables</span>
+            </a>
+            <a href="#operadores" class="fab-item" data-section="operadores">
+                <span>Lección 2: Operadores</span>
+            </a>
+            <a href="#control" class="fab-item" data-section="control">
+                <span>Lección 3: Control</span>
+            </a>
+            <a href="#funciones" class="fab-item" data-section="funciones">
+                <span>Lección 4: Funciones</span>
+            </a>
+            <a href="#arrays" class="fab-item" data-section="arrays">
+                <span>Lección 5: Arrays</span>
+            </a>
+            <a href="#ejercicios" class="fab-item" data-section="ejercicios">
+                <span>Lección 6: Ejercicios</span>
+            </a>
+            <a href="#callbacks" class="fab-item" data-section="callbacks">
+                <span>Lección 7: Callbacks</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts de componentes -->
+    <script src="refactor/components/Header.js"></script>
+    <script src="refactor/components/Breadcrumb.js"></script>
+    <script src="refactor/components/ModuleHero.js"></script>
+    <script src="refactor/components/ProgressBar.js"></script>
+    <script src="refactor/components/ModuleNavigation.js"></script>
+    <script src="refactor/components/Modal.js"></script>
+    <script src="refactor/components/Lesson.js"></script>
+    
+    <!-- Scripts de lecciones -->
+    <script src="refactor/lessons/Lesson1Variables.js"></script>
+    <script src="refactor/lessons/Lesson2Operators.js"></script>
+    <script src="refactor/lessons/Lesson3Control.js"></script>
+    <script src="refactor/lessons/Lesson4Functions.js"></script>
+    <script src="refactor/lessons/Lesson5Arrays.js"></script>
+    <script src="refactor/lessons/Lesson6Exercises.js"></script>
+    <script src="refactor/lessons/Lesson7Callbacks.js"></script>
+
+    <!-- Script principal de la aplicación -->
+    <script>
+        class ModuleApp {
+            constructor() {
+                this.completedLessons = new Set();
+                this.progressBar = null;
+                this.moduleNavigation = null;
+                this.lessons = [];
+                this.init();
+            }
+
+            init() {
+                this.setupComponents();
+                this.attachEventListeners();
+                this.startLessonTracking();
+            }
+
+            setupComponents() {
+                const app = document.getElementById('app');
+                
+                // Header
+                const header = new Header();
+                header.mount(app);
+
+                // Breadcrumb
+                const breadcrumb = new Breadcrumb();
+                breadcrumb
+                    .addItem('<i class="fas fa-home"></i> Inicio', './index.html')
+                    .addItem('Módulos', 'index.html#modulos')
+                    .addItem('Fundamentos de JavaScript', null, true);
+                breadcrumb.mount(app);
+
+                // Module Hero
+                const moduleHero = new ModuleHero({
+                    badge: 'Módulo 1',
+                    icon: 'fas fa-code',
+                    title: 'Fundamentos de JavaScript',
+                    description: 'Aprende los conceptos básicos de JavaScript: variables, tipos de datos, operadores, estructuras de control, funciones, arrays y objetos. La base sólida para tu carrera como desarrollador.',
+                    meta: {
+                        duration: '4-6 horas',
+                        examples: '15 ejemplos',
+                        level: 'Principiante'
+                    }
+                });
+                moduleHero.mount(app);
+
+                // Progress Bar
+                this.progressBar = new ProgressBar(7);
+                this.progressBar.mount(app);
+
+                // Module Navigation
+                this.moduleNavigation = new ModuleNavigation();
+                this.moduleNavigation
+                    .addLesson('variables', 'fas fa-tag', 'Variables y Tipos de Datos', 'Aprende a declarar variables y trabajar con diferentes tipos de datos')
+                    .addLesson('operadores', 'fas fa-plus', 'Operadores', 'Aritméticos, de comparación y lógicos')
+                    .addLesson('control', 'fas fa-code-branch', 'Estructuras de Control', 'if/else, switch, bucles y condicionales')
+                    .addLesson('funciones', 'fas fa-function', 'Funciones', 'Declaración, parámetros y scope')
+                    .addLesson('arrays', 'fas fa-list', 'Arrays y Objetos', 'Estructuras de datos fundamentales')
+                    .addLesson('ejercicios', 'fas fa-dumbbell', 'Ejercicios Prácticos', 'Aplica lo aprendido con proyectos reales')
+                    .addLesson('callbacks', 'fas fa-clock', 'Callbacks y Asincronía', 'Funciones que se ejecutan más tarde');
+                this.moduleNavigation.mount(app);
+
+                // Lessons
+                this.setupLessons(app);
+            }
+
+            setupLessons(container) {
+                // Lección 1: Variables
+                const lesson1 = new Lesson1Variables();
+                lesson1.mount(container);
+                this.lessons.push(lesson1);
+
+                // Lección 2: Operadores
+                const lesson2 = new Lesson2Operators();
+                lesson2.mount(container);
+                this.lessons.push(lesson2);
+
+                // Lección 3: Control
+                const lesson3 = new Lesson3Control();
+                lesson3.mount(container);
+                this.lessons.push(lesson3);
+
+                // Lección 4: Funciones
+                const lesson4 = new Lesson4Functions();
+                lesson4.mount(container);
+                this.lessons.push(lesson4);
+
+                // Lección 5: Arrays
+                const lesson5 = new Lesson5Arrays();
+                lesson5.mount(container);
+                this.lessons.push(lesson5);
+
+                // Lección 6: Ejercicios
+                const lesson6 = new Lesson6Exercises();
+                lesson6.mount(container);
+                this.lessons.push(lesson6);
+
+                // Lección 7: Callbacks
+                const lesson7 = new Lesson7Callbacks();
+                lesson7.mount(container);
+                this.lessons.push(lesson7);
+            }
+
+            attachEventListeners() {
+                // FAB Menu
+                const fabMain = document.getElementById('fabMain');
+                const fabMenu = document.getElementById('fabMenu');
+
+                if (fabMain && fabMenu) {
+                    fabMain.addEventListener('click', () => {
+                        fabMain.classList.toggle('active');
+                        fabMenu.classList.toggle('active');
+                    });
+
+                    // Cerrar FAB al hacer click en una lección
+                    const fabItems = fabMenu.querySelectorAll('.fab-item');
+                    fabItems.forEach(item => {
+                        item.addEventListener('click', () => {
+                            fabMain.classList.remove('active');
+                            fabMenu.classList.remove('active');
+                        });
+                    });
+                }
+
+                // Escuchar eventos de lecciones completadas
+                document.addEventListener('lessonCompleted', (event) => {
+                    this.markLessonComplete(event.detail.lessonId);
+                });
+            }
+
+            markLessonComplete(lessonId) {
+                this.completedLessons.add(lessonId);
+                
+                // Actualizar barra de progreso
+                const progress = this.progressBar.updateProgress(this.completedLessons.size);
+                
+                // Actualizar navegación del módulo
+                this.moduleNavigation.markLessonComplete(lessonId);
+                
+                // Marcar lección como completada en el DOM
+                const lessonElement = document.querySelector(`[data-lesson="${lessonId}"]`);
+                if (lessonElement) {
+                    lessonElement.classList.add('completed');
+                }
+
+                console.log(`Lección ${lessonId} completada. Progreso: ${progress}%`);
+            }
+
+            startLessonTracking() {
+                // Intersection Observer para tracking automático de lecciones
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                                const lessonId = entry.target.dataset.lesson;
+                                if (lessonId && !this.completedLessons.has(lessonId)) {
+                                    // Simular que la lección se completó después de 5 segundos de visualización
+                                    setTimeout(() => {
+                                        this.markLessonComplete(lessonId);
+                                    }, 5000);
+                                }
+                            }
+                        });
+                    }, { threshold: 0.5 });
+
+                    // Observar todas las lecciones
+                    const lessonSections = document.querySelectorAll('.lesson-section');
+                    lessonSections.forEach(lesson => observer.observe(lesson));
+                }
+            }
+        }
+
+        // Inicializar la aplicación cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            new ModuleApp();
+        });
+    </script>
+</body>
+</html>

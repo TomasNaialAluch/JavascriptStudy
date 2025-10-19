@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animaciones Interactivas - Módulo 6: Proyectos Prácticos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .animation-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .animation-area {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #dee2e6;
+            margin: 2rem 0;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-component {
+            position: absolute;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .project-component:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(79, 172, 254, 0.6);
+        }
+
+        .project-component.highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .project-component.connected {
+            background: linear-gradient(45deg, #66bb6a, #4caf50);
+            animation: connectedPulse 0.5s ease-in-out;
+        }
+
+        @keyframes connectedPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .data-flow {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .data-flow.show {
+            animation: dataFlow 2s ease-in-out;
+        }
+
+        @keyframes dataFlow {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+
+        .arrow {
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border-radius: 2px;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: -6px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid #ee5a24;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .arrow.animated {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn.secondary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn.secondary:hover {
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .explanation {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .step {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transform: scale(1.2);
+        }
+
+        .step.completed {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .info-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .info-modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+            position: relative;
+        }
+
+        .info-modal-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+
+        .info-modal-body {
+            padding: 2rem;
+            color: #333;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .info-modal-close {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 2rem 2rem 2rem;
+            width: calc(100% - 4rem);
+            transition: all 0.3s ease;
+        }
+
+        .info-modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .animation-area {
+                height: 300px;
+            }
+            
+            .project-component {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .control-panel {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-magic"></i> Animaciones Interactivas</h1>
+        <p>Módulo 6: Proyectos Prácticos - Aprende con Visualizaciones</p>
+    </div>
+
+    <div class="container">
+        <!-- Animación 1: To-Do List -->
+        <div class="animation-section">
+            <h2 class="section-title">To-Do List - Aplicación Completa</h2>
+            <div class="code-block">
+                <div class="code-line">// Estructura de la aplicación</div>
+                <div class="code-line">let todos = [];</div>
+                <div class="code-line"></div>
+                <div class="code-line">function agregarTodo(texto) {</div>
+                <div class="code-line">    todos.push({ id: Date.now(), texto, completado: false });</div>
+                <div class="code-line">    renderizarTodos();</div>
+                <div class="code-line">}</div>
+                <div class="code-line"></div>
+                <div class="code-line">function renderizarTodos() {</div>
+                <div class="code-line">    // Actualizar la interfaz</div>
+                <div class="code-line">}</div>
+            </div>
+            <div class="animation-area" id="todo-animation">
+                <div class="project-component" id="input-component" style="top: 50px; left: 50px;">
+                    <i class="fas fa-keyboard"></i> Input
+                </div>
+                <div class="project-component" id="array-component" style="top: 50px; left: 300px;">
+                    <i class="fas fa-list"></i> Array todos[]
+                </div>
+                <div class="project-component" id="render-component" style="top: 150px; left: 50px;">
+                    <i class="fas fa-paint-brush"></i> renderizarTodos()
+                </div>
+                <div class="project-component" id="ui-component" style="top: 150px; left: 300px;">
+                    <i class="fas fa-desktop"></i> Interfaz
+                </div>
+                <div class="arrow" id="todo-arrow1" style="top: 100px; left: 150px; transform: rotate(0deg);"></div>
+                <div class="arrow" id="todo-arrow2" style="top: 100px; left: 200px; transform: rotate(0deg);"></div>
+                <div class="arrow" id="todo-arrow3" style="top: 200px; left: 150px; transform: rotate(90deg);"></div>
+                <div class="data-flow" id="todo-flow" style="top: 250px; left: 100px;">
+                    Flujo: Input → Array → Render → UI
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="todo-step-1"></div>
+                <div class="step" id="todo-step-2"></div>
+                <div class="step" id="todo-step-3"></div>
+                <div class="step" id="todo-step-4"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateTodoApp()">
+                    <i class="fas fa-play"></i> Construir App
+                </button>
+                <button class="btn secondary" onclick="resetTodoApp()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="todo-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de To-Do List</h3>
+                <p>Una aplicación To-Do List combina múltiples conceptos de JavaScript:</p>
+                <ul>
+                    <li><strong>Arrays:</strong> Para almacenar las tareas</li>
+                    <li><strong>Funciones:</strong> Para agregar, eliminar y renderizar</li>
+                    <li><strong>DOM:</strong> Para mostrar la interfaz</li>
+                    <li><strong>Eventos:</strong> Para manejar clicks y formularios</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Animación 2: Calculadora -->
+        <div class="animation-section">
+            <h2 class="section-title">Calculadora - Lógica de Negocio</h2>
+            <div class="code-block">
+                <div class="code-line">let display = "0";</div>
+                <div class="code-line">let operador = null;</div>
+                <div class="code-line">let primerNumero = null;</div>
+                <div class="code-line"></div>
+                <div class="code-line">function presionarNumero(num) {</div>
+                <div class="code-line">    if (display === "0") {</div>
+                <div class="code-line">        display = num;</div>
+                <div class="code-line">    } else {</div>
+                <div class="code-line">        display += num;</div>
+                <div class="code-line">    }</div>
+                <div class="code-line">    actualizarDisplay();</div>
+                <div class="code-line">}</div>
+            </div>
+            <div class="animation-area" id="calculator-animation">
+                <div class="project-component" id="display-component" style="top: 50px; left: 50px;">
+                    <i class="fas fa-calculator"></i> Display
+                </div>
+                <div class="project-component" id="numbers-component" style="top: 50px; left: 300px;">
+                    <i class="fas fa-sort-numeric-up"></i> Números
+                </div>
+                <div class="project-component" id="operators-component" style="top: 150px; left: 50px;">
+                    <i class="fas fa-plus-minus"></i> Operadores
+                </div>
+                <div class="project-component" id="logic-component" style="top: 150px; left: 300px;">
+                    <i class="fas fa-brain"></i> Lógica
+                </div>
+                <div class="arrow" id="calc-arrow1" style="top: 100px; left: 150px; transform: rotate(0deg);"></div>
+                <div class="arrow" id="calc-arrow2" style="top: 100px; left: 200px; transform: rotate(0deg);"></div>
+                <div class="arrow" id="calc-arrow3" style="top: 200px; left: 150px; transform: rotate(90deg);"></div>
+                <div class="data-flow" id="calc-flow" style="top: 250px; left: 100px;">
+                    Flujo: Input → Lógica → Display
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="calc-step-1"></div>
+                <div class="step" id="calc-step-2"></div>
+                <div class="step" id="calc-step-3"></div>
+                <div class="step" id="calc-step-4"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateCalculator()">
+                    <i class="fas fa-play"></i> Construir Calculadora
+                </button>
+                <button class="btn secondary" onclick="resetCalculator()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="calc-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de Calculadora</h3>
+                <p>Una calculadora requiere manejo de estado y lógica matemática:</p>
+                <ul>
+                    <li><strong>Estado:</strong> Variables para display, operador, números</li>
+                    <li><strong>Lógica:</strong> Funciones para cada operación matemática</li>
+                    <li><strong>UI:</strong> Botones que actualizan el display</li>
+                    <li><strong>Validación:</strong> Manejo de errores y casos especiales</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Animación 3: API y Datos -->
+        <div class="animation-section">
+            <h2 class="section-title">API y Datos - Comunicación Externa</h2>
+            <div class="code-block">
+                <div class="code-line">async function obtenerDatos() {</div>
+                <div class="code-line">    try {</div>
+                <div class="code-line">        const response = await fetch('/api/usuarios');</div>
+                <div class="code-line">        const datos = await response.json();</div>
+                <div class="code-line">        mostrarUsuarios(datos);</div>
+                <div class="code-line">    } catch (error) {</div>
+                <div class="code-line">        console.error('Error:', error);</div>
+                <div class="code-line">    }</div>
+                <div class="code-line">}</div>
+            </div>
+            <div class="animation-area" id="api-animation">
+                <div class="project-component" id="frontend-component" style="top: 50px; left: 50px;">
+                    <i class="fas fa-laptop"></i> Frontend
+                </div>
+                <div class="project-component" id="api-component" style="top: 50px; left: 300px;">
+                    <i class="fas fa-server"></i> API
+                </div>
+                <div class="project-component" id="database-component" style="top: 150px; left: 50px;">
+                    <i class="fas fa-database"></i> Base de Datos
+                </div>
+                <div class="project-component" id="ui-display-component" style="top: 150px; left: 300px;">
+                    <i class="fas fa-desktop"></i> Mostrar Datos
+                </div>
+                <div class="arrow" id="api-arrow1" style="top: 100px; left: 150px; transform: rotate(0deg);"></div>
+                <div class="arrow" id="api-arrow2" style="top: 100px; left: 200px; transform: rotate(0deg);"></div>
+                <div class="arrow" id="api-arrow3" style="top: 200px; left: 150px; transform: rotate(90deg);"></div>
+                <div class="data-flow" id="api-flow" style="top: 250px; left: 100px;">
+                    Flujo: Frontend → API → DB → Mostrar
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="api-step-1"></div>
+                <div class="step" id="api-step-2"></div>
+                <div class="step" id="api-step-3"></div>
+                <div class="step" id="api-step-4"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateAPI()">
+                    <i class="fas fa-play"></i> Conectar API
+                </button>
+                <button class="btn secondary" onclick="resetAPI()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="api-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de API y Datos</h3>
+                <p>Las aplicaciones modernas se comunican con servidores externos:</p>
+                <ul>
+                    <li><strong>fetch():</strong> Para hacer peticiones HTTP</li>
+                    <li><strong>async/await:</strong> Para manejar operaciones asíncronas</li>
+                    <li><strong>JSON:</strong> Formato de intercambio de datos</li>
+                    <li><strong>Error handling:</strong> Manejo de errores de red</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de información -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <div class="info-modal-header">
+                <h3 id="infoModalTitle">Información</h3>
+            </div>
+            <div class="info-modal-body" id="infoModalBody"></div>
+            <button class="info-modal-close" onclick="closeInfoModal()">Aceptar</button>
+        </div>
+    </div>
+
+    <script>
+        function showInfoModal(title, message) {
+            document.getElementById('infoModalTitle').textContent = title;
+            document.getElementById('infoModalBody').textContent = message;
+            document.getElementById('infoModal').style.display = 'block';
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        // Animación de To-Do App
+        function animateTodoApp() {
+            const steps = document.querySelectorAll('#todo-animation .step');
+            
+            // Paso 1: Input
+            setTimeout(() => {
+                document.getElementById('input-component').classList.add('highlight');
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Usuario escribe una tarea en el input\n\nEl input captura el texto que el usuario quiere agregar');
+            }, 500);
+
+            // Paso 2: Array
+            setTimeout(() => {
+                document.getElementById('array-component').classList.add('highlight');
+                document.getElementById('todo-arrow1').classList.add('animated');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'Se agrega la tarea al array todos[]\n\nCada tarea tiene: id, texto, completado\nEl array mantiene el estado de todas las tareas');
+            }, 1500);
+
+            // Paso 3: Render
+            setTimeout(() => {
+                document.getElementById('render-component').classList.add('highlight');
+                document.getElementById('todo-arrow2').classList.add('animated');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'Se ejecuta renderizarTodos()\n\nEsta función lee el array y actualiza la interfaz\nCrea elementos HTML para cada tarea');
+            }, 2500);
+
+            // Paso 4: UI
+            setTimeout(() => {
+                document.getElementById('ui-component').classList.add('connected');
+                document.getElementById('todo-arrow3').classList.add('animated');
+                document.getElementById('todo-flow').classList.add('show');
+                steps[2].classList.remove('active');
+                steps[2].classList.add('completed');
+                steps[3].classList.add('active');
+                showInfoModal('Paso 4', 'La interfaz se actualiza\n\nEl usuario ve la nueva tarea en la lista\nLa aplicación está lista para más interacciones');
+            }, 3500);
+
+            setTimeout(() => {
+                document.getElementById('todo-explanation').classList.add('show');
+            }, 4500);
+        }
+
+        function resetTodoApp() {
+            const elements = document.querySelectorAll('#todo-animation .step, #todo-animation .project-component, #todo-animation .arrow, #todo-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'highlight', 'connected', 'animated', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('todo-explanation').classList.remove('show');
+        }
+
+        // Animación de Calculadora
+        function animateCalculator() {
+            const steps = document.querySelectorAll('#calculator-animation .step');
+            
+            // Paso 1: Display
+            setTimeout(() => {
+                document.getElementById('display-component').classList.add('highlight');
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'El display muestra el resultado\n\nVariable: display = "0"\nSe actualiza cada vez que el usuario presiona un botón');
+            }, 500);
+
+            // Paso 2: Números
+            setTimeout(() => {
+                document.getElementById('numbers-component').classList.add('highlight');
+                document.getElementById('calc-arrow1').classList.add('animated');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'Usuario presiona un número\n\nSe ejecuta presionarNumero(num)\nSi display es "0", lo reemplaza\nSi no, concatena el número');
+            }, 1500);
+
+            // Paso 3: Operadores
+            setTimeout(() => {
+                document.getElementById('operators-component').classList.add('highlight');
+                document.getElementById('calc-arrow2').classList.add('animated');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'Usuario presiona un operador (+, -, *, /)\n\nSe guarda el primer número y el operador\nSe limpia el display para el segundo número');
+            }, 2500);
+
+            // Paso 4: Lógica
+            setTimeout(() => {
+                document.getElementById('logic-component').classList.add('connected');
+                document.getElementById('calc-arrow3').classList.add('animated');
+                document.getElementById('calc-flow').classList.add('show');
+                steps[2].classList.remove('active');
+                steps[2].classList.add('completed');
+                steps[3].classList.add('active');
+                showInfoModal('Paso 4', 'Se ejecuta el cálculo\n\nSe toman los dos números y el operador\nSe realiza la operación matemática\nEl resultado se muestra en el display');
+            }, 3500);
+
+            setTimeout(() => {
+                document.getElementById('calc-explanation').classList.add('show');
+            }, 4500);
+        }
+
+        function resetCalculator() {
+            const elements = document.querySelectorAll('#calculator-animation .step, #calculator-animation .project-component, #calculator-animation .arrow, #calculator-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'highlight', 'connected', 'animated', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('calc-explanation').classList.remove('show');
+        }
+
+        // Animación de API
+        function animateAPI() {
+            const steps = document.querySelectorAll('#api-animation .step');
+            
+            // Paso 1: Frontend
+            setTimeout(() => {
+                document.getElementById('frontend-component').classList.add('highlight');
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Frontend hace una petición\n\nSe ejecuta: fetch(\'/api/usuarios\')\nLa aplicación solicita datos al servidor');
+            }, 500);
+
+            // Paso 2: API
+            setTimeout(() => {
+                document.getElementById('api-component').classList.add('highlight');
+                document.getElementById('api-arrow1').classList.add('animated');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'API procesa la petición\n\nEl servidor recibe la petición HTTP\nBusca los datos en la base de datos\nPrepara la respuesta en formato JSON');
+            }, 1500);
+
+            // Paso 3: Base de Datos
+            setTimeout(() => {
+                document.getElementById('database-component').classList.add('highlight');
+                document.getElementById('api-arrow2').classList.add('animated');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'Base de datos devuelve datos\n\nSe ejecuta una consulta SQL\nSe obtienen los registros de usuarios\nLos datos se envían de vuelta a la API');
+            }, 2500);
+
+            // Paso 4: Mostrar Datos
+            setTimeout(() => {
+                document.getElementById('ui-display-component').classList.add('connected');
+                document.getElementById('api-arrow3').classList.add('animated');
+                document.getElementById('api-flow').classList.add('show');
+                steps[2].classList.remove('active');
+                steps[2].classList.add('completed');
+                steps[3].classList.add('active');
+                showInfoModal('Paso 4', 'Frontend muestra los datos\n\nSe recibe la respuesta JSON\nSe ejecuta mostrarUsuarios(datos)\nLa interfaz se actualiza con los datos');
+            }, 3500);
+
+            setTimeout(() => {
+                document.getElementById('api-explanation').classList.add('show');
+            }, 4500);
+        }
+
+        function resetAPI() {
+            const elements = document.querySelectorAll('#api-animation .step, #api-animation .project-component, #api-animation .arrow, #api-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'highlight', 'connected', 'animated', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('api-explanation').classList.remove('show');
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                closeInfoModal();
+            }
+        });
+
+        // Animaciones de entrada
+        window.addEventListener('load', function() {
+            const sections = document.querySelectorAll('.animation-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(30px)';
+                    section.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

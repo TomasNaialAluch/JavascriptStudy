@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animaciones Interactivas - Módulo 5: DOM y Eventos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .animation-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .animation-area {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #dee2e6;
+            margin: 2rem 0;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .dom-element {
+            position: absolute;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .dom-element:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(79, 172, 254, 0.6);
+        }
+
+        .dom-element.highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .event-bubble {
+            position: absolute;
+            background: linear-gradient(45deg, #fa709a, #fee140);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 8px 25px rgba(250, 112, 154, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .event-bubble:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(250, 112, 154, 0.6);
+        }
+
+        .event-bubble.triggered {
+            background: linear-gradient(45deg, #66bb6a, #4caf50);
+            animation: eventPulse 0.5s ease-in-out;
+        }
+
+        @keyframes eventPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .arrow {
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border-radius: 2px;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: -6px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid #ee5a24;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .arrow.animated {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .data-flow {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .data-flow.show {
+            animation: dataFlow 2s ease-in-out;
+        }
+
+        @keyframes dataFlow {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn.secondary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn.secondary:hover {
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .explanation {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .step {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transform: scale(1.2);
+        }
+
+        .step.completed {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .info-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .info-modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+            position: relative;
+        }
+
+        .info-modal-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+
+        .info-modal-body {
+            padding: 2rem;
+            color: #333;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .info-modal-close {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 2rem 2rem 2rem;
+            width: calc(100% - 4rem);
+            transition: all 0.3s ease;
+        }
+
+        .info-modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .animation-area {
+                height: 300px;
+            }
+            
+            .dom-element, .event-bubble {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .control-panel {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-magic"></i> Animaciones Interactivas</h1>
+        <p>Módulo 5: DOM y Eventos - Aprende con Visualizaciones</p>
+    </div>
+
+    <div class="container">
+        <!-- Animación 1: Selección de Elementos DOM -->
+        <div class="animation-section">
+            <h2 class="section-title">Selección de Elementos DOM</h2>
+            <div class="code-block">
+                <div class="code-line">// Seleccionar por ID</div>
+                <div class="code-line">let titulo = document.getElementById('titulo');</div>
+                <div class="code-line"></div>
+                <div class="code-line">// Seleccionar por clase</div>
+                <div class="code-line">let botones = document.getElementsByClassName('btn');</div>
+                <div class="code-line"></div>
+                <div class="code-line">// Seleccionar por selector CSS</div>
+                <div class="code-line">let parrafo = document.querySelector('p');</div>
+            </div>
+            <div class="animation-area" id="dom-selection-animation">
+                <div class="dom-element" id="titulo-element" style="top: 50px; left: 50px;">
+                    <i class="fas fa-heading"></i> &lt;h1 id="titulo"&gt;
+                </div>
+                <div class="dom-element" id="parrafo-element" style="top: 50px; left: 300px;">
+                    <i class="fas fa-paragraph"></i> &lt;p class="texto"&gt;
+                </div>
+                <div class="dom-element" id="boton1-element" style="top: 150px; left: 50px;">
+                    <i class="fas fa-hand-pointer"></i> &lt;button class="btn"&gt;
+                </div>
+                <div class="dom-element" id="boton2-element" style="top: 150px; left: 300px;">
+                    <i class="fas fa-hand-pointer"></i> &lt;button class="btn"&gt;
+                </div>
+                <div class="arrow" id="selection-arrow" style="top: 100px; left: 200px; transform: rotate(90deg);"></div>
+                <div class="data-flow" id="selection-flow" style="top: 200px; left: 100px;">
+                    JavaScript encuentra y selecciona elementos
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="selection-step-1"></div>
+                <div class="step" id="selection-step-2"></div>
+                <div class="step" id="selection-step-3"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateDOMSelection()">
+                    <i class="fas fa-play"></i> Seleccionar Elementos
+                </button>
+                <button class="btn secondary" onclick="resetDOMSelection()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="selection-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de Selección DOM</h3>
+                <p>JavaScript puede seleccionar elementos HTML de varias formas:</p>
+                <ul>
+                    <li><strong>getElementById():</strong> Selecciona por ID único</li>
+                    <li><strong>getElementsByClassName():</strong> Selecciona por clase (devuelve colección)</li>
+                    <li><strong>querySelector():</strong> Selecciona por selector CSS (más flexible)</li>
+                    <li><strong>querySelectorAll():</strong> Selecciona múltiples elementos</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Animación 2: Event Bubbling -->
+        <div class="animation-section">
+            <h2 class="section-title">Event Bubbling - Propagación de Eventos</h2>
+            <div class="code-block">
+                <div class="code-line">// HTML anidado</div>
+                <div class="code-line">&lt;div id="padre"&gt;</div>
+                <div class="code-line">    &lt;div id="hijo"&gt;</div>
+                <div class="code-line">        &lt;button id="boton"&gt;Click&lt;/button&gt;</div>
+                <div class="code-line">    &lt;/div&gt;</div>
+                <div class="code-line">&lt;/div&gt;</div>
+                <div class="code-line"></div>
+                <div class="code-line">// Event listeners</div>
+                <div class="code-line">boton.addEventListener('click', () => console.log('Botón'));</div>
+                <div class="code-line">hijo.addEventListener('click', () => console.log('Hijo'));</div>
+                <div class="code-line">padre.addEventListener('click', () => console.log('Padre'));</div>
+            </div>
+            <div class="animation-area" id="bubbling-animation">
+                <div class="dom-element" id="padre-element" style="top: 50px; left: 50px; width: 300px; height: 200px; display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-square"></i> Div Padre
+                        <div class="dom-element" id="hijo-element" style="position: relative; top: 20px; left: 0; width: 200px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center;">
+                                <i class="fas fa-square"></i> Div Hijo
+                                <div class="dom-element" id="boton-element" style="position: relative; top: 20px; left: 0; width: 100px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-hand-pointer"></i> Botón
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-flow" id="bubbling-flow" style="top: 300px; left: 100px;">
+                    Orden de ejecución: Botón → Hijo → Padre
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="bubbling-step-1"></div>
+                <div class="step" id="bubbling-step-2"></div>
+                <div class="step" id="bubbling-step-3"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateEventBubbling()">
+                    <i class="fas fa-play"></i> Simular Click
+                </button>
+                <button class="btn secondary" onclick="resetEventBubbling()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="bubbling-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de Event Bubbling</h3>
+                <p>El event bubbling es el proceso por el cual los eventos se propagan hacia arriba en el DOM:</p>
+                <ul>
+                    <li><strong>Fase 1:</strong> El evento se dispara en el elemento objetivo (botón)</li>
+                    <li><strong>Fase 2:</strong> El evento "burbujea" hacia el elemento padre (div hijo)</li>
+                    <li><strong>Fase 3:</strong> Continúa hacia el abuelo (div padre)</li>
+                    <li><strong>Control:</strong> event.stopPropagation() detiene la propagación</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Animación 3: Manipulación del DOM -->
+        <div class="animation-section">
+            <h2 class="section-title">Manipulación del DOM - Crear y Modificar</h2>
+            <div class="code-block">
+                <div class="code-line">// Crear elemento</div>
+                <div class="code-line">let nuevoDiv = document.createElement('div');</div>
+                <div class="code-line">nuevoDiv.textContent = 'Nuevo elemento';</div>
+                <div class="code-line"></div>
+                <div class="code-line">// Agregar al DOM</div>
+                <div class="code-line">document.body.appendChild(nuevoDiv);</div>
+                <div class="code-line"></div>
+                <div class="code-line">// Modificar estilos</div>
+                <div class="code-line">nuevoDiv.style.color = 'red';</div>
+            </div>
+            <div class="animation-area" id="dom-manipulation-animation">
+                <div class="dom-element" id="container-element" style="top: 50px; left: 50px;">
+                    <i class="fas fa-folder"></i> Container
+                </div>
+                <div class="dom-element" id="new-element" style="top: 150px; left: 50px; opacity: 0;">
+                    <i class="fas fa-plus-circle"></i> Nuevo elemento
+                </div>
+                <div class="arrow" id="creation-arrow" style="top: 200px; left: 150px; transform: rotate(0deg);"></div>
+                <div class="data-flow" id="manipulation-flow" style="top: 100px; left: 300px;">
+                    createElement() → appendChild() → style
+                </div>
+            </div>
+            <div class="step-indicator">
+                <div class="step" id="manipulation-step-1"></div>
+                <div class="step" id="manipulation-step-2"></div>
+                <div class="step" id="manipulation-step-3"></div>
+            </div>
+            <div class="control-panel">
+                <button class="btn" onclick="animateDOMManipulation()">
+                    <i class="fas fa-play"></i> Crear Elemento
+                </button>
+                <button class="btn secondary" onclick="resetDOMManipulation()">
+                    <i class="fas fa-redo"></i> Reiniciar
+                </button>
+            </div>
+            <div class="explanation" id="manipulation-explanation">
+                <h3><i class="fas fa-lightbulb"></i> Explicación de Manipulación DOM</h3>
+                <p>JavaScript puede crear, modificar y eliminar elementos del DOM:</p>
+                <ul>
+                    <li><strong>createElement():</strong> Crea un nuevo elemento HTML</li>
+                    <li><strong>appendChild():</strong> Agrega el elemento al DOM</li>
+                    <li><strong>textContent:</strong> Establece el contenido de texto</li>
+                    <li><strong>style:</strong> Modifica los estilos CSS del elemento</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de información -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <div class="info-modal-header">
+                <h3 id="infoModalTitle">Información</h3>
+            </div>
+            <div class="info-modal-body" id="infoModalBody"></div>
+            <button class="info-modal-close" onclick="closeInfoModal()">Aceptar</button>
+        </div>
+    </div>
+
+    <script>
+        function showInfoModal(title, message) {
+            document.getElementById('infoModalTitle').textContent = title;
+            document.getElementById('infoModalBody').textContent = message;
+            document.getElementById('infoModal').style.display = 'block';
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        // Animación de selección DOM
+        function animateDOMSelection() {
+            const steps = document.querySelectorAll('#dom-selection-animation .step');
+            
+            // Paso 1: getElementById
+            setTimeout(() => {
+                document.getElementById('titulo-element').classList.add('highlight');
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'document.getElementById("titulo")\n\nSelecciona el elemento con ID "titulo"\nDevuelve un solo elemento o null');
+            }, 500);
+
+            // Paso 2: getElementsByClassName
+            setTimeout(() => {
+                document.getElementById('boton1-element').classList.add('highlight');
+                document.getElementById('boton2-element').classList.add('highlight');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'document.getElementsByClassName("btn")\n\nSelecciona todos los elementos con clase "btn"\nDevuelve una HTMLCollection (lista)');
+            }, 1500);
+
+            // Paso 3: querySelector
+            setTimeout(() => {
+                document.getElementById('parrafo-element').classList.add('highlight');
+                document.getElementById('selection-arrow').classList.add('animated');
+                document.getElementById('selection-flow').classList.add('show');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'document.querySelector("p")\n\nSelecciona el primer elemento que coincida con el selector CSS\nMás flexible que los métodos anteriores');
+            }, 2500);
+
+            setTimeout(() => {
+                document.getElementById('selection-explanation').classList.add('show');
+            }, 3500);
+        }
+
+        function resetDOMSelection() {
+            const elements = document.querySelectorAll('#dom-selection-animation .step, #dom-selection-animation .dom-element, #dom-selection-animation .arrow, #dom-selection-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'highlight', 'animated', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('selection-explanation').classList.remove('show');
+        }
+
+        // Animación de event bubbling
+        function animateEventBubbling() {
+            const steps = document.querySelectorAll('#bubbling-animation .step');
+            
+            // Paso 1: Click en botón
+            setTimeout(() => {
+                document.getElementById('boton-element').classList.add('triggered');
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'Click en el botón\n\nSe ejecuta el event listener del botón\nconsole.log("Botón")');
+            }, 500);
+
+            // Paso 2: Bubbling al hijo
+            setTimeout(() => {
+                document.getElementById('hijo-element').classList.add('triggered');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'Event bubbling al div hijo\n\nEl evento se propaga hacia arriba\nSe ejecuta el event listener del hijo\nconsole.log("Hijo")');
+            }, 1500);
+
+            // Paso 3: Bubbling al padre
+            setTimeout(() => {
+                document.getElementById('padre-element').classList.add('triggered');
+                document.getElementById('bubbling-flow').classList.add('show');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'Event bubbling al div padre\n\nEl evento continúa propagándose\nSe ejecuta el event listener del padre\nconsole.log("Padre")\n\nOrden final: "Botón", "Hijo", "Padre"');
+            }, 2500);
+
+            setTimeout(() => {
+                document.getElementById('bubbling-explanation').classList.add('show');
+            }, 3500);
+        }
+
+        function resetEventBubbling() {
+            const elements = document.querySelectorAll('#bubbling-animation .step, #bubbling-animation .dom-element, #bubbling-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'triggered', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('bubbling-explanation').classList.remove('show');
+        }
+
+        // Animación de manipulación DOM
+        function animateDOMManipulation() {
+            const steps = document.querySelectorAll('#dom-manipulation-animation .step');
+            
+            // Paso 1: createElement
+            setTimeout(() => {
+                document.getElementById('container-element').style.animation = 'pulse 0.5s ease-in-out';
+                steps[0].classList.add('active');
+                showInfoModal('Paso 1', 'document.createElement("div")\n\nSe crea un nuevo elemento div en memoria\nEl elemento aún no está en el DOM');
+            }, 500);
+
+            // Paso 2: appendChild
+            setTimeout(() => {
+                document.getElementById('new-element').style.opacity = '1';
+                document.getElementById('new-element').style.animation = 'slideInUp 0.5s ease-out';
+                document.getElementById('creation-arrow').classList.add('animated');
+                steps[0].classList.remove('active');
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                showInfoModal('Paso 2', 'container.appendChild(nuevoDiv)\n\nEl elemento se agrega al DOM\nAhora es visible en la página');
+            }, 1500);
+
+            // Paso 3: Modificar estilos
+            setTimeout(() => {
+                document.getElementById('new-element').style.background = 'linear-gradient(45deg, #ff6b6b, #ee5a24)';
+                document.getElementById('manipulation-flow').classList.add('show');
+                steps[1].classList.remove('active');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                showInfoModal('Paso 3', 'nuevoDiv.style.color = "red"\n\nSe modifican los estilos del elemento\nEl elemento cambia de apariencia');
+            }, 2500);
+
+            setTimeout(() => {
+                document.getElementById('manipulation-explanation').classList.add('show');
+            }, 3500);
+        }
+
+        function resetDOMManipulation() {
+            const elements = document.querySelectorAll('#dom-manipulation-animation .step, #dom-manipulation-animation .arrow, #dom-manipulation-animation .data-flow');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'animated', 'show');
+                el.style.animation = 'none';
+            });
+            document.getElementById('new-element').style.opacity = '0';
+            document.getElementById('new-element').style.background = 'linear-gradient(45deg, #4facfe, #00f2fe)';
+            document.getElementById('manipulation-explanation').classList.remove('show');
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                closeInfoModal();
+            }
+        });
+
+        // Animaciones de entrada
+        window.addEventListener('load', function() {
+            const sections = document.querySelectorAll('.animation-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(30px)';
+                    section.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
