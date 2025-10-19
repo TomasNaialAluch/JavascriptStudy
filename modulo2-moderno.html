@@ -13,36 +13,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </head>
 <body>
+    <!-- Skip to main content for screen readers -->
+    <a href="#main-content" class="skip-link" aria-label="Saltar al contenido principal">Saltar al contenido principal</a>
+
     <!-- Header con navegación -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-brand">
-                <i class="fab fa-js-square"></i>
-                <span>JS Academy</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="./index.html" class="nav-link">Inicio</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
+    <header class="header" role="banner">
+        <div id="navigation-container"></div>
     </header>
 
     <!-- Breadcrumbs -->
-    <nav class="breadcrumb" id="breadcrumb">
-        <ol class="breadcrumb-list">
-            <li class="breadcrumb-item">
-                <a href="./index.html"><i class="fas fa-home"></i> Inicio</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="index.html#modulos">Módulos</a>
-            </li>
-            <li class="breadcrumb-item active" id="current-page">JavaScript Moderno (ES6+)</li>
-        </ol>
-    </nav>
+    <nav id="breadcrumb-container" aria-label="Navegación migas de pan"></nav>
 
     <!-- Barra de Progreso -->
     <section class="progress-bar-section">
@@ -5500,6 +5480,46 @@ import * as stringUtils from './strings.js';</code></pre>
             // Start speaking
             speechSynthesis.speak(utterance);
         }
+
+        // Configuración de la navegación para módulo 2
+        const navItems = [
+            { href: 'index.html', text: 'Inicio' }
+        ];
+
+        // Configuración del breadcrumb para módulo 2
+        const breadcrumbItems = [
+            { text: 'Módulos', href: 'index.html#metodologia' },
+            { text: 'JavaScript Moderno (ES6+)' } // Página actual, sin href
+        ];
+
+        // Crear los componentes cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Crear navegación
+            createNavigation(
+                'navigation-container',
+                'fab fa-js-square',
+                'JS Academy',
+                navItems
+            );
+
+            // Crear breadcrumb
+            createBreadcrumb(
+                'breadcrumb-container',
+                breadcrumbItems,
+                {
+                    separator: '>',
+                    homeIcon: 'fas fa-home',
+                    homeText: 'Inicio',
+                    homeHref: 'index.html',
+                    responsive: true,
+                    maxMobileItems: 3
+                }
+            );
+        });
     </script>
+    
+    <!-- Scripts de navegación -->
+    <script src="components/navigation/Navigation.js"></script>
+    <script src="components/navigation/Breadcrumb.js"></script>
 </body>
 </html>
