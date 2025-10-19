@@ -3,7 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo 1: Fundamentos de JavaScript - JS Academy</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Módulo 1: Fundamentos de JavaScript - Variables, Operadores y Control de Flujo | JS Academy</title>
+    <meta name="description" content="Aprende los fundamentos de JavaScript: variables, tipos de datos, operadores, control de flujo, funciones, arrays y ejercicios prácticos. Curso completo con ejemplos interactivos.">
+    <meta name="keywords" content="JavaScript, variables, operadores, control de flujo, funciones, arrays, fundamentos JavaScript, programación básica, tutorial JavaScript">
+    <meta name="author" content="JS Academy">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jsacademy.com/modulo1-fundamentos.html">
+    <meta property="og:title" content="Módulo 1: Fundamentos de JavaScript - JS Academy">
+    <meta property="og:description" content="Aprende los fundamentos de JavaScript: variables, tipos de datos, operadores y control de flujo con ejemplos prácticos.">
+    <meta property="og:image" content="https://jsacademy.com/images/modulo1-fundamentos-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://jsacademy.com/modulo1-fundamentos.html">
+    <meta property="twitter:title" content="Módulo 1: Fundamentos de JavaScript - JS Academy">
+    <meta property="twitter:description" content="Aprende los fundamentos de JavaScript: variables, tipos de datos, operadores y control de flujo con ejemplos prácticos.">
+    <meta property="twitter:image" content="https://jsacademy.com/images/modulo1-fundamentos-preview.jpg">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Fundamentos de JavaScript",
+        "description": "Aprende los fundamentos de JavaScript: variables, tipos de datos, operadores, control de flujo, funciones, arrays y ejercicios prácticos.",
+        "provider": {
+            "@type": "Organization",
+            "name": "JS Academy",
+            "url": "https://jsacademy.com"
+        },
+        "courseMode": "online",
+        "educationalLevel": "beginner",
+        "inLanguage": "es",
+        "numberOfCredits": 1,
+        "timeRequired": "PT8H",
+        "teaches": ["Variables", "Operadores", "Control de Flujo", "Funciones", "Arrays", "JavaScript Básico"],
+        "isPartOf": {
+            "@type": "Course",
+            "name": "JavaScript Junior Developer"
+        }
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,39 +66,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </head>
 <body>
+    <!-- Skip to main content for screen readers -->
+    <a href="#main-content" class="skip-link" aria-label="Saltar al contenido principal">Saltar al contenido principal</a>
+
     <!-- Header con navegación -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-brand">
-                <i class="fab fa-js-square"></i>
-                <span>JS Academy</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="./index.html" class="nav-link">Inicio</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
+    <header class="header" role="banner">
+        <div id="navigation-container"></div>
     </header>
 
     <!-- Breadcrumbs -->
-    <nav class="breadcrumb" id="breadcrumb">
-        <ol class="breadcrumb-list">
-            <li class="breadcrumb-item">
-                <a href="./index.html"><i class="fas fa-home"></i> Inicio</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="index.html#modulos">Módulos</a>
-            </li>
-            <li class="breadcrumb-item active" id="current-page">Fundamentos de JavaScript</li>
-        </ol>
-    </nav>
+    <nav id="breadcrumb-container" aria-label="Navegación migas de pan"></nav>
 
     <!-- Contenido principal -->
-    <main class="main-content">
+    <main id="main-content" class="main-content" role="main">
         <!-- Hero del módulo -->
         <section class="module-hero">
             <div class="container">
@@ -2681,6 +2715,8 @@ if (a > b) {
         </div>
     </div>
 
+    <script src="components/navigation/Navigation.js"></script>
+    <script src="components/navigation/Breadcrumb.js"></script>
     <script src="script.js"></script>
     <script>
         // Estado del módulo
@@ -7216,6 +7252,42 @@ n => ({ valor: n })</code></pre>
             // Start speaking
             speechSynthesis.speak(utterance);
         }
+
+        // Configuración de la navegación para módulo 1
+        const navItems = [
+            { href: '../index.html', text: 'Inicio' }
+        ];
+
+        // Configuración del breadcrumb para módulo 1
+        const breadcrumbItems = [
+            { text: 'Módulos', href: '../index.html#modulos' },
+            { text: 'Fundamentos de JavaScript' } // Página actual, sin href
+        ];
+
+        // Crear los componentes cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Crear navegación
+            createNavigation(
+                'navigation-container',
+                'fab fa-js-square',
+                'JS Academy',
+                navItems
+            );
+
+            // Crear breadcrumb
+            createBreadcrumb(
+                'breadcrumb-container',
+                breadcrumbItems,
+                {
+                    separator: '>',
+                    homeIcon: 'fas fa-home',
+                    homeText: 'Inicio',
+                    homeHref: '../index.html',
+                    responsive: true,
+                    maxMobileItems: 3
+                }
+            );
+        });
     </script>
 </body>
 </html>

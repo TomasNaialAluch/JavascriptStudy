@@ -452,6 +452,8 @@ function initSearch() {
 function showModulesPanel() {
     const heroInitial = document.getElementById('hero-initial');
     const heroExpanded = document.getElementById('hero-expanded');
+    const heroLeft = document.querySelector('.hero-left');
+    const heroRight = document.querySelector('.hero-right');
     
     if (heroInitial && heroExpanded) {
         // Agregar clase de animación de salida al estado inicial
@@ -462,6 +464,12 @@ function showModulesPanel() {
             heroInitial.style.display = 'none';
             heroExpanded.style.display = 'flex';
             heroExpanded.classList.add('show', 'slide-in');
+            
+            // En mobile, ocultar el panel izquierdo y mostrar solo los módulos
+            if (window.innerWidth <= 768) {
+                if (heroLeft) heroLeft.style.display = 'none';
+                if (heroRight) heroRight.style.width = '100%';
+            }
             
             // Remover la clase de animación después de completarse
             setTimeout(() => {
@@ -475,8 +483,14 @@ function showModulesPanel() {
 function resetHeroState() {
     const heroInitial = document.getElementById('hero-initial');
     const heroExpanded = document.getElementById('hero-expanded');
+    const heroLeft = document.querySelector('.hero-left');
+    const heroRight = document.querySelector('.hero-right');
     
     if (heroInitial && heroExpanded) {
+        // Restaurar el panel izquierdo y el ancho del derecho
+        if (heroLeft) heroLeft.style.display = 'block';
+        if (heroRight) heroRight.style.width = '';
+        
         heroExpanded.style.display = 'none';
         heroExpanded.classList.remove('show', 'slide-in');
         heroInitial.style.display = 'flex';

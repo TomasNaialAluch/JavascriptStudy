@@ -3,46 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Junior Developer - Academia de Programación</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>JavaScript Junior Developer - Academia de Programación | Aprende JavaScript desde Cero</title>
+    <meta name="description" content="Aprende JavaScript desde cero con nuestra metodología práctica. 6 módulos completos con teoría, ejemplos interactivos y proyectos reales para convertirte en desarrollador profesional.">
+    <meta name="keywords" content="JavaScript, programación, desarrollo web, aprender JavaScript, curso JavaScript, tutorial JavaScript, ES6, DOM, React, Node.js">
+    <meta name="author" content="JS Academy">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jsacademy.com/">
+    <meta property="og:title" content="JavaScript Junior Developer - Academia de Programación">
+    <meta property="og:description" content="Aprende JavaScript desde cero con nuestra metodología práctica. 6 módulos completos para convertirte en desarrollador profesional.">
+    <meta property="og:image" content="https://jsacademy.com/images/javascript-course-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://jsacademy.com/">
+    <meta property="twitter:title" content="JavaScript Junior Developer - Academia de Programación">
+    <meta property="twitter:description" content="Aprende JavaScript desde cero con nuestra metodología práctica. 6 módulos completos para convertirte en desarrollador profesional.">
+    <meta property="twitter:image" content="https://jsacademy.com/images/javascript-course-preview.jpg">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "JavaScript Junior Developer",
+        "description": "Aprende JavaScript desde cero con nuestra metodología práctica. 6 módulos completos con teoría, ejemplos interactivos y proyectos reales.",
+        "provider": {
+            "@type": "Organization",
+            "name": "JS Academy",
+            "url": "https://jsacademy.com"
+        },
+        "courseMode": "online",
+        "educationalLevel": "beginner",
+        "inLanguage": "es",
+        "numberOfCredits": 6,
+        "timeRequired": "PT40H",
+        "teaches": ["JavaScript", "Programación Web", "DOM", "ES6", "React", "Node.js"]
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Skip to main content for screen readers -->
+    <a href="#main-content" class="skip-link" aria-label="Saltar al contenido principal">Saltar al contenido principal</a>
+
     <!-- Header con navegación -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-brand">
-                <i class="fab fa-js-square"></i>
-                <span>JS Academy</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#inicio" class="nav-link">Inicio</a></li>
-                <li><a href="#modulos" class="nav-link">Módulos</a></li>
-                <li><a href="#metodologia" class="nav-link">Metodología</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
+    <header class="header" role="banner">
+        <div id="navigation-container"></div>
     </header>
 
     <!-- Breadcrumbs -->
-    <nav class="breadcrumb" id="breadcrumb">
-        <ol class="breadcrumb-list">
-            <li class="breadcrumb-item">
-                <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
-            </li>
-            <li class="breadcrumb-item active" id="current-page">Academia JavaScript</li>
-        </ol>
-    </nav>
+    <nav id="breadcrumb-container" aria-label="Navegación migas de pan"></nav>
 
     <!-- Contenido principal -->
-    <main class="main-content">
+    <main id="main-content" class="main-content" role="main">
         <!-- Sección Hero -->
-        <section id="inicio" class="hero">
+        <section id="inicio" class="hero" aria-labelledby="hero-title">
             <!-- Estado inicial: Todo amarillo con botón central -->
             <div class="hero-initial" id="hero-initial">
                 <div class="hero-initial-content">
@@ -52,20 +83,6 @@
                     </div>
                     <h1 class="hero-title">JavaScript Junior Developer</h1>
                     <p class="hero-subtitle">Aprende JavaScript desde cero con nuestra metodología práctica. Teoría, ejemplos interactivos y proyectos reales para convertirte en un desarrollador profesional.</p>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <span class="stat-number">6</span>
-                            <span class="stat-label">Módulos</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Ejemplos</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">15+</span>
-                            <span class="stat-label">Proyectos</span>
-                        </div>
-                    </div>
                     <button class="btn btn-modules-access" onclick="showModulesPanel()">
                         <i class="fas fa-th-large"></i>
                         <span>Acceso Directo a Módulos</span>
@@ -82,22 +99,8 @@
                             <i class="fas fa-graduation-cap"></i>
                             <span>Academia de Programación</span>
                         </div>
-                        <h1 class="hero-title">JavaScript Junior Developer</h1>
+                        <h1 id="hero-title" class="hero-title">JavaScript Junior Developer</h1>
                         <p class="hero-subtitle">Aprende JavaScript desde cero con nuestra metodología práctica. Teoría, ejemplos interactivos y proyectos reales para convertirte en un desarrollador profesional.</p>
-                        <div class="hero-stats">
-                            <div class="stat">
-                                <span class="stat-number">6</span>
-                                <span class="stat-label">Módulos</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">50+</span>
-                                <span class="stat-label">Ejemplos</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">15+</span>
-                                <span class="stat-label">Proyectos</span>
-                            </div>
-                        </div>
                         <div class="hero-buttons">
                             <button class="btn btn-primary" onclick="scrollToSection('modulos')">
                                 <i class="fas fa-play"></i> Comenzar Curso
@@ -172,210 +175,128 @@
             </div>
         </section>
 
-        <!-- Sección de Módulos de Aprendizaje -->
-        <section id="modulos" class="section">
+        <!-- Sección de Historia -->
+        <section id="modulos" class="section" aria-labelledby="historia-title">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Módulos de Aprendizaje</h2>
-                    <p class="section-subtitle">Un camino estructurado para dominar JavaScript paso a paso</p>
+                    <h2 id="historia-title" class="section-title">Primero un poco de historia</h2>
                 </div>
                 
-                <div class="modules-grid">
-                    <!-- Módulo 1 -->
-                    <div class="module-card" data-module="1">
-                        <div class="module-header">
-                            <div class="module-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <div class="module-info">
-                                <span class="module-number">Módulo 1</span>
-                                <h3>Fundamentos de JavaScript</h3>
-                                <p>Variables, tipos de datos, operadores y estructuras de control</p>
-                            </div>
-                        </div>
-                        <div class="module-content">
-                            <div class="module-topics">
-                                <span class="topic-tag">Variables</span>
-                                <span class="topic-tag">Operadores</span>
-                                <span class="topic-tag">Funciones</span>
-                                <span class="topic-tag">Arrays</span>
-                            </div>
-                            <div class="module-stats">
-                                <span><i class="fas fa-clock"></i> 4-6 horas</span>
-                                <span><i class="fas fa-file-code"></i> 15 ejemplos</span>
-                            </div>
-                        </div>
-                        <div class="module-footer">
-                            <a href="modulo1-fundamentos.html" class="btn btn-primary">
-                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
-                            </a>
-                        </div>
+                <div class="diary-masonry">
+                    <div class="diary-card medium">
+                        <div class="diary-date" data-order="1">Septiembre 1995</div>
+                        <h3>El Nacimiento</h3>
+                        <p>Querido diario, hoy nací. Mi creador, Brendan Eich, un programador estadounidense que trabajaba en Netscape, me diseñó en solo 10 días.</p>
+                        <p>¿Por qué nadie había pensado en hacer páginas más interactivas antes? La web era nueva, las conexiones eran lentas, y la mayoría pensaba que las páginas solo servían para mostrar texto estático. Brendan vio el potencial que nadie más vio.</p>
                     </div>
 
-                    <!-- Módulo 2 -->
-                    <div class="module-card" data-module="2">
-                        <div class="module-header">
-                            <div class="module-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <div class="module-info">
-                                <span class="module-number">Módulo 2</span>
-                                <h3>JavaScript Moderno (ES6+)</h3>
-                                <p>Arrow functions, destructuring, modules y características modernas</p>
-                            </div>
-                        </div>
-                        <div class="module-content">
-                            <div class="module-topics">
-                                <span class="topic-tag">ES6+</span>
-                                <span class="topic-tag">Arrow Functions</span>
-                                <span class="topic-tag">Destructuring</span>
-                                <span class="topic-tag">Modules</span>
-                            </div>
-                            <div class="module-stats">
-                                <span><i class="fas fa-clock"></i> 3-5 horas</span>
-                                <span><i class="fas fa-file-code"></i> 12 ejemplos</span>
-                            </div>
-                        </div>
-                        <div class="module-footer">
-                            <a href="modulo2-moderno.html" class="btn btn-primary">
-                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
-                            </a>
-                        </div>
+                    <div class="diary-card tall">
+                        <div class="diary-date" data-order="2">1995</div>
+                        <h3>El Nombre Confuso</h3>
+                        <p>Mi nombre original iba a ser Mocha, luego LiveScript, pero finalmente me llamaron JavaScript. ¿Vengo de Java? ¡No! Esa es la confusión más grande de mi historia.</p>
+                        <p>Java era el lenguaje de moda en 1995, creado por Sun Microsystems. Netscape quería aprovechar esa popularidad, así que me llamaron JavaScript aunque no tengo nada que ver con Java. Es como si las marcas de gaseosas se pusieran "Cola..." para ser parte del imperio Coca-Cola.</p>
+                        <p>Soy un lenguaje completamente independiente con mi propia sintaxis, mi propia forma de trabajar. La única similitud es que ambos usan llaves { } para delimitar bloques de código.</p>
                     </div>
 
-                    <!-- Módulo 3 -->
-                    <div class="module-card" data-module="3">
-                        <div class="module-header">
-                            <div class="module-icon">
-                                <i class="fas fa-window-maximize"></i>
-                            </div>
-                            <div class="module-info">
-                                <span class="module-number">Módulo 3</span>
-                                <h3>DOM Manipulation</h3>
-                                <p>Interactuar con el DOM, eventos y formularios</p>
-                            </div>
-                        </div>
-                        <div class="module-content">
-                            <div class="module-topics">
-                                <span class="topic-tag">DOM</span>
-                                <span class="topic-tag">Eventos</span>
-                                <span class="topic-tag">Formularios</span>
-                                <span class="topic-tag">Validación</span>
-                            </div>
-                            <div class="module-stats">
-                                <span><i class="fas fa-clock"></i> 5-7 horas</span>
-                                <span><i class="fas fa-file-code"></i> 18 ejemplos</span>
-                            </div>
-                        </div>
-                        <div class="module-footer">
-                            <a href="modulo3-dom.html" class="btn btn-primary">
-                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
-                            </a>
-                        </div>
+                    <div class="diary-card tall">
+                        <div class="diary-date" data-order="3">2000-2005</div>
+                        <h3>Los Años Difíciles</h3>
+                        <p>Estos fueron tiempos oscuros. Los desarrolladores me evitaban como si fuera un virus.</p>
+                        <p>"JavaScript es inseguro", "JavaScript es lento", "JavaScript es inconsistente entre navegadores".</p>
+                        <p>Me sentía como el niño raro del colegio. Internet Explorer tenía su propia versión de mí, Firefox otra, y Safari otra diferente.</p>
+                        <p>¿Cómo era posible esto? JavaScript no era código abierto al principio. Cada empresa de navegadores implementaba su propia interpretación del lenguaje. Microsoft creó JScript, Mozilla tenía SpiderMonkey, Safari usaba JavaScriptCore. Era como si cada fabricante de autos interpretara las reglas de tránsito de manera diferente.</p>
+                        <p>Era un caos total. Muchos desarrolladores preferían usar Flash o incluso Java applets antes que darme una oportunidad.</p>
+                        <p>Estaba a punto de desaparecer, pero algo cambió...</p>
                     </div>
 
-                    <!-- Módulo 4 -->
-                    <div class="module-card" data-module="4">
-                        <div class="module-header">
-                            <div class="module-icon">
-                                <i class="fas fa-sync-alt"></i>
-                            </div>
-                            <div class="module-info">
-                                <span class="module-number">Módulo 4</span>
-                                <h3>Programación Asíncrona</h3>
-                                <p>Promises, async/await, fetch API y manejo de errores</p>
-                            </div>
-                        </div>
-                        <div class="module-content">
-                            <div class="module-topics">
-                                <span class="topic-tag">Promises</span>
-                                <span class="topic-tag">Async/Await</span>
-                                <span class="topic-tag">Fetch API</span>
-                                <span class="topic-tag">Callbacks</span>
-                            </div>
-                            <div class="module-stats">
-                                <span><i class="fas fa-clock"></i> 6-8 horas</span>
-                                <span><i class="fas fa-file-code"></i> 20 ejemplos</span>
-                            </div>
-                        </div>
-                        <div class="module-footer">
-                            <a href="modulo4-asincrono.html" class="btn btn-primary">
-                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
-                            </a>
-                        </div>
+                    <div class="diary-card medium">
+                        <div class="diary-date" data-order="4">Febrero 2005</div>
+                        <h3>Gmail: La Decisión Audaz</h3>
+                        <p>¡Gmail cambió todo! Google decidió usarme para crear una aplicación web que funcionaba como un programa de escritorio.</p>
+                        <p>¿A quién se le ocurrió esa decisión? Fue Paul Buchheit, el desarrollador principal de Gmail. Él vio el potencial de usar JavaScript para crear una interfaz de email moderna, algo que nadie había intentado antes.</p>
+                        <p>¿Fue aceptada rápidamente? ¡Para nada! Muchos en Google pensaban que era una locura. "¿JavaScript para una aplicación seria? ¿Estás loco?" Pero Paul insistió y demostró que era posible.</p>
+                        <p>¿Cómo lo hicieron? Usaron técnicas innovadoras como AJAX para cargar contenido sin recargar la página, y optimizaron JavaScript hasta límites que nadie había explorado antes.</p>
                     </div>
 
-                    <!-- Módulo 5 -->
-                    <div class="module-card" data-module="5">
-                        <div class="module-header">
-                            <div class="module-icon">
-                                <i class="fab fa-react"></i>
-                            </div>
-                            <div class="module-info">
-                                <span class="module-number">Módulo 5</span>
-                                <h3>Frameworks y Librerías</h3>
-                                <p>React, Node.js, NPM y herramientas modernas</p>
-                            </div>
-                        </div>
-                        <div class="module-content">
-                            <div class="module-topics">
-                                <span class="topic-tag">React</span>
-                                <span class="topic-tag">Node.js</span>
-                                <span class="topic-tag">NPM</span>
-                                <span class="topic-tag">Webpack</span>
-                            </div>
-                            <div class="module-stats">
-                                <span><i class="fas fa-clock"></i> 8-10 horas</span>
-                                <span><i class="fas fa-file-code"></i> 25 ejemplos</span>
-                            </div>
-                        </div>
-                        <div class="module-footer">
-                            <a href="modulo5-frameworks.html" class="btn btn-primary">
-                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
-                            </a>
-                        </div>
+                    <div class="diary-card tall">
+                        <div class="diary-date" data-order="5">2005</div>
+                        <h3>El Milagro de Google Maps</h3>
+                        <p>La gente se sorprendió: "¿Esto es JavaScript? ¡No puede ser!"</p>
+                        <p>Google Maps fue el golpe final. De repente, los desarrolladores se dieron cuenta de que yo podía hacer cosas increíbles.</p>
+                        <p>¿Por qué Google Maps cambió todo? Antes, los mapas en internet eran imágenes estáticas. Google Maps era interactivo: podías hacer zoom, arrastrar, buscar direcciones en tiempo real. Todo usando JavaScript.</p>
+                        <p>Google Maps lo usa TODO EL MUNDO. Millones de personas cada día. Es la aplicación web más usada del planeta. Y está hecha principalmente con JavaScript.</p>
+                        <p>AJAX se convirtió en mi mejor amigo, y frameworks como jQuery empezaron a hacer que fuera más fácil trabajar conmigo. De repente, JavaScript no era solo para cambiar colores de botones.</p>
                     </div>
 
-                    <!-- Módulo 6 -->
-                    <div class="module-card" data-module="6">
-                        <div class="module-header">
-                            <div class="module-icon">
-                                <i class="fas fa-tools"></i>
-                            </div>
-                            <div class="module-info">
-                                <span class="module-number">Módulo 6</span>
-                                <h3>Herramientas de Desarrollo</h3>
-                                <p>Git, VS Code, DevTools y debugging profesional</p>
-                            </div>
-                        </div>
-                        <div class="module-content">
-                            <div class="module-topics">
-                                <span class="topic-tag">Git</span>
-                                <span class="topic-tag">VS Code</span>
-                                <span class="topic-tag">DevTools</span>
-                                <span class="topic-tag">Debugging</span>
-                            </div>
-                            <div class="module-stats">
-                                <span><i class="fas fa-clock"></i> 4-6 horas</span>
-                                <span><i class="fas fa-file-code"></i> 10 ejemplos</span>
-                            </div>
-                        </div>
-                        <div class="module-footer">
-                            <a href="modulo6-herramientas.html" class="btn btn-primary">
-                                <i class="fas fa-arrow-right"></i> Comenzar Módulo
-                            </a>
-                        </div>
+                    <div class="diary-card tall">
+                        <div class="diary-date" data-order="6">2009</div>
+                        <h3>Node.js: El Gran Cambio</h3>
+                        <p>Ryan Dahl tuvo una idea loca: "¿Y si JavaScript pudiera correr en el servidor también?"</p>
+                        <p>¿Por qué no podía correr en el servidor antes? JavaScript estaba diseñado para ejecutarse dentro de los navegadores web, no como un programa independiente. Era como intentar usar una aplicación de teléfono en una computadora.</p>
+                        <p>Node.js tomó el motor V8 de Chrome (que interpreta JavaScript) y lo sacó del navegador, creando un entorno donde JavaScript puede ejecutarse directamente en el sistema operativo del servidor.</p>
+                        <p>¡De repente pude hacer lo mismo que PHP, Python o Java en el servidor! Así nació Node.js, y mi vida cambió para siempre.</p>
+                    </div>
+
+                    <div class="diary-card medium">
+                        <div class="diary-date" data-order="7">2010-2015</div>
+                        <h3>La Revolución</h3>
+                        <p>Angular, React, Vue... todos estos frameworks empezaron a aparecer. De repente, yo era el centro de atención.</p>
+                        <p>Los desarrolladores ya no me evitaban, ¡me buscaban activamente!</p>
+                        <p>Ya no era solo para hacer que los botones cambien de color. Ahora podía crear aplicaciones web completas.</p>
+                    </div>
+
+                    <div class="diary-card medium argentina-card">
+                        <div class="diary-date" data-order="10">2016 🇦🇷</div>
+                        <h3>Next.js: El Orgullo Argentino</h3>
+                        <p>Guillermo Rauch, un desarrollador argentino, creó Next.js, uno de los frameworks más populares de React.</p>
+                        <p>Desde las calles de Buenos Aires hasta Silicon Valley. Un argentino revolucionó cómo se desarrolla en la web. Next.js con Server-Side Rendering (SSR) y Static Site Generation (SSG) cambió todo.</p>
+                        <p>Millones de desarrolladores en el mundo usan Next.js. Empresas como Netflix, TikTok, Hulu, y miles más confían en el trabajo de un argentino. ¡Argentina no solo exporta carne y vino, exporta código que mueve el mundo!</p>
+                    </div>
+
+                    <div class="diary-card tall">
+                        <div class="diary-date" data-order="9">2015-Presente</div>
+                        <h3>La Era Dorada: ES6+</h3>
+                        <p>¿Qué es ES6+? ES6 significa ECMAScript 6, también conocido como ES2015. Es como si JavaScript hubiera tenido una actualización masiva que lo transformó completamente.</p>
+                        <p>ES6+ me dio superpoderes: Arrow functions (funciones flecha), destructuring (desestructuración), modules (módulos), async/await... me sentía como un superhéroe.</p>
+                        <p>TypeScript apareció para darme tipos y hacer que fuera más robusto. Ya no era solo un "lenguaje de script", era un lenguaje de programación serio.</p>
+                        <p>Hoy soy el lenguaje más usado en GitHub. Estoy en el frontend, backend, móviles, escritorio, IoT, inteligencia artificial... ¡estoy en todas partes!</p>
+                        <p>Los desarrolladores que me despreciaron ahora me estudian religiosamente. Los salarios para desarrolladores JavaScript están por las nubes. He pasado de ser el "hermano menor" a ser el rey del desarrollo web.</p>
+                    </div>
+
+                    <div class="diary-card wide">
+                        <div class="diary-date" data-order="8">Reflexión</div>
+                        <h3>Una Lección de Perseverancia</h3>
+                        <p>Mi historia es una lección de perseverancia. Pasé de ser despreciado a ser esencial. Hoy, aprender JavaScript no es una opción, es una necesidad.</p>
+                        <p>Soy el lenguaje que conecta todas las capas del desarrollo moderno. Si estás leyendo esto, significa que quieres ser parte de mi historia. ¡Bienvenido a la aventura!</p>
+                        <p>Soy lo que soy gracias a todos los programadores desde el creador a todas las actualizaciones e incorporaciones que me hicieron. Todos son parte de esta gran historia.</p>
+                        <p>Vos que estás leyendo quizás te sentís chiquito, pero pensá que todos los aportes chiquitos hicieron lo que soy. ¿Qué esperás para sumar?</p>
+                    </div>
+
+                    <div class="diary-card short">
+                        <div class="diary-date" data-order="11">Hoy</div>
+                        <h3>El Presente</h3>
+                        <p>Ya no era el "lenguaje de juguete". Era el futuro.</p>
+                        <p>Juntos vamos a crear cosas increíbles.</p>
+                        <p>Quizás a vos también te hicieron sentir chiquito, juguete, sin futuro o poco útil. Eso no solo le pasa a los humanos.</p>
+                        <p>Demostrémosle al mundo que se equivocan. Hay que esforzarse y encontrar el lugar correcto donde van a ver nuestro valor.</p>
+                    </div>
+
+                    <div class="diary-card wide">
+                        <div class="diary-date" data-order="12">Agradecimiento</div>
+                        <h3>En Agradecimiento a la Gran Comunidad</h3>
+                        <p>En agradecimiento a la gran comunidad de programadores. Donde las máquinas y los humanos conviven en paz.</p>
+                        <p>Si el mundo tomara nuestra forma de conectarnos a nivel mundial, atravesando culturas y lenguajes, sistemas de información, servidores, frameworks... sería un mundo de paz que solo buscaría construir y armonizar.</p>
+                        <p>Esto es un aliento a todos los programadores del mundo: nuestro rol es más representativo e importante de lo que creen.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Sección de Metodología -->
-        <section id="metodologia" class="section bg-light">
+        <section id="metodologia" class="section bg-light" aria-labelledby="metodologia-title">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Nuestra Metodología de Aprendizaje</h2>
-                    <p class="section-subtitle">Un enfoque estructurado y práctico para dominar JavaScript</p>
+                    <h2 id="metodologia-title" class="section-title">Nuestra Metodología de Aprendizaje</h2>
                 </div>
                 
                 <div class="methodology-grid">
@@ -415,61 +336,62 @@
                 <div class="learning-path">
                     <h3>Ruta de Aprendizaje Recomendada</h3>
                     <div class="path-steps">
-                        <div class="path-step">
+                        <a href="modulo1-fundamentos.html" class="path-step clickable-step">
                             <div class="step-number">1</div>
                             <div class="step-content">
                                 <h4>Fundamentos</h4>
                                 <p>Variables, tipos de datos, operadores y estructuras básicas</p>
                             </div>
-                        </div>
+                        </a>
                         <div class="path-arrow">→</div>
-                        <div class="path-step">
+                        <a href="modulo2-moderno.html" class="path-step clickable-step">
                             <div class="step-number">2</div>
                             <div class="step-content">
                                 <h4>JavaScript Moderno</h4>
                                 <p>ES6+, arrow functions, destructuring y características modernas</p>
                             </div>
-                        </div>
+                        </a>
                         <div class="path-arrow">→</div>
-                        <div class="path-step">
+                        <a href="modulo3-dom.html" class="path-step clickable-step">
                             <div class="step-number">3</div>
                             <div class="step-content">
                                 <h4>DOM & Interactividad</h4>
                                 <p>Manipulación del DOM, eventos y formularios</p>
                             </div>
-                        </div>
+                        </a>
                         <div class="path-arrow">→</div>
-                        <div class="path-step">
+                        <a href="modulo4-asincrono.html" class="path-step clickable-step">
                             <div class="step-number">4</div>
                             <div class="step-content">
                                 <h4>Programación Asíncrona</h4>
                                 <p>Promises, async/await y manejo de datos externos</p>
                             </div>
-                        </div>
+                        </a>
                         <div class="path-arrow">→</div>
-                        <div class="path-step">
+                        <a href="modulo5-frameworks.html" class="path-step clickable-step">
                             <div class="step-number">5</div>
                             <div class="step-content">
                                 <h4>Frameworks</h4>
                                 <p>React, Node.js y herramientas modernas</p>
                             </div>
-                        </div>
+                        </a>
                         <div class="path-arrow">→</div>
-                        <div class="path-step">
+                        <a href="modulo6-herramientas.html" class="path-step clickable-step">
                             <div class="step-number">6</div>
                             <div class="step-content">
                                 <h4>Herramientas</h4>
                                 <p>Git, VS Code, testing y deployment</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
+                    
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -515,6 +437,47 @@
         </div>
     </footer>
 
+    <script src="components/navigation/Navigation.js"></script>
+    <script src="components/navigation/Breadcrumb.js"></script>
+    <script>
+        // Configuración de la navegación
+        const navItems = [
+            { href: '#inicio', text: 'Inicio' },
+            { href: '#modulos', text: 'Historia' },
+            { href: '#metodologia', text: 'Metodología' }
+        ];
+
+        // Configuración del breadcrumb para index
+        const breadcrumbItems = [
+            { text: 'Academia JavaScript' } // Página actual, sin href
+        ];
+
+        // Crear los componentes cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Crear navegación
+            createNavigation(
+                'navigation-container',
+                'fab fa-js-square',
+                'JS Academy',
+                navItems
+            );
+
+            // Crear breadcrumb
+            createBreadcrumb(
+                'breadcrumb-container',
+                breadcrumbItems,
+                {
+                    separator: '>',
+                    homeIcon: 'fas fa-home',
+                    homeText: 'Inicio',
+                    homeHref: '#inicio',
+                    responsive: true,
+                    maxMobileItems: 2
+                }
+            );
+
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

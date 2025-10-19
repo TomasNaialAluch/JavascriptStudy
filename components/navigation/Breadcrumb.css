@@ -1,0 +1,221 @@
+/* ========================================
+   BREADCRUMB COMPONENT STYLES
+   ======================================== */
+
+/* Contenedor principal del breadcrumb */
+.breadcrumb {
+    background: var(--bg-light);
+    padding: 1rem 0;
+    margin-top: 80px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.breadcrumb-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0 2rem;
+    gap: 0.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Elementos del breadcrumb */
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.breadcrumb-link,
+.breadcrumb-text {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.breadcrumb-link:hover {
+    color: var(--primary-color);
+    background-color: rgba(255, 193, 7, 0.1);
+}
+
+.breadcrumb-text {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* Separador */
+.breadcrumb-separator {
+    color: var(--text-light);
+    font-size: 0.8rem;
+    margin: 0 0.25rem;
+}
+
+/* Iconos */
+.breadcrumb-link i,
+.breadcrumb-text i {
+    font-size: 0.8rem;
+    margin-right: 0.25rem;
+}
+
+/* Elemento actual (sin enlace) */
+.breadcrumb-item.current .breadcrumb-text {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* Elemento home (siempre presente) */
+.breadcrumb-item.home .breadcrumb-link {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.breadcrumb-item.home .breadcrumb-link:hover {
+    background-color: rgba(255, 193, 7, 0.15);
+}
+
+/* ========================================
+   DIFERENTES TAMAÑOS DE BREADCRUMB
+   ======================================== */
+
+/* Breadcrumb simple (solo Inicio) */
+.breadcrumb-list.breadcrumb-simple {
+    justify-content: flex-start;
+}
+
+/* Breadcrumb medio (2-3 elementos) */
+.breadcrumb-list.breadcrumb-medium {
+    justify-content: flex-start;
+}
+
+/* Breadcrumb complejo (4+ elementos) */
+.breadcrumb-list.breadcrumb-complex {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.breadcrumb-list.breadcrumb-complex .breadcrumb-item {
+    margin-bottom: 0.25rem;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+    .breadcrumb {
+        padding: 0.75rem 0;
+    }
+
+    .breadcrumb-list {
+        padding: 0 1rem;
+        gap: 0.25rem;
+    }
+
+    .breadcrumb-link,
+    .breadcrumb-text {
+        font-size: 0.85rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    .breadcrumb-separator {
+        font-size: 0.75rem;
+        margin: 0 0.2rem;
+    }
+
+    /* En móvil, limitar elementos mostrados */
+    .breadcrumb-list.breadcrumb-complex .breadcrumb-item:nth-child(n+4) {
+        display: none;
+    }
+
+    /* Mostrar solo home + actual en móvil para breadcrumbs complejos */
+    .breadcrumb-list.breadcrumb-complex .breadcrumb-item:first-child,
+    .breadcrumb-list.breadcrumb-complex .breadcrumb-item:last-child {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .breadcrumb-list {
+        padding: 0 0.75rem;
+    }
+
+    .breadcrumb-link,
+    .breadcrumb-text {
+        font-size: 0.8rem;
+        padding: 0.15rem 0.3rem;
+    }
+
+    .breadcrumb-separator {
+        font-size: 0.7rem;
+        margin: 0 0.15rem;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY & ANIMATIONS
+   ======================================== */
+
+/* Mejoras de accesibilidad */
+.breadcrumb-link:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Animaciones suaves */
+.breadcrumb-item,
+.breadcrumb-link,
+.breadcrumb-text,
+.breadcrumb-separator {
+    transition: var(--transition);
+}
+
+/* Estados de carga */
+.breadcrumb.loading {
+    opacity: 0.7;
+}
+
+/* ========================================
+   DARK MODE SUPPORT (opcional)
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+    .breadcrumb {
+        background: var(--dark-bg-light, #2a2a2a);
+        border-bottom-color: var(--dark-border, #404040);
+    }
+
+    .breadcrumb-link,
+    .breadcrumb-text {
+        color: var(--dark-text, #ffffff);
+    }
+
+    .breadcrumb-text {
+        color: var(--dark-text-light, #cccccc);
+    }
+
+    .breadcrumb-link:hover {
+        background-color: rgba(255, 193, 7, 0.2);
+    }
+
+    .breadcrumb-separator {
+        color: var(--dark-text-light, #cccccc);
+    }
+
+    .breadcrumb-item.current .breadcrumb-text {
+        color: var(--dark-text, #ffffff);
+    }
+
+    .breadcrumb-item.home .breadcrumb-link {
+        color: var(--primary-color);
+    }
+
+    .breadcrumb-item.home .breadcrumb-link:hover {
+        background-color: rgba(255, 193, 7, 0.25);
+    }
+}

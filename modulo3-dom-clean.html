@@ -879,6 +879,424 @@ console.log('Tarjetas de productos creadas dinámicamente');</code></pre>
         </div>
     </section>
 
+    <!-- Ejercicios Prácticos -->
+    <section class="exercises-section">
+        <div class="container">
+            <h2>💪 Ejercicios Prácticos</h2>
+            <p class="section-description">Pon a prueba tus conocimientos de manipulación del DOM con estos ejercicios prácticos.</p>
+            
+            <div class="exercises-grid">
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Calculadora Interactiva</h3>
+                        <span class="difficulty beginner">Principiante</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Crea una calculadora básica que permita sumar, restar, multiplicar y dividir.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Crear interfaz con botones y display</li>
+                                <li>Manejar eventos de click</li>
+                                <li>Mostrar resultados en tiempo real</li>
+                                <li>Validar división por cero</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise1-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise1-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-javascript">// Crear interfaz de calculadora
+const calculadora = document.createElement('div');
+calculadora.style.cssText = `
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background: #f5f5f5;
+`;
+
+const display = document.createElement('input');
+display.type = 'text';
+display.id = 'display';
+display.style.cssText = `
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+    text-align: right;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+`;
+
+calculadora.appendChild(display);
+
+// Crear botones
+const botones = [
+    ['C', 'CE', '/', '*'],
+    ['7', '8', '9', '-'],
+    ['4', '5', '6', '+'],
+    ['1', '2', '3', '='],
+    ['0', '.', '', '']
+];
+
+let operacion = '';
+let numero1 = '';
+let numero2 = '';
+
+botones.forEach(fila => {
+    const filaDiv = document.createElement('div');
+    filaDiv.style.display = 'flex';
+    filaDiv.style.gap = '5px';
+    filaDiv.style.marginBottom = '5px';
+    
+    fila.forEach(texto => {
+        if (texto) {
+            const boton = document.createElement('button');
+            boton.textContent = texto;
+            boton.style.cssText = `
+                flex: 1;
+                height: 50px;
+                font-size: 18px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                cursor: pointer;
+                background: white;
+            `;
+            
+            boton.addEventListener('click', () => manejarClick(texto));
+            filaDiv.appendChild(boton);
+        } else {
+            const espacio = document.createElement('div');
+            espacio.style.flex = '1';
+            filaDiv.appendChild(espacio);
+        }
+    });
+    
+    calculadora.appendChild(filaDiv);
+});
+
+function manejarClick(valor) {
+    if (valor >= '0' && valor <= '9' || valor === '.') {
+        if (!operacion) {
+            numero1 += valor;
+            display.value = numero1;
+        } else {
+            numero2 += valor;
+            display.value = numero2;
+        }
+    } else if (['+', '-', '*', '/'].includes(valor)) {
+        operacion = valor;
+    } else if (valor === '=') {
+        calcular();
+    } else if (valor === 'C') {
+        limpiar();
+    } else if (valor === 'CE') {
+        display.value = '';
+    }
+}
+
+function calcular() {
+    const n1 = parseFloat(numero1);
+    const n2 = parseFloat(numero2);
+    let resultado = 0;
+    
+    switch (operacion) {
+        case '+': resultado = n1 + n2; break;
+        case '-': resultado = n1 - n2; break;
+        case '*': resultado = n1 * n2; break;
+        case '/': 
+            if (n2 === 0) {
+                display.value = 'Error: División por cero';
+                return;
+            }
+            resultado = n1 / n2; 
+            break;
+    }
+    
+    display.value = resultado;
+    numero1 = resultado.toString();
+    numero2 = '';
+    operacion = '';
+}
+
+function limpiar() {
+    numero1 = '';
+    numero2 = '';
+    operacion = '';
+    display.value = '';
+}
+
+document.body.appendChild(calculadora);</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Lista de Tareas</h3>
+                        <span class="difficulty intermediate">Intermedio</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Crea una aplicación de lista de tareas con funcionalidades completas.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Agregar nuevas tareas</li>
+                                <li>Marcar tareas como completadas</li>
+                                <li>Eliminar tareas</li>
+                                <li>Filtrar por estado</li>
+                                <li>Persistencia con localStorage</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise2-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise2-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-javascript">// Crear interfaz de lista de tareas
+const todoApp = document.createElement('div');
+todoApp.style.cssText = `
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+`;
+
+// Input para nueva tarea
+const inputContainer = document.createElement('div');
+inputContainer.style.cssText = `
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+`;
+
+const inputTarea = document.createElement('input');
+inputTarea.type = 'text';
+inputTarea.placeholder = 'Nueva tarea...';
+inputTarea.style.cssText = `
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+`;
+
+const btnAgregar = document.createElement('button');
+btnAgregar.textContent = 'Agregar';
+btnAgregar.style.cssText = `
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+`;
+
+// Filtros
+const filtros = document.createElement('div');
+filtros.style.cssText = `
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+`;
+
+const btnTodos = document.createElement('button');
+btnTodos.textContent = 'Todas';
+btnTodos.className = 'filtro-btn active';
+
+const btnPendientes = document.createElement('button');
+btnPendientes.textContent = 'Pendientes';
+btnPendientes.className = 'filtro-btn';
+
+const btnCompletadas = document.createElement('button');
+btnCompletadas.textContent = 'Completadas';
+btnCompletadas.className = 'filtro-btn';
+
+[filtros, btnTodos, btnPendientes, btnCompletadas].forEach(el => {
+    if (el !== filtros) {
+        el.style.cssText = `
+            padding: 5px 15px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            border-radius: 5px;
+        `;
+        filtros.appendChild(el);
+    }
+});
+
+// Lista de tareas
+const listaTareas = document.createElement('ul');
+listaTareas.id = 'lista-tareas';
+listaTareas.style.cssText = `
+    list-style: none;
+    padding: 0;
+    margin: 0;
+`;
+
+// Contador
+const contador = document.createElement('div');
+contador.id = 'contador';
+contador.style.cssText = `
+    margin-top: 20px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    text-align: center;
+`;
+
+// Estado de la aplicación
+let tareas = JSON.parse(localStorage.getItem('tareas')) || [];
+let filtroActual = 'todas';
+
+// Funciones
+function renderizarTareas() {
+    listaTareas.innerHTML = '';
+    
+    const tareasFiltradas = tareas.filter(tarea => {
+        if (filtroActual === 'pendientes') return !tarea.completada;
+        if (filtroActual === 'completadas') return tarea.completada;
+        return true;
+    });
+    
+    tareasFiltradas.forEach((tarea, index) => {
+        const li = document.createElement('li');
+        li.style.cssText = `
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #eee;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            background: ${tarea.completada ? '#d4edda' : 'white'};
+        `;
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = tarea.completada;
+        checkbox.addEventListener('change', () => toggleTarea(tarea.id));
+        
+        const texto = document.createElement('span');
+        texto.textContent = tarea.texto;
+        texto.style.cssText = `
+            flex: 1;
+            margin: 0 10px;
+            text-decoration: ${tarea.completada ? 'line-through' : 'none'};
+            color: ${tarea.completada ? '#6c757d' : '#333'};
+        `;
+        
+        const btnEliminar = document.createElement('button');
+        btnEliminar.textContent = 'Eliminar';
+        btnEliminar.style.cssText = `
+            padding: 5px 10px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        `;
+        btnEliminar.addEventListener('click', () => eliminarTarea(tarea.id));
+        
+        li.appendChild(checkbox);
+        li.appendChild(texto);
+        li.appendChild(btnEliminar);
+        listaTareas.appendChild(li);
+    });
+    
+    actualizarContador();
+}
+
+function agregarTarea() {
+    const texto = inputTarea.value.trim();
+    if (texto) {
+        const nuevaTarea = {
+            id: Date.now(),
+            texto: texto,
+            completada: false
+        };
+        tareas.push(nuevaTarea);
+        inputTarea.value = '';
+        guardarTareas();
+        renderizarTareas();
+    }
+}
+
+function toggleTarea(id) {
+    const tarea = tareas.find(t => t.id === id);
+    if (tarea) {
+        tarea.completada = !tarea.completada;
+        guardarTareas();
+        renderizarTareas();
+    }
+}
+
+function eliminarTarea(id) {
+    tareas = tareas.filter(t => t.id !== id);
+    guardarTareas();
+    renderizarTareas();
+}
+
+function setFiltro(filtro) {
+    filtroActual = filtro;
+    document.querySelectorAll('.filtro-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.background = 'white';
+    });
+    event.target.classList.add('active');
+    event.target.style.background = '#007bff';
+    event.target.style.color = 'white';
+    renderizarTareas();
+}
+
+function actualizarContador() {
+    const total = tareas.length;
+    const completadas = tareas.filter(t => t.completada).length;
+    const pendientes = total - completadas;
+    
+    contador.innerHTML = `
+        Total: ${total} | Completadas: ${completadas} | Pendientes: ${pendientes}
+    `;
+}
+
+function guardarTareas() {
+    localStorage.setItem('tareas', JSON.stringify(tareas));
+}
+
+// Event listeners
+btnAgregar.addEventListener('click', agregarTarea);
+inputTarea.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') agregarTarea();
+});
+
+btnTodos.addEventListener('click', () => setFiltro('todas'));
+btnPendientes.addEventListener('click', () => setFiltro('pendientes'));
+btnCompletadas.addEventListener('click', () => setFiltro('completadas'));
+
+// Montar la aplicación
+inputContainer.appendChild(inputTarea);
+inputContainer.appendChild(btnAgregar);
+
+todoApp.appendChild(inputContainer);
+todoApp.appendChild(filtros);
+todoApp.appendChild(listaTareas);
+todoApp.appendChild(contador);
+
+document.body.appendChild(todoApp);
+
+// Renderizar inicial
+renderizarTareas();</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Lección 4: Formularios -->
     <section id="formularios" class="lesson-section bg-light" data-lesson="formularios">
         <div class="container">
@@ -1551,6 +1969,472 @@ input.addEventListener('blur', function() {
                         </div>
                     </div>
                 </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Modificador de Contenido</h3>
+                        <span class="difficulty intermediate">Intermedio</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Modifica dinámicamente el contenido y estilo de elementos del DOM.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Cambiar contenido con innerHTML</li>
+                                <li>Modificar estilos con style</li>
+                                <li>Agregar/quitar clases CSS</li>
+                                <li>Crear elementos dinámicamente</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise3-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise3-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-javascript">// Cambiar contenido
+const div = document.getElementById('miDiv');
+div.innerHTML = '<h2>Nuevo contenido</h2><p>Texto actualizado</p>';
+
+// Modificar estilos
+div.style.backgroundColor = 'lightblue';
+div.style.padding = '20px';
+div.style.borderRadius = '10px';
+
+// Agregar/quitar clases
+div.classList.add('destacado', 'activo');
+div.classList.remove('inactivo');
+div.classList.toggle('visible');
+
+// Crear elementos dinámicamente
+const nuevoElemento = document.createElement('div');
+nuevoElemento.textContent = 'Elemento creado con JavaScript';
+nuevoElemento.className = 'nuevo-elemento';
+
+// Agregar al DOM
+document.body.appendChild(nuevoElemento);
+
+// Ejemplo completo: crear lista dinámica
+const lista = document.getElementById('miLista');
+const items = ['Item 1', 'Item 2', 'Item 3'];
+
+items.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    li.addEventListener('click', function() {
+        this.style.textDecoration = 'line-through';
+    });
+    lista.appendChild(li);
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Formulario Avanzado</h3>
+                        <span class="difficulty advanced">Avanzado</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Desarrolla un formulario completo con validación y manejo de datos.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Validación en tiempo real</li>
+                                <li>Manejo de FormData</li>
+                                <li>Mensajes de error personalizados</li>
+                                <li>Reset y limpieza de formulario</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise4-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise4-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-javascript">// Formulario completo
+const form = document.getElementById('formulario');
+const inputs = form.querySelectorAll('input, textarea, select');
+
+// Validación en tiempo real
+inputs.forEach(input => {
+    input.addEventListener('blur', function() {
+        validarCampo(this);
+    });
+    
+    input.addEventListener('input', function() {
+        if (this.classList.contains('error')) {
+            validarCampo(this);
+        }
+    });
+});
+
+function validarCampo(campo) {
+    const valor = campo.value.trim();
+    let esValido = true;
+    let mensaje = '';
+
+    // Validaciones específicas
+    if (campo.hasAttribute('required') && !valor) {
+        esValido = false;
+        mensaje = 'Este campo es obligatorio';
+    } else if (campo.type === 'email' && valor) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(valor)) {
+            esValido = false;
+            mensaje = 'Ingresa un email válido';
+        }
+    } else if (campo.type === 'tel' && valor) {
+        const telefonoRegex = /^\d{10}$/;
+        if (!telefonoRegex.test(valor)) {
+            esValido = false;
+            mensaje = 'Ingresa un teléfono válido (10 dígitos)';
+        }
+    }
+
+    // Mostrar/ocultar error
+    if (esValido) {
+        campo.classList.remove('error');
+        campo.setCustomValidity('');
+        ocultarError(campo);
+    } else {
+        campo.classList.add('error');
+        campo.setCustomValidity(mensaje);
+        mostrarError(campo, mensaje);
+    }
+}
+
+// Envío del formulario
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const datos = Object.fromEntries(formData);
+    
+    // Validar todos los campos
+    let formularioValido = true;
+    inputs.forEach(input => {
+        validarCampo(input);
+        if (input.classList.contains('error')) {
+            formularioValido = false;
+        }
+    });
+    
+    if (formularioValido) {
+        console.log('Datos del formulario:', datos);
+        alert('¡Formulario enviado correctamente!');
+        form.reset();
+        limpiarErrores();
+    } else {
+        alert('Por favor, corrige los errores antes de enviar');
+    }
+});
+
+function mostrarError(campo, mensaje) {
+    let errorDiv = campo.parentNode.querySelector('.error-message');
+    if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        campo.parentNode.appendChild(errorDiv);
+    }
+    errorDiv.textContent = mensaje;
+}
+
+function ocultarError(campo) {
+    const errorDiv = campo.parentNode.querySelector('.error-message');
+    if (errorDiv) {
+        errorDiv.remove();
+    }
+}
+
+function limpiarErrores() {
+    inputs.forEach(input => {
+        input.classList.remove('error');
+        input.setCustomValidity('');
+        ocultarError(input);
+    });
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Animaciones Interactivas</h3>
+                        <span class="difficulty advanced">Avanzado</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Crea animaciones fluidas usando CSS y JavaScript.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Transiciones CSS</li>
+                                <li>Animaciones con @keyframes</li>
+                                <li>Control con JavaScript</li>
+                                <li>requestAnimationFrame para suavidad</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise5-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise5-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-javascript">// CSS para las animaciones
+const style = document.createElement('style');
+style.textContent = `
+    .elemento-animado {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .elemento-animado:hover {
+        transform: scale(1.2) rotate(180deg);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    @keyframes deslizar {
+        0% { transform: translateX(-100px); opacity: 0; }
+        50% { transform: translateX(0); opacity: 0.5; }
+        100% { transform: translateX(100px); opacity: 1; }
+    }
+    
+    .animacion-deslizar {
+        animation: deslizar 2s ease-in-out infinite;
+    }
+    
+    .pulso {
+        animation: pulso 1s ease-in-out infinite;
+    }
+    
+    @keyframes pulso {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+`;
+document.head.appendChild(style);
+
+// Crear elemento animado
+const elemento = document.createElement('div');
+elemento.className = 'elemento-animado';
+elemento.textContent = 'Hover me!';
+document.body.appendChild(elemento);
+
+// Control de animaciones con JavaScript
+let posicion = 0;
+let animando = false;
+
+function animarElemento() {
+    if (!animando) return;
+    
+    posicion += 2;
+    elemento.style.transform = `translateX(${posicion}px)`;
+    
+    if (posicion < 500) {
+        requestAnimationFrame(animarElemento);
+    } else {
+        posicion = 0;
+        animando = false;
+    }
+}
+
+// Botones de control
+const botonIniciar = document.createElement('button');
+botonIniciar.textContent = 'Iniciar Animación';
+botonIniciar.addEventListener('click', function() {
+    animando = true;
+    animarElemento();
+});
+
+const botonPulso = document.createElement('button');
+botonPulso.textContent = 'Efecto Pulso';
+botonPulso.addEventListener('click', function() {
+    elemento.classList.toggle('pulso');
+});
+
+const botonDeslizar = document.createElement('button');
+botonDeslizar.textContent = 'Efecto Deslizar';
+botonDeslizar.addEventListener('click', function() {
+    elemento.classList.toggle('animacion-deslizar');
+});
+
+// Agregar botones al DOM
+document.body.appendChild(botonIniciar);
+document.body.appendChild(botonPulso);
+document.body.appendChild(botonDeslizar);</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <h3>Gestor de LocalStorage</h3>
+                        <span class="difficulty intermediate">Intermedio</span>
+                    </div>
+                    <div class="exercise-content">
+                        <p>Implementa un sistema de persistencia de datos usando localStorage.</p>
+                        <div class="exercise-requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Guardar y recuperar datos</li>
+                                <li>Manejo de objetos con JSON</li>
+                                <li>Validación de datos</li>
+                                <li>Limpieza y gestión de errores</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleCode('exercise6-solution')">
+                            <i class="fas fa-eye"></i> Ver Solución
+                        </button>
+                        <div id="exercise6-solution" class="code-block" style="display: none;">
+                            <pre><code class="language-javascript">// Clase para manejar localStorage
+class LocalStorageManager {
+    constructor(prefix = 'app_') {
+        this.prefix = prefix;
+    }
+    
+    // Guardar datos
+    setItem(key, value) {
+        try {
+            const dataToStore = typeof value === 'object' 
+                ? JSON.stringify(value) 
+                : value;
+            localStorage.setItem(this.prefix + key, dataToStore);
+            return true;
+        } catch (error) {
+            console.error('Error guardando en localStorage:', error);
+            return false;
+        }
+    }
+    
+    // Recuperar datos
+    getItem(key, defaultValue = null) {
+        try {
+            const item = localStorage.getItem(this.prefix + key);
+            if (item === null) return defaultValue;
+            
+            // Intentar parsear como JSON
+            try {
+                return JSON.parse(item);
+            } catch {
+                return item; // Devolver como string si no es JSON
+            }
+        } catch (error) {
+            console.error('Error recuperando de localStorage:', error);
+            return defaultValue;
+        }
+    }
+    
+    // Eliminar elemento
+    removeItem(key) {
+        try {
+            localStorage.removeItem(this.prefix + key);
+            return true;
+        } catch (error) {
+            console.error('Error eliminando de localStorage:', error);
+            return false;
+        }
+    }
+    
+    // Limpiar todos los elementos con nuestro prefijo
+    clear() {
+        try {
+            const keys = Object.keys(localStorage);
+            keys.forEach(key => {
+                if (key.startsWith(this.prefix)) {
+                    localStorage.removeItem(key);
+                }
+            });
+            return true;
+        } catch (error) {
+            console.error('Error limpiando localStorage:', error);
+            return false;
+        }
+    }
+    
+    // Obtener todas las claves
+    getAllKeys() {
+        const keys = Object.keys(localStorage);
+        return keys.filter(key => key.startsWith(this.prefix));
+    }
+}
+
+// Uso práctico
+const storage = new LocalStorageManager('miApp_');
+
+// Ejemplo: Gestor de tareas
+class GestorTareas {
+    constructor() {
+        this.storage = new LocalStorageManager('tareas_');
+        this.tareas = this.storage.getItem('lista', []);
+        this.renderizarTareas();
+    }
+    
+    agregarTarea(texto) {
+        const tarea = {
+            id: Date.now(),
+            texto: texto,
+            completada: false,
+            fecha: new Date().toISOString()
+        };
+        
+        this.tareas.push(tarea);
+        this.guardarTareas();
+        this.renderizarTareas();
+    }
+    
+    completarTarea(id) {
+        const tarea = this.tareas.find(t => t.id === id);
+        if (tarea) {
+            tarea.completada = !tarea.completada;
+            this.guardarTareas();
+            this.renderizarTareas();
+        }
+    }
+    
+    eliminarTarea(id) {
+        this.tareas = this.tareas.filter(t => t.id !== id);
+        this.guardarTareas();
+        this.renderizarTareas();
+    }
+    
+    guardarTareas() {
+        this.storage.setItem('lista', this.tareas);
+    }
+    
+    renderizarTareas() {
+        const contenedor = document.getElementById('lista-tareas');
+        if (!contenedor) return;
+        
+        contenedor.innerHTML = this.tareas.map(tarea => `
+            <div class="tarea ${tarea.completada ? 'completada' : ''}">
+                <span>${tarea.texto}</span>
+                <button onclick="gestor.completarTarea(${tarea.id})">
+                    ${tarea.completada ? 'Deshacer' : 'Completar'}
+                </button>
+                <button onclick="gestor.eliminarTarea(${tarea.id})">Eliminar</button>
+            </div>
+        `).join('');
+    }
+}
+
+// Inicializar gestor
+const gestor = new GestorTareas();
+
+// Ejemplo de uso con formulario
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('form-tarea');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = this.querySelector('input[type="text"]');
+            if (input.value.trim()) {
+                gestor.agregarTarea(input.value.trim());
+                input.value = '';
+            }
+        });
+    }
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1588,6 +2472,23 @@ input.addEventListener('blur', function() {
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Funciones de modal
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevenir scroll
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restaurar scroll
+            }
+        }
 
         // Estado del módulo
         let moduleProgress = 0;
@@ -3418,758 +4319,6 @@ button.setAttribute('role', 'button');</code></pre>
         </div>
     </div>
 
-    <!-- Modales para Lección 4: Formularios -->
-    <div id="form-validation-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-check-circle"></i> Propiedades de Validación</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('form-validation-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('form-validation-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es validity?</h3>
-                <p>Es un objeto que contiene información sobre el estado de validación de un elemento de formulario.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">elemento.validity.propiedad;</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">const input = document.getElementById('email');
-console.log(input.validity.valid); // true/false
-console.log(input.validity.valueMissing); // true si está vacío
-console.log(input.validity.typeMismatch); // true si el tipo no coincide</code></pre>
-
-                <h3>Propiedades principales:</h3>
-                <ul>
-                    <li><code>valid</code> - true si el elemento es válido</li>
-                    <li><code>valueMissing</code> - true si el campo es requerido pero está vacío</li>
-                    <li><code>typeMismatch</code> - true si el valor no coincide con el tipo</li>
-                    <li><code>patternMismatch</code> - true si no coincide con el patrón</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="form-events-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-hand-pointer"></i> Evento Submit</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('form-events-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('form-events-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es el evento submit?</h3>
-                <p>Se dispara cuando un formulario es enviado, ya sea por clic en botón submit o presionar Enter.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">formulario.addEventListener('submit', function(e) {
-    // código aquí
-});</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">const form = document.getElementById('miFormulario');
-
-form.addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevenir envío por defecto
-    
-    const formData = new FormData(this);
-    const datos = Object.fromEntries(formData);
-    
-    console.log('Datos del formulario:', datos);
-    
-    // Validar datos
-    if (validarFormulario(datos)) {
-        enviarDatos(datos);
-    }
-});</code></pre>
-
-                <h3>Características:</h3>
-                <ul>
-                    <li>Se dispara antes de la validación HTML5</li>
-                    <li>Se puede prevenir con <code>preventDefault()</code></li>
-                    <li>Útil para validación personalizada</li>
-                    <li>Permite procesar datos antes del envío</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="form-prevent-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-ban"></i> preventDefault()</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('form-prevent-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('form-prevent-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es preventDefault()?</h3>
-                <p>Previene el comportamiento por defecto de un evento, como el envío automático de un formulario.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">evento.preventDefault();</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">form.addEventListener('submit', function(e) {
-    e.preventDefault(); // Evita que se envíe el formulario
-    
-    // Validación personalizada
-    if (validarDatos()) {
-        // Enviar manualmente
-        enviarFormulario();
-    } else {
-        mostrarErrores();
-    }
-});</code></pre>
-
-                <h3>Casos de uso:</h3>
-                <ul>
-                    <li>Validación personalizada antes del envío</li>
-                    <li>Procesamiento de datos con JavaScript</li>
-                    <li>Enviar datos vía AJAX en lugar de recargar la página</li>
-                    <li>Mostrar confirmaciones antes de enviar</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="custom-validation-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-exclamation-triangle"></i> setCustomValidity()</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('custom-validation-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('custom-validation-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es setCustomValidity()?</h3>
-                <p>Establece un mensaje de validación personalizado para un elemento de formulario.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">elemento.setCustomValidity('mensaje');</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">const email = document.getElementById('email');
-
-email.addEventListener('blur', function() {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
-    if (!emailRegex.test(this.value)) {
-        this.setCustomValidity('Por favor, ingresa un email válido');
-    } else {
-        this.setCustomValidity(''); // Limpiar mensaje
-    }
-});</code></pre>
-
-                <h3>Características:</h3>
-                <ul>
-                    <li>Mensaje vacío ('') marca el campo como válido</li>
-                    <li>Cualquier texto marca el campo como inválido</li>
-                    <li>Se muestra en el tooltip de validación del navegador</li>
-                    <li>Útil para validaciones complejas</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="form-data-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-database"></i> FormData</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('form-data-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('form-data-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es FormData?</h3>
-                <p>Es un objeto que facilita la recolección y envío de datos de formularios, incluyendo archivos.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">const formData = new FormData(formulario);</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">const form = document.getElementById('miFormulario');
-const formData = new FormData(form);
-
-// Obtener datos como objeto
-const datos = Object.fromEntries(formData);
-console.log(datos);
-
-// Obtener valor específico
-const nombre = formData.get('nombre');
-const email = formData.get('email');</code></pre>
-
-                <h3>Métodos principales:</h3>
-                <ul>
-                    <li><code>get(nombre)</code> - Obtiene el valor de un campo</li>
-                    <li><code>set(nombre, valor)</code> - Establece un valor</li>
-                    <li><code>append(nombre, valor)</code> - Añade un valor</li>
-                    <li><code>has(nombre)</code> - Verifica si existe un campo</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="form-reset-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-undo"></i> reset()</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('form-reset-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('form-reset-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es reset()?</h3>
-                <p>Restaura un formulario a su estado inicial, limpiando todos los campos y validaciones.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">formulario.reset();</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">const form = document.getElementById('miFormulario');
-
-// Limpiar formulario después de envío exitoso
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    if (validarYEnviar()) {
-        alert('¡Formulario enviado correctamente!');
-        form.reset(); // Limpiar todos los campos
-    }
-});</code></pre>
-
-                <h3>Características:</h3>
-                <ul>
-                    <li>Restaura valores por defecto de los campos</li>
-                    <li>Limpia mensajes de validación</li>
-                    <li>Resetea el estado de validación</li>
-                    <li>Útil después de envío exitoso</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modales para Lección 5: Animaciones -->
-    <div id="css-transition-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-magic"></i> Propiedad Transition</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('css-transition-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('css-transition-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es transition?</h3>
-                <p>Permite crear transiciones suaves entre diferentes estados de un elemento CSS.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-css">transition: propiedad duración función tiempo-inicio;</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-css">.mi-elemento {
-    background-color: blue;
-    transition: background-color 0.3s ease;
-}
-
-.mi-elemento:hover {
-    background-color: red; /* Transición suave */
-}</code></pre>
-
-                <h3>Propiedades comunes:</h3>
-                <ul>
-                    <li><code>all</code> - Todas las propiedades</li>
-                    <li><code>opacity</code> - Transparencia</li>
-                    <li><code>transform</code> - Transformaciones</li>
-                    <li><code>background-color</code> - Color de fondo</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="css-transform-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-expand-arrows-alt"></i> Propiedad Transform</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('css-transform-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('css-transform-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es transform?</h3>
-                <p>Permite modificar la forma, posición y orientación de un elemento sin afectar el flujo del documento.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-css">transform: función(valor);</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-css">.elemento {
-    transform: translateX(50px) rotate(45deg) scale(1.2);
-    transition: transform 0.3s ease;
-}
-
-.elemento:hover {
-    transform: translateX(100px) rotate(90deg) scale(1.5);
-}</code></pre>
-
-                <h3>Funciones principales:</h3>
-                <ul>
-                    <li><code>translateX/Y(x, y)</code> - Mover elemento</li>
-                    <li><code>rotate(ángulo)</code> - Rotar elemento</li>
-                    <li><code>scale(x, y)</code> - Escalar elemento</li>
-                    <li><code>skewX/Y(ángulo)</code> - Inclinar elemento</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="css-animation-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-play-circle"></i> @keyframes</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('css-animation-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('css-animation-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es @keyframes?</h3>
-                <p>Define los pasos de una animación CSS, especificando qué propiedades cambiar y cuándo.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-css">@keyframes nombre-animacion {
-    0% { propiedades }
-    50% { propiedades }
-    100% { propiedades }
-}</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-css">@keyframes deslizar {
-    0% { transform: translateX(-100px); opacity: 0; }
-    50% { transform: translateX(0); opacity: 0.5; }
-    100% { transform: translateX(100px); opacity: 1; }
-}
-
-.elemento {
-    animation: deslizar 2s ease-in-out infinite;
-}</code></pre>
-
-                <h3>Propiedades de animación:</h3>
-                <ul>
-                    <li><code>animation-name</code> - Nombre de la animación</li>
-                    <li><code>animation-duration</code> - Duración</li>
-                    <li><code>animation-iteration-count</code> - Repeticiones</li>
-                    <li><code>animation-direction</code> - Dirección</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="js-animation-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-clock"></i> setInterval()</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('js-animation-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('js-animation-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es setInterval()?</h3>
-                <p>Ejecuta una función repetidamente con un intervalo de tiempo fijo entre cada ejecución.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">setInterval(función, milisegundos);</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">let posicion = 0;
-const elemento = document.getElementById('miElemento');
-
-const animacion = setInterval(() => {
-    posicion += 5;
-    elemento.style.left = posicion + 'px';
-    
-    if (posicion > 500) {
-        clearInterval(animacion); // Detener animación
-    }
-}, 50); // Cada 50ms</code></pre>
-
-                <h3>Características:</h3>
-                <ul>
-                    <li>Devuelve un ID para poder detenerlo</li>
-                    <li>Se detiene con <code>clearInterval()</code></li>
-                    <li>Útil para animaciones simples</li>
-                    <li>Puede causar problemas de rendimiento</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="js-requestanimation-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-sync"></i> requestAnimationFrame()</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('js-requestanimation-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('js-requestanimation-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es requestAnimationFrame()?</h3>
-                <p>Método optimizado para crear animaciones suaves que se sincroniza con el refresco de la pantalla.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">requestAnimationFrame(función);</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">let posicion = 0;
-const elemento = document.getElementById('miElemento');
-
-function animar() {
-    posicion += 2;
-    elemento.style.transform = `translateX(${posicion}px)`;
-    
-    if (posicion < 500) {
-        requestAnimationFrame(animar); // Continuar animación
-    }
-}
-
-requestAnimationFrame(animar); // Iniciar animación</code></pre>
-
-                <h3>Ventajas sobre setInterval:</h3>
-                <ul>
-                    <li>Mejor rendimiento y fluidez</li>
-                    <li>Se pausa automáticamente en pestañas inactivas</li>
-                    <li>Sincronizado con el refresco de pantalla</li>
-                    <li>Recomendado para animaciones complejas</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="js-classlist-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-toggle-on"></i> classList.toggle()</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('js-classlist-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('js-classlist-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es classList.toggle()?</h3>
-                <p>Alterna una clase CSS en un elemento: la añade si no existe, la quita si ya existe.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">elemento.classList.toggle('clase');</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">const boton = document.getElementById('miBoton');
-
-boton.addEventListener('click', function() {
-    this.classList.toggle('activo');
-    
-    // También se puede usar con condición
-    this.classList.toggle('visible', true); // Forzar añadir
-    this.classList.toggle('oculto', false); // Forzar quitar
-});</code></pre>
-
-                <h3>Otros métodos de classList:</h3>
-                <ul>
-                    <li><code>add('clase')</code> - Añadir clase</li>
-                    <li><code>remove('clase')</code> - Quitar clase</li>
-                    <li><code>contains('clase')</code> - Verificar si existe</li>
-                    <li><code>replace('vieja', 'nueva')</code> - Reemplazar clase</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modales para Lección 6: LocalStorage -->
-    <div id="localStorage-setItem-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-save"></i> setItem()</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('localStorage-setItem-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('localStorage-setItem-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es setItem()?</h3>
-                <p>Guarda un par clave-valor en el almacenamiento local del navegador.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">localStorage.setItem('clave', 'valor');</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">// Guardar datos simples
-localStorage.setItem('nombre', 'Juan');
-localStorage.setItem('edad', '25');
-
-// Guardar objetos (convertir a JSON)
-const usuario = { nombre: 'Juan', edad: 25, email: 'juan@email.com' };
-localStorage.setItem('usuario', JSON.stringify(usuario));</code></pre>
-
-                <h3>Características:</h3>
-                <ul>
-                    <li>Los datos persisten entre sesiones</li>
-                    <li>Solo almacena strings</li>
-                    <li>Límite de ~5-10MB por dominio</li>
-                    <li>Se puede sobrescribir con la misma clave</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="localStorage-getItem-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-download"></i> getItem()</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('localStorage-getItem-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('localStorage-getItem-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es getItem()?</h3>
-                <p>Recupera un valor del almacenamiento local usando su clave.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">localStorage.getItem('clave');</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">// Recuperar datos simples
-const nombre = localStorage.getItem('nombre');
-const edad = localStorage.getItem('edad');
-
-// Recuperar objetos (convertir desde JSON)
-const usuarioStr = localStorage.getItem('usuario');
-if (usuarioStr) {
-    const usuario = JSON.parse(usuarioStr);
-    console.log(usuario.nombre); // Juan
-}</code></pre>
-
-                <h3>Características:</h3>
-                <ul>
-                    <li>Devuelve <code>null</code> si la clave no existe</li>
-                    <li>Siempre devuelve un string</li>
-                    <li>Necesita conversión para objetos</li>
-                    <li>Verificar existencia antes de usar</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="localStorage-removeItem-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-trash"></i> removeItem()</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('localStorage-removeItem-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('localStorage-removeItem-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es removeItem()?</h3>
-                <p>Elimina un elemento específico del almacenamiento local usando su clave.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">localStorage.removeItem('clave');</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">// Eliminar un elemento específico
-localStorage.removeItem('usuario');
-
-// Verificar si se eliminó
-const usuario = localStorage.getItem('usuario');
-console.log(usuario); // null
-
-// Eliminar múltiples elementos
-const clavesAEliminar = ['temporal', 'cache', 'logs'];
-clavesAEliminar.forEach(clave => {
-    localStorage.removeItem(clave);
-});</code></pre>
-
-                <h3>Características:</h3>
-                <ul>
-                    <li>No causa error si la clave no existe</li>
-                    <li>Elimina solo el elemento especificado</li>
-                    <li>No afecta otros datos almacenados</li>
-                    <li>Útil para limpiar datos específicos</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="localStorage-clear-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-broom"></i> clear()</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('localStorage-clear-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('localStorage-clear-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es clear()?</h3>
-                <p>Elimina todos los elementos del almacenamiento local del dominio actual.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">localStorage.clear();</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">// Guardar algunos datos
-localStorage.setItem('usuario', 'Juan');
-localStorage.setItem('config', 'dark');
-localStorage.setItem('preferencias', 'es');
-
-// Verificar que existen
-console.log(localStorage.length); // 3
-
-// Limpiar todo
-localStorage.clear();
-console.log(localStorage.length); // 0</code></pre>
-
-                <h3>Casos de uso:</h3>
-                <ul>
-                    <li>Logout de usuario</li>
-                    <li>Reset de configuración</li>
-                    <li>Limpieza de datos temporales</li>
-                    <li>Pruebas y debugging</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="localStorage-json-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-code"></i> JSON.stringify()</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('localStorage-json-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('localStorage-json-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es JSON.stringify()?</h3>
-                <p>Convierte un objeto JavaScript a una cadena JSON para poder guardarlo en localStorage.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">JSON.stringify(objeto);</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">// Objeto a guardar
-const usuario = {
-    nombre: 'Juan',
-    edad: 25,
-    hobbies: ['programar', 'leer'],
-    activo: true
-};
-
-// Convertir y guardar
-const usuarioJSON = JSON.stringify(usuario);
-localStorage.setItem('usuario', usuarioJSON);
-
-// Recuperar y convertir
-const usuarioRecuperado = JSON.parse(localStorage.getItem('usuario'));
-console.log(usuarioRecuperado.nombre); // Juan</code></pre>
-
-                <h3>Características:</h3>
-                <ul>
-                    <li>Convierte objetos a strings</li>
-                    <li>Preserva la estructura de datos</li>
-                    <li>No funciona con funciones</li>
-                    <li>Útil para datos complejos</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="localStorage-session-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-clock"></i> sessionStorage</h2>
-                <div class="modal-actions">
-                    <button class="audio-btn" onclick="readModalContent('localStorage-session-modal')" title="Leer contenido">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <span class="close" onclick="closeModal('localStorage-session-modal')">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <h3>¿Qué es sessionStorage?</h3>
-                <p>Similar a localStorage pero los datos se eliminan cuando se cierra la pestaña del navegador.</p>
-                
-                <h3>Sintaxis:</h3>
-                <pre><code class="language-javascript">sessionStorage.setItem('clave', 'valor');
-sessionStorage.getItem('clave');
-sessionStorage.removeItem('clave');</code></pre>
-
-                <h3>Ejemplo:</h3>
-                <pre><code class="language-javascript">// Guardar datos de sesión
-sessionStorage.setItem('carrito', JSON.stringify(['item1', 'item2']));
-sessionStorage.setItem('ultimaPagina', 'productos');
-
-// Los datos persisten mientras la pestaña esté abierta
-const carrito = JSON.parse(sessionStorage.getItem('carrito'));
-console.log(carrito); // ['item1', 'item2']
-
-// Se eliminan al cerrar la pestaña</code></pre>
-
-                <h3>Diferencias con localStorage:</h3>
-                <ul>
-                    <li><strong>localStorage:</strong> Persiste hasta ser eliminado</li>
-                    <li><strong>sessionStorage:</strong> Se elimina al cerrar pestaña</li>
-                    <li>Misma API (setItem, getItem, etc.)</li>
-                    <li>Útil para datos temporales</li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
     <script src="script.js"></script>
     <script>

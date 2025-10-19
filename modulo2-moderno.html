@@ -157,7 +157,7 @@
                             <i class="far fa-circle"></i>
                         </div>
                     </a>
-                    <a href="#modules" class="nav-item" data-section="modules">
+                    <a href="#modulos-es6" class="nav-item" data-section="modulos-es6">
                         <div class="nav-item-icon">
                             <i class="fas fa-puzzle-piece"></i>
                         </div>
@@ -834,6 +834,594 @@ console.log("Reporte:", generarReporte(datos));</code></pre>
         </div>
     </section>
 
+    <!-- Lección 4: Destructuring -->
+    <section id="destructuring" class="lesson-section bg-light" data-lesson="destructuring">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <h2>Destructuring</h2>
+                <p class="lesson-intro">La forma elegante de extraer datos de arrays y objetos. Código más limpio y legible.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <ul>
+                        <li>Extraer valores de arrays y objetos</li>
+                        <li>Asignar valores con nombres personalizados</li>
+                        <li>Valores por defecto y rest operator</li>
+                        <li>Destructuring en parámetros de funciones</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('destructuring-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="destructuring-theory" class="theory-content">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fas fa-puzzle-piece"></i> Destructuring de Arrays</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item clickable" onclick="openModal('array-destructuring-modal')">
+                                        <code>const [a, b, c] = [1, 2, 3]</code>
+                                        <span>Extracción básica</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="theory-item clickable" onclick="openModal('array-skip-modal')">
+                                        <code>const [a, , c] = [1, 2, 3]</code>
+                                        <span>Saltar elementos</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="theory-item clickable" onclick="openModal('array-rest-modal')">
+                                        <code>const [a, ...rest] = [1, 2, 3, 4]</code>
+                                        <span>Rest operator</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-cube"></i> Destructuring de Objetos</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item clickable" onclick="openModal('object-destructuring-modal')">
+                                        <code>const {nombre, edad} = persona</code>
+                                        <span>Extracción básica</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="theory-item clickable" onclick="openModal('object-rename-modal')">
+                                        <code>const {nombre: n, edad: e} = persona</code>
+                                        <span>Renombrar variables</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="theory-item clickable" onclick="openModal('object-default-modal')">
+                                        <code>const {nombre = 'Anónimo'} = persona</code>
+                                        <span>Valores por defecto</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('destructuring-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="destructuring-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('destructuring', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('destructuring', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('destructuring', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="destructuring-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Destructuring Básico</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('destructuring-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="destructuring-basic-code">// Arrays
+const colores = ['rojo', 'verde', 'azul'];
+const [primero, segundo, tercero] = colores;
+console.log(primero, segundo, tercero);
+
+// Objetos
+const persona = { nombre: 'Ana', edad: 25 };
+const { nombre, edad } = persona;
+console.log(nombre, edad);
+
+// Coordenadas
+const coordenadas = [10, 20];
+const [x, y] = coordenadas;
+console.log(`Punto: (${x}, ${y})`);</code></pre>
+                                </div>
+                                <div class="code-output" id="destructuring-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="destructuring-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Destructuring Avanzado</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('destructuring-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="destructuring-advanced-code">// Saltar elementos
+const [primero, , tercero] = ['a', 'b', 'c'];
+console.log(primero, tercero);
+
+// Valores por defecto
+const { nombre = 'Anónimo', edad = 0 } = {};
+console.log(nombre, edad);
+
+// Renombrar
+const { nombre: n, edad: e } = { nombre: 'Carlos', edad: 30 };
+console.log(n, e);
+
+// Rest operator
+const [a, b, ...resto] = [1, 2, 3, 4, 5];
+console.log(a, b, resto);</code></pre>
+                                </div>
+                                <div class="code-output" id="destructuring-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="destructuring-interactive" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Caso Real: Procesar API</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('destructuring-interactive-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="destructuring-interactive-code">// Datos de API
+const respuesta = {
+    usuario: { nombre: 'Ana', email: 'ana@email.com' },
+    posts: [
+        { titulo: 'Post 1', likes: 10 },
+        { titulo: 'Post 2', likes: 25 }
+    ]
+};
+
+// Destructuring para extraer datos
+const { usuario: { nombre, email }, posts } = respuesta;
+const [primerPost, ...otrosPosts] = posts;
+
+console.log(`Usuario: ${nombre} (${email})`);
+console.log(`Primer post: ${primerPost.titulo}`);
+console.log(`Otros posts:`, otrosPosts);</code></pre>
+                                </div>
+                                <div class="code-output" id="destructuring-interactive-output"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Destructuring de arrays con sintaxis <code>[]</code></li>
+                            <li>Destructuring de objetos con sintaxis <code>{}</code></li>
+                            <li>Renombrar variables durante la extracción</li>
+                            <li>Valores por defecto para propiedades faltantes</li>
+                            <li>Rest operator para capturar elementos restantes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 5: Spread & Rest -->
+    <section id="spread-rest" class="lesson-section" data-lesson="spread-rest">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+                <h2>Spread & Rest</h2>
+                <p class="lesson-intro">Los operadores que revolucionaron JavaScript. Expande, combina y captura elementos con elegancia.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <ul>
+                        <li>Spread operator para expandir arrays y objetos</li>
+                        <li>Rest operator para capturar elementos restantes</li>
+                        <li>Combinar arrays y objetos fácilmente</li>
+                        <li>Pasar argumentos dinámicos a funciones</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('spread-rest-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="spread-rest-theory" class="theory-content">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fas fa-expand-arrows-alt"></i> Spread Operator (...)</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item clickable" onclick="openModal('spread-arrays-modal')">
+                                        <code>const nuevo = [...array1, ...array2]</code>
+                                        <span>Combinar arrays</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="theory-item clickable" onclick="openModal('spread-objects-modal')">
+                                        <code>const nuevo = {...obj1, ...obj2}</code>
+                                        <span>Combinar objetos</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="theory-item clickable" onclick="openModal('spread-strings-modal')">
+                                        <code>const letras = [...'Hola']</code>
+                                        <span>Convertir string a array</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-compress-arrows-alt"></i> Rest Operator (...)</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item clickable" onclick="openModal('rest-params-modal')">
+                                        <code>function suma(...numeros) {}</code>
+                                        <span>Parámetros rest</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="theory-item clickable" onclick="openModal('rest-destructuring-modal')">
+                                        <code>const [a, ...resto] = array</code>
+                                        <span>Destructuring rest</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('spread-rest-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="spread-rest-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('spread-rest', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('spread-rest', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('spread-rest', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="spread-rest-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Spread & Rest Básico</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('spread-rest-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="spread-rest-basic-code">// Spread con arrays
+const frutas = ['manzana', 'plátano'];
+const verduras = ['zanahoria', 'brócoli'];
+const alimentos = [...frutas, ...verduras];
+console.log(alimentos);
+
+// Spread con objetos
+const usuario = { nombre: 'Ana', edad: 25 };
+const contacto = { email: 'ana@email.com' };
+const perfil = { ...usuario, ...contacto };
+console.log(perfil);
+
+// Rest en funciones
+function sumar(...numeros) {
+    return numeros.reduce((total, num) => total + num, 0);
+}
+console.log(sumar(1, 2, 3, 4));</code></pre>
+                                </div>
+                                <div class="code-output" id="spread-rest-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="spread-rest-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Spread & Rest Avanzado</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('spread-rest-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="spread-rest-advanced-code">// Rest en destructuring
+const [primero, segundo, ...resto] = [1, 2, 3, 4, 5];
+console.log(primero, segundo, resto);
+
+// Spread para copiar arrays
+const original = [1, 2, 3];
+const copia = [...original];
+console.log('Original:', original, 'Copia:', copia);
+
+// Spread para actualizar objetos
+const actualizado = { ...usuario, edad: 26 };
+console.log('Actualizado:', actualizado);
+
+// Rest con objetos
+const { nombre, ...otrosDatos } = perfil;
+console.log('Nombre:', nombre, 'Otros:', otrosDatos);</code></pre>
+                                </div>
+                                <div class="code-output" id="spread-rest-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="spread-rest-interactive" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Caso Real: Gestión de Estado</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('spread-rest-interactive-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="spread-rest-interactive-code">// Estado inicial
+let estado = {
+    usuario: { nombre: 'Ana', logueado: true },
+    productos: ['laptop', 'mouse'],
+    configuracion: { tema: 'oscuro' }
+};
+
+console.log('Estado inicial:', estado);
+
+// Agregar nuevo producto
+estado = {
+    ...estado,
+    productos: [...estado.productos, 'teclado']
+};
+
+// Actualizar configuración
+estado = {
+    ...estado,
+    configuracion: { ...estado.configuracion, tema: 'claro' }
+};
+
+console.log('Estado final:', estado);</code></pre>
+                                </div>
+                                <div class="code-output" id="spread-rest-interactive-output"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Spread operator <code>...</code> para expandir elementos</li>
+                            <li>Combinar arrays y objetos sin mutar los originales</li>
+                            <li>Rest operator <code>...</code> para capturar elementos restantes</li>
+                            <li>Parámetros rest en funciones para argumentos dinámicos</li>
+                            <li>Diferencias entre spread y rest según el contexto</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lección 6: Módulos ES6 -->
+    <section id="modulos-es6" class="lesson-section bg-light" data-lesson="modulos-es6">
+        <div class="container">
+            <div class="lesson-header">
+                <div class="lesson-badge">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <h2>Módulos ES6</h2>
+                <p class="lesson-intro">Organiza tu código en módulos reutilizables. Importa y exporta funcionalidades de forma moderna.</p>
+                
+                <div class="key-points">
+                    <h4>🎯 Puntos Clave</h4>
+                    <ul>
+                        <li>Exportar funciones, variables y clases</li>
+                        <li>Importar desde otros módulos</li>
+                        <li>Exportaciones por defecto vs nombradas</li>
+                        <li>Re-exportar y alias de importación</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <div class="section-toggle" onclick="toggleSection('modulos-es6-theory')">
+                        <h3><i class="fas fa-book"></i> Teoría</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="modulos-es6-theory" class="theory-content">
+                        <div class="theory-grid">
+                            <div class="theory-card">
+                                <h4><i class="fas fa-upload"></i> Exportar</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item clickable" onclick="openModal('export-named-modal')">
+                                        <code>export const nombre = 'Ana'</code>
+                                        <span>Exportación nombrada</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="theory-item clickable" onclick="openModal('export-default-modal')">
+                                        <code>export default function() {}</code>
+                                        <span>Exportación por defecto</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="theory-item clickable" onclick="openModal('export-multiple-modal')">
+                                        <code>export {func1, func2, const1}</code>
+                                        <span>Múltiples exportaciones</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theory-card">
+                                <h4><i class="fas fa-download"></i> Importar</h4>
+                                <div class="theory-list">
+                                    <div class="theory-item clickable" onclick="openModal('import-named-modal')">
+                                        <code>import {nombre, edad} from './datos'</code>
+                                        <span>Importación nombrada</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="theory-item clickable" onclick="openModal('import-default-modal')">
+                                        <code>import MiClase from './MiClase'</code>
+                                        <span>Importación por defecto</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="theory-item clickable" onclick="openModal('import-all-modal')">
+                                        <code>import * as utils from './utils'</code>
+                                        <span>Importar todo</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-section">
+                    <div class="section-toggle" onclick="toggleSection('modulos-es6-example')">
+                        <h3><i class="fas fa-code"></i> Ejemplo Práctico</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div id="modulos-es6-example" class="example-content collapsed">
+                        <div class="example-tabs">
+                            <button class="tab-btn active" onclick="showExampleTab('modulos-es6', 'basic')">Básico</button>
+                            <button class="tab-btn" onclick="showExampleTab('modulos-es6', 'advanced')">Avanzado</button>
+                            <button class="tab-btn" onclick="showExampleTab('modulos-es6', 'interactive')">Interactivo</button>
+                        </div>
+
+                        <div id="modulos-es6-basic" class="example-tab-content active">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Módulos Básicos</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('modulos-es6-basic-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="modulos-es6-basic-code">// Simulando utils.js - Exportar
+const PI = 3.14159;
+function sumar(a, b) {
+    return a + b;
+}
+
+// Simulando main.js - Importar
+console.log('PI:', PI);
+console.log('Suma:', sumar(2, 3));
+
+// Exportaciones nombradas (simulado)
+const utils = { PI, sumar };
+console.log('Utils:', utils);</code></pre>
+                                </div>
+                                <div class="code-output" id="modulos-es6-basic-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="modulos-es6-advanced" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Módulos Avanzados</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('modulos-es6-advanced-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="modulos-es6-advanced-code">// Clase por defecto (simulada)
+class Calculadora {
+    sumar(a, b) { return a + b; }
+    restar(a, b) { return a - b; }
+}
+
+// Múltiples exportaciones (simuladas)
+const math = { PI, sumar, restar: (a, b) => a - b };
+
+// Importar todo (simulado)
+console.log('Math.PI:', math.PI);
+console.log('Math.sumar:', math.sumar(5, 3));
+
+// Usar clase
+const calc = new Calculadora();
+console.log('Calculadora:', calc.sumar(10, 5));</code></pre>
+                                </div>
+                                <div class="code-output" id="modulos-es6-advanced-output"></div>
+                            </div>
+                        </div>
+
+                        <div id="modulos-es6-interactive" class="example-tab-content">
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-title">Caso Real: Aplicación Modular</span>
+                                    <button class="btn btn-sm btn-primary" onclick="runCode('modulos-es6-interactive-code')">
+                                        <i class="fas fa-play"></i> Ejecutar
+                                    </button>
+                                </div>
+                                <div class="code-block">
+                                    <pre><code class="language-javascript" id="modulos-es6-interactive-code">// Simulando api.js
+function fetchUsers() {
+    return Promise.resolve([
+        { name: 'Ana', email: 'ana@email.com' },
+        { name: 'Carlos', email: 'carlos@email.com' }
+    ]);
+}
+
+// Simulando utils.js
+function formatUser(user) {
+    return `${user.name} (${user.email})`;
+}
+
+// Simulando main.js
+async function main() {
+    const users = await fetchUsers();
+    users.forEach(user => console.log(formatUser(user)));
+}
+
+main();</code></pre>
+                                </div>
+                                <div class="code-output" id="modulos-es6-interactive-output"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="lesson-summary">
+                    <h4>📝 Resumen</h4>
+                    <div class="summary-content">
+                        <p>En esta lección aprendiste sobre:</p>
+                        <ul>
+                            <li>Exportaciones nombradas con <code>export</code></li>
+                            <li>Exportación por defecto con <code>export default</code></li>
+                            <li>Importaciones nombradas con <code>import {}</code></li>
+                            <li>Importación por defecto con <code>import</code></li>
+                            <li>Re-exportar y crear alias de importación</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Ejercicios Prácticos -->
     <section class="exercises-section">
         <div class="container">
@@ -1002,6 +1590,12 @@ console.log(htmlAccesorios);</code></pre>
             if (modal) {
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden'; // Prevenir scroll
+                // Asegurar que el scroll se restaure al cerrar
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeModal(modalId);
+                    }
+                });
             }
         }
 
@@ -1009,9 +1603,33 @@ console.log(htmlAccesorios);</code></pre>
             const modal = document.getElementById(modalId);
             if (modal) {
                 modal.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Restaurar scroll
+                document.body.style.overflow = ''; // Restaurar scroll (vacío para resetear)
             }
         }
+
+        // Función para forzar la restauración del scroll
+        function restoreScroll() {
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+        }
+
+        // Restaurar scroll al cargar la página
+        window.addEventListener('load', restoreScroll);
+        
+        // Restaurar scroll si se presiona Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                restoreScroll();
+                // Cerrar todos los modales abiertos
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            }
+        });
+
+        // Función global para restaurar scroll (accesible desde consola)
+        window.restoreScroll = restoreScroll;
 
         // Estado del módulo
         let moduleProgress = 0;
@@ -3816,6 +4434,952 @@ console.log(debugObject(datos, 'Usuario'));</code></pre>
                 <i class="fas fa-quote-left"></i>
                 <span>Lección 3: Template Literals</span>
             </a>
+            <a href="#destructuring" class="fab-item">
+                <i class="fas fa-puzzle-piece"></i>
+                <span>Lección 4: Destructuring</span>
+            </a>
+            <a href="#spread-rest" class="fab-item">
+                <i class="fas fa-expand-arrows-alt"></i>
+                <span>Lección 5: Spread & Rest</span>
+            </a>
+            <a href="#modulos-es6" class="fab-item">
+                <i class="fas fa-puzzle-piece"></i>
+                <span>Lección 6: Módulos ES6</span>
+            </a>
+            <a href="ModulAnimation2.html" class="fab-item">
+                <i class="fas fa-magic"></i>
+                <span>Ver Animaciones</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modales Explicativos - Lección 4: Destructuring -->
+    <div id="array-destructuring-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-puzzle-piece"></i> Destructuring de Arrays - Extracción Básica</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('array-destructuring-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('array-destructuring-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué es Destructuring? 🤔</h3>
+                <p>El <strong>destructuring</strong> es como desempacar una caja de regalo. Tienes un array con varios elementos y quieres sacarlos uno por uno de forma elegante, sin tener que hacer <code>array[0]</code>, <code>array[1]</code>, etc.</p>
+                
+                <h3>💡 Sintaxis Básica:</h3>
+                <pre><code class="language-javascript">// Array original
+const colores = ['rojo', 'verde', 'azul'];
+
+// Destructuring - extraer elementos
+const [primero, segundo, tercero] = colores;
+
+console.log(primero);   // 'rojo'
+console.log(segundo);   // 'verde' 
+console.log(tercero);   // 'azul'</code></pre>
+
+                <h3>🎯 ¿Por qué es útil?</h3>
+                <ul>
+                    <li><strong>Más legible:</strong> <code>const [nombre, edad] = datos</code> vs <code>const nombre = datos[0]; const edad = datos[1]</code></li>
+                    <li><strong>Menos código:</strong> Una línea en lugar de varias</li>
+                    <li><strong>Más expresivo:</strong> Se ve claramente qué estás extrayendo</li>
+                </ul>
+
+                <h3>📝 Ejemplos Prácticos:</h3>
+                <pre><code class="language-javascript">// Coordenadas
+const coordenadas = [10, 20];
+const [x, y] = coordenadas;
+console.log(`Punto: (${x}, ${y})`); // Punto: (10, 20)
+
+// Fecha
+const fecha = [2024, 1, 15];
+const [año, mes, día] = fecha;
+console.log(`${día}/${mes}/${año}`); // 15/1/2024
+
+// RGB
+const rgb = [255, 128, 64];
+const [rojo, verde, azul] = rgb;
+console.log(`RGB: ${rojo}, ${verde}, ${azul}`); // RGB: 255, 128, 64</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="array-skip-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-puzzle-piece"></i> Destructuring - Saltar Elementos</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('array-skip-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('array-skip-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Cómo saltar elementos? 🎯</h3>
+                <p>A veces no necesitas todos los elementos del array. Puedes usar <strong>comas vacías</strong> para saltar los elementos que no te interesan.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// Array con 5 elementos
+const datos = ['Ana', 'Madrid', 'España', '25', 'Programadora'];
+
+// Solo quiero el nombre y la edad (saltando ciudad y país)
+const [nombre, , , edad, profesion] = datos;
+
+console.log(nombre);     // 'Ana'
+console.log(edad);       // '25'
+console.log(profesion);  // 'Programadora'</code></pre>
+
+                <h3>🎯 Casos de Uso Reales:</h3>
+                <pre><code class="language-javascript">// Fecha (año, mes, día, hora, minuto, segundo)
+const timestamp = [2024, 1, 15, 14, 30, 45];
+const [año, , día, hora] = timestamp; // Solo año, día y hora
+console.log(`${día}/${año} a las ${hora}:00`);
+
+// Coordenadas 3D (x, y, z)
+const punto3D = [10, 20, 30];
+const [x, , z] = punto3D; // Solo x y z (saltando y)
+console.log(`Punto: (${x}, ?, ${z})`);
+
+// Datos de usuario (id, nombre, email, activo, fecha_registro)
+const usuario = [1, 'Ana', 'ana@email.com', true, '2024-01-01'];
+const [id, nombre, , activo] = usuario; // Solo id, nombre y estado
+console.log(`Usuario ${id}: ${nombre} - ${activo ? 'Activo' : 'Inactivo'}`);</code></pre>
+
+                <h3>⚠️ Consejos:</h3>
+                <ul>
+                    <li>Usa <strong>comas vacías</strong> para saltar elementos</li>
+                    <li>Puedes saltar <strong>cualquier cantidad</strong> de elementos</li>
+                    <li>Los elementos saltados <strong>no se asignan</strong> a ninguna variable</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="array-rest-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-puzzle-piece"></i> Destructuring con Rest Operator</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('array-rest-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('array-rest-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué es el Rest Operator? 🤔</h3>
+                <p>El <strong>rest operator</strong> (<code>...</code>) te permite capturar "todo lo que sobra" en un array. Es como decir: "Dame los primeros elementos individualmente, y mete todo lo demás en una bolsa".</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// Array con varios elementos
+const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// Tomar los primeros 2 y meter el resto en un array
+const [primero, segundo, ...resto] = numeros;
+
+console.log(primero);  // 1
+console.log(segundo);  // 2
+console.log(resto);    // [3, 4, 5, 6, 7, 8, 9, 10]</code></pre>
+
+                <h3>🎯 Casos de Uso Reales:</h3>
+                <pre><code class="language-javascript">// Procesar argumentos de función
+function procesarDatos(principal, secundario, ...otros) {
+    console.log(`Principal: ${principal}`);
+    console.log(`Secundario: ${secundario}`);
+    console.log(`Otros datos:`, otros);
+}
+
+procesarDatos('A', 'B', 'C', 'D', 'E', 'F');
+// Principal: A
+// Secundario: B
+// Otros datos: ['C', 'D', 'E', 'F']
+
+// Separar el primer elemento del resto
+const colores = ['rojo', 'verde', 'azul', 'amarillo', 'naranja'];
+const [favorito, ...demasColores] = colores;
+console.log(`Mi color favorito: ${favorito}`);
+console.log(`Otros colores:`, demasColores);
+
+// Procesar datos de API
+const respuesta = ['success', 'Usuario creado', 'ID: 123', 'Token: abc', 'Expires: 2024-12-31'];
+const [estado, mensaje, ...detalles] = respuesta;
+console.log(`Estado: ${estado}`);
+console.log(`Mensaje: ${mensaje}`);
+console.log(`Detalles:`, detalles);</code></pre>
+
+                <h3>⚠️ Reglas Importantes:</h3>
+                <ul>
+                    <li>El rest operator <strong>siempre va al final</strong></li>
+                    <li>Solo puedes usar <strong>un rest operator</strong> por destructuring</li>
+                    <li>Si no hay elementos restantes, obtienes un <strong>array vacío</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="object-destructuring-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-cube"></i> Destructuring de Objetos - Extracción Básica</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('object-destructuring-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('object-destructuring-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué es Destructuring de Objetos? 🤔</h3>
+                <p>El <strong>destructuring de objetos</strong> te permite extraer propiedades de un objeto de forma elegante. En lugar de hacer <code>objeto.propiedad</code>, puedes extraer varias propiedades de una vez.</p>
+                
+                <h3>💡 Sintaxis Básica:</h3>
+                <pre><code class="language-javascript">// Objeto original
+const persona = {
+    nombre: 'Ana',
+    edad: 25,
+    ciudad: 'Madrid',
+    profesion: 'Desarrolladora'
+};
+
+// Destructuring - extraer propiedades
+const { nombre, edad, ciudad } = persona;
+
+console.log(nombre);  // 'Ana'
+console.log(edad);    // 25
+console.log(ciudad);  // 'Madrid'</code></pre>
+
+                <h3>🎯 ¿Por qué es útil?</h3>
+                <ul>
+                    <li><strong>Menos repetición:</strong> No necesitas escribir <code>persona.</code> cada vez</li>
+                    <li><strong>Más legible:</strong> Se ve claramente qué propiedades necesitas</li>
+                    <li><strong>Mejor rendimiento:</strong> JavaScript optimiza estas operaciones</li>
+                </ul>
+
+                <h3>📝 Ejemplos Prácticos:</h3>
+                <pre><code class="language-javascript">// Datos de usuario
+const usuario = {
+    id: 1,
+    email: 'ana@email.com',
+    nombre: 'Ana García',
+    activo: true
+};
+
+const { email, nombre, activo } = usuario;
+console.log(`Usuario: ${nombre} (${email}) - ${activo ? 'Activo' : 'Inactivo'}`);
+
+// Configuración de API
+const config = {
+    baseURL: 'https://api.ejemplo.com',
+    timeout: 5000,
+    retries: 3,
+    headers: { 'Content-Type': 'application/json' }
+};
+
+const { baseURL, timeout, retries } = config;
+console.log(`API: ${baseURL} (timeout: ${timeout}ms, retries: ${retries})`);
+
+// Datos de producto
+const producto = {
+    id: 'PROD-001',
+    nombre: 'Laptop Pro',
+    precio: 1299.99,
+    categoria: 'Electrónicos',
+    stock: 15
+};
+
+const { nombre: nombreProducto, precio, stock } = producto;
+console.log(`${nombreProducto}: $${precio} (Stock: ${stock})`);</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="object-rename-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-cube"></i> Destructuring - Renombrar Variables</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('object-rename-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('object-rename-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Cómo renombrar variables? 🎯</h3>
+                <p>A veces el nombre de la propiedad no es el que quieres para tu variable. Puedes usar <strong>propiedad: nuevaVariable</strong> para renombrar durante la extracción.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// Objeto con nombres largos
+const datosUsuario = {
+    nombreCompleto: 'Ana García López',
+    correoElectronico: 'ana@email.com',
+    fechaNacimiento: '1995-03-15'
+};
+
+// Renombrar durante la extracción
+const { 
+    nombreCompleto: nombre, 
+    correoElectronico: email, 
+    fechaNacimiento: nacimiento 
+} = datosUsuario;
+
+console.log(nombre);     // 'Ana García López'
+console.log(email);      // 'ana@email.com'
+console.log(nacimiento); // '1995-03-15'</code></pre>
+
+                <h3>🎯 Casos de Uso Reales:</h3>
+                <pre><code class="language-javascript">// API externa con nombres en inglés
+const apiResponse = {
+    user_id: 123,
+    full_name: 'Carlos Pérez',
+    email_address: 'carlos@email.com',
+    created_at: '2024-01-01'
+};
+
+// Renombrar a español
+const { 
+    user_id: id, 
+    full_name: nombreCompleto, 
+    email_address: email, 
+    created_at: fechaCreacion 
+} = apiResponse;
+
+console.log(`Usuario ${id}: ${nombreCompleto} - ${email}`);
+
+// Datos de configuración
+const config = {
+    database_host: 'localhost',
+    database_port: 5432,
+    database_name: 'mi_app',
+    max_connections: 100
+};
+
+const { 
+    database_host: host, 
+    database_port: port, 
+    database_name: dbName, 
+    max_connections: maxConn 
+} = config;
+
+console.log(`DB: ${host}:${port}/${dbName} (max: ${maxConn})`);
+
+// Evitar conflictos de nombres
+const usuario = { nombre: 'Ana' };
+const configuracion = { nombre: 'Mi App' };
+
+const { nombre: nombreUsuario } = usuario;
+const { nombre: nombreApp } = configuracion;
+
+console.log(`Usuario: ${nombreUsuario}, App: ${nombreApp}`);</code></pre>
+
+                <h3>⚠️ Consejos:</h3>
+                <ul>
+                    <li>Usa <strong>propiedad: nuevaVariable</strong> para renombrar</li>
+                    <li>Puedes renombrar <strong>algunas o todas</strong> las propiedades</li>
+                    <li>Es útil para <strong>evitar conflictos</strong> de nombres</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="object-default-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-cube"></i> Destructuring - Valores por Defecto</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('object-default-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('object-default-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué son los valores por defecto? 🤔</h3>
+                <p>Los <strong>valores por defecto</strong> te permiten asignar un valor cuando la propiedad no existe o es <code>undefined</code>. Es como tener un "plan B" si algo falta.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// Objeto con propiedades faltantes
+const usuario = {
+    nombre: 'Ana',
+    // edad no existe
+    // ciudad no existe
+};
+
+// Valores por defecto
+const { 
+    nombre, 
+    edad = 0, 
+    ciudad = 'Desconocida',
+    activo = false 
+} = usuario;
+
+console.log(nombre);  // 'Ana'
+console.log(edad);    // 0 (valor por defecto)
+console.log(ciudad);  // 'Desconocida' (valor por defecto)
+console.log(activo);  // false (valor por defecto)</code></pre>
+
+                <h3>🎯 Casos de Uso Reales:</h3>
+                <pre><code class="language-javascript">// Configuración de API con valores por defecto
+const config = {
+    baseURL: 'https://api.ejemplo.com'
+    // timeout, retries, headers no existen
+};
+
+const { 
+    baseURL, 
+    timeout = 5000, 
+    retries = 3, 
+    headers = { 'Content-Type': 'application/json' } 
+} = config;
+
+console.log(`API: ${baseURL} (timeout: ${timeout}ms)`);
+
+// Datos de usuario con valores por defecto
+const perfil = {
+    nombre: 'Carlos',
+    email: 'carlos@email.com'
+    // avatar, bio, configuracion no existen
+};
+
+const { 
+    nombre, 
+    email, 
+    avatar = '/default-avatar.png', 
+    bio = 'Sin biografía disponible',
+    configuracion = { tema: 'claro', notificaciones: true }
+} = perfil;
+
+console.log(`Perfil: ${nombre} - Avatar: ${avatar}`);
+
+// Procesar datos de formulario
+const formData = {
+    nombre: 'María',
+    email: 'maria@email.com'
+    // telefono, direccion, newsletter no existen
+};
+
+const { 
+    nombre: nombreForm, 
+    email: emailForm, 
+    telefono = '', 
+    direccion = 'No especificada',
+    newsletter = false 
+} = formData;
+
+console.log(`Formulario: ${nombreForm} - Teléfono: ${telefono || 'No proporcionado'}`);</code></pre>
+
+                <h3>⚠️ Consejos:</h3>
+                <ul>
+                    <li>Usa <strong>propiedad = valor</strong> para valores por defecto</li>
+                    <li>Los valores por defecto solo se usan si la propiedad es <code>undefined</code></li>
+                    <li>Puedes combinar <strong>renombrar y valores por defecto</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales Explicativos - Lección 5: Spread & Rest -->
+    <div id="spread-arrays-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-expand-arrows-alt"></i> Spread Operator - Arrays</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('spread-arrays-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('spread-arrays-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué es el Spread Operator? 🤔</h3>
+                <p>El <strong>spread operator</strong> (<code>...</code>) es como "desparramar" los elementos de un array. Toma todos los elementos y los coloca individualmente donde los necesites.</p>
+                
+                <h3>💡 Sintaxis Básica:</h3>
+                <pre><code class="language-javascript">// Arrays originales
+const frutas = ['manzana', 'plátano'];
+const verduras = ['zanahoria', 'brócoli'];
+
+// Spread - combinar arrays
+const alimentos = [...frutas, ...verduras];
+console.log(alimentos); // ['manzana', 'plátano', 'zanahoria', 'brócoli']</code></pre>
+
+                <h3>🎯 ¿Por qué es útil?</h3>
+                <ul>
+                    <li><strong>No muta:</strong> Los arrays originales no se modifican</li>
+                    <li><strong>Flexible:</strong> Puedes agregar elementos donde quieras</li>
+                    <li><strong>Legible:</strong> Se ve claramente qué estás combinando</li>
+                </ul>
+
+                <h3>📝 Ejemplos Prácticos:</h3>
+                <pre><code class="language-javascript">// Agregar elementos
+const numeros = [1, 2, 3];
+const conNuevos = [0, ...numeros, 4, 5];
+console.log(conNuevos); // [0, 1, 2, 3, 4, 5]
+
+// Copiar array
+const original = [1, 2, 3];
+const copia = [...original];
+console.log(copia); // [1, 2, 3]
+
+// Convertir string a array
+const palabra = 'Hola';
+const letras = [...palabra];
+console.log(letras); // ['H', 'o', 'l', 'a']</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="spread-objects-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-expand-arrows-alt"></i> Spread Operator - Objetos</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('spread-objects-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('spread-objects-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Spread con Objetos 🎯</h3>
+                <p>El spread operator también funciona con objetos. Te permite combinar propiedades de múltiples objetos en uno nuevo.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// Objetos originales
+const usuario = { nombre: 'Ana', edad: 25 };
+const contacto = { email: 'ana@email.com', telefono: '123-456-789' };
+
+// Spread - combinar objetos
+const perfil = { ...usuario, ...contacto };
+console.log(perfil); 
+// { nombre: 'Ana', edad: 25, email: 'ana@email.com', telefono: '123-456-789' }</code></pre>
+
+                <h3>🎯 Casos de Uso Reales:</h3>
+                <pre><code class="language-javascript">// Actualizar propiedades
+const config = { tema: 'oscuro', idioma: 'es' };
+const actualizado = { ...config, tema: 'claro' };
+console.log(actualizado); // { tema: 'claro', idioma: 'es' }
+
+// Agregar nuevas propiedades
+const base = { id: 1, nombre: 'Producto' };
+const completo = { ...base, precio: 99.99, stock: 10 };
+console.log(completo); // { id: 1, nombre: 'Producto', precio: 99.99, stock: 10 }
+
+// Combinar configuraciones
+const defaultConfig = { timeout: 5000, retries: 3 };
+const userConfig = { timeout: 10000 };
+const finalConfig = { ...defaultConfig, ...userConfig };
+console.log(finalConfig); // { timeout: 10000, retries: 3 }</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="spread-strings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-expand-arrows-alt"></i> Spread con Strings</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('spread-strings-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('spread-strings-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Spread con Strings 🎯</h3>
+                <p>Los strings son iterables, así que puedes usar spread para convertirlos en arrays de caracteres.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// String original
+const palabra = 'JavaScript';
+
+// Spread - convertir a array
+const letras = [...palabra];
+console.log(letras); // ['J', 'a', 'v', 'a', 'S', 'c', 'r', 'i', 'p', 't']</code></pre>
+
+                <h3>🎯 Casos de Uso Reales:</h3>
+                <pre><code class="language-javascript">// Invertir string
+const texto = 'Hola';
+const invertido = [...texto].reverse().join('');
+console.log(invertido); // 'aloH'
+
+// Contar caracteres únicos
+const palabra = 'programacion';
+const unicos = [...new Set([...palabra])];
+console.log(unicos); // ['p', 'r', 'o', 'g', 'a', 'm', 'c', 'i', 'n']
+
+// Combinar strings
+const parte1 = 'Hola';
+const parte2 = 'Mundo';
+const combinado = [...parte1, ' ', ...parte2].join('');
+console.log(combinado); // 'Hola Mundo'</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="rest-params-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-compress-arrows-alt"></i> Rest Operator - Parámetros</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('rest-params-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('rest-params-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué es Rest en Parámetros? 🤔</h3>
+                <p>El <strong>rest operator</strong> en parámetros te permite capturar todos los argumentos que sobran en un array. Es útil cuando no sabes cuántos argumentos va a recibir tu función.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// Función con rest parameters
+function sumar(...numeros) {
+    return numeros.reduce((total, num) => total + num, 0);
+}
+
+console.log(sumar(1, 2, 3));        // 6
+console.log(sumar(1, 2, 3, 4, 5));  // 15
+console.log(sumar(10, 20));         // 30</code></pre>
+
+                <h3>🎯 Casos de Uso Reales:</h3>
+                <pre><code class="language-javascript">// Función de logging
+function log(...mensajes) {
+    const timestamp = new Date().toISOString();
+    console.log(`[${timestamp}]`, ...mensajes);
+}
+
+log('Usuario logueado', 'ID: 123'); // [2024-01-15T10:30:00.000Z] Usuario logueado ID: 123
+
+// Función de validación
+function validar(...reglas) {
+    return reglas.every(regla => regla === true);
+}
+
+const esValido = validar(true, true, false, true);
+console.log(esValido); // false
+
+// Función de configuración
+function crearConfig(base, ...opciones) {
+    return { ...base, ...opciones };
+}
+
+const config = crearConfig(
+    { timeout: 5000 },
+    { retries: 3 },
+    { headers: { 'Content-Type': 'application/json' } }
+);
+console.log(config); // { timeout: 5000, retries: 3, headers: {...} }</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="rest-destructuring-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-compress-arrows-alt"></i> Rest en Destructuring</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('rest-destructuring-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('rest-destructuring-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Rest en Destructuring 🎯</h3>
+                <p>Puedes usar rest operator en destructuring para capturar "todo lo que sobra" después de extraer los elementos que necesitas.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// Array original
+const datos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// Destructuring con rest
+const [primero, segundo, ...resto] = datos;
+console.log(primero);  // 1
+console.log(segundo);  // 2
+console.log(resto);    // [3, 4, 5, 6, 7, 8, 9, 10]</code></pre>
+
+                <h3>🎯 Casos de Uso Reales:</h3>
+                <pre><code class="language-javascript">// Procesar datos de API
+const respuesta = ['success', 'Usuario creado', 'ID: 123', 'Token: abc'];
+const [estado, mensaje, ...detalles] = respuesta;
+console.log(`Estado: ${estado}`);
+console.log(`Mensaje: ${mensaje}`);
+console.log(`Detalles:`, detalles);
+
+// Separar elementos
+const colores = ['rojo', 'verde', 'azul', 'amarillo', 'naranja'];
+const [favorito, ...demas] = colores;
+console.log(`Favorito: ${favorito}`);
+console.log(`Otros:`, demas);
+
+// Procesar argumentos de función
+function procesar(principal, secundario, ...otros) {
+    console.log(`Principal: ${principal}`);
+    console.log(`Secundario: ${secundario}`);
+    console.log(`Otros:`, otros);
+}
+
+procesar('A', 'B', 'C', 'D', 'E');</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales Explicativos - Lección 6: Módulos ES6 -->
+    <div id="export-named-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-upload"></i> Exportaciones Nombradas</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('export-named-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('export-named-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué son las Exportaciones Nombradas? 🤔</h3>
+                <p>Las <strong>exportaciones nombradas</strong> te permiten exportar múltiples elementos (variables, funciones, clases) desde un módulo con nombres específicos.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// utils.js
+export const PI = 3.14159;
+export const E = 2.71828;
+
+export function sumar(a, b) {
+    return a + b;
+}
+
+export function multiplicar(a, b) {
+    return a * b;
+}
+
+// main.js - importar
+import { PI, E, sumar, multiplicar } from './utils.js';
+console.log(PI); // 3.14159
+console.log(sumar(2, 3)); // 5</code></pre>
+
+                <h3>🎯 Ventajas:</h3>
+                <ul>
+                    <li><strong>Múltiples exportaciones</strong> en un solo archivo</li>
+                    <li><strong>Nombres específicos</strong> - sabes exactamente qué importas</li>
+                    <li><strong>Tree shaking</strong> - solo se incluye lo que usas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="export-default-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-upload"></i> Exportación por Defecto</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('export-default-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('export-default-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>¿Qué es Exportación por Defecto? 🤔</h3>
+                <p>La <strong>exportación por defecto</strong> es el elemento principal que exporta un módulo. Solo puede haber una por archivo y se importa sin llaves.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// Calculadora.js
+export default class Calculadora {
+    sumar(a, b) { return a + b; }
+    restar(a, b) { return a - b; }
+}
+
+// main.js - importar
+import Calculadora from './Calculadora.js';
+const calc = new Calculadora();
+console.log(calc.sumar(2, 3)); // 5</code></pre>
+
+                <h3>🎯 Cuándo usar:</h3>
+                <ul>
+                    <li><strong>Clase principal</strong> de un módulo</li>
+                    <li><strong>Función principal</strong> de un módulo</li>
+                    <li><strong>Un solo elemento</strong> importante por archivo</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="export-multiple-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-upload"></i> Múltiples Exportaciones</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('export-multiple-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('export-multiple-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Múltiples Exportaciones 🎯</h3>
+                <p>Puedes exportar múltiples elementos al final del archivo usando la sintaxis de objeto.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// utils.js
+const PI = 3.14159;
+const E = 2.71828;
+
+function sumar(a, b) {
+    return a + b;
+}
+
+function multiplicar(a, b) {
+    return a * b;
+}
+
+// Exportar todo al final
+export { PI, E, sumar, multiplicar };
+
+// main.js - importar
+import { PI, sumar } from './utils.js';</code></pre>
+
+                <h3>🎯 Ventajas:</h3>
+                <ul>
+                    <li><strong>Organización clara</strong> - todas las exportaciones en un lugar</li>
+                    <li><strong>Fácil de mantener</strong> - agregar/quitar exportaciones</li>
+                    <li><strong>Re-exportar</strong> desde otros módulos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="import-named-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-download"></i> Importaciones Nombradas</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('import-named-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('import-named-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Importaciones Nombradas 🎯</h3>
+                <p>Las <strong>importaciones nombradas</strong> te permiten importar elementos específicos usando llaves <code>{}</code>.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// Importar elementos específicos
+import { PI, E, sumar, multiplicar } from './utils.js';
+
+// Importar con alias
+import { sumar as add, multiplicar as multiply } from './utils.js';
+
+// Importar todo
+import * as math from './utils.js';
+console.log(math.PI); // 3.14159</code></pre>
+
+                <h3>🎯 Casos de Uso:</h3>
+                <pre><code class="language-javascript">// Solo lo que necesitas
+import { sumar, restar } from './calculadora.js';
+
+// Evitar conflictos de nombres
+import { sumar as suma } from './math.js';
+import { sumar as add } from './utils.js';
+
+// Importar todo con namespace
+import * as api from './api.js';
+api.fetchUsers();
+api.createUser();</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="import-default-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-download"></i> Importación por Defecto</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('import-default-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('import-default-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Importación por Defecto 🎯</h3>
+                <p>Las <strong>importaciones por defecto</strong> no usan llaves y importan el elemento principal del módulo.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// Importar por defecto
+import Calculadora from './Calculadora.js';
+
+// Importar por defecto con alias
+import MiCalculadora from './Calculadora.js';
+
+// Combinar importaciones
+import Calculadora, { PI, E } from './math.js';</code></pre>
+
+                <h3>🎯 Casos de Uso:</h3>
+                <pre><code class="language-javascript">// Clase principal
+import React from 'react';
+import Vue from 'vue';
+
+// Función principal
+import createApp from './app.js';
+
+// Combinar con exportaciones nombradas
+import Calculadora, { PI, E } from './math.js';
+const calc = new Calculadora();
+console.log(calc.sumar(PI, E));</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="import-all-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-download"></i> Importar Todo</h2>
+                <div class="modal-actions">
+                    <button class="audio-btn" onclick="readModalContent('import-all-modal')" title="Leer contenido">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <span class="close" onclick="closeModal('import-all-modal')">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h3>Importar Todo 🎯</h3>
+                <p>Puedes importar todas las exportaciones de un módulo usando <code>import * as alias</code>.</p>
+                
+                <h3>💡 Sintaxis:</h3>
+                <pre><code class="language-javascript">// Importar todo con alias
+import * as math from './utils.js';
+
+console.log(math.PI); // 3.14159
+console.log(math.sumar(2, 3)); // 5
+console.log(math.multiplicar(4, 5)); // 20</code></pre>
+
+                <h3>🎯 Casos de Uso:</h3>
+                <pre><code class="language-javascript">// Librería de utilidades
+import * as utils from './utils.js';
+const resultado = utils.sumar(utils.PI, utils.E);
+
+// API completa
+import * as api from './api.js';
+const usuarios = await api.fetchUsers();
+const nuevoUsuario = await api.createUser(datos);
+
+// Evitar conflictos
+import * as mathUtils from './math.js';
+import * as stringUtils from './strings.js';</code></pre>
+
+                <h3>⚠️ Consideraciones:</h3>
+                <ul>
+                    <li>Puede incluir <strong>código no utilizado</strong></li>
+                    <li>Menos <strong>tree shaking</strong> que importaciones específicas</li>
+                    <li>Útil para <strong>librerías grandes</strong> o APIs completas</li>
+                </ul>
+            </div>
         </div>
     </div>
 

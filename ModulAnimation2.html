@@ -4,60 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animaciones Interactivas - Módulo 2: JavaScript Moderno</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Estilos específicos para las animaciones */
+        .animation-container {
+            background: var(--gradient-primary);
             min-height: 100vh;
-            overflow-x: hidden;
+            padding: 2rem 0;
         }
 
-        .header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
+        .animation-header {
             text-align: center;
             color: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            padding: 0 2rem;
+            position: relative;
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+        .back-button {
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) translateX(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .back-button {
+                position: static;
+                transform: none;
+                margin-bottom: 1rem;
+                display: inline-flex;
+            }
+        }
+
+        .animation-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .header p {
-            font-size: 1.2rem;
+        .animation-header p {
+            font-size: 1.3rem;
             opacity: 0.9;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
         .animation-section {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--glass-bg-strong);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
+            margin: 2rem auto;
+            max-width: 1200px;
+            box-shadow: var(--shadow-hover);
+            border: 3px solid rgba(255, 255, 255, 0.3);
         }
 
         .section-title {
-            color: #333;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
             text-align: center;
             position: relative;
         }
@@ -70,136 +95,140 @@
             transform: translateX(-50%);
             width: 60px;
             height: 4px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: var(--gradient-primary);
             border-radius: 2px;
         }
 
         .animation-area {
             position: relative;
-            height: 400px;
+            height: 500px;
             background: linear-gradient(45deg, #f8f9fa, #e9ecef);
             border-radius: 15px;
             overflow: hidden;
             border: 3px solid #dee2e6;
             margin: 2rem 0;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
         }
 
-        .code-block {
-            background: #2d3748;
-            color: #e2e8f0;
-            padding: 1rem;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            margin: 1rem 0;
-            overflow-x: auto;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .code-line {
-            margin: 0.5rem 0;
-            padding: 0.3rem 0;
-            transition: all 0.3s ease;
-        }
-
-        .code-line.highlight {
-            background: rgba(102, 126, 234, 0.3);
-            border-left: 4px solid #667eea;
-            padding-left: 1rem;
-        }
-
-        .scope-block {
+        .module-box {
             position: absolute;
-            background: linear-gradient(45deg, #4facfe, #00f2fe);
-            color: white;
-            padding: 1rem 1.5rem;
+            background: var(--glass-bg-strong);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 15px;
+            padding: 1.5rem;
             font-weight: bold;
             font-size: 1.1rem;
-            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-hover);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             user-select: none;
+            min-width: 200px;
+            text-align: center;
         }
 
-        .scope-block:hover {
+        .module-box:hover {
             transform: scale(1.05);
-            box-shadow: 0 12px 35px rgba(79, 172, 254, 0.6);
         }
 
-        .arrow-function {
-            position: absolute;
-            background: linear-gradient(45deg, #fa709a, #fee140);
+        .module-box.exporting {
+            background: var(--gradient-accent);
             color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 30px rgba(250, 112, 154, 0.4);
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            user-select: none;
+            animation: exportPulse 1s infinite;
         }
 
-        .arrow-function:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(250, 112, 154, 0.6);
+        .module-box.importing {
+            background: var(--gradient-warm);
+            color: white;
+            animation: importPulse 1s infinite;
         }
 
-        .template-literal {
+        .module-box.main {
+            background: var(--gradient-primary);
+            color: white;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes exportPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 35px rgba(79, 172, 254, 0.6); }
+        }
+
+        @keyframes importPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 25px rgba(250, 112, 154, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 35px rgba(250, 112, 154, 0.6); }
+        }
+
+        .export-item {
             position: absolute;
-            background: linear-gradient(45deg, #a8edea, #fed6e3);
-            color: #333;
-            padding: 1.5rem 2rem;
-            border-radius: 20px;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
             font-weight: bold;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 30px rgba(168, 237, 234, 0.4);
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
             cursor: pointer;
-            user-select: none;
         }
 
-        .template-literal:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(168, 237, 234, 0.6);
+        .export-item:hover {
+            transform: scale(1.1);
         }
 
-        .arrow {
+        .import-item {
             position: absolute;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            background: var(--gradient-warm);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(250, 112, 154, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .import-item:hover {
+            transform: scale(1.1);
+        }
+
+        .connection-line {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
             border-radius: 2px;
             z-index: 10;
             transition: all 0.5s ease;
         }
 
-        .arrow::after {
+        .connection-line.animated {
+            animation: dataFlow 2s ease-in-out infinite;
+        }
+
+        .connection-line::after {
             content: '';
             position: absolute;
             right: -8px;
             top: -6px;
             width: 0;
             height: 0;
-            border-left: 12px solid #ee5a24;
+            border-left: 12px solid #764ba2;
             border-top: 8px solid transparent;
             border-bottom: 8px solid transparent;
         }
 
-        .arrow.animated {
-            animation: pulse 1s infinite;
+        @keyframes dataFlow {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        .data-flow {
+        .data-package {
             position: absolute;
             background: rgba(255, 255, 255, 0.9);
             border: 2px dashed #667eea;
@@ -209,15 +238,17 @@
             color: #333;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            z-index: 20;
         }
 
-        .data-flow.show {
-            animation: dataFlow 2s ease-in-out;
+        .data-package.show {
+            animation: packageMove 3s ease-in-out;
         }
 
-        @keyframes dataFlow {
+        @keyframes packageMove {
             0% { opacity: 0; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.1); }
+            20% { opacity: 1; transform: scale(1.1); }
+            80% { opacity: 1; transform: scale(1.1); }
             100% { opacity: 0; transform: scale(0.8); }
         }
 
@@ -230,7 +261,7 @@
         }
 
         .btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: var(--gradient-primary);
             color: white;
             border: none;
             padding: 1rem 2rem;
@@ -238,7 +269,7 @@
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
@@ -247,26 +278,22 @@
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
-        .btn:active {
-            transform: translateY(0);
-        }
-
         .btn.secondary {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            background: var(--gradient-warm);
+            box-shadow: 0 5px 15px rgba(250, 112, 154, 0.3);
         }
 
         .btn.secondary:hover {
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 8px 25px rgba(250, 112, 154, 0.4);
         }
 
         .explanation {
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            color: white;
+            background: var(--gradient-cool);
+            color: var(--text-color);
             padding: 1.5rem;
             border-radius: 15px;
             margin: 1rem 0;
-            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+            box-shadow: var(--shadow);
             display: none;
         }
 
@@ -302,121 +329,75 @@
         }
 
         .step.active {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: var(--gradient-primary);
             transform: scale(1.2);
         }
 
         .step.completed {
-            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            background: var(--gradient-accent);
         }
 
-        .scope-visualization {
-            position: absolute;
-            border: 3px dashed #667eea;
-            border-radius: 15px;
-            background: rgba(102, 126, 234, 0.1);
-            transition: all 0.5s ease;
+        .code-preview {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .scope-visualization.highlight {
-            background: rgba(102, 126, 234, 0.3);
-            border-color: #667eea;
-            animation: scopePulse 1s infinite;
-        }
-
-        @keyframes scopePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        .info-modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .info-modal-content {
-            background: white;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 20px;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: modalSlideIn 0.3s ease-out;
-            position: relative;
-        }
-
-        .info-modal-header {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 20px 20px 0 0;
-            text-align: center;
-        }
-
-        .info-modal-body {
-            padding: 2rem;
-            color: #333;
-            line-height: 1.6;
-            white-space: pre-wrap;
-        }
-
-        .info-modal-close {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            margin: 0 2rem 2rem 2rem;
-            width: calc(100% - 4rem);
+        .code-line {
+            margin: 0.5rem 0;
+            padding: 0.3rem 0;
             transition: all 0.3s ease;
         }
 
-        .info-modal-close:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        .code-line.highlight {
+            background: rgba(102, 126, 234, 0.3);
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
         }
 
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        .module-label {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 30;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .arrow-flow {
+            position: absolute;
+            font-size: 2rem;
+            color: #667eea;
+            z-index: 15;
+            transition: all 0.5s ease;
+        }
+
+        .arrow-flow.animated {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
             .animation-area {
-                height: 300px;
+                height: 400px;
             }
             
-            .scope-block, .arrow-function, .template-literal {
+            .module-box {
                 font-size: 0.9rem;
-                padding: 0.8rem 1.2rem;
+                padding: 1rem;
+                min-width: 150px;
             }
             
             .control-panel {
@@ -432,347 +413,502 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1><i class="fas fa-magic"></i> Animaciones Interactivas</h1>
-        <p>Módulo 2: JavaScript Moderno - Aprende con Visualizaciones</p>
-    </div>
-
-    <div class="container">
-        <!-- Animación 1: Let, Const y Scope -->
-        <div class="animation-section">
-            <h2 class="section-title">Let, Const y Block Scope</h2>
-            <div class="code-block">
-                <div class="code-line">if (true) {</div>
-                <div class="code-line">    let variableLet = "Solo en este bloque";</div>
-                <div class="code-line">    const variableConst = "Constante en bloque";</div>
-                <div class="code-line">    var variableVar = "Accesible fuera del bloque";</div>
-                <div class="code-line">}</div>
-                <div class="code-line">console.log(variableVar); // ✅ Funciona</div>
-                <div class="code-line">console.log(variableLet); // ❌ Error</div>
-            </div>
-            <div class="animation-area" id="scope-animation">
-                <div class="scope-visualization" id="block-scope" style="top: 50px; left: 50px; width: 300px; height: 200px;">
-                    <div class="scope-block" id="let-var" style="top: 20px; left: 20px;">
-                        <i class="fas fa-lock"></i> let variableLet
-                    </div>
-                    <div class="scope-block" id="const-var" style="top: 20px; left: 150px;">
-                        <i class="fas fa-lock"></i> const variableConst
-                    </div>
-                    <div class="scope-block" id="var-var" style="top: 100px; left: 20px;">
-                        <i class="fas fa-unlock"></i> var variableVar
-                    </div>
-                </div>
-                <div class="scope-block" id="global-let" style="top: 300px; left: 50px; opacity: 0.3;">
-                    <i class="fas fa-times"></i> variableLet (no existe)
-                </div>
-                <div class="scope-block" id="global-var" style="top: 300px; left: 300px;">
-                    <i class="fas fa-check"></i> variableVar (accesible)
-                </div>
-                <div class="data-flow" id="scope-flow" style="top: 250px; left: 100px;">
-                    Block Scope: let y const solo existen dentro del bloque
-                </div>
-            </div>
-            <div class="step-indicator">
-                <div class="step" id="scope-step-1"></div>
-                <div class="step" id="scope-step-2"></div>
-                <div class="step" id="scope-step-3"></div>
-            </div>
-            <div class="control-panel">
-                <button class="btn" onclick="animateScope()">
-                    <i class="fas fa-play"></i> Mostrar Scope
-                </button>
-                <button class="btn secondary" onclick="resetScope()">
-                    <i class="fas fa-redo"></i> Reiniciar
-                </button>
-            </div>
-            <div class="explanation" id="scope-explanation">
-                <h3><i class="fas fa-lightbulb"></i> Explicación del Scope</h3>
-                <p>El scope (alcance) determina dónde se puede acceder a una variable:</p>
-                <ul>
-                    <li><strong>var:</strong> Function scope - accesible en toda la función</li>
-                    <li><strong>let/const:</strong> Block scope - solo accesible dentro del bloque {}</li>
-                    <li><strong>Bloque:</strong> Cualquier código entre llaves {}</li>
-                </ul>
-            </div>
+    <div class="animation-container">
+        <div class="animation-header">
+            <a href="modulo2-moderno.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                <span>Volver al Módulo 2</span>
+            </a>
+            <h1><i class="fas fa-magic"></i> Módulos ES6 en Acción</h1>
+            <p>Visualiza cómo los módulos se comunican entre sí</p>
         </div>
 
-        <!-- Animación 2: Arrow Functions -->
-        <div class="animation-section">
-            <h2 class="section-title">Arrow Functions - Sintaxis Moderna</h2>
-            <div class="code-block">
-                <div class="code-line">// Función tradicional</div>
-                <div class="code-line">function sumar(a, b) {</div>
-                <div class="code-line">    return a + b;</div>
-                <div class="code-line">}</div>
-                <div class="code-line"></div>
-                <div class="code-line">// Arrow function</div>
-                <div class="code-line">const sumar = (a, b) => a + b;</div>
-            </div>
-            <div class="animation-area" id="arrow-animation">
-                <div class="arrow-function" id="traditional-func" style="top: 50px; left: 50px;">
-                    <i class="fas fa-function"></i> function sumar(a, b) { return a + b; }
+        <div class="container">
+            <!-- Animación 1: Exportación Básica -->
+            <div class="animation-section">
+                <h2 class="section-title">Exportar Funciones y Variables</h2>
+                <div class="code-preview">
+                    <div class="code-line">// utils.js</div>
+                    <div class="code-line">export const PI = 3.14159;</div>
+                    <div class="code-line">export function sumar(a, b) { return a + b; }</div>
+                    <div class="code-line">export function multiplicar(a, b) { return a * b; }</div>
                 </div>
-                <div class="arrow" id="arrow-transform" style="top: 150px; left: 200px; transform: rotate(90deg);"></div>
-                <div class="arrow-function" id="arrow-func" style="top: 200px; left: 50px;">
-                    <i class="fas fa-arrow-right"></i> const sumar = (a, b) => a + b
+                <div class="animation-area" id="export-animation">
+                    <div class="module-label" style="top: 20px; left: 20px;">utils.js</div>
+                    <div class="module-box" id="utils-module" style="top: 50px; left: 50px;">
+                        <i class="fas fa-cube"></i><br>
+                        Módulo Utils
+                    </div>
+                    <div class="export-item" id="pi-export" style="top: 120px; left: 80px;">
+                        <i class="fas fa-upload"></i> PI
+                    </div>
+                    <div class="export-item" id="sumar-export" style="top: 120px; left: 150px;">
+                        <i class="fas fa-upload"></i> sumar()
+                    </div>
+                    <div class="export-item" id="multiplicar-export" style="top: 120px; left: 220px;">
+                        <i class="fas fa-upload"></i> multiplicar()
+                    </div>
+                    <div class="connection-line" id="export-line-1" style="top: 100px; left: 120px; width: 60px;"></div>
+                    <div class="connection-line" id="export-line-2" style="top: 100px; left: 190px; width: 60px;"></div>
+                    <div class="connection-line" id="export-line-3" style="top: 100px; left: 260px; width: 60px;"></div>
                 </div>
-                <div class="data-flow" id="arrow-benefits" style="top: 100px; left: 400px;">
-                    <div style="margin-bottom: 0.5rem;">✅ Más corta</div>
-                    <div style="margin-bottom: 0.5rem;">✅ Sin this propio</div>
-                    <div>✅ Return implícito</div>
+                <div class="step-indicator">
+                    <div class="step" id="export-step-1"></div>
+                    <div class="step" id="export-step-2"></div>
+                    <div class="step" id="export-step-3"></div>
+                </div>
+                <div class="control-panel">
+                    <button class="btn" onclick="animateExport()">
+                        <i class="fas fa-play"></i> Mostrar Exportación
+                    </button>
+                    <button class="btn secondary" onclick="resetExport()">
+                        <i class="fas fa-redo"></i> Reiniciar
+                    </button>
+                </div>
+                <div class="explanation" id="export-explanation">
+                    <h3><i class="fas fa-lightbulb"></i> ¿Qué está pasando?</h3>
+                    <p>El módulo <code>utils.js</code> está <strong>exportando</strong> sus funciones y variables para que otros módulos puedan usarlas. Cada <code>export</code> hace que ese elemento esté disponible para importar.</p>
                 </div>
             </div>
-            <div class="step-indicator">
-                <div class="step" id="arrow-step-1"></div>
-                <div class="step" id="arrow-step-2"></div>
-                <div class="step" id="arrow-step-3"></div>
-            </div>
-            <div class="control-panel">
-                <button class="btn" onclick="animateArrow()">
-                    <i class="fas fa-play"></i> Transformar Función
-                </button>
-                <button class="btn secondary" onclick="resetArrow()">
-                    <i class="fas fa-redo"></i> Reiniciar
-                </button>
-            </div>
-            <div class="explanation" id="arrow-explanation">
-                <h3><i class="fas fa-lightbulb"></i> Explicación de Arrow Functions</h3>
-                <p>Las arrow functions son una sintaxis más corta para escribir funciones:</p>
-                <ul>
-                    <li><strong>Sintaxis:</strong> (parámetros) => expresión</li>
-                    <li><strong>Return implícito:</strong> Si es una expresión, no necesita return</li>
-                    <li><strong>Sin this:</strong> Hereda el this del contexto padre</li>
-                    <li><strong>Ideal para:</strong> Callbacks, funciones simples, métodos de array</li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- Animación 3: Template Literals -->
-        <div class="animation-section">
-            <h2 class="section-title">Template Literals - Strings Inteligentes</h2>
-            <div class="code-block">
-                <div class="code-line">let nombre = "Ana";</div>
-                <div class="code-line">let edad = 25;</div>
-                <div class="code-line"></div>
-                <div class="code-line">// Concatenación tradicional</div>
-                <div class="code-line">let mensaje1 = "Hola " + nombre + ", tienes " + edad + " años";</div>
-                <div class="code-line"></div>
-                <div class="code-line">// Template literal</div>
-                <div class="code-line">let mensaje2 = `Hola ${nombre}, tienes ${edad} años`;</div>
-            </div>
-            <div class="animation-area" id="template-animation">
-                <div class="scope-block" id="nombre-template" style="top: 50px; left: 50px;">
-                    <i class="fas fa-tag"></i> nombre = "Ana"
+            <!-- Animación 2: Importación Básica -->
+            <div class="animation-section">
+                <h2 class="section-title">Importar desde Otros Módulos</h2>
+                <div class="code-preview">
+                    <div class="code-line">// main.js</div>
+                    <div class="code-line">import { PI, sumar, multiplicar } from './utils.js';</div>
+                    <div class="code-line">console.log(PI); // 3.14159</div>
+                    <div class="code-line">console.log(sumar(2, 3)); // 5</div>
                 </div>
-                <div class="scope-block" id="edad-template" style="top: 50px; left: 250px;">
-                    <i class="fas fa-calculator"></i> edad = 25
+                <div class="animation-area" id="import-animation">
+                    <div class="module-label" style="top: 20px; left: 20px;">utils.js</div>
+                    <div class="module-box" id="utils-module-2" style="top: 50px; left: 50px;">
+                        <i class="fas fa-cube"></i><br>
+                        Módulo Utils
+                    </div>
+                    <div class="module-label" style="top: 20px; right: 20px;">main.js</div>
+                    <div class="module-box main" id="main-module" style="top: 50px; right: 50px;">
+                        <i class="fas fa-file-code"></i><br>
+                        Módulo Principal
+                    </div>
+                    <div class="export-item" id="pi-export-2" style="top: 120px; left: 80px;">
+                        <i class="fas fa-upload"></i> PI
+                    </div>
+                    <div class="export-item" id="sumar-export-2" style="top: 120px; left: 150px;">
+                        <i class="fas fa-upload"></i> sumar()
+                    </div>
+                    <div class="export-item" id="multiplicar-export-2" style="top: 120px; left: 220px;">
+                        <i class="fas fa-upload"></i> multiplicar()
+                    </div>
+                    <div class="import-item" id="pi-import" style="top: 120px; right: 80px;">
+                        <i class="fas fa-download"></i> PI
+                    </div>
+                    <div class="import-item" id="sumar-import" style="top: 120px; right: 150px;">
+                        <i class="fas fa-download"></i> sumar()
+                    </div>
+                    <div class="import-item" id="multiplicar-import" style="top: 120px; right: 220px;">
+                        <i class="fas fa-download"></i> multiplicar()
+                    </div>
+                    <div class="connection-line" id="import-line-1" style="top: 140px; left: 300px; width: 200px; transform: rotate(0deg);"></div>
+                    <div class="connection-line" id="import-line-2" style="top: 140px; left: 300px; width: 200px; transform: rotate(0deg);"></div>
+                    <div class="connection-line" id="import-line-3" style="top: 140px; left: 300px; width: 200px; transform: rotate(0deg);"></div>
+                    <div class="data-package" id="data-package-1" style="top: 200px; left: 300px; display: none;">
+                        PI = 3.14159
+                    </div>
+                    <div class="data-package" id="data-package-2" style="top: 200px; left: 300px; display: none;">
+                        sumar()
+                    </div>
+                    <div class="data-package" id="data-package-3" style="top: 200px; left: 300px; display: none;">
+                        multiplicar()
+                    </div>
                 </div>
-                <div class="template-literal" id="traditional-string" style="top: 150px; left: 50px;">
-                    <i class="fas fa-quote-left"></i> "Hola " + nombre + ", tienes " + edad + " años"
+                <div class="step-indicator">
+                    <div class="step" id="import-step-1"></div>
+                    <div class="step" id="import-step-2"></div>
+                    <div class="step" id="import-step-3"></div>
                 </div>
-                <div class="arrow" id="template-arrow" style="top: 200px; left: 200px; transform: rotate(90deg);"></div>
-                <div class="template-literal" id="template-string" style="top: 250px; left: 50px;">
-                    <i class="fas fa-code"></i> `Hola ${nombre}, tienes ${edad} años`
+                <div class="control-panel">
+                    <button class="btn" onclick="animateImport()">
+                        <i class="fas fa-play"></i> Mostrar Importación
+                    </button>
+                    <button class="btn secondary" onclick="resetImport()">
+                        <i class="fas fa-redo"></i> Reiniciar
+                    </button>
                 </div>
-                <div class="data-flow" id="template-result" style="top: 100px; left: 400px;">
-                    Resultado: "Hola Ana, tienes 25 años"
+                <div class="explanation" id="import-explanation">
+                    <h3><i class="fas fa-lightbulb"></i> ¿Qué está pasando?</h3>
+                    <p>El módulo <code>main.js</code> está <strong>importando</strong> las funciones y variables que necesita desde <code>utils.js</code>. Los datos "viajan" de un módulo a otro.</p>
                 </div>
             </div>
-            <div class="step-indicator">
-                <div class="step" id="template-step-1"></div>
-                <div class="step" id="template-step-2"></div>
-                <div class="step" id="template-step-3"></div>
-            </div>
-            <div class="control-panel">
-                <button class="btn" onclick="animateTemplate()">
-                    <i class="fas fa-play"></i> Mostrar Interpolación
-                </button>
-                <button class="btn secondary" onclick="resetTemplate()">
-                    <i class="fas fa-redo"></i> Reiniciar
-                </button>
-            </div>
-            <div class="explanation" id="template-explanation">
-                <h3><i class="fas fa-lightbulb"></i> Explicación de Template Literals</h3>
-                <p>Los template literals permiten crear strings de forma más elegante:</p>
-                <ul>
-                    <li><strong>Backticks:</strong> Usa ` en lugar de comillas</li>
-                    <li><strong>Interpolación:</strong> ${variable} inserta el valor</li>
-                    <li><strong>Multilínea:</strong> Pueden contener saltos de línea</li>
-                    <li><strong>Expresiones:</strong> ${2 + 3} evalúa la expresión</li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <!-- Modal de información -->
-    <div id="infoModal" class="info-modal">
-        <div class="info-modal-content">
-            <div class="info-modal-header">
-                <h3 id="infoModalTitle">Información</h3>
+            <!-- Animación 3: Export Default -->
+            <div class="animation-section">
+                <h2 class="section-title">Exportación por Defecto</h2>
+                <div class="code-preview">
+                    <div class="code-line">// Calculadora.js</div>
+                    <div class="code-line">export default class Calculadora {</div>
+                    <div class="code-line">    sumar(a, b) { return a + b; }</div>
+                    <div class="code-line">    restar(a, b) { return a - b; }</div>
+                    <div class="code-line">}</div>
+                </div>
+                <div class="animation-area" id="default-export-animation">
+                    <div class="module-label" style="top: 20px; left: 20px;">Calculadora.js</div>
+                    <div class="module-box" id="calculadora-module" style="top: 50px; left: 50px;">
+                        <i class="fas fa-cube"></i><br>
+                        Módulo Calculadora
+                    </div>
+                    <div class="export-item" id="calculadora-export" style="top: 120px; left: 100px; background: var(--gradient-primary);">
+                        <i class="fas fa-star"></i> Calculadora (default)
+                    </div>
+                    <div class="module-label" style="top: 20px; right: 20px;">app.js</div>
+                    <div class="module-box main" id="app-module" style="top: 50px; right: 50px;">
+                        <i class="fas fa-file-code"></i><br>
+                        Aplicación
+                    </div>
+                    <div class="import-item" id="calculadora-import" style="top: 120px; right: 100px; background: var(--gradient-primary);">
+                        <i class="fas fa-star"></i> Calculadora
+                    </div>
+                    <div class="connection-line" id="default-export-line" style="top: 140px; left: 200px; width: 200px;"></div>
+                    <div class="data-package" id="calculadora-package" style="top: 200px; left: 300px; display: none;">
+                        class Calculadora
+                    </div>
+                </div>
+                <div class="step-indicator">
+                    <div class="step" id="default-step-1"></div>
+                    <div class="step" id="default-step-2"></div>
+                    <div class="step" id="default-step-3"></div>
+                </div>
+                <div class="control-panel">
+                    <button class="btn" onclick="animateDefaultExport()">
+                        <i class="fas fa-play"></i> Mostrar Export Default
+                    </button>
+                    <button class="btn secondary" onclick="resetDefaultExport()">
+                        <i class="fas fa-redo"></i> Reiniciar
+                    </button>
+                </div>
+                <div class="explanation" id="default-explanation">
+                    <h3><i class="fas fa-lightbulb"></i> ¿Qué está pasando?</h3>
+                    <p><code>export default</code> permite exportar <strong>un solo elemento principal</strong> del módulo. Se importa sin llaves <code>{}</code> y puede tener cualquier nombre en el módulo que lo importa.</p>
+                </div>
             </div>
-            <div class="info-modal-body" id="infoModalBody"></div>
-            <button class="info-modal-close" onclick="closeInfoModal()">Aceptar</button>
+
+            <!-- Animación 4: Múltiples Módulos -->
+            <div class="animation-section">
+                <h2 class="section-title">Ecosistema de Módulos</h2>
+                <div class="code-preview">
+                    <div class="code-line">// Un proyecto real con múltiples módulos</div>
+                    <div class="code-line">import { sumar } from './math.js';</div>
+                    <div class="code-line">import { fetchData } from './api.js';</div>
+                    <div class="code-line">import Usuario from './Usuario.js';</div>
+                </div>
+                <div class="animation-area" id="ecosystem-animation">
+                    <div class="module-label" style="top: 20px; left: 20px;">math.js</div>
+                    <div class="module-box" id="math-module" style="top: 50px; left: 50px;">
+                        <i class="fas fa-calculator"></i><br>
+                        Math Utils
+                    </div>
+                    <div class="module-label" style="top: 20px; left: 300px;">api.js</div>
+                    <div class="module-box" id="api-module" style="top: 50px; left: 300px;">
+                        <i class="fas fa-cloud"></i><br>
+                        API Utils
+                    </div>
+                    <div class="module-label" style="top: 20px; right: 20px;">Usuario.js</div>
+                    <div class="module-box" id="usuario-module" style="top: 50px; right: 20px;">
+                        <i class="fas fa-user"></i><br>
+                        Usuario Class
+                    </div>
+                    <div class="module-label" style="top: 250px; left: 50%; transform: translateX(-50%);">app.js</div>
+                    <div class="module-box main" id="main-app" style="top: 280px; left: 50%; transform: translateX(-50%);">
+                        <i class="fas fa-rocket"></i><br>
+                        Aplicación Principal
+                    </div>
+                    <div class="export-item" id="math-export" style="top: 120px; left: 80px;">
+                        <i class="fas fa-upload"></i> sumar()
+                    </div>
+                    <div class="export-item" id="api-export" style="top: 120px; left: 330px;">
+                        <i class="fas fa-upload"></i> fetchData()
+                    </div>
+                    <div class="export-item" id="usuario-export" style="top: 120px; right: 50px; background: var(--gradient-primary);">
+                        <i class="fas fa-star"></i> Usuario
+                    </div>
+                    <div class="connection-line" id="ecosystem-line-1" style="top: 200px; left: 100px; width: 100px; transform: rotate(45deg);"></div>
+                    <div class="connection-line" id="ecosystem-line-2" style="top: 200px; left: 350px; width: 100px; transform: rotate(-45deg);"></div>
+                    <div class="connection-line" id="ecosystem-line-3" style="top: 200px; right: 100px; width: 100px; transform: rotate(45deg);"></div>
+                    <div class="data-package" id="ecosystem-package-1" style="top: 220px; left: 150px; display: none;">
+                        sumar()
+                    </div>
+                    <div class="data-package" id="ecosystem-package-2" style="top: 220px; left: 400px; display: none;">
+                        fetchData()
+                    </div>
+                    <div class="data-package" id="ecosystem-package-3" style="top: 220px; right: 150px; display: none;">
+                        Usuario
+                    </div>
+                </div>
+                <div class="step-indicator">
+                    <div class="step" id="ecosystem-step-1"></div>
+                    <div class="step" id="ecosystem-step-2"></div>
+                    <div class="step" id="ecosystem-step-3"></div>
+                </div>
+                <div class="control-panel">
+                    <button class="btn" onclick="animateEcosystem()">
+                        <i class="fas fa-play"></i> Mostrar Ecosistema
+                    </button>
+                    <button class="btn secondary" onclick="resetEcosystem()">
+                        <i class="fas fa-redo"></i> Reiniciar
+                    </button>
+                </div>
+                <div class="explanation" id="ecosystem-explanation">
+                    <h3><i class="fas fa-lightbulb"></i> ¿Qué está pasando?</h3>
+                    <p>En un proyecto real, tienes <strong>múltiples módulos</strong> que se comunican entre sí. Cada módulo tiene una responsabilidad específica y exporta lo que otros módulos necesitan.</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        function showInfoModal(title, message) {
-            document.getElementById('infoModalTitle').textContent = title;
-            document.getElementById('infoModalBody').textContent = message;
-            document.getElementById('infoModal').style.display = 'block';
-        }
-
-        function closeInfoModal() {
-            document.getElementById('infoModal').style.display = 'none';
-        }
-
-        // Animación de scope
-        function animateScope() {
-            const steps = document.querySelectorAll('#scope-animation .step');
+        // Animación de exportación básica
+        function animateExport() {
+            const steps = document.querySelectorAll('#export-animation .step');
+            if (steps.length === 0) return;
             
-            // Paso 1: Mostrar bloque
+            // Paso 1: Destacar módulo
             setTimeout(() => {
-                document.getElementById('block-scope').classList.add('highlight');
-                steps[0].classList.add('active');
-                showInfoModal('Paso 1', 'Se ejecuta el bloque if (true) { ... }');
+                const utilsModule = document.getElementById('utils-module');
+                if (utilsModule) utilsModule.classList.add('exporting');
+                if (steps[0]) steps[0].classList.add('active');
             }, 500);
 
-            // Paso 2: Crear variables
+            // Paso 2: Mostrar exportaciones
             setTimeout(() => {
-                const variables = ['let-var', 'const-var', 'var-var'];
-                variables.forEach((id, index) => {
+                const exports = ['pi-export', 'sumar-export', 'multiplicar-export'];
+                exports.forEach((id, index) => {
                     setTimeout(() => {
-                        document.getElementById(id).style.animation = 'pulse 0.5s ease-in-out';
+                        const element = document.getElementById(id);
+                        if (element) element.style.animation = 'pulse 0.5s ease-in-out';
                     }, index * 300);
                 });
-                steps[0].classList.remove('active');
-                steps[0].classList.add('completed');
-                steps[1].classList.add('active');
-                showInfoModal('Paso 2', 'Se crean las variables dentro del bloque:\n- let variableLet\n- const variableConst\n- var variableVar');
+                const lines = ['export-line-1', 'export-line-2', 'export-line-3'];
+                lines.forEach((id, index) => {
+                    setTimeout(() => {
+                        const element = document.getElementById(id);
+                        if (element) element.classList.add('animated');
+                    }, index * 300);
+                });
+                if (steps[0]) {
+                    steps[0].classList.remove('active');
+                    steps[0].classList.add('completed');
+                }
+                if (steps[1]) steps[1].classList.add('active');
             }, 1500);
 
-            // Paso 3: Mostrar acceso fuera del bloque
+            // Paso 3: Explicar el proceso
             setTimeout(() => {
-                document.getElementById('global-var').style.animation = 'pulse 0.5s ease-in-out';
-                document.getElementById('global-let').style.animation = 'pulse 0.5s ease-in-out';
-                document.getElementById('scope-flow').classList.add('show');
-                steps[1].classList.remove('active');
-                steps[1].classList.add('completed');
-                steps[2].classList.add('active');
-                showInfoModal('Paso 3', 'Fuera del bloque:\n- variableVar es accesible (function scope)\n- variableLet NO es accesible (block scope)\n- variableConst NO es accesible (block scope)');
+                if (steps[1]) {
+                    steps[1].classList.remove('active');
+                    steps[1].classList.add('completed');
+                }
+                if (steps[2]) steps[2].classList.add('active');
+                const explanation = document.getElementById('export-explanation');
+                if (explanation) explanation.classList.add('show');
             }, 3000);
-
-            setTimeout(() => {
-                document.getElementById('scope-explanation').classList.add('show');
-            }, 4000);
         }
 
-        function resetScope() {
-            const elements = document.querySelectorAll('#scope-animation .step, #scope-animation .scope-visualization, #scope-animation .data-flow');
+        function resetExport() {
+            const elements = document.querySelectorAll('#export-animation .step, #export-animation .module-box, #export-animation .export-item, #export-animation .connection-line');
             elements.forEach(el => {
-                el.classList.remove('active', 'completed', 'highlight', 'show');
+                el.classList.remove('active', 'completed', 'exporting', 'animated');
                 el.style.animation = 'none';
             });
-            document.getElementById('scope-explanation').classList.remove('show');
+            const explanation = document.getElementById('export-explanation');
+            if (explanation) explanation.classList.remove('show');
         }
 
-        // Animación de arrow functions
-        function animateArrow() {
-            const steps = document.querySelectorAll('#arrow-animation .step');
+        // Animación de importación básica
+        function animateImport() {
+            const steps = document.querySelectorAll('#import-animation .step');
+            if (steps.length === 0) return;
             
-            // Paso 1: Mostrar función tradicional
+            // Paso 1: Mostrar módulos
             setTimeout(() => {
-                document.getElementById('traditional-func').style.animation = 'pulse 0.5s ease-in-out';
-                steps[0].classList.add('active');
-                showInfoModal('Paso 1', 'Función tradicional:\nfunction sumar(a, b) {\n    return a + b;\n}');
+                const utilsModule = document.getElementById('utils-module-2');
+                const mainModule = document.getElementById('main-module');
+                if (utilsModule) utilsModule.classList.add('exporting');
+                if (mainModule) mainModule.classList.add('importing');
+                if (steps[0]) steps[0].classList.add('active');
             }, 500);
 
-            // Paso 2: Mostrar transformación
+            // Paso 2: Mostrar conexiones
             setTimeout(() => {
-                document.getElementById('arrow-transform').classList.add('animated');
-                steps[0].classList.remove('active');
-                steps[0].classList.add('completed');
-                steps[1].classList.add('active');
-                showInfoModal('Paso 2', 'Transformación a arrow function:\n- Eliminar "function"\n- Agregar "=>" después de parámetros\n- Si es una expresión, eliminar "return"');
+                const lines = ['import-line-1', 'import-line-2', 'import-line-3'];
+                lines.forEach((id, index) => {
+                    setTimeout(() => {
+                        const element = document.getElementById(id);
+                        if (element) element.classList.add('animated');
+                    }, index * 200);
+                });
+                if (steps[0]) {
+                    steps[0].classList.remove('active');
+                    steps[0].classList.add('completed');
+                }
+                if (steps[1]) steps[1].classList.add('active');
             }, 1500);
 
-            // Paso 3: Mostrar resultado
+            // Paso 3: Mostrar transferencia de datos
             setTimeout(() => {
-                document.getElementById('arrow-func').style.animation = 'pulse 0.5s ease-in-out';
-                document.getElementById('arrow-benefits').classList.add('show');
-                steps[1].classList.remove('active');
-                steps[1].classList.add('completed');
-                steps[2].classList.add('active');
-                showInfoModal('Paso 3', 'Resultado: const sumar = (a, b) => a + b\n\nBeneficios:\n- Más corta y legible\n- Sin this propio\n- Return implícito');
+                const packages = ['data-package-1', 'data-package-2', 'data-package-3'];
+                packages.forEach((id, index) => {
+                    setTimeout(() => {
+                        const packageEl = document.getElementById(id);
+                        if (packageEl) {
+                            packageEl.style.display = 'block';
+                            packageEl.classList.add('show');
+                        }
+                    }, index * 500);
+                });
+                if (steps[1]) {
+                    steps[1].classList.remove('active');
+                    steps[1].classList.add('completed');
+                }
+                if (steps[2]) steps[2].classList.add('active');
+                const explanation = document.getElementById('import-explanation');
+                if (explanation) explanation.classList.add('show');
             }, 2500);
-
-            setTimeout(() => {
-                document.getElementById('arrow-explanation').classList.add('show');
-            }, 3500);
         }
 
-        function resetArrow() {
-            const elements = document.querySelectorAll('#arrow-animation .step, #arrow-animation .arrow, #arrow-animation .data-flow');
+        function resetImport() {
+            const elements = document.querySelectorAll('#import-animation .step, #import-animation .module-box, #import-animation .connection-line, #import-animation .data-package');
             elements.forEach(el => {
-                el.classList.remove('active', 'completed', 'animated', 'show');
+                el.classList.remove('active', 'completed', 'exporting', 'importing', 'animated', 'show');
                 el.style.animation = 'none';
+                el.style.display = 'none';
             });
-            document.getElementById('arrow-explanation').classList.remove('show');
+            const explanation = document.getElementById('import-explanation');
+            if (explanation) explanation.classList.remove('show');
         }
 
-        // Animación de template literals
-        function animateTemplate() {
-            const steps = document.querySelectorAll('#template-animation .step');
+        // Animación de export default
+        function animateDefaultExport() {
+            const steps = document.querySelectorAll('#default-export-animation .step');
+            if (steps.length === 0) return;
             
-            // Paso 1: Mostrar variables
+            // Paso 1: Destacar módulo
             setTimeout(() => {
-                document.getElementById('nombre-template').style.animation = 'pulse 0.5s ease-in-out';
-                document.getElementById('edad-template').style.animation = 'pulse 0.5s ease-in-out';
-                steps[0].classList.add('active');
-                showInfoModal('Paso 1', 'Variables disponibles:\nnombre = "Ana"\nedad = 25');
+                const calculadoraModule = document.getElementById('calculadora-module');
+                if (calculadoraModule) calculadoraModule.classList.add('exporting');
+                if (steps[0]) steps[0].classList.add('active');
             }, 500);
 
-            // Paso 2: Mostrar concatenación tradicional
+            // Paso 2: Mostrar export default
             setTimeout(() => {
-                document.getElementById('traditional-string').style.animation = 'pulse 0.5s ease-in-out';
-                steps[0].classList.remove('active');
-                steps[0].classList.add('completed');
-                steps[1].classList.add('active');
-                showInfoModal('Paso 2', 'Concatenación tradicional:\n"Hola " + nombre + ", tienes " + edad + " años"\n\nProblemas:\n- Difícil de leer\n- Fácil cometer errores\n- Muchos operadores +');
+                const calculadoraExport = document.getElementById('calculadora-export');
+                const defaultLine = document.getElementById('default-export-line');
+                if (calculadoraExport) calculadoraExport.style.animation = 'pulse 0.5s ease-in-out';
+                if (defaultLine) defaultLine.classList.add('animated');
+                if (steps[0]) {
+                    steps[0].classList.remove('active');
+                    steps[0].classList.add('completed');
+                }
+                if (steps[1]) steps[1].classList.add('active');
             }, 1500);
 
-            // Paso 3: Mostrar template literal
+            // Paso 3: Mostrar importación
             setTimeout(() => {
-                document.getElementById('template-arrow').classList.add('animated');
-                document.getElementById('template-string').style.animation = 'pulse 0.5s ease-in-out';
-                document.getElementById('template-result').classList.add('show');
-                steps[1].classList.remove('active');
-                steps[1].classList.add('completed');
-                steps[2].classList.add('active');
-                showInfoModal('Paso 3', 'Template literal:\n`Hola ${nombre}, tienes ${edad} años`\n\nResultado: "Hola Ana, tienes 25 años"\n\nVentajas:\n- Más legible\n- Interpolación automática\n- Soporte multilínea');
+                const appModule = document.getElementById('app-module');
+                const calculadoraImport = document.getElementById('calculadora-import');
+                const packageEl = document.getElementById('calculadora-package');
+                if (appModule) appModule.classList.add('importing');
+                if (calculadoraImport) calculadoraImport.style.animation = 'pulse 0.5s ease-in-out';
+                if (packageEl) {
+                    packageEl.style.display = 'block';
+                    packageEl.classList.add('show');
+                }
+                if (steps[1]) {
+                    steps[1].classList.remove('active');
+                    steps[1].classList.add('completed');
+                }
+                if (steps[2]) steps[2].classList.add('active');
+                const explanation = document.getElementById('default-explanation');
+                if (explanation) explanation.classList.add('show');
             }, 2500);
-
-            setTimeout(() => {
-                document.getElementById('template-explanation').classList.add('show');
-            }, 3500);
         }
 
-        function resetTemplate() {
-            const elements = document.querySelectorAll('#template-animation .step, #template-animation .arrow, #template-animation .data-flow');
+        function resetDefaultExport() {
+            const elements = document.querySelectorAll('#default-export-animation .step, #default-export-animation .module-box, #default-export-animation .connection-line, #default-export-animation .data-package');
             elements.forEach(el => {
-                el.classList.remove('active', 'completed', 'animated', 'show');
+                el.classList.remove('active', 'completed', 'exporting', 'importing', 'animated', 'show');
                 el.style.animation = 'none';
+                el.style.display = 'none';
             });
-            document.getElementById('template-explanation').classList.remove('show');
+            const explanation = document.getElementById('default-explanation');
+            if (explanation) explanation.classList.remove('show');
         }
 
-        // Cerrar modal al hacer clic fuera
-        window.addEventListener('click', function(event) {
-            const modal = document.getElementById('infoModal');
-            if (event.target == modal) {
-                closeInfoModal();
-            }
-        });
+        // Animación del ecosistema
+        function animateEcosystem() {
+            const steps = document.querySelectorAll('#ecosystem-animation .step');
+            if (steps.length === 0) return;
+            
+            // Paso 1: Mostrar todos los módulos
+            setTimeout(() => {
+                const mathModule = document.getElementById('math-module');
+                const apiModule = document.getElementById('api-module');
+                const usuarioModule = document.getElementById('usuario-module');
+                const mainApp = document.getElementById('main-app');
+                if (mathModule) mathModule.classList.add('exporting');
+                if (apiModule) apiModule.classList.add('exporting');
+                if (usuarioModule) usuarioModule.classList.add('exporting');
+                if (mainApp) mainApp.classList.add('importing');
+                if (steps[0]) steps[0].classList.add('active');
+            }, 500);
+
+            // Paso 2: Mostrar conexiones
+            setTimeout(() => {
+                const lines = ['ecosystem-line-1', 'ecosystem-line-2', 'ecosystem-line-3'];
+                lines.forEach((id, index) => {
+                    setTimeout(() => {
+                        const element = document.getElementById(id);
+                        if (element) element.classList.add('animated');
+                    }, index * 300);
+                });
+                if (steps[0]) {
+                    steps[0].classList.remove('active');
+                    steps[0].classList.add('completed');
+                }
+                if (steps[1]) steps[1].classList.add('active');
+            }, 1500);
+
+            // Paso 3: Mostrar transferencia de datos
+            setTimeout(() => {
+                const packages = ['ecosystem-package-1', 'ecosystem-package-2', 'ecosystem-package-3'];
+                packages.forEach((id, index) => {
+                    setTimeout(() => {
+                        const packageEl = document.getElementById(id);
+                        if (packageEl) {
+                            packageEl.style.display = 'block';
+                            packageEl.classList.add('show');
+                        }
+                    }, index * 400);
+                });
+                if (steps[1]) {
+                    steps[1].classList.remove('active');
+                    steps[1].classList.add('completed');
+                }
+                if (steps[2]) steps[2].classList.add('active');
+                const explanation = document.getElementById('ecosystem-explanation');
+                if (explanation) explanation.classList.add('show');
+            }, 2500);
+        }
+
+        function resetEcosystem() {
+            const elements = document.querySelectorAll('#ecosystem-animation .step, #ecosystem-animation .module-box, #ecosystem-animation .connection-line, #ecosystem-animation .data-package');
+            elements.forEach(el => {
+                el.classList.remove('active', 'completed', 'exporting', 'importing', 'animated', 'show');
+                el.style.animation = 'none';
+                el.style.display = 'none';
+            });
+            const explanation = document.getElementById('ecosystem-explanation');
+            if (explanation) explanation.classList.remove('show');
+        }
 
         // Animaciones de entrada
         window.addEventListener('load', function() {
